@@ -1,86 +1,191 @@
 #include "core.h"
 #include "modules.h"
 #include <RE/B/BSVisit.h>
-#include <SKSE/SKSE.h>
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <cctype>
+#include <memory>
 #include <mutex>
+#include <sstream>
 #include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 namespace
 {
+    using Snapshot=ysmir::progression::ScalingSnapshot;
+    enum class DensityTarget : std::uint8_t { Alpha, EffectColor, Emissive };
+    bool Near(float a,float b) { return std::abs(a-b)<=.0001f*std::max({1.f,std::abs(a),std::abs(b)}); }
+    float Read(RE::BSShaderProperty* shader,DensityTarget target) {
+        if (target==DensityTarget::EffectColor) return static_cast<RE::BSEffectShaderMaterial*>(shader->material)->baseColorScale;
+        if (target==DensityTarget::Emissive) return static_cast<RE::BSLightingShaderProperty*>(shader)->emissiveMult;
+        return shader->QMaterialAlpha();
+    }
+    void Write(RE::BSShaderProperty* shader,DensityTarget target,float value) {
+        if (target==DensityTarget::EffectColor) static_cast<RE::BSEffectShaderMaterial*>(shader->material)->baseColorScale=value;
+        else if (target==DensityTarget::Emissive) static_cast<RE::BSLightingShaderProperty*>(shader)->emissiveMult=value;
+        else shader->SetMaterialAlpha(value);
+    }
+    struct DensityBinding {
+        RE::NiPointer<RE::BSShaderProperty> shader;
+        RE::BSShaderMaterial* material{};
+        DensityTarget target{};
+        float baseline{}, applied{};
+        bool valid() const { return shader && shader->material==material; }
+        ~DensityBinding() {
+            if (valid() && Near(Read(shader.get(),target),applied)) Write(shader.get(),target,baseline);
+        }
+        void Apply(float gain) {
+            if (!valid()) return;
+            const auto value=Read(shader.get(),target);
+            if (!std::isfinite(value)) return;
+            if (!Near(value,applied)) baseline=value;
+            applied=target==DensityTarget::Alpha ? 1.f-std::pow(1.f-std::clamp(baseline,0.f,1.f),gain) :
+                std::min(std::max(0.f,baseline)*gain,std::max(baseline,64.f));
+            Write(shader.get(),target,applied);
+        }
+    };
+    struct BindingKey {
+        const void* owner{}; DensityTarget target{};
+        bool operator==(const BindingKey&) const = default;
+    };
+    struct BindingHash {
+        std::size_t operator()(const BindingKey& k) const { return std::hash<const void*>{}(k.owner)^static_cast<std::size_t>(k.target); }
+    };
+    // Weak ownership deduplicates shared materials without pinning dead scene data.
+    std::unordered_map<BindingKey,std::weak_ptr<DensityBinding>,BindingHash> materials;
+    struct ShaderSlot { RE::NiPointer<RE::BSGeometry> geometry; std::shared_ptr<DensityBinding> binding; };
     struct State {
         RE::ProjectileHandle handle;
+        Snapshot snapshot;
+        ysmir::true_cone::Geometry cone;
+        bool isCone{}, storm{}, compensate{};
         RE::NiPointer<RE::NiAVObject> root;
-        float baseline{1}, applied{1}, multiplier{1};
+        float baseline{1}, applied{1};
+        RE::NiPoint3 centerAnchor;
+        std::vector<RE::NiPointer<RE::NiAVObject>> bounds;
+        std::vector<ShaderSlot> shaders;
     };
-    struct StormState { RE::ProjectileHandle handle; float vfx{1}; };
     std::unordered_map<std::uint32_t,State> states;
-    std::unordered_map<std::uint32_t,StormState> stormStates;
     std::mutex mutex;
     RE::BGSProjectile* stormBase{};
-    bool patchBounds{true}, alwaysDraw{true}; float boundRadius{18000};
-    using PostLoad=void(*)(RE::Projectile*,RE::NiAVObject*);
-    using Update=void(*)(RE::Projectile*);
-    std::array<PostLoad,3> postLoad{};
-    std::array<Update,3> update{};
+    bool patchBounds{true}, alwaysDraw{true}, density{true};
+    float boundRadius{18000};
+    std::vector<std::string> exclusions;
     double pruneAt{};
-
-    void Apply(RE::Projectile* projectile,RE::NiAVObject* suppliedRoot)
-    {
-        if (!projectile || !ysmir::progression::Enabled()) return;
-        auto* base=projectile->GetProjectileBase();
-        if (!base || base->IsCone()) return; // True Cone exclusively owns cone visuals.
-        RE::ProjectileHandle handle{projectile};
-        auto id=handle.native_handle();
-        if (!id) return;
-        auto* root=suppliedRoot ? suppliedRoot : projectile->Get3D();
-        if (!root) return;
-        const bool storm=base==stormBase;
-        // Obtain the dispatch snapshot before taking the visual-state mutex, so
-        // the render path never inverts the dispatch -> visual lock order.
-        float multiplier=1;
-        if (!storm) {
-            auto* magic=projectile->GetProjectileRuntimeData().spell;
-            auto* spell=magic ? magic->As<RE::SpellItem>() : nullptr;
-            if (!ysmir::core::IsPlayerOwnedProjectile(projectile) || !ysmir::core::IsPlayerVoiceSpellRuntimeAuthorized(spell)) return;
-            multiplier=ysmir::core::ScalingForSpell(spell).vfx;
-        }
-        std::scoped_lock lock(mutex);
-        if (storm) {
-            auto it=stormStates.find(id);
-            if (it==stormStates.end() || it->second.handle.get().get()!=projectile) return;
-            multiplier=it->second.vfx;
-        }
-        auto& state=states[id];
-        if (state.handle.get().get()!=projectile || state.root.get()!=root)
-            state={handle,RE::NiPointer<RE::NiAVObject>{root},root->local.scale,root->local.scale,multiplier};
-        else if (std::abs(root->local.scale-state.applied)>.0001f) state.baseline=root->local.scale;
-        root->local.scale=state.baseline*state.multiplier;
-        state.applied=root->local.scale;
-        RE::NiUpdateData data{}; root->UpdateTransformAndBounds(data);
-        if (!storm || !patchBounds) return;
-        const auto radius=boundRadius*state.multiplier;
+    std::string Lower(std::string value) {
+        std::transform(value.begin(),value.end(),value.begin(),[](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+        return value;
+    }
+    bool Excluded(RE::BGSProjectile* base) {
+        const auto* editor=base->GetFormEditorID(); const auto* model=base->GetModel();
+        const auto text=Lower(std::string(editor ? editor : "")+" "+(model ? model : ""));
+        return std::any_of(exclusions.begin(),exclusions.end(),[&](const auto& token) { return text.find(token)!=std::string::npos; });
+    }
+    std::shared_ptr<DensityBinding> Bind(RE::BSGeometry* geometry) {
+        const auto& data=geometry->GetGeometryRuntimeData();
+        auto* shader=data.shaderProperty.get(); if (!shader || !shader->material) return {};
+        bool additive=false;
+        if (const auto* alpha=data.alphaProperty.get(); alpha && alpha->GetAlphaBlending())
+            additive=alpha->GetDestBlendMode()==RE::NiAlphaProperty::AlphaFunction::kOne && alpha->GetSrcBlendMode()!=RE::NiAlphaProperty::AlphaFunction::kZero;
+        else if (shader->effectData)
+            additive=shader->effectData->destBlend==RE::NiAlphaProperty::AlphaFunction::kOne && shader->effectData->srcBlend!=RE::NiAlphaProperty::AlphaFunction::kZero;
+        const auto target=additive && shader->GetMaterialType()==RE::BSShaderMaterial::Type::kEffect ? DensityTarget::EffectColor :
+            additive && netimmerse_cast<RE::BSLightingShaderProperty*>(shader) ? DensityTarget::Emissive : DensityTarget::Alpha;
+        const BindingKey key{target==DensityTarget::Emissive ? static_cast<void*>(shader) : shader->material,target};
+        auto& weak=materials[key];
+        if (auto existing=weak.lock(); existing && existing->valid()) return existing;
+        const auto value=Read(shader,target); if (!std::isfinite(value)) return {};
+        auto binding=std::make_shared<DensityBinding>();
+        binding->shader.reset(shader); binding->material=shader->material; binding->target=target;
+        binding->baseline=binding->applied=value; weak=binding;
+        return binding;
+    }
+    RE::NiPoint3 CenterInParent(RE::Projectile* projectile,RE::NiAVObject* root) {
+        return root->parent ? root->parent->world.Invert()*projectile->GetPosition() : projectile->GetPosition();
+    }
+    void BindRoot(State& state,RE::Projectile* projectile,RE::NiAVObject* root) {
+        state.bounds.clear(); state.shaders.clear(); state.root.reset(root);
+        state.baseline=state.applied=root->local.scale;
+        const auto center=CenterInParent(projectile,root);
+        // Fixed model-space anchor: preserve the original center in all three axes.
+        state.centerAnchor=root->local.Invert()*center;
+        std::unordered_set<DensityBinding*> seen;
         RE::BSVisit::TraverseScenegraphObjects(root,[&](RE::NiAVObject* object) {
-            if (object) {
+            if (state.storm && patchBounds) {
+                state.bounds.emplace_back(object);
                 object->GetFlags().set(RE::NiAVObject::Flag::kFixedBound,RE::NiAVObject::Flag::kForceUpdate);
                 if (alwaysDraw) object->GetFlags().set(RE::NiAVObject::Flag::kAlwaysDraw);
                 object->SetAppCulled(false);
-                object->worldBound.center=object->world.translate;
-                object->worldBound.radius=std::max(object->worldBound.radius,radius);
             }
+            if (state.compensate)
+                if (auto* geometry=object->AsGeometry())
+                    if (auto binding=Bind(geometry); binding && seen.insert(binding.get()).second)
+                        state.shaders.push_back({RE::NiPointer<RE::BSGeometry>{geometry},std::move(binding)});
             return RE::BSVisit::BSVisitControl::kContinue;
         });
     }
-    template<std::size_t I> void Post(RE::Projectile* p,RE::NiAVObject* root) { postLoad[I](p,root); Apply(p,root); }
-    template<std::size_t I> void Tick(RE::Projectile* p) { update[I](p); Apply(p,nullptr); }
-    template<std::size_t I> void Install(std::uintptr_t address)
+    void Apply(RE::Projectile* projectile,RE::NiAVObject* suppliedRoot,bool draw=true)
     {
-        REL::Relocation<std::uintptr_t> table{address};
-        postLoad[I]=reinterpret_cast<PostLoad>(table.write_vfunc(0xAA,Post<I>));
-        update[I]=reinterpret_cast<Update>(table.write_vfunc(0xAD,Tick<I>));
+        if (!projectile || !ysmir::progression::Enabled()) return;
+        auto* base=projectile->GetProjectileBase(); if (!base) return;
+        const bool storm=base==stormBase;
+        auto* magic=projectile->GetProjectileRuntimeData().spell;
+        auto* spell=magic ? magic->As<RE::SpellItem>() : nullptr;
+        if (!storm && (!ysmir::core::IsPlayerOwnedProjectile(projectile) || !ysmir::core::IsPlayerVoiceSpellRuntimeAuthorized(spell))) return;
+        const RE::ProjectileHandle handle{projectile}; const auto id=handle.native_handle();
+        if (!id) return; // Initialization can precede handle assignment.
+        const auto snapshot=ysmir::core::ScalingForProjectile(projectile);
+        std::scoped_lock lock(mutex);
+        auto found=states.find(id);
+        if (storm && found==states.end()) return;
+        auto& state=states[id];
+        if (state.handle.get().get()!=projectile) {
+            state={}; state.handle=handle; state.snapshot=snapshot; state.storm=storm;
+            state.isCone=base->IsCone(); state.compensate=state.isCone && density && !Excluded(base);
+            if (state.isCone) state.cone=ysmir::true_cone::Capture(static_cast<RE::ConeProjectile*>(projectile));
+        }
+        auto* cone=state.isCone ? static_cast<RE::ConeProjectile*>(projectile) : nullptr;
+        if (cone) ysmir::true_cone::ApplyCollision(cone,state.cone,state.snapshot);
+        if (!draw || (cone && !ysmir::true_cone::PatchVisuals())) return;
+        auto* root=suppliedRoot ? suppliedRoot : projectile->Get3D();
+        if (!root || !std::isfinite(root->local.scale) || root->local.scale<=0) return;
+        if (state.root.get()!=root) BindRoot(state,projectile,root);
+        else if (!Near(root->local.scale,state.applied)) state.baseline=root->local.scale;
+        const auto factor=cone ? ysmir::true_cone::VisualScale(cone,state.cone,state.snapshot) : state.snapshot.vfx;
+        root->local.scale=state.baseline*factor; state.applied=root->local.scale;
+        root->local.translate=CenterInParent(projectile,root)-root->local.rotate*(state.centerAnchor*root->local.scale);
+        RE::NiUpdateData data{}; root->UpdateTransformAndBounds(data);
+        for (const auto& object : state.bounds) {
+            object->worldBound.center=object->world.translate;
+            object->worldBound.radius=std::max(object->worldBound.radius,boundRadius*state.snapshot.vfx);
+        }
+        for (auto& slot : state.shaders) {
+            auto* shader=slot.geometry->GetGeometryRuntimeData().shaderProperty.get();
+            if (!slot.binding || !slot.binding->valid() || !shader || shader->material!=slot.binding->material ||
+                (slot.binding->target==DensityTarget::Emissive && shader!=slot.binding->shader.get()))
+                slot.binding=Bind(slot.geometry.get());
+            if (slot.binding) slot.binding->Apply(state.snapshot.density);
+        }
     }
+    template<std::size_t I> struct Hook {
+        static inline void(*post)(RE::Projectile*,RE::NiAVObject*);
+        static inline void(*update)(RE::Projectile*);
+        static void Post(RE::Projectile* p,RE::NiAVObject* root) { post(p,root); Apply(p,root); }
+        static void Update(RE::Projectile* p) { update(p); Apply(p,nullptr); }
+        static void Install(std::uintptr_t address) {
+            REL::Relocation<std::uintptr_t> table{address};
+            post=reinterpret_cast<decltype(post)>(table.write_vfunc(0xAA,Post));
+            update=reinterpret_cast<decltype(update)>(table.write_vfunc(0xAD,Update));
+        }
+    };
+    struct ConeHook {
+        static inline void(*update)(RE::ConeProjectile*,float);
+        static inline void(*loaded)(RE::ConeProjectile*);
+        static void Update(RE::ConeProjectile* p,float delta) { Apply(p,nullptr,false); update(p,delta); Apply(p,nullptr); }
+        static void Loaded(RE::ConeProjectile* p) { loaded(p); Apply(p,nullptr); }
+    };
 }
 
 namespace ysmir::projectile_visuals
@@ -90,26 +195,34 @@ namespace ysmir::projectile_visuals
         patchBounds=config::Bool("Storm","bPatchProjectileBounds",true);
         alwaysDraw=config::Bool("Storm","bForceProjectileAlwaysDraw",true);
         boundRadius=std::clamp(config::Float("Storm.Visual","fProjectileBoundRadius",18000.f),512.f,1000000.f);
-        Install<0>(RE::VTABLE_Projectile[0].address());
-        Install<1>(RE::VTABLE_BeamProjectile[0].address());
-        Install<2>(RE::VTABLE_MissileProjectile[0].address());
+        density=config::Bool("TrueCone","DensityCompensation",true);
+        std::istringstream tokens(config::String("TrueCone","DensityExcludedTokens","Cyclone,BendWill"));
+        for (std::string token; std::getline(tokens,token,','); ) {
+            const auto first=token.find_first_not_of(" \t"), last=token.find_last_not_of(" \t");
+            if (first!=std::string::npos) exclusions.push_back(Lower(token.substr(first,last-first+1)));
+        }
+        Hook<0>::Install(RE::VTABLE_Projectile[0].address());
+        Hook<1>::Install(RE::VTABLE_BeamProjectile[0].address());
+        Hook<2>::Install(RE::VTABLE_MissileProjectile[0].address());
+        REL::Relocation<std::uintptr_t> table{RE::VTABLE_ConeProjectile[0]};
+        ConeHook::update=reinterpret_cast<decltype(ConeHook::update)>(table.write_vfunc(0xAB,ConeHook::Update));
+        ConeHook::loaded=reinterpret_cast<decltype(ConeHook::loaded)>(table.write_vfunc(0xC0,ConeHook::Loaded));
     }
     void SetStormBase(RE::BGSProjectile* base) { stormBase=base; }
-    void TrackStorm(const RE::ProjectileHandle& handle,float vfx)
+    void TrackStorm(const RE::ProjectileHandle& handle,const Snapshot& snapshot)
     {
-        auto id=handle.native_handle(); if (!id) return;
-        { std::scoped_lock lock(mutex); stormStates.insert_or_assign(id,StormState{handle,vfx}); }
-        if (auto projectile=handle.get()) Apply(projectile.get(),nullptr);
+        const auto id=handle.native_handle(); if (!id) return;
+        core::TrackProjectile(handle,snapshot);
+        { std::scoped_lock lock(mutex); auto& state=states[id]; state.handle=handle; state.snapshot=snapshot; state.storm=true; }
+        if (const auto projectile=handle.get()) Apply(projectile.get(),nullptr);
     }
-    void Clear() { std::scoped_lock lock(mutex); states.clear(); stormStates.clear(); }
+    void Clear() { std::scoped_lock lock(mutex); states.clear(); materials.clear(); }
     void FrameUpdate()
     {
         if (progression::Now()<pruneAt) return;
         pruneAt=progression::Now()+1;
         std::scoped_lock lock(mutex);
         std::erase_if(states,[](const auto& entry) { return !entry.second.handle.get(); });
-        std::erase_if(stormStates,[](const auto& entry) { return !entry.second.handle.get(); });
-        // Live baselines are never evicted: eviction would re-capture an already
-        // scaled root and amplify it again. Expired handles are reclaimed once/sec.
+        std::erase_if(materials,[](const auto& entry) { return entry.second.expired(); });
     }
 }

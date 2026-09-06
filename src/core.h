@@ -14,6 +14,7 @@ namespace ysmir::core
 	progression::ScalingSnapshot CurrentScaling();
 	progression::ScalingSnapshot ScalingForSpell(RE::SpellItem* spell);
 	progression::ScalingSnapshot ScalingForProjectile(RE::Projectile* projectile);
+	void TrackProjectile(const RE::ProjectileHandle& handle, const progression::ScalingSnapshot& snapshot);
 	bool CastFeatureSpell(RE::SpellItem* spell, RE::Actor& actor, RE::Actor* target, const progression::ScalingSnapshot& snapshot);
 	RE::TESShout* PrivateShout(RE::FormID official);
 

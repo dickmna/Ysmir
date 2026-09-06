@@ -1,4 +1,4 @@
-# Ysmir 0.4.0 来源与许可
+# Ysmir 0.5.0 来源与许可
 
 Ysmir 原创代码继续保留 `LICENSE` 中 dickmna and Codex 的 MIT 声明。组合 DLL 链接 CommonLibSSE-NG 7.2.0，按 GPL-3.0-or-later 提供，附完整对应源码与 `COPYING`。游戏数据和第三方资产仍归原作者，其权限不因私有 FormID、静态链接或本次重构而改变。
 

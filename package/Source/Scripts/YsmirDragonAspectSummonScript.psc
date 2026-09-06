@@ -4,7 +4,7 @@ Scriptname YsmirDragonAspectSummonScript extends ActiveMagicEffect
 Spell Property FT_DLC2VoiceDragonAspectSummon Auto
 
 Event OnEffectStart(Actor akTarget, Actor akCaster)
-    FT_DLC2VoiceDragonAspectSummon.Cast(akTarget)
+    Ysmir.CastFromEffect(FT_DLC2VoiceDragonAspectSummon, akTarget, akTarget, Self)
 EndEvent
 
 Event OnEffectFinish(Actor akTarget, Actor akCaster)

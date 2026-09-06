@@ -1,14 +1,36 @@
 {
-  "version": "0.4.0",
-  "records": 351,
-  "privateRecords": 325,
+  "version": "0.5.0",
+  "inputs": [
+    {
+      "file": "ForcefulTongue.esp",
+      "sha256": "E3DB5982E36CBB1CBA7D33029B4B2B3E394B80CBCBDB1C722D949E3056E2BAC2"
+    },
+    {
+      "file": "Elemental Fury for MCO ADXP.esp",
+      "sha256": "239CFFFCC6D06E313250BCD82752E1811E3D1A01B304EA006E3E33E8861B4C5D"
+    },
+    {
+      "file": "Elemental Fury Shout Overhaul - Forceful Tongue Patch.esp",
+      "sha256": "14DD66FD4D8977FBC521F21CDDD164C1F46D5BBB41C288F87C7C7E6B918138DC"
+    },
+    {
+      "file": "Slow Time Edit.esp",
+      "sha256": "DEA71666EA073934E550B3D8D0157929928E34BB7998093D40AA790139A5190C"
+    },
+    {
+      "file": "WhirlwindSprintRedone version 2.esp",
+      "sha256": "66FD54CB9A923C6D122756320A57B5984AF58949F47EB811A9ECD7F791B4C837"
+    }
+  ],
+  "records": 350,
+  "privateRecords": 324,
   "playerEffects": 118,
   "unresolvedLinks": [],
   "recordTypes": {
     "Keyword": 1,
     "MagicEffect": 118,
     "Spell": 104,
-    "Static": 27,
+    "Static": 26,
     "Npc": 8,
     "Projectile": 36,
     "EffectShader": 1,
@@ -165,18 +187,23 @@
       "type": "MagicEffect"
     },
     {
+      "key": "00083A:Ysmir.esp",
+      "edid": "FT_VoiceDragonAspectDummyEffect",
+      "type": "MagicEffect"
+    },
+    {
       "key": "130C62:Ysmir.esp",
       "edid": "YSMIR_PlayerEffect_Dragonborn_021730",
       "type": "MagicEffect"
     },
     {
-      "key": "130C50:Ysmir.esp",
-      "edid": "YSMIR_PlayerEffect_Dragonborn_01DF98",
+      "key": "130C4F:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01DF97",
       "type": "MagicEffect"
     },
     {
-      "key": "130C4F:Ysmir.esp",
-      "edid": "YSMIR_PlayerEffect_Dragonborn_01DF97",
+      "key": "130C50:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01DF98",
       "type": "MagicEffect"
     },
     {
@@ -187,6 +214,16 @@
     {
       "key": "130C52:Ysmir.esp",
       "edid": "YSMIR_PlayerEffect_Dragonborn_01DF9A",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "140016:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectCombatEffect",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "140018:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectSummonEffect",
       "type": "MagicEffect"
     },
     {
@@ -225,13 +262,43 @@
       "type": "MagicEffect"
     },
     {
+      "key": "130BFB:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerFFSelf",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF9:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerDamageEffect",
+      "type": "MagicEffect"
+    },
+    {
       "key": "130C8E:Ysmir.esp",
       "edid": "YSMIR_PlayerEffect_Skyrim_04372F",
       "type": "MagicEffect"
     },
     {
+      "key": "130BFF:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamageFFSelf",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BFD:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamageEffect",
+      "type": "MagicEffect"
+    },
+    {
       "key": "130C8F:Ysmir.esp",
       "edid": "YSMIR_PlayerEffect_Skyrim_043730",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C03:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindCloakFFSelf",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C01:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindDmgEffect",
       "type": "MagicEffect"
     },
     {
@@ -242,6 +309,16 @@
     {
       "key": "130C73:Ysmir.esp",
       "edid": "YSMIR_PlayerEffect_Skyrim_02C56F",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD6:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryActiveEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD7:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryActiveEffect3",
       "type": "MagicEffect"
     },
     {
@@ -320,8 +397,23 @@
       "type": "MagicEffect"
     },
     {
+      "key": "130BC5:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeWrapperEffect1",
+      "type": "MagicEffect"
+    },
+    {
       "key": "130C96:Ysmir.esp",
       "edid": "YSMIR_PlayerEffect_Skyrim_048ACD",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BC7:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeWrapperEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BC8:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeWrapperEffect3",
       "type": "MagicEffect"
     },
     {
@@ -415,6 +507,16 @@
       "type": "MagicEffect"
     },
     {
+      "key": "14001D:Ysmir.esp",
+      "edid": "YSMIR_ShoutClassification_FireAndForget_Self",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "14001C:Ysmir.esp",
+      "edid": "YSMIR_ShoutClassification_FireAndForget_Aimed",
+      "type": "MagicEffect"
+    },
+    {
       "key": "130CC0:Ysmir.esp",
       "edid": "YSMIR_PlayerEffect_Skyrim_082A37",
       "type": "MagicEffect"
@@ -425,18 +527,8 @@
       "type": "MagicEffect"
     },
     {
-      "key": "14001D:Ysmir.esp",
-      "edid": "YSMIR_ShoutClassification_FireAndForget_Self",
-      "type": "MagicEffect"
-    },
-    {
       "key": "130CC1:Ysmir.esp",
       "edid": "YSMIR_PlayerEffect_Skyrim_082A38",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "14001C:Ysmir.esp",
-      "edid": "YSMIR_ShoutClassification_FireAndForget_Aimed",
       "type": "MagicEffect"
     },
     {
@@ -460,78 +552,8 @@
       "type": "MagicEffect"
     },
     {
-      "key": "130BD6:Ysmir.esp",
-      "edid": "YSMIR_ElementalFuryActiveEffect2",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BD7:Ysmir.esp",
-      "edid": "YSMIR_ElementalFuryActiveEffect3",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "00083A:Ysmir.esp",
-      "edid": "FT_VoiceDragonAspectDummyEffect",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "140016:Ysmir.esp",
-      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectCombatEffect",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "140018:Ysmir.esp",
-      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectSummonEffect",
-      "type": "MagicEffect"
-    },
-    {
       "key": "000800:Ysmir.esp",
       "edid": "FT_VoiceMarkedForDeathWeaknessMagicEffect",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BC5:Ysmir.esp",
-      "edid": "YSMIR_SlowTimeWrapperEffect1",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BC7:Ysmir.esp",
-      "edid": "YSMIR_SlowTimeWrapperEffect2",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BC8:Ysmir.esp",
-      "edid": "YSMIR_SlowTimeWrapperEffect3",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BFB:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerFFSelf",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BF9:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerDamageEffect",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BFF:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamageFFSelf",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BFD:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamageEffect",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130C03:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindCloakFFSelf",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130C01:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindDmgEffect",
       "type": "MagicEffect"
     },
     {
@@ -550,18 +572,8 @@
       "type": "MagicEffect"
     },
     {
-      "key": "130BEB:Ysmir.esp",
-      "edid": "YSMIR_ElementalFuryFireEnemyEffect2",
-      "type": "MagicEffect"
-    },
-    {
       "key": "130BCB:Ysmir.esp",
       "edid": "YSMIR_ElementalFuryFireCloakEffect3",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BED:Ysmir.esp",
-      "edid": "YSMIR_ElementalFuryFireEnemyEffect3",
       "type": "MagicEffect"
     },
     {
@@ -580,18 +592,8 @@
       "type": "MagicEffect"
     },
     {
-      "key": "130BF0:Ysmir.esp",
-      "edid": "YSMIR_ElementalFuryFrostEnemyEffect2",
-      "type": "MagicEffect"
-    },
-    {
       "key": "130BCF:Ysmir.esp",
       "edid": "YSMIR_ElementalFuryFrostCloakEffect3",
-      "type": "MagicEffect"
-    },
-    {
-      "key": "130BF2:Ysmir.esp",
-      "edid": "YSMIR_ElementalFuryFrostEnemyEffect3",
       "type": "MagicEffect"
     },
     {
@@ -610,13 +612,33 @@
       "type": "MagicEffect"
     },
     {
-      "key": "130BF5:Ysmir.esp",
-      "edid": "YSMIR_ElementalFuryShockEnemyEffect2",
+      "key": "130BD3:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockCloakEffect3",
       "type": "MagicEffect"
     },
     {
-      "key": "130BD3:Ysmir.esp",
-      "edid": "YSMIR_ElementalFuryShockCloakEffect3",
+      "key": "130BEB:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireEnemyEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BED:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireEnemyEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF0:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostEnemyEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF2:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostEnemyEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF5:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockEnemyEffect2",
       "type": "MagicEffect"
     },
     {
@@ -730,6 +752,16 @@
       "type": "Spell"
     },
     {
+      "key": "140015:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectCombatSpell",
+      "type": "Spell"
+    },
+    {
+      "key": "140017:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectSummon",
+      "type": "Spell"
+    },
+    {
       "key": "130C5A:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Dragonborn_0200BC",
       "type": "Spell"
@@ -765,13 +797,28 @@
       "type": "Spell"
     },
     {
+      "key": "130BFA:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerDamage1",
+      "type": "Spell"
+    },
+    {
       "key": "130C79:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_02F7BF",
       "type": "Spell"
     },
     {
+      "key": "130BFE:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamage1",
+      "type": "Spell"
+    },
+    {
       "key": "130C7A:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_02F7C0",
+      "type": "Spell"
+    },
+    {
+      "key": "130C02:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindCloakDmgConc",
       "type": "Spell"
     },
     {
@@ -880,13 +927,28 @@
       "type": "Spell"
     },
     {
+      "key": "130BC2:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeActual1",
+      "type": "Spell"
+    },
+    {
       "key": "130C98:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_048AD1",
       "type": "Spell"
     },
     {
+      "key": "130BC3:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeActual2",
+      "type": "Spell"
+    },
+    {
       "key": "130C99:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_048AD2",
+      "type": "Spell"
+    },
+    {
+      "key": "130BC4:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeActual3",
       "type": "Spell"
     },
     {
@@ -1027,46 +1089,6 @@
     {
       "key": "130CCB:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_08BB29",
-      "type": "Spell"
-    },
-    {
-      "key": "140015:Ysmir.esp",
-      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectCombatSpell",
-      "type": "Spell"
-    },
-    {
-      "key": "140017:Ysmir.esp",
-      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectSummon",
-      "type": "Spell"
-    },
-    {
-      "key": "130BC2:Ysmir.esp",
-      "edid": "YSMIR_SlowTimeActual1",
-      "type": "Spell"
-    },
-    {
-      "key": "130BC3:Ysmir.esp",
-      "edid": "YSMIR_SlowTimeActual2",
-      "type": "Spell"
-    },
-    {
-      "key": "130BC4:Ysmir.esp",
-      "edid": "YSMIR_SlowTimeActual3",
-      "type": "Spell"
-    },
-    {
-      "key": "130BFA:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerDamage1",
-      "type": "Spell"
-    },
-    {
-      "key": "130BFE:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamage1",
-      "type": "Spell"
-    },
-    {
-      "key": "130C02:Ysmir.esp",
-      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindCloakDmgConc",
       "type": "Spell"
     },
     {
@@ -1290,11 +1312,6 @@
       "type": "Static"
     },
     {
-      "key": "140014:Ysmir.esp",
-      "edid": "YSMIR_Selected_FT_DLC2MAGINVShoutDragonAspect",
-      "type": "Static"
-    },
-    {
       "key": "130C6B:Ysmir.esp",
       "edid": "YSMIR_PlayerNpc_Dragonborn_0265AA",
       "type": "Npc"
@@ -1305,16 +1322,6 @@
       "type": "Npc"
     },
     {
-      "key": "130CCD:Ysmir.esp",
-      "edid": "YSMIR_PlayerNpc_Skyrim_0923F9",
-      "type": "Npc"
-    },
-    {
-      "key": "130C91:Ysmir.esp",
-      "edid": "YSMIR_PlayerNpc_Skyrim_044237",
-      "type": "Npc"
-    },
-    {
       "key": "130CCE:Ysmir.esp",
       "edid": "YSMIR_PlayerNpc_Skyrim_0923FA",
       "type": "Npc"
@@ -1322,6 +1329,16 @@
     {
       "key": "130C90:Ysmir.esp",
       "edid": "YSMIR_PlayerNpc_Skyrim_044236",
+      "type": "Npc"
+    },
+    {
+      "key": "130CCD:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Skyrim_0923F9",
+      "type": "Npc"
+    },
+    {
+      "key": "130C91:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Skyrim_044237",
       "type": "Npc"
     },
     {
@@ -1390,6 +1407,11 @@
       "type": "Projectile"
     },
     {
+      "key": "130C42:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_018123",
+      "type": "Projectile"
+    },
+    {
       "key": "130C8A:Ysmir.esp",
       "edid": "YSMIR_PlayerProjectile_Skyrim_03F50E",
       "type": "Projectile"
@@ -1455,16 +1477,6 @@
       "type": "Projectile"
     },
     {
-      "key": "130C42:Ysmir.esp",
-      "edid": "YSMIR_PlayerProjectile_Skyrim_018123",
-      "type": "Projectile"
-    },
-    {
-      "key": "130C04:Ysmir.esp",
-      "edid": "YSMIR_SoulTearConeProjectile",
-      "type": "Projectile"
-    },
-    {
       "key": "130BEA:Ysmir.esp",
       "edid": "YSMIR_ElementalFuryFireProjectile1",
       "type": "Projectile"
@@ -1507,6 +1519,11 @@
     {
       "key": "130BF8:Ysmir.esp",
       "edid": "YSMIR_ElementalFuryShockProjectile3",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C04:Ysmir.esp",
+      "edid": "YSMIR_SoulTearConeProjectile",
       "type": "Projectile"
     },
     {
@@ -2381,7 +2398,7 @@
               "effect": "130C65:Ysmir.esp",
               "Data": {
                 "Magnitude": 7,
-                "Area": 0,
+                "Area": 50,
                 "Duration": 30
               }
             }
@@ -2395,7 +2412,7 @@
               "effect": "130C67:Ysmir.esp",
               "Data": {
                 "Magnitude": 15,
-                "Area": 0,
+                "Area": 75,
                 "Duration": 30
               }
             }
@@ -2409,7 +2426,7 @@
               "effect": "130C68:Ysmir.esp",
               "Data": {
                 "Magnitude": 24,
-                "Area": 0,
+                "Area": 100,
                 "Duration": 30
               }
             }

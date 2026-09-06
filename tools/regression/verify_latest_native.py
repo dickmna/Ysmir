@@ -28,7 +28,7 @@ assert {'SKSEPlugin_Load', 'SKSEPlugin_Version'} <= exports.keys()
 metadata = dll.get_data(exports['SKSEPlugin_Version'], 0x350)
 u32 = lambda off: struct.unpack_from('<I', metadata, off)[0]
 pack = lambda a,b,c,d: a << 24 | b << 16 | c << 4 | d
-assert u32(0) == 1 and u32(4) == pack(0, 4, 0, 0)
+assert u32(0) == 1 and u32(4) == pack(0, 5, 0, 0)
 assert metadata[8:264].split(b'\0')[0] == b'Ysmir'
 assert u32(0x304) == 2  # Supports Address Library format 5; no false NoStructUse claim.
 assert u32(0x308) == 5  # Uses Address Library and updated post-629 structures.
@@ -56,10 +56,12 @@ def positions(needle):
 vtables = []
 for name, key, slots in [
     ('VoiceSpellFireHandler', 'VoiceVTableRva', [1]),
-    ('Projectile', 'ProjectileVTableRva', [0xAA, 0xAD]),
-    ('BeamProjectile', 'BeamVTableRva', [0xAA, 0xAD]),
-    ('MissileProjectile', 'MissileVTableRva', [0xAA, 0xAD]),
-    ('ConeProjectile', 'ConeVTableRva', [0xAB, 0xC0]),
+    ('Projectile', 'ProjectileVTableRva', [0x66, 0xAA, 0xAB, 0xAC, 0xAD]),
+    ('BeamProjectile', 'BeamVTableRva', [0x66, 0xAA, 0xAB, 0xAC, 0xAD]),
+    ('MissileProjectile', 'MissileVTableRva', [0x66, 0xAA, 0xAB, 0xAC, 0xAD]),
+    ('ConeProjectile', 'ConeVTableRva', [0x66, 0xAB, 0xAC, 0xC0]),
+    ('ScriptEffect', 'ScriptEffectVTableRva', [4, 0x13, 0x14]),
+    ('CloakEffect', 'CloakEffectVTableRva', [4, 0x13, 0x14]),
 ]:
     vt = values[key]
     col_va = struct.unpack('<Q', exe.get_data(vt-8,8))[0]
@@ -74,9 +76,13 @@ for name, key, slots in [
         row['slots'].append({'slot': hex(slot), 'targetRva': hex(function)})
     vtables.append(row)
 
+launch=values['ProjectileLaunchRva']
+launch_bytes=bytes(int(x,16) for x in re.findall(r'0x[\dA-F]+', header.split('ProjectileLaunchBytes{')[1].split('}')[0]))
+assert exe.get_data(launch,len(launch_bytes))==launch_bytes
+assert sum(i.size for i in cs.disasm(launch_bytes,base+launch))==len(launch_bytes)
 report = {
     'passed': True, 'runtime': '1.7.104.0', 'minimumSKSE': '2.3.1',
-    'addressLibraryEncoding': 5, 'pluginVersion': '0.4.0',
+    'addressLibraryEncoding': 5, 'pluginVersion': '0.5.0',
     'exeSha256': hashlib.sha256(raw).hexdigest(),
     'dllSha256': hashlib.sha256(dll_path.read_bytes()).hexdigest(),
     'dllSize': dll_path.stat().st_size, 'exports': sorted(exports),
@@ -84,7 +90,7 @@ report = {
     'mainUpdateRva': hex(main), 'frameCallRva': hex(site), 'frameCallOffset': hex(values['FrameCallOffset']),
     'frameCallBytes': bytes(call.bytes).hex(' '), 'frameCallTargetRva': hex(target),
     'frameCallee': [f'{i.mnemonic} {i.op_str}' for i in callee],
-    'vtableHooks': vtables, 'gameplayTested': False,
+    'projectileLaunchRva':hex(launch), 'projectileLaunchBytes':launch_bytes.hex(' '), 'vtableHooks': vtables, 'gameplayTested': False,
 }
 if len(sys.argv) > 4:
     library = Path(sys.argv[4]).read_bytes()
@@ -93,6 +99,7 @@ if len(sys.argv) > 4:
     assert len(library) == 96 + count*4
     offsets = struct.unpack_from(f'<{count}I',library,96)
     assert offsets[36564] == main
+    assert offsets[44108] == launch
     vtable_header = (src.parent/'external/CommonLibSSE-NG/include/RE/Offsets_VTABLE.h').read_text('utf-8')
     for vtable in vtables:
         entry = re.search(r'VTABLE_'+vtable['class']+r'\{ REL::VariantID\(\d+, (\d+),',vtable_header)
@@ -101,6 +108,6 @@ if len(sys.argv) > 4:
         assert offsets[address_id] == int(vtable['vtableRva'],16)
         vtable['addressLibraryID'] = address_id
     report['addressLibrary'] = {'sha256':hashlib.sha256(library).hexdigest(),
-                                'format':5,'version':'1.7.104.0','entries':count,'verifiedHookAddresses':6}
+                                'format':5,'version':'1.7.104.0','entries':count,'verifiedHookAddresses':9}
 report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2),'utf-8')
 print(json.dumps({k:v for k,v in report.items() if k not in ('frameCallee','vtableHooks')},ensure_ascii=False))

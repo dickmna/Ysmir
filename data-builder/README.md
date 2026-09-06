@@ -1,27 +1,32 @@
-# Ysmir 0.4.0 数据构建器
+# Ysmir 0.5.0 数据构建器
 
-.NET 9 / Mutagen.Bethesda.Skyrim 0.54.4。入口为 `SelectedBuild.cs`，只接受三个位置参数：官方游戏 Data 目录、固定 0.3.0 参考 ESP、输出目录。
+.NET 9 / Mutagen.Bethesda.Skyrim 0.54.4。三个位置参数依次为官方游戏 Data 目录、上游输入目录、输出目录。
 
 ```powershell
 dotnet restore data-builder/Ysmir.DataBuilder.csproj --configfile data-builder/NuGet.Config
-dotnet run --project data-builder/Ysmir.DataBuilder.csproj -c Release -- "D:/Games/Skyrim/Data" "data-builder/reference/Ysmir-0.3.0-reference.esp" "artifacts"
+dotnet run --project data-builder/Ysmir.DataBuilder.csproj -c Release -- "D:/Games/Skyrim/Data" "data-builder/reference" "artifacts"
 Copy-Item artifacts/RuntimeForms.h src/RuntimeForms.h
 Copy-Item artifacts/Ysmir.esp package/Data/Ysmir.esp
 ```
 
-构建器依序读 Skyrim.esm、Update.esm、Dawnguard.esm、Dragonborn.esm，以官方获胜记录为普通龙吼基线。官方英文字符串从对应 BSA 读取到临时目录；不会读取或写入用户的 Plugins.txt，不会修改游戏目录。
+输入目录放入以下原始文件，文件版本由 `SourceRules.cs` 内的 SHA-256 严格校验：
 
-**两个构建时参考文件没有随公开源码提供。** 需在本地放入 `reference/`；SHA-256 在程序中固定校验：
+| 文件 | 来源 |
+| --- | --- |
+| ForcefulTongue.esp | FT 3.0.9.1 |
+| Elemental Fury for MCO ADXP.esp | Nexus 93681 Dynamic Shaders 3 |
+| Elemental Fury Shout Overhaul - Forceful Tongue Patch.esp | 93681 对应 FT 补丁 |
+| Slow Time Edit.esp | Nexus 62686 |
+| WhirlwindSprintRedone version 2.esp | Nexus 49359 version 2 |
 
-- `Ysmir-0.3.0-reference.esp`：`DC122F95B4582F9E4F5D94437239AE0F4EC5E3FFBED8D6179A6A58DE672A5CC5`。只导入明确选定的行为及模型资产。
-- `ForcefulTongue.esp`（3.0.9.1）：`E3DB5982E36CBB1CBA7D33029B4B2B3E394B80CBCBDB1C722D949E3056E2BAC2`。必须与上项参考文件同目录，提供完整 Dragon Aspect 图及火龙灵行为修复。
+这些上游插件是构建输入，无须在运行时启用；未随公开仓库分发。SCSO v3 控制逻辑与投射物参数由源码规则构建，True Cone 由原生适配器处理。
 
-以上都是构建输入，不是运行依赖，也不是整个旧版原样继承。普通数值从官方 masters 恢复；英灵 NPC 是用户明确例外，沿用 FT 属性并固定 150 级。战斗狂怒完全排除。未被所选根引用的私有记录最终剪除。
+依次加载 Skyrim.esm、Update.esm、Dawnguard.esm、Dragonborn.esm 的获胜记录。官方英文字符串从其 BSA 临时读取；不读取 Plugins.txt，不修改游戏目录。
 
-输出 `Ysmir.esp`、`RuntimeForms.h`、`selected-records.json`。Header 必须与同次生成的 ESP 一起使用并重新编译 DLL，不要对最终 ESP 单独压缩/重排 FormID。产物为普通 ESP，未标记 ESL。
+`SourceRules.cs` 明确列出 26 个根及其机制来源；`SelectedBuild.cs` 克隆所需依赖、恢复官方已有数值并执行小范围特例。完整 FT Dragon Aspect、FT 远古龙裔、150 级 FT 英灵和 SCSO 保持约定。惊惧新增区域 50/75/100 属于 FT 的范围机制，保留原版 7/15/24 级恐惧和 30 秒持续。
 
-当前构建：351 条记录、325 条私有记录、26 条仅含表现差异的官方 SHOU。没有未解析引用，没有新任务、全局变量、词墙或世界修改。龙魂数值只在私有图中运行时应用。
+`FormIds.json` 是 EditorID 到稳定私有 ID 的分配表，仅用于升级时保留标识。它没有记录载荷，也不读取任何旧 Ysmir ESP。普通原版视觉记录直接引用，库存模型引用汇合到对应私有模型。可达性剪枝去掉未选内容，Battle Fury 不进入输出。
 
-构建器遵循所附 GPL-3.0-only 许可；参考游戏/模组记录保留各自权利归属。
+输出 `Ysmir.esp`、`RuntimeForms.h`、`selected-records.json`。当前为 350 条记录，其中 324 条私有记录和 26 条官方 SHOU 表现覆盖；118 个玩家 MGEF、104 个玩家法术，无未解析引用。没有任务、全局变量、词墙或世界修改。
 
-公开版本可审阅和编译构建器源码，但完整 ESP 生成仍依赖上述两个本地输入。`Ysmir-0.3.0-reference.esp` 是此前私人整合构建的冻结产物，不能仅下载 Forceful Tongue 或其他上游模组来替代。此版没有重构这项输入依赖。详见 [参考输入](reference/README.md)。
+同次生成的 Header 必须与 ESP 配套重编译 DLL；不要单独压缩/重排最终 FormID。输出是普通 ESP，未标记 ESL。第三方模型/纹理需按各自许可另行取得；生成器不把资产下载或捆绑进公开源码。

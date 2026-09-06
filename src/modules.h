@@ -20,15 +20,19 @@ namespace ysmir::elemental_fury
 
 namespace ysmir::true_cone
 {
-	bool Initialize();
-	void HandleMessage(SKSE::MessagingInterface::Message* a_message);
+    struct Geometry { float radius{}, tangent{}, correctedTangent{}; };
+    void Initialize();
+    Geometry Capture(RE::ConeProjectile* projectile);
+    void ApplyCollision(RE::ConeProjectile* projectile, const Geometry& geometry, const progression::ScalingSnapshot& snapshot);
+    float VisualScale(RE::ConeProjectile* projectile, const Geometry& geometry, const progression::ScalingSnapshot& snapshot);
+    bool PatchVisuals();
 }
 
 namespace ysmir::projectile_visuals
 {
     void Initialize();
     void SetStormBase(RE::BGSProjectile* base);
-    void TrackStorm(const RE::ProjectileHandle& handle, float vfx);
+    void TrackStorm(const RE::ProjectileHandle& handle, const progression::ScalingSnapshot& snapshot);
     void Clear();
     void FrameUpdate();
 }

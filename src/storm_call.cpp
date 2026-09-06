@@ -96,6 +96,7 @@ namespace
 	Settings g_settings;
 	Forms g_forms;
 	float g_stormProjectileRange{};
+	float g_stormProjectileSpeed{};
 	float g_stormProjectileCollision{};
 	bool g_formsResolved{ false };
 
@@ -228,6 +229,7 @@ namespace
 		}
 
 		g_stormProjectileRange = g_forms.projectile->data.range;
+		g_stormProjectileSpeed = g_forms.projectile->data.speed;
 		g_stormProjectileCollision = g_forms.projectile->data.collisionRadius;
 		SKSE::log::info(
 			"Resolved the Storm Call runtime form set with private projectile {} ({:08X})",
@@ -304,7 +306,7 @@ namespace
 		void FrameUpdate()
 		{
 			
-			Tick(_generation);
+			Tick();
 		}
 
 		void StartStorm(RE::Actor* a_caster, std::uint32_t a_word, const ysmir::progression::ScalingSnapshot& snapshot)
@@ -315,8 +317,6 @@ namespace
 
 			a_word = std::clamp(a_word, 1U, 3U);
 			const auto index = static_cast<std::size_t>(a_word - 1);
-
-			++_generation;
 			_session = {};
 			_session.active = true;
 			_session.caster = RE::ActorHandle{ a_caster };
@@ -353,11 +353,8 @@ namespace
 				_session.scaling.vfx);
 		}
 
-		void Tick(std::uint64_t a_generation)
+		void Tick()
 		{
-			if (a_generation != _generation) {
-				return;
-			}
 			if (!_session.active) {
 				return;
 			}
@@ -424,7 +421,6 @@ namespace
 		void StopStorm(bool a_releaseWeather)
 		{
 			const bool wasActive = _session.active;
-			++_generation;
 			_session = {};
 
 			if (g_forms.stormGlobal) {
@@ -551,6 +547,7 @@ namespace
 			ysmir::projectile_visuals::Clear();
 			if (g_forms.projectile) {
 				g_forms.projectile->data.range = g_stormProjectileRange;
+				g_forms.projectile->data.speed = g_stormProjectileSpeed;
 				g_forms.projectile->data.collisionRadius = g_stormProjectileCollision;
 			}
 		}
@@ -570,7 +567,6 @@ namespace
 			}
 
 			_session = {};
-			++_generation;
 			_session.active = true;
 			_session.caster = RE::ActorHandle{ caster };
 			_session.word = std::clamp(saved.word, 1U, 3U);
@@ -742,6 +738,7 @@ _session.scaling.vfx = saved.scaling.vfx;
 				// Keep it prepared for deferred projectile/physics initialization;
 				// restoring it immediately after Launch would discard the scaling.
 				g_forms.projectile->data.range = g_stormProjectileRange * _session.scaling.distance;
+				g_forms.projectile->data.speed = g_stormProjectileSpeed * _session.scaling.distance;
 				g_forms.projectile->data.collisionRadius = g_stormProjectileCollision * _session.scaling.collision;
 				auto origin = a_target->GetPosition();
 				origin.x += Random(-g_settings.visualSpread[wordIndex], g_settings.visualSpread[wordIndex]);
@@ -771,7 +768,7 @@ _session.scaling.vfx = saved.scaling.vfx;
 				launchData.useOrigin = true;
 				RE::ProjectileHandle projectile;
 				RE::Projectile::Launch(std::addressof(projectile), launchData);
-				ysmir::projectile_visuals::TrackStorm(projectile, _session.scaling.vfx);
+				ysmir::projectile_visuals::TrackStorm(projectile, _session.scaling);
 				if (const auto launched = projectile.get()) {
 					launched->GetProjectileRuntimeData().range = g_forms.projectile->data.range;
 				}
@@ -831,7 +828,6 @@ _session.scaling.vfx = saved.scaling.vfx;
 		Session _session;
 		std::optional<SavedStorm> _pendingResume;
 		std::mt19937 _rng;
-		std::uint64_t _generation{ 0 };
 		double _lastTick{};
 		float _weatherDue{ 0.0F };
 		bool _weatherOwned{ false };

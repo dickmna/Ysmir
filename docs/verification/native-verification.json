@@ -1,0 +1,218 @@
+{
+  "passed": true,
+  "runtime": "1.7.104.0",
+  "minimumSKSE": "2.3.1",
+  "addressLibraryEncoding": 5,
+  "pluginVersion": "0.5.0",
+  "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
+  "dllSha256": "3bbf99b07f8ee420076aea9abf63e8ac8b003d92820fc3947bc59a5da407ab40",
+  "dllSize": 745984,
+  "exports": [
+    "SKSEPlugin_Load",
+    "SKSEPlugin_Version"
+  ],
+  "imports": [
+    "KERNEL32.dll",
+    "MSVCP140.dll",
+    "SHELL32.dll",
+    "USER32.dll",
+    "VCRUNTIME140.dll",
+    "VCRUNTIME140_1.dll",
+    "VERSION.dll",
+    "api-ms-win-crt-convert-l1-1-0.dll",
+    "api-ms-win-crt-filesystem-l1-1-0.dll",
+    "api-ms-win-crt-heap-l1-1-0.dll",
+    "api-ms-win-crt-locale-l1-1-0.dll",
+    "api-ms-win-crt-math-l1-1-0.dll",
+    "api-ms-win-crt-runtime-l1-1-0.dll",
+    "api-ms-win-crt-stdio-l1-1-0.dll",
+    "api-ms-win-crt-string-l1-1-0.dll",
+    "api-ms-win-crt-time-l1-1-0.dll",
+    "ole32.dll"
+  ],
+  "mainUpdateRva": "0x658870",
+  "frameCallRva": "0x6594a3",
+  "frameCallOffset": "0xc33",
+  "frameCallBytes": "e8 98 cf ce ff",
+  "frameCallTargetRva": "0x346440",
+  "frameCallee": [
+    "mov ecx, dword ptr [rip + 0x3353e32]",
+    "mov rax, qword ptr gs:[0x58]",
+    "mov rdx, qword ptr [rax + rcx*8]",
+    "xor ecx, ecx",
+    "mov eax, 0x608",
+    "mov qword ptr [rax + rdx], rcx",
+    "mov eax, 0x628",
+    "mov qword ptr [rax + rdx], rcx",
+    "mov eax, 0x610",
+    "mov dword ptr [rax + rdx], 0xffffffff",
+    "mov eax, 0x618",
+    "mov qword ptr [rax + rdx], rcx",
+    "ret "
+  ],
+  "projectileLaunchRva": "0x7f9300",
+  "projectileLaunchBytes": "48 89 4c 24 08",
+  "vtableHooks": [
+    {
+      "class": "VoiceSpellFireHandler",
+      "vtableRva": "0x1937f08",
+      "slots": [
+        {
+          "slot": "0x1",
+          "targetRva": "0x7cc750"
+        }
+      ],
+      "addressLibraryID": 208825
+    },
+    {
+      "class": "Projectile",
+      "vtableRva": "0x1942a10",
+      "slots": [
+        {
+          "slot": "0x66",
+          "targetRva": "0x7f9fc0"
+        },
+        {
+          "slot": "0xaa",
+          "targetRva": "0x7fa510"
+        },
+        {
+          "slot": "0xab",
+          "targetRva": "0x15a97c8"
+        },
+        {
+          "slot": "0xac",
+          "targetRva": "0x7fa910"
+        },
+        {
+          "slot": "0xad",
+          "targetRva": "0x7faf50"
+        }
+      ],
+      "addressLibraryID": 210006
+    },
+    {
+      "class": "BeamProjectile",
+      "vtableRva": "0x193d630",
+      "slots": [
+        {
+          "slot": "0x66",
+          "targetRva": "0x7f9fc0"
+        },
+        {
+          "slot": "0xaa",
+          "targetRva": "0x7fa510"
+        },
+        {
+          "slot": "0xab",
+          "targetRva": "0x7dffe0"
+        },
+        {
+          "slot": "0xac",
+          "targetRva": "0x7fa910"
+        },
+        {
+          "slot": "0xad",
+          "targetRva": "0x7faf50"
+        }
+      ],
+      "addressLibraryID": 209914
+    },
+    {
+      "class": "MissileProjectile",
+      "vtableRva": "0x1940e58",
+      "slots": [
+        {
+          "slot": "0x66",
+          "targetRva": "0x7f9fc0"
+        },
+        {
+          "slot": "0xaa",
+          "targetRva": "0x7fa510"
+        },
+        {
+          "slot": "0xab",
+          "targetRva": "0x7f2310"
+        },
+        {
+          "slot": "0xac",
+          "targetRva": "0x7f2ab0"
+        },
+        {
+          "slot": "0xad",
+          "targetRva": "0x7faf50"
+        }
+      ],
+      "addressLibraryID": 209980
+    },
+    {
+      "class": "ConeProjectile",
+      "vtableRva": "0x193dea0",
+      "slots": [
+        {
+          "slot": "0x66",
+          "targetRva": "0x7f9fc0"
+        },
+        {
+          "slot": "0xab",
+          "targetRva": "0x7e18f0"
+        },
+        {
+          "slot": "0xac",
+          "targetRva": "0x7e1b60"
+        },
+        {
+          "slot": "0xc0",
+          "targetRva": "0x7e27e0"
+        }
+      ],
+      "addressLibraryID": 209925
+    },
+    {
+      "class": "ScriptEffect",
+      "vtableRva": "0x18fadd0",
+      "slots": [
+        {
+          "slot": "0x4",
+          "targetRva": "0x5dd590"
+        },
+        {
+          "slot": "0x13",
+          "targetRva": "0x5dda80"
+        },
+        {
+          "slot": "0x14",
+          "targetRva": "0x5dd4b0"
+        }
+      ],
+      "addressLibraryID": 206031
+    },
+    {
+      "class": "CloakEffect",
+      "vtableRva": "0x18f6678",
+      "slots": [
+        {
+          "slot": "0x4",
+          "targetRva": "0x5c4170"
+        },
+        {
+          "slot": "0x13",
+          "targetRva": "0x5c4620"
+        },
+        {
+          "slot": "0x14",
+          "targetRva": "0x5c4160"
+        }
+      ],
+      "addressLibraryID": 205849
+    }
+  ],
+  "gameplayTested": false,
+  "addressLibrary": {
+    "sha256": "8aab3dd251d135b849bd983f86a4a205c920fa3e81f8e30c0e63ccfef9423842",
+    "format": 5,
+    "version": "1.7.104.0",
+    "entries": 565759,
+    "verifiedHookAddresses": 9
+  }
+}

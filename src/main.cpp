@@ -30,7 +30,9 @@ namespace
 			std::pair{ RE::VTABLE_Projectile[0].address(), ProjectileVTableRva },
 			std::pair{ RE::VTABLE_BeamProjectile[0].address(), BeamVTableRva },
 			std::pair{ RE::VTABLE_MissileProjectile[0].address(), MissileVTableRva },
-			std::pair{ RE::VTABLE_ConeProjectile[0].address(), ConeVTableRva }
+			std::pair{ RE::VTABLE_ConeProjectile[0].address(), ConeVTableRva },
+			std::pair{ RE::VTABLE_ScriptEffect[0].address(), ScriptEffectVTableRva },
+			std::pair{ RE::VTABLE_CloakEffect[0].address(), CloakEffectVTableRva }
 		};
 		for (const auto& [actual, expected] : tables) {
 			if (actual != base + expected) {
@@ -38,7 +40,13 @@ namespace
 				return false;
 			}
 		}
-		SKSE::log::info("Verified Steam 1.7.104 main call and five vtables");
+		const auto launch=REL::RelocationID(42928,44108).address();
+		if (launch!=base+ProjectileLaunchRva || std::memcmp(reinterpret_cast<const void*>(launch),
+			ProjectileLaunchBytes.data(),ProjectileLaunchBytes.size())!=0) {
+			SKSE::log::critical("Projectile launch differs from verified Steam 1.7.104; no hooks installed");
+			return false;
+		}
+		SKSE::log::info("Verified Steam 1.7.104 main call, projectile launch and seven vtables");
 		return true;
 	}
 
@@ -79,7 +87,6 @@ namespace
 	{
 		ysmir::core::HandleMessage(a_message);
 		ysmir::storm_call::HandleMessage(a_message);
-		ysmir::true_cone::HandleMessage(a_message);
 	}
 
 	void SetupLog()
@@ -100,7 +107,7 @@ namespace
 
 SKSE_PLUGIN_VERSION = [] {
 	SKSE::PluginVersionData version;
-	version.PluginVersion({ 0, 4, 0, 0 });
+	version.PluginVersion({ 0, 5, 0, 0 });
 	version.PluginName(PLUGIN_NAME);
 	version.AuthorName("dickmna and Codex");
 	version.UsesAddressLibrary();
@@ -118,7 +125,7 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 	}
 	SKSE::Init(a_skse);
 	SetupLog();
-	SKSE::log::info("{} v0.4.0 loading", PLUGIN_NAME);
+	SKSE::log::info("{} v0.5.0 loading", PLUGIN_NAME);
 	if (!ValidateRuntimeHooks()) {
 		return false;
 	}
@@ -135,14 +142,12 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 		return false;
 	}
 	ysmir::projectile_visuals::Initialize();
-	if (!ysmir::true_cone::Initialize()) {
-		return false;
-	}
+	ysmir::true_cone::Initialize();
 	InstallFrameHook();
 	if (!g_frameHookInstalled) {
 		return false;
 	}
 
-	SKSE::log::info("{} v0.4.0 initialized", PLUGIN_NAME);
+	SKSE::log::info("{} v0.5.0 initialized", PLUGIN_NAME);
 	return true;
 }

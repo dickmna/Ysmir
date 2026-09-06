@@ -14,4 +14,8 @@ namespace ysmir::runtime
 	inline constexpr std::uintptr_t BeamVTableRva = 0x193D630;
 	inline constexpr std::uintptr_t MissileVTableRva = 0x1940E58;
 	inline constexpr std::uintptr_t ConeVTableRva = 0x193DEA0;
+	inline constexpr std::uintptr_t ScriptEffectVTableRva = 0x18FADD0;
+	inline constexpr std::uintptr_t CloakEffectVTableRva = 0x18F6678;
+	inline constexpr std::uintptr_t ProjectileLaunchRva = 0x7F9300;
+	inline constexpr std::array<std::uint8_t, 5> ProjectileLaunchBytes{ 0x48, 0x89, 0x4C, 0x24, 0x08 };
 }

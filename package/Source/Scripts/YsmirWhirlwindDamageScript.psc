@@ -6,7 +6,7 @@ Int Property force Auto
 
 Event OnEffectStart(Actor Target, Actor Caster)
     If Target && Caster
-        Float scaledForce = Ysmir.GetScaledPushForce(force as Float, Caster, GetBaseObject())
+        Float scaledForce = Ysmir.GetScaledPushForce(force as Float, Caster, Self)
         Caster.PushActorAway(Target, scaledForce)
     EndIf
 EndEvent

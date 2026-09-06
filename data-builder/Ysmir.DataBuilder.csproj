@@ -6,12 +6,14 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <Version>0.4.0</Version>
+    <Version>0.5.0</Version>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="SelectedBuild.cs" />
+    <Compile Include="SourceRules.cs" />
+    <None Update="FormIds.json" CopyToOutputDirectory="PreserveNewest" />
     <PackageReference Include="Mutagen.Bethesda.Skyrim" Version="0.54.4" />
   </ItemGroup>
 </Project>

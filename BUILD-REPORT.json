@@ -1,6 +1,6 @@
 {
-  "version": "0.4.0",
-  "releaseType": "Private integrated build; gameplay verification pending",
+  "version": "0.5.0",
+  "releaseType": "Local integrated build; public source-only release; gameplay verification pending",
   "finalRules": {
     "ordinaryShouts": "Selected mod mechanics; winning official numeric baselines before soul progression",
     "newMechanismParameters": "Source values where no corresponding vanilla mechanic exists",
@@ -11,26 +11,25 @@
     "qualityOfLife": "Selected fixes/usability and inventory meshes; no FT Black Book or meditation gameplay changes"
   },
   "build": {
-    "native": "MSVC 19.44 Release x64 / C++23 / CommonLibSSE-NG 7.2.0; compiled successfully",
-    "data": ".NET 9 / Mutagen 0.54.4; final builder compiled and generated successfully",
-    "papyrus": "Five scripts compiled with optimization; 0 errors, 0 warnings",
+    "native": "MSVC 19.44 Release x64 / C++23 / CommonLibSSE-NG 7.2.0 / MinHook; compiled successfully",
+    "data": ".NET 9 / Mutagen 0.54.4; compiled and generated from five original upstream plugins",
+    "papyrus": "Five optimized scripts; zero errors and warnings",
     "gameLaunched": false,
     "gameplayTestsRun": false,
     "deployedToGame": false,
-    "verificationScope": "File, record and compiled metadata integrity only",
-    "nativeCompatibility": "Steam 1.7.104 guard inherited unchanged from 0.3.0; no new in-game hook validation"
+    "verificationScope": "File, record, PE metadata and executable/address-library checks"
   },
   "records": {
-    "version": "0.4.0",
-    "scope": "File and record integrity only; no gameplay tests",
-    "records": 351,
-    "privateRecords": 325,
+    "version": "0.5.0",
+    "scope": "File, record and binary verification; no game execution",
+    "records": 350,
+    "privateRecords": 324,
     "officialMenuOverrides": 26,
     "recordTypes": {
       "KYWD": 1,
       "MGEF": 118,
       "SPEL": 104,
-      "STAT": 27,
+      "STAT": 26,
       "NPC_": 8,
       "PROJ": 36,
       "EFSH": 1,
@@ -41,28 +40,248 @@
     "manifestShouts": 26,
     "classifiedWordSlots": 78,
     "keywordDispelSelectorsProtected": 13,
-    "battleFury": "Excluded completely: no official override, private graph, script or runtime mapping",
-    "dragonAspect": "FT 3.0.9.1 spell numbers, 90s cooldown and Ancient Dragonborn attributes",
-    "callValor": "Six private NPCs preserve FT attributes/behavior and fixed level 150, per explicit user exception",
-    "slowTime": "3 native wrappers; original .3/.2/.1 magnitudes and fixed 8/12/16 seconds",
-    "inheritedRuntimeCompatibilityHeaderSha256": "7462fd48a3b03527bec1ee6e6bb9ae28326bb63315d4744e6c4dbe89ed0ad90d"
+    "stableRetainedRecordIDs": 350,
+    "changedSpellNumbersFromV040": [
+      "YSMIR_PlayerSpell_Skyrim_02395B",
+      "YSMIR_PlayerSpell_Skyrim_02395E",
+      "YSMIR_PlayerSpell_Skyrim_023967"
+    ],
+    "removedRecord": "Duplicate Dragon Aspect inventory model; retained model path is identical",
+    "ftHeroesAt150": [
+      "YSMIR_PlayerNpc_Skyrim_0923FA",
+      "YSMIR_PlayerNpc_Skyrim_044236",
+      "YSMIR_PlayerNpc_Skyrim_0923F9",
+      "YSMIR_PlayerNpc_Skyrim_044237",
+      "YSMIR_PlayerNpc_Skyrim_0923FB",
+      "YSMIR_PlayerNpc_Skyrim_044238"
+    ],
+    "ancientDragonborn": "FT stats unchanged",
+    "battleFuryExcluded": true,
+    "papyrusCompiled": 5,
+    "gameplayTested": false
   },
   "unresolvedLinks": [],
-  "dll": {
-    "machine": "AMD64",
-    "version": "0.4.0",
+  "native": {
+    "passed": true,
     "runtime": "1.7.104.0",
     "minimumSKSE": "2.3.1",
+    "addressLibraryEncoding": 5,
+    "pluginVersion": "0.5.0",
+    "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
+    "dllSha256": "3bbf99b07f8ee420076aea9abf63e8ac8b003d92820fc3947bc59a5da407ab40",
+    "dllSize": 745984,
     "exports": [
       "SKSEPlugin_Load",
       "SKSEPlugin_Version"
     ],
-    "bytes": 772096,
-    "sha256": "35538009d9418ec9130fff0f98b16a6e4e9fff57e1353dde690306bef7b828ea"
+    "imports": [
+      "KERNEL32.dll",
+      "MSVCP140.dll",
+      "SHELL32.dll",
+      "USER32.dll",
+      "VCRUNTIME140.dll",
+      "VCRUNTIME140_1.dll",
+      "VERSION.dll",
+      "api-ms-win-crt-convert-l1-1-0.dll",
+      "api-ms-win-crt-filesystem-l1-1-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-locale-l1-1-0.dll",
+      "api-ms-win-crt-math-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "api-ms-win-crt-time-l1-1-0.dll",
+      "ole32.dll"
+    ],
+    "mainUpdateRva": "0x658870",
+    "frameCallRva": "0x6594a3",
+    "frameCallOffset": "0xc33",
+    "frameCallBytes": "e8 98 cf ce ff",
+    "frameCallTargetRva": "0x346440",
+    "frameCallee": [
+      "mov ecx, dword ptr [rip + 0x3353e32]",
+      "mov rax, qword ptr gs:[0x58]",
+      "mov rdx, qword ptr [rax + rcx*8]",
+      "xor ecx, ecx",
+      "mov eax, 0x608",
+      "mov qword ptr [rax + rdx], rcx",
+      "mov eax, 0x628",
+      "mov qword ptr [rax + rdx], rcx",
+      "mov eax, 0x610",
+      "mov dword ptr [rax + rdx], 0xffffffff",
+      "mov eax, 0x618",
+      "mov qword ptr [rax + rdx], rcx",
+      "ret "
+    ],
+    "projectileLaunchRva": "0x7f9300",
+    "projectileLaunchBytes": "48 89 4c 24 08",
+    "vtableHooks": [
+      {
+        "class": "VoiceSpellFireHandler",
+        "vtableRva": "0x1937f08",
+        "slots": [
+          {
+            "slot": "0x1",
+            "targetRva": "0x7cc750"
+          }
+        ],
+        "addressLibraryID": 208825
+      },
+      {
+        "class": "Projectile",
+        "vtableRva": "0x1942a10",
+        "slots": [
+          {
+            "slot": "0x66",
+            "targetRva": "0x7f9fc0"
+          },
+          {
+            "slot": "0xaa",
+            "targetRva": "0x7fa510"
+          },
+          {
+            "slot": "0xab",
+            "targetRva": "0x15a97c8"
+          },
+          {
+            "slot": "0xac",
+            "targetRva": "0x7fa910"
+          },
+          {
+            "slot": "0xad",
+            "targetRva": "0x7faf50"
+          }
+        ],
+        "addressLibraryID": 210006
+      },
+      {
+        "class": "BeamProjectile",
+        "vtableRva": "0x193d630",
+        "slots": [
+          {
+            "slot": "0x66",
+            "targetRva": "0x7f9fc0"
+          },
+          {
+            "slot": "0xaa",
+            "targetRva": "0x7fa510"
+          },
+          {
+            "slot": "0xab",
+            "targetRva": "0x7dffe0"
+          },
+          {
+            "slot": "0xac",
+            "targetRva": "0x7fa910"
+          },
+          {
+            "slot": "0xad",
+            "targetRva": "0x7faf50"
+          }
+        ],
+        "addressLibraryID": 209914
+      },
+      {
+        "class": "MissileProjectile",
+        "vtableRva": "0x1940e58",
+        "slots": [
+          {
+            "slot": "0x66",
+            "targetRva": "0x7f9fc0"
+          },
+          {
+            "slot": "0xaa",
+            "targetRva": "0x7fa510"
+          },
+          {
+            "slot": "0xab",
+            "targetRva": "0x7f2310"
+          },
+          {
+            "slot": "0xac",
+            "targetRva": "0x7f2ab0"
+          },
+          {
+            "slot": "0xad",
+            "targetRva": "0x7faf50"
+          }
+        ],
+        "addressLibraryID": 209980
+      },
+      {
+        "class": "ConeProjectile",
+        "vtableRva": "0x193dea0",
+        "slots": [
+          {
+            "slot": "0x66",
+            "targetRva": "0x7f9fc0"
+          },
+          {
+            "slot": "0xab",
+            "targetRva": "0x7e18f0"
+          },
+          {
+            "slot": "0xac",
+            "targetRva": "0x7e1b60"
+          },
+          {
+            "slot": "0xc0",
+            "targetRva": "0x7e27e0"
+          }
+        ],
+        "addressLibraryID": 209925
+      },
+      {
+        "class": "ScriptEffect",
+        "vtableRva": "0x18fadd0",
+        "slots": [
+          {
+            "slot": "0x4",
+            "targetRva": "0x5dd590"
+          },
+          {
+            "slot": "0x13",
+            "targetRva": "0x5dda80"
+          },
+          {
+            "slot": "0x14",
+            "targetRva": "0x5dd4b0"
+          }
+        ],
+        "addressLibraryID": 206031
+      },
+      {
+        "class": "CloakEffect",
+        "vtableRva": "0x18f6678",
+        "slots": [
+          {
+            "slot": "0x4",
+            "targetRva": "0x5c4170"
+          },
+          {
+            "slot": "0x13",
+            "targetRva": "0x5c4620"
+          },
+          {
+            "slot": "0x14",
+            "targetRva": "0x5c4160"
+          }
+        ],
+        "addressLibraryID": 205849
+      }
+    ],
+    "gameplayTested": false,
+    "addressLibrary": {
+      "sha256": "8aab3dd251d135b849bd983f86a4a205c920fa3e81f8e30c0e63ccfef9423842",
+      "format": 5,
+      "version": "1.7.104.0",
+      "entries": 565759,
+      "verifiedHookAddresses": 9
+    }
   },
   "esp": {
-    "bytes": 107053,
-    "sha256": "f229b629e2141a40424338c5f91331f417ea4b24b203f08ef37111dcb84b552e"
+    "bytes": 106893,
+    "sha256": "62ff800369d4b7aee7e1c81ae71176d9f745e5a4760e11b5983d9d5c643c76be"
   },
   "assets": {
     "nif": 19,
@@ -287,38 +506,38 @@
     },
     {
       "path": "Scripts/Ysmir.pex",
-      "bytes": 859,
-      "sha256": "ae49518795fcb79f50f85c341592631196d46d869e9a15cbdde754d445d589c4"
+      "bytes": 867,
+      "sha256": "af3c305becea243a53b89426cfbdf21afddb92f3a4a5942b6e765829ee10d98d"
     },
     {
       "path": "Scripts/YsmirDragonAspectSummonScript.pex",
-      "bytes": 851,
-      "sha256": "49a98cb26a65d290d99438aa11754a8fa8f3d5aacaa26cbb06a369602eb83f2b"
+      "bytes": 859,
+      "sha256": "4d249424d8b6d041aff147b5a5166a819ed99036c759670f2a61d8956aa7a557"
     },
     {
       "path": "Scripts/YsmirSlowTimeScript.pex",
-      "bytes": 737,
-      "sha256": "91b3a179f6a26904b4575c604f2e5ba20a6cc5eb4c08d9ade28a73d7ebebb9b9"
+      "bytes": 703,
+      "sha256": "c720c83533a4dbd1dbbac6d08f042d1a45d205098ae938e7f2f86eb9e00838da"
     },
     {
       "path": "Scripts/YsmirVoicePushEffectScript.pex",
-      "bytes": 894,
-      "sha256": "8b21448334ff69f0a330b1995f480e82b7b066d0cb39f8f9370b23bf50f843c0"
+      "bytes": 858,
+      "sha256": "ecde72951214c3b94315c64a61470a5d4289788122029a5f563bc087b8222b47"
     },
     {
       "path": "Scripts/YsmirWhirlwindDamageScript.pex",
-      "bytes": 892,
-      "sha256": "189d36ab180fca74f9d66f76a3b5d55c5e7ac55c078aa35006d21ff4096b69eb"
+      "bytes": 856,
+      "sha256": "f2df9e91bb77ca005971c68ef299a7adbf3427b85b591128023a9ddded4d5f89"
     },
     {
       "path": "SKSE/Plugins/Ysmir.dll",
-      "bytes": 772096,
-      "sha256": "35538009d9418ec9130fff0f98b16a6e4e9fff57e1353dde690306bef7b828ea"
+      "bytes": 745984,
+      "sha256": "3bbf99b07f8ee420076aea9abf63e8ac8b003d92820fc3947bc59a5da407ab40"
     },
     {
       "path": "SKSE/Plugins/Ysmir.ini",
-      "bytes": 2755,
-      "sha256": "a7e4f4257ed0c0558f56c327e50c66eca273e3f1f8c2c170edb308b6a18cdf2c"
+      "bytes": 2568,
+      "sha256": "6d55c44ef6e159824df6bf0a9c182a24d1c7bf050dfe9123da732575f3c4ec70"
     },
     {
       "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
@@ -342,25 +561,42 @@
     },
     {
       "path": "Ysmir.esp",
-      "bytes": 107053,
-      "sha256": "f229b629e2141a40424338c5f91331f417ea4b24b203f08ef37111dcb84b552e"
+      "bytes": 106893,
+      "sha256": "62ff800369d4b7aee7e1c81ae71176d9f745e5a4760e11b5983d9d5c643c76be"
     }
   ],
   "buildInputs": [
     {
-      "path": "ForcefulTongue.esp",
-      "bytes": 158889,
-      "sha256": "e3db5982e36cbb1cba7d33029b4b2b3e394b80cbcbdb1c722d949e3056e2bac2"
+      "file": "ForcefulTongue.esp",
+      "sha256": "E3DB5982E36CBB1CBA7D33029B4B2B3E394B80CBCBDB1C722D949E3056E2BAC2"
     },
     {
-      "path": "Ysmir-0.3.0-reference.esp",
-      "bytes": 185604,
-      "sha256": "dc122f95b4582f9e4f5d94437239ae0f4ec5e3ffbed8d6179a6a58de672a5cc5"
+      "file": "Elemental Fury for MCO ADXP.esp",
+      "sha256": "239CFFFCC6D06E313250BCD82752E1811E3D1A01B304EA006E3E33E8861B4C5D"
+    },
+    {
+      "file": "Elemental Fury Shout Overhaul - Forceful Tongue Patch.esp",
+      "sha256": "14DD66FD4D8977FBC521F21CDDD164C1F46D5BBB41C288F87C7C7E6B918138DC"
+    },
+    {
+      "file": "Slow Time Edit.esp",
+      "sha256": "DEA71666EA073934E550B3D8D0157929928E34BB7998093D40AA790139A5190C"
+    },
+    {
+      "file": "WhirlwindSprintRedone version 2.esp",
+      "sha256": "66FD54CB9A923C6D122756320A57B5984AF58949F47EB811A9ECD7F791B4C837"
     }
   ],
+  "sourceLines": {
+    "v040": 4219,
+    "v050": 2278,
+    "removedNet": 1941
+  },
   "limitations": [
-    "No gameplay verification performed at user request",
-    "Removed old quest/private records are not automatically migrated in existing saves",
-    "No extra overhaul patches beyond documented selected components"
+    "No gameplay tests or game deployment",
+    "Transient effect contexts are rebuilt after loading a save",
+    "Visual geometry assumes the original NIF and collision envelope are aligned",
+    "Shared materials can only display one density value at a time",
+    "Existing save migration is not verified"
   ]
 }

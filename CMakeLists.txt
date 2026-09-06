@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.24)
 
 project(
 	Ysmir
-	VERSION 0.4.0
+	VERSION 0.5.0
 	LANGUAGES CXX
 )
 
@@ -20,6 +20,7 @@ set(FETCHCONTENT_SOURCE_DIR_HDE64 "${CMAKE_CURRENT_SOURCE_DIR}/external/minhook"
 	CACHE PATH "Vendored MinHook source for CommonLib patch validation")
 
 add_subdirectory(external/CommonLibSSE-NG EXCLUDE_FROM_ALL)
+add_subdirectory(external/minhook EXCLUDE_FROM_ALL)
 
 add_library(${PROJECT_NAME} SHARED
 	src/main.cpp
@@ -34,7 +35,7 @@ add_library(${PROJECT_NAME} SHARED
 target_compile_definitions(${PROJECT_NAME} PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
-target_link_libraries(${PROJECT_NAME} PRIVATE CommonLibSSE::CommonLibSSE)
+target_link_libraries(${PROJECT_NAME} PRIVATE CommonLibSSE::CommonLibSSE minhook)
 target_precompile_headers(${PROJECT_NAME} PRIVATE <RE/Skyrim.h> <SKSE/SKSE.h>)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES

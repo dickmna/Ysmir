@@ -38,7 +38,7 @@ namespace
 {
     bool enabled{true}, countSpent{}, vfxEnabled{true}, cooldownEnabled{true};
     std::array<float,5> rates{};
-    float commonRate{.05f}, visualRatio{.6f}, heightAt4x{120}, densityAt4x{2.2f}, cooldownRate{.05f};
+    float vfxRate{.05f}, densityAt4x{2.2f}, cooldownRate{.05f};
     double gameClock{};
     std::chrono::steady_clock::time_point lastTick{};
     bool paused{true};
@@ -77,9 +77,7 @@ namespace ysmir::progression
             rates[i] = config::Bool("DragonSouls", switches[i], true) ? std::clamp(config::Float("DragonSouls", keys[i], .05f), 0.f, 1.f) : 0.f;
         vfxEnabled = config::Bool("DragonSouls", "bScaleVFX", true);
         cooldownEnabled = config::Bool("DragonSouls", "bScaleCooldown", true);
-        commonRate = std::clamp(config::Float("DragonSouls", "fCommonMultiplierPerSoul", .05f), 0.f, 1.f);
-        visualRatio = std::clamp(config::Float("DragonSouls", "fVFXGrowthRatio", .6f), 0.f, 100.f);
-        heightAt4x = std::clamp(config::Float("DragonSouls", "fTrueConeHeightAt4x", 120.f), 0.f, 1000000.f);
+        vfxRate = std::clamp(config::Float("DragonSouls", "fVFXPerSoul", .05f), 0.f, 1.f);
         densityAt4x = std::clamp(config::Float("DragonSouls", "fTrueConeDensityAt4x", 2.2f), 1.f, 1000.f);
         cooldownRate = std::clamp(config::Float("DragonSouls", "fCooldownReductionPerSoul", .05f), 0.f, .999999f);
     }
@@ -92,9 +90,8 @@ namespace ysmir::progression
         const auto linear = [&](std::size_t i) { return 1.f + static_cast<float>(s.souls) * rates[i]; };
         s.distance=linear(0); s.magnitude=linear(1); s.duration=linear(2); s.area=linear(3); s.collision=linear(4);
         if (vfxEnabled) {
-            s.vfx = 1.f + visualRatio * static_cast<float>(s.souls) * commonRate;
+            s.vfx = 1.f + static_cast<float>(s.souls) * vfxRate;
             const auto progress = (s.vfx-1.f)/3.f;
-            s.height = heightAt4x*progress;
             s.density = 1.f + (densityAt4x-1.f)*progress;
         }
         if (cooldownEnabled)
