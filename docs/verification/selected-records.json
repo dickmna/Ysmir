@@ -1,0 +1,3675 @@
+{
+  "version": "0.4.0",
+  "records": 351,
+  "privateRecords": 325,
+  "playerEffects": 118,
+  "unresolvedLinks": [],
+  "recordTypes": {
+    "Keyword": 1,
+    "MagicEffect": 118,
+    "Spell": 104,
+    "Static": 27,
+    "Npc": 8,
+    "Projectile": 36,
+    "EffectShader": 1,
+    "Perk": 3,
+    "Shout": 52,
+    "ArtObject": 1
+  },
+  "scripts": [
+    "CallDragonEffectScript",
+    "clearskieseffectscript",
+    "DLC1MagicSoulRendScript",
+    "DLC2AttachAshPileOnDeath25",
+    "DLC2CycloneEffectScript",
+    "DLC2DragonbornAspectArtSCRIPT",
+    "DLC2TameDragonEffectScript",
+    "DLC2VoiceBendWillEffectScript",
+    "DLC2VoiceFireBreathScript",
+    "magicCastAnotherSpellScript",
+    "MagicDispelSpellOnHitScript",
+    "magiceffectshadersonendscript",
+    "magicimodbeginloopend",
+    "magicImodScript",
+    "magicPlaceExplosionScript",
+    "magicSetActorAlphaScript",
+    "magicsoultrapfxscript",
+    "ReanimateAshPile",
+    "shaderparticlegeometryscript",
+    "VoiceCharmFactionScript",
+    "VoiceIceFormScript",
+    "YsmirDragonAspectSummonScript",
+    "YsmirSlowTimeScript",
+    "YsmirVoicePushEffectScript",
+    "YsmirWhirlwindDamageScript"
+  ],
+  "selected": [
+    {
+      "key": "1269C1:Ysmir.esp",
+      "edid": "FT_ShoutDragonAspect",
+      "type": "Keyword"
+    },
+    {
+      "key": "130CED:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0FEAD1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C25:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_0030D3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C32:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_010EC0",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C3A:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_015714",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C49:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_01AA33",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C2A:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_007CB5",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C28:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_007CB3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C3D:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_016874",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C29:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_007CB4",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "140003:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_10EAD9",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C2E:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_00844A",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C09:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0A44C0",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C2C:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_008448",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C2D:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_008449",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C34:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_013E08",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C0F:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0EA075",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CBC:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_07F82E",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CBD:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_07F82F",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C59:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01FF2B",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C54:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01F138",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C58:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01FF1F",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C40:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_0179E0",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C4C:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01DF90",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C62:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_021730",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C50:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01DF98",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C4F:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01DF97",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C63:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_021731",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C52:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_01DF9A",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C5B:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_0200BD",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C70:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_028EBB",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C5D:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_0200BF",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C65:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_023959",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C67:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_02395C",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C68:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_02395D",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C77:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_02F7B9",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C8E:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_04372F",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C8F:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_043730",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CAF:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_064D68",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C73:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_02C56F",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CB6:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_078B9D",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C84:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_03F508",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C12:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_10387B",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CF3:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_103B04",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CB7:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_078B9F",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C85:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_03F509",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CB8:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_078BA1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C86:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_03F50A",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C61:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_020E16",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CA1:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0562EA",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CA2:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0562EB",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C94:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_044255",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C83:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_03EA30",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C3E:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_017192",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C9A:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_049454",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C96:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_048ACD",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C9B:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_051963",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C9D:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_051965",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C9E:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_051966",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CA3:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_05D16F",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C0B:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0B729F",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "14000D:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dragonborn_020E96",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CDB:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0A0366",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CEC:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0EA076",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CA4:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_05D170",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CA5:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_05D171",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CD5:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_09E0C8",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CD6:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_09E0CA",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CD7:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_09E0CB",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CF1:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_10319E",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CC4:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_08AFCB",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CF4:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_10E4FD",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CEF:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_10319C",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CF0:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_10319D",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CC0:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_082A37",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CBF:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_082A36",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "14001D:Ysmir.esp",
+      "edid": "YSMIR_ShoutClassification_FireAndForget_Self",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CC1:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_082A38",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "14001C:Ysmir.esp",
+      "edid": "YSMIR_ShoutClassification_FireAndForget_Aimed",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CB4:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_07430D",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CC8:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_08BB26",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CE0:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0CD088",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CE1:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0CD089",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD6:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryActiveEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD7:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryActiveEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "00083A:Ysmir.esp",
+      "edid": "FT_VoiceDragonAspectDummyEffect",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "140016:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectCombatEffect",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "140018:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectSummonEffect",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "000800:Ysmir.esp",
+      "edid": "FT_VoiceMarkedForDeathWeaknessMagicEffect",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BC5:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeWrapperEffect1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BC7:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeWrapperEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BC8:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeWrapperEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BFB:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerFFSelf",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF9:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerDamageEffect",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BFF:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamageFFSelf",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BFD:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamageEffect",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C03:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindCloakFFSelf",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130C01:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindDmgEffect",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BC9:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireCloakEffect1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BCC:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireEnemyEffect1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BCA:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireCloakEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BEB:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireEnemyEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BCB:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireCloakEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BED:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireEnemyEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BCD:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostCloakEffect1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD0:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostEnemyEffect1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BCE:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostCloakEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF0:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostEnemyEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BCF:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostCloakEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF2:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostEnemyEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD1:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockCloakEffect1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD4:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockEnemyEffect1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD2:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockCloakEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF5:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockEnemyEffect2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BD3:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockCloakEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130BF7:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockEnemyEffect3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "140019:Ysmir.esp",
+      "edid": "YSMIR_StormDuration1",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "14001A:Ysmir.esp",
+      "edid": "YSMIR_StormDuration2",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "14001B:Ysmir.esp",
+      "edid": "YSMIR_StormDuration3",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "130CEE:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_0FEAD2",
+      "type": "Spell"
+    },
+    {
+      "key": "130C26:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dawnguard_0030D5",
+      "type": "Spell"
+    },
+    {
+      "key": "130C3C:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dawnguard_015716",
+      "type": "Spell"
+    },
+    {
+      "key": "130C3B:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dawnguard_015715",
+      "type": "Spell"
+    },
+    {
+      "key": "130C27:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dawnguard_0038BD",
+      "type": "Spell"
+    },
+    {
+      "key": "130C2B:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dawnguard_007CBA",
+      "type": "Spell"
+    },
+    {
+      "key": "130C31:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dawnguard_008A61",
+      "type": "Spell"
+    },
+    {
+      "key": "130C30:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dawnguard_008A5F",
+      "type": "Spell"
+    },
+    {
+      "key": "130C2F:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dawnguard_008A5E",
+      "type": "Spell"
+    },
+    {
+      "key": "130C35:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_013E09",
+      "type": "Spell"
+    },
+    {
+      "key": "130C36:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_013F39",
+      "type": "Spell"
+    },
+    {
+      "key": "130C37:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_013F3A",
+      "type": "Spell"
+    },
+    {
+      "key": "130C3F:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_0179DC",
+      "type": "Spell"
+    },
+    {
+      "key": "130C57:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_01FF1E",
+      "type": "Spell"
+    },
+    {
+      "key": "130C41:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_0179E1",
+      "type": "Spell"
+    },
+    {
+      "key": "130C4D:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_01DF91",
+      "type": "Spell"
+    },
+    {
+      "key": "130C4E:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_01DF96",
+      "type": "Spell"
+    },
+    {
+      "key": "130C51:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_01DF99",
+      "type": "Spell"
+    },
+    {
+      "key": "130C5A:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_0200BC",
+      "type": "Spell"
+    },
+    {
+      "key": "130C5C:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_0200BE",
+      "type": "Spell"
+    },
+    {
+      "key": "130C5E:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Dragonborn_0200C1",
+      "type": "Spell"
+    },
+    {
+      "key": "130C66:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_02395B",
+      "type": "Spell"
+    },
+    {
+      "key": "130C69:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_02395E",
+      "type": "Spell"
+    },
+    {
+      "key": "130C6A:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_023967",
+      "type": "Spell"
+    },
+    {
+      "key": "130C78:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_02F7BE",
+      "type": "Spell"
+    },
+    {
+      "key": "130C79:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_02F7BF",
+      "type": "Spell"
+    },
+    {
+      "key": "130C7A:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_02F7C0",
+      "type": "Spell"
+    },
+    {
+      "key": "130CA9:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_05F6EB",
+      "type": "Spell"
+    },
+    {
+      "key": "130CAA:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_05F6EC",
+      "type": "Spell"
+    },
+    {
+      "key": "130CAB:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_05F6ED",
+      "type": "Spell"
+    },
+    {
+      "key": "130C75:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_02C595",
+      "type": "Spell"
+    },
+    {
+      "key": "130CD3:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09CD4E",
+      "type": "Spell"
+    },
+    {
+      "key": "130CD4:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09CD4F",
+      "type": "Spell"
+    },
+    {
+      "key": "130CB9:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_078BA2",
+      "type": "Spell"
+    },
+    {
+      "key": "130C87:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_03F50B",
+      "type": "Spell"
+    },
+    {
+      "key": "130CF2:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_10387F",
+      "type": "Spell"
+    },
+    {
+      "key": "130CBA:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_078BA3",
+      "type": "Spell"
+    },
+    {
+      "key": "130C88:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_03F50C",
+      "type": "Spell"
+    },
+    {
+      "key": "130CBB:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_078BA4",
+      "type": "Spell"
+    },
+    {
+      "key": "130C89:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_03F50D",
+      "type": "Spell"
+    },
+    {
+      "key": "130C8B:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_03F9EB",
+      "type": "Spell"
+    },
+    {
+      "key": "130C8C:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_03F9EC",
+      "type": "Spell"
+    },
+    {
+      "key": "130C8D:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_03F9ED",
+      "type": "Spell"
+    },
+    {
+      "key": "130C93:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_044254",
+      "type": "Spell"
+    },
+    {
+      "key": "130C6C:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_028315",
+      "type": "Spell"
+    },
+    {
+      "key": "130C6D:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_028345",
+      "type": "Spell"
+    },
+    {
+      "key": "130C95:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_046B85",
+      "type": "Spell"
+    },
+    {
+      "key": "130C97:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_048AD0",
+      "type": "Spell"
+    },
+    {
+      "key": "130C98:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_048AD1",
+      "type": "Spell"
+    },
+    {
+      "key": "130C99:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_048AD2",
+      "type": "Spell"
+    },
+    {
+      "key": "130C9F:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_051967",
+      "type": "Spell"
+    },
+    {
+      "key": "130C9C:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_051964",
+      "type": "Spell"
+    },
+    {
+      "key": "130CA0:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_051969",
+      "type": "Spell"
+    },
+    {
+      "key": "130CA6:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_05D172",
+      "type": "Spell"
+    },
+    {
+      "key": "130CD0:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09CAF0",
+      "type": "Spell"
+    },
+    {
+      "key": "130CD2:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09CAF2",
+      "type": "Spell"
+    },
+    {
+      "key": "130CD1:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09CAF1",
+      "type": "Spell"
+    },
+    {
+      "key": "130CA7:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_05D173",
+      "type": "Spell"
+    },
+    {
+      "key": "130CA8:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_05D174",
+      "type": "Spell"
+    },
+    {
+      "key": "130CD8:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09E0CC",
+      "type": "Spell"
+    },
+    {
+      "key": "130CD9:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09E0CD",
+      "type": "Spell"
+    },
+    {
+      "key": "130CDA:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09E0CE",
+      "type": "Spell"
+    },
+    {
+      "key": "130CC5:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_08AFCC",
+      "type": "Spell"
+    },
+    {
+      "key": "130CC6:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_08AFCD",
+      "type": "Spell"
+    },
+    {
+      "key": "130CC7:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_08AFCE",
+      "type": "Spell"
+    },
+    {
+      "key": "130C46:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_01861F",
+      "type": "Spell"
+    },
+    {
+      "key": "130C47:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_018627",
+      "type": "Spell"
+    },
+    {
+      "key": "130C48:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_01862B",
+      "type": "Spell"
+    },
+    {
+      "key": "130C43:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_018609",
+      "type": "Spell"
+    },
+    {
+      "key": "130C44:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_01860A",
+      "type": "Spell"
+    },
+    {
+      "key": "130C45:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_01860D",
+      "type": "Spell"
+    },
+    {
+      "key": "130CBE:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_082A34",
+      "type": "Spell"
+    },
+    {
+      "key": "130CC2:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_082A39",
+      "type": "Spell"
+    },
+    {
+      "key": "130CC3:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_082A3A",
+      "type": "Spell"
+    },
+    {
+      "key": "130CB5:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_07430F",
+      "type": "Spell"
+    },
+    {
+      "key": "130CC9:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_08BB27",
+      "type": "Spell"
+    },
+    {
+      "key": "130CCA:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_08BB28",
+      "type": "Spell"
+    },
+    {
+      "key": "130CCB:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_08BB29",
+      "type": "Spell"
+    },
+    {
+      "key": "140015:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectCombatSpell",
+      "type": "Spell"
+    },
+    {
+      "key": "140017:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2VoiceDragonAspectSummon",
+      "type": "Spell"
+    },
+    {
+      "key": "130BC2:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeActual1",
+      "type": "Spell"
+    },
+    {
+      "key": "130BC3:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeActual2",
+      "type": "Spell"
+    },
+    {
+      "key": "130BC4:Ysmir.esp",
+      "edid": "YSMIR_SlowTimeActual3",
+      "type": "Spell"
+    },
+    {
+      "key": "130BFA:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindStaggerDamage1",
+      "type": "Spell"
+    },
+    {
+      "key": "130BFE:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzWhirlwindDamage1",
+      "type": "Spell"
+    },
+    {
+      "key": "130C02:Ysmir.esp",
+      "edid": "YSMIR_Whirlwind_zzzDLC2WhirlwindCloakDmgConc",
+      "type": "Spell"
+    },
+    {
+      "key": "130BD8:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFire1",
+      "type": "Spell"
+    },
+    {
+      "key": "130BDB:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireDamage1",
+      "type": "Spell"
+    },
+    {
+      "key": "130BD9:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFire2",
+      "type": "Spell"
+    },
+    {
+      "key": "130BDC:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireDamage2",
+      "type": "Spell"
+    },
+    {
+      "key": "130BDA:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFire3",
+      "type": "Spell"
+    },
+    {
+      "key": "130BDD:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireDamage3",
+      "type": "Spell"
+    },
+    {
+      "key": "130BDE:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrost1",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE1:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostDamage1",
+      "type": "Spell"
+    },
+    {
+      "key": "130BDF:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrost2",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE2:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostDamage2",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE0:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrost3",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE3:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostDamage3",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE4:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShock1",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE7:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockDamage1",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE5:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShock2",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE8:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockDamage2",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE6:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShock3",
+      "type": "Spell"
+    },
+    {
+      "key": "130BE9:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockDamage3",
+      "type": "Spell"
+    },
+    {
+      "key": "00085B:Ysmir.esp",
+      "edid": "FT_DLC1MAGINVShoutSummonDurnehviir",
+      "type": "Static"
+    },
+    {
+      "key": "130C1E:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10F0FF",
+      "type": "Static"
+    },
+    {
+      "key": "000861:Ysmir.esp",
+      "edid": "FT_DLC1MAGINVShoutDrainVitality",
+      "type": "Static"
+    },
+    {
+      "key": "130C14:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_0A59AC",
+      "type": "Static"
+    },
+    {
+      "key": "130C1F:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Dragonborn_03D590",
+      "type": "Static"
+    },
+    {
+      "key": "130C20:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Dragonborn_03D58F",
+      "type": "Static"
+    },
+    {
+      "key": "00085A:Ysmir.esp",
+      "edid": "FT_DLC2MAGINVShoutCyclone",
+      "type": "Static"
+    },
+    {
+      "key": "000860:Ysmir.esp",
+      "edid": "FT_MAGINVShoutDismay",
+      "type": "Static"
+    },
+    {
+      "key": "000859:Ysmir.esp",
+      "edid": "FT_MAGINVShoutWhirlwindSprint",
+      "type": "Static"
+    },
+    {
+      "key": "130C15:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10EA49",
+      "type": "Static"
+    },
+    {
+      "key": "000867:Ysmir.esp",
+      "edid": "FT_MAGINVShoutElementalFury",
+      "type": "Static"
+    },
+    {
+      "key": "000868:Ysmir.esp",
+      "edid": "FT_MAGINVShoutClearSkies",
+      "type": "Static"
+    },
+    {
+      "key": "130C16:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10EA46",
+      "type": "Static"
+    },
+    {
+      "key": "130C17:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10F0FB",
+      "type": "Static"
+    },
+    {
+      "key": "130C18:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10EA48",
+      "type": "Static"
+    },
+    {
+      "key": "130C19:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10F0FD",
+      "type": "Static"
+    },
+    {
+      "key": "00085C:Ysmir.esp",
+      "edid": "FT_MAGINVShoutCallOfValor",
+      "type": "Static"
+    },
+    {
+      "key": "130C1A:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10F0FC",
+      "type": "Static"
+    },
+    {
+      "key": "00085D:Ysmir.esp",
+      "edid": "FT_MAGINVShoutAnimalAllegiance",
+      "type": "Static"
+    },
+    {
+      "key": "130C1B:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10EA47",
+      "type": "Static"
+    },
+    {
+      "key": "130C1C:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10F0FA",
+      "type": "Static"
+    },
+    {
+      "key": "000865:Ysmir.esp",
+      "edid": "FT_MAGINVShoutStormCall",
+      "type": "Static"
+    },
+    {
+      "key": "00085E:Ysmir.esp",
+      "edid": "FT_MAGINVShoutKynesPeace",
+      "type": "Static"
+    },
+    {
+      "key": "000866:Ysmir.esp",
+      "edid": "FT_MAGINVShoutThrowVoice",
+      "type": "Static"
+    },
+    {
+      "key": "130C1D:Ysmir.esp",
+      "edid": "YSMIR_Inventory_Skyrim_10F0FE",
+      "type": "Static"
+    },
+    {
+      "key": "00085F:Ysmir.esp",
+      "edid": "FT_MAGINVShoutDisarm",
+      "type": "Static"
+    },
+    {
+      "key": "140014:Ysmir.esp",
+      "edid": "YSMIR_Selected_FT_DLC2MAGINVShoutDragonAspect",
+      "type": "Static"
+    },
+    {
+      "key": "130C6B:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Dragonborn_0265AA",
+      "type": "Npc"
+    },
+    {
+      "key": "130C56:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Dragonborn_01F990",
+      "type": "Npc"
+    },
+    {
+      "key": "130CCD:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Skyrim_0923F9",
+      "type": "Npc"
+    },
+    {
+      "key": "130C91:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Skyrim_044237",
+      "type": "Npc"
+    },
+    {
+      "key": "130CCE:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Skyrim_0923FA",
+      "type": "Npc"
+    },
+    {
+      "key": "130C90:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Skyrim_044236",
+      "type": "Npc"
+    },
+    {
+      "key": "130CCF:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Skyrim_0923FB",
+      "type": "Npc"
+    },
+    {
+      "key": "130C92:Ysmir.esp",
+      "edid": "YSMIR_PlayerNpc_Skyrim_044238",
+      "type": "Npc"
+    },
+    {
+      "key": "130C33:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_013DF4",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C22:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Dawnguard_0028D6",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C23:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Dawnguard_0028D7",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C24:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Dawnguard_0028DF",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C38:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_013FFF",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C39:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_014000",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C55:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Dragonborn_01F139",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C64:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Dragonborn_02174F",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C4A:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Dragonborn_01AAAC",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C6E:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Dragonborn_028EB9",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C6F:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Dragonborn_028EBA",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C8A:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_03F50E",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CB3:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_0732C7",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CAE:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_0647BF",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CAC:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_0647BB",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CAD:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_0647BE",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C7B:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_03003D",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CB0:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_068BD0",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CE4:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_0DEDCA",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CB1:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_068BD1",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CB2:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_068BD2",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CCC:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_08CA70",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CDF:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_0CD087",
+      "type": "Projectile"
+    },
+    {
+      "key": "130CE2:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_0CD08A",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C42:Ysmir.esp",
+      "edid": "YSMIR_PlayerProjectile_Skyrim_018123",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C04:Ysmir.esp",
+      "edid": "YSMIR_SoulTearConeProjectile",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BEA:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireProjectile1",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BEC:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireProjectile2",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BEE:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireProjectile3",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BEF:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostProjectile1",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BF1:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostProjectile2",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BF3:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFrostProjectile3",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BF4:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockProjectile1",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BF6:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockProjectile2",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BF8:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryShockProjectile3",
+      "type": "Projectile"
+    },
+    {
+      "key": "130C21:Ysmir.esp",
+      "edid": "YSMIR_StormCallProjectile",
+      "type": "Projectile"
+    },
+    {
+      "key": "130BD5:Ysmir.esp",
+      "edid": "YSMIR_ElementalFuryFireEnemyShader",
+      "type": "EffectShader"
+    },
+    {
+      "key": "130C4B:Ysmir.esp",
+      "edid": "YSMIR_PlayerPerk_Dragonborn_01DF8F",
+      "type": "Perk"
+    },
+    {
+      "key": "130C53:Ysmir.esp",
+      "edid": "YSMIR_PlayerPerk_Dragonborn_01DF9B",
+      "type": "Perk"
+    },
+    {
+      "key": "130BC6:Ysmir.esp",
+      "edid": "YSMIR_SlowTimePlayerExemptionPerk",
+      "type": "Perk"
+    },
+    {
+      "key": "130CF5:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Dawnguard_0030D2",
+      "type": "Shout"
+    },
+    {
+      "key": "0030D2:Dawnguard.esm",
+      "edid": "DLC1SummonDragonShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130CF6:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Dawnguard_007CB6",
+      "type": "Shout"
+    },
+    {
+      "key": "007CB6:Dawnguard.esm",
+      "edid": "DLC1SoulTearShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130CF7:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Dawnguard_008A62",
+      "type": "Shout"
+    },
+    {
+      "key": "008A62:Dawnguard.esm",
+      "edid": "DLC1DrainVitalityShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130CF8:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_013E07",
+      "type": "Shout"
+    },
+    {
+      "key": "013E07:Skyrim.esm",
+      "edid": "UnrelentingForceShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130CF9:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Dragonborn_0179D8",
+      "type": "Shout"
+    },
+    {
+      "key": "0179D8:Dragonborn.esm",
+      "edid": "DLC2BendWillShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130CFA:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Dragonborn_01DF92",
+      "type": "Shout"
+    },
+    {
+      "key": "01DF92:Dragonborn.esm",
+      "edid": "DLC2DragonAspectShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130CFB:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Dragonborn_0200C0",
+      "type": "Shout"
+    },
+    {
+      "key": "0200C0:Dragonborn.esm",
+      "edid": "DLC2CycloneShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130CFC:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_02395A",
+      "type": "Shout"
+    },
+    {
+      "key": "02395A:Skyrim.esm",
+      "edid": "Dismay",
+      "type": "Shout"
+    },
+    {
+      "key": "130CFE:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_02F7BA",
+      "type": "Shout"
+    },
+    {
+      "key": "02F7BA:Skyrim.esm",
+      "edid": "WhirlwindSprintShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130CFF:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_032920",
+      "type": "Shout"
+    },
+    {
+      "key": "032920:Skyrim.esm",
+      "edid": "BecomeEtherealShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D00:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_032921",
+      "type": "Shout"
+    },
+    {
+      "key": "032921:Skyrim.esm",
+      "edid": "ElementalFuryShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D01:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_03CD34",
+      "type": "Shout"
+    },
+    {
+      "key": "03CD34:Skyrim.esm",
+      "edid": "ClearSkiesShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D02:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_03F9EA",
+      "type": "Shout"
+    },
+    {
+      "key": "03F9EA:Skyrim.esm",
+      "edid": "FireBreathShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D03:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_044250",
+      "type": "Shout"
+    },
+    {
+      "key": "044250:Skyrim.esm",
+      "edid": "DragonrendShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D04:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_046B8C",
+      "type": "Shout"
+    },
+    {
+      "key": "046B8C:Skyrim.esm",
+      "edid": "CallDragonShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D05:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_048AC9",
+      "type": "Shout"
+    },
+    {
+      "key": "048AC9:Skyrim.esm",
+      "edid": "SlowTimeShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D06:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_05196A",
+      "type": "Shout"
+    },
+    {
+      "key": "05196A:Skyrim.esm",
+      "edid": "CallofValorShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D07:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_05D16B",
+      "type": "Shout"
+    },
+    {
+      "key": "05D16B:Skyrim.esm",
+      "edid": "FrostBreathShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D08:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_05FC77",
+      "type": "Shout"
+    },
+    {
+      "key": "05FC77:Skyrim.esm",
+      "edid": "animalAllegianceShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D09:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_07097B",
+      "type": "Shout"
+    },
+    {
+      "key": "07097B:Skyrim.esm",
+      "edid": "AuraWhisperShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D0A:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_07097C",
+      "type": "Shout"
+    },
+    {
+      "key": "07097C:Skyrim.esm",
+      "edid": "MarkedforDeathShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D0B:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_07097D",
+      "type": "Shout"
+    },
+    {
+      "key": "07097D:Skyrim.esm",
+      "edid": "StormCallShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D0C:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_07097E",
+      "type": "Shout"
+    },
+    {
+      "key": "07097E:Skyrim.esm",
+      "edid": "KynesPeaceShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D0D:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_07097F",
+      "type": "Shout"
+    },
+    {
+      "key": "07097F:Skyrim.esm",
+      "edid": "ThrowVoiceShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D0E:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_070980",
+      "type": "Shout"
+    },
+    {
+      "key": "070980:Skyrim.esm",
+      "edid": "IceFormShout",
+      "type": "Shout"
+    },
+    {
+      "key": "130D0F:Ysmir.esp",
+      "edid": "YSMIR_PlayerShout_Skyrim_070981",
+      "type": "Shout"
+    },
+    {
+      "key": "070981:Skyrim.esm",
+      "edid": "DisarmShout",
+      "type": "Shout"
+    },
+    {
+      "key": "000817:Ysmir.esp",
+      "edid": "FT_SummonCallOfValorTargetFX",
+      "type": "ArtObject"
+    }
+  ],
+  "numbers": [
+    {
+      "shout": "YSMIR_PlayerShout_Dawnguard_0030D2",
+      "words": [
+        {
+          "cooldown": 5,
+          "spell": "130CEE:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CED:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 5,
+          "spell": "130CEE:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CED:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 300,
+          "spell": "130C26:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C25:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 86313600
+              }
+            },
+            {
+              "effect": "130C32:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 180
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dawnguard_007CB6",
+      "words": [
+        {
+          "cooldown": 5,
+          "spell": "130C3C:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C3A:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.05,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 5,
+          "spell": "130C3B:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C49:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.3,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 90,
+          "spell": "130C27:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C2A:Ysmir.esp",
+              "Data": {
+                "Magnitude": 300,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C28:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 2
+              }
+            },
+            {
+              "effect": "130C3D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dawnguard_008A62",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130C31:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C2E:Ysmir.esp",
+              "Data": {
+                "Magnitude": 5,
+                "Area": 0,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.8,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 60,
+          "spell": "130C30:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C2E:Ysmir.esp",
+              "Data": {
+                "Magnitude": 5,
+                "Area": 0,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.8,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C2C:Ysmir.esp",
+              "Data": {
+                "Magnitude": 5,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 90,
+          "spell": "130C2F:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C2D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 5,
+                "Area": 0,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.8,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C2E:Ysmir.esp",
+              "Data": {
+                "Magnitude": 5,
+                "Area": 0,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "130C2C:Ysmir.esp",
+              "Data": {
+                "Magnitude": 5,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_013E07",
+      "words": [
+        {
+          "cooldown": 15,
+          "spell": "130C35:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C34:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.75,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C0F:Ysmir.esp",
+              "Data": {
+                "Magnitude": 2,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C0F:Ysmir.esp",
+              "Data": {
+                "Magnitude": 8,
+                "Area": 0,
+                "Duration": 1
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 20,
+          "spell": "130C36:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CBC:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1.25,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C0F:Ysmir.esp",
+              "Data": {
+                "Magnitude": 5,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C0F:Ysmir.esp",
+              "Data": {
+                "Magnitude": 20,
+                "Area": 0,
+                "Duration": 1
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 45,
+          "spell": "130C37:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CBD:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1.5,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C0F:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130CBC:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1.5,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C59:Ysmir.esp",
+              "Data": {
+                "Magnitude": 40,
+                "Area": 0,
+                "Duration": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dragonborn_0179D8",
+      "words": [
+        {
+          "cooldown": 10,
+          "spell": "130C3F:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C54:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.75,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 90,
+          "spell": "130C57:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C54:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.75,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C58:Ysmir.esp",
+              "Data": {
+                "Magnitude": 99,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 120,
+          "spell": "130C41:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C40:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 2
+              }
+            },
+            {
+              "effect": "130C58:Ysmir.esp",
+              "Data": {
+                "Magnitude": 99,
+                "Area": 0,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "130C54:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.75,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dragonborn_01DF92",
+      "words": [
+        {
+          "cooldown": 90,
+          "spell": "130C4D:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C4C:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 300
+              }
+            },
+            {
+              "effect": "00083A:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 300
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 90,
+          "spell": "130C4E:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C62:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 300
+              }
+            },
+            {
+              "effect": "130C4F:Ysmir.esp",
+              "Data": {
+                "Magnitude": 150,
+                "Area": 0,
+                "Duration": 300
+              }
+            },
+            {
+              "effect": "130C50:Ysmir.esp",
+              "Data": {
+                "Magnitude": 25,
+                "Area": 0,
+                "Duration": 300
+              }
+            },
+            {
+              "effect": "00083A:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 300
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 90,
+          "spell": "130C51:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C63:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 300
+              }
+            },
+            {
+              "effect": "130C50:Ysmir.esp",
+              "Data": {
+                "Magnitude": 25,
+                "Area": 0,
+                "Duration": 300
+              }
+            },
+            {
+              "effect": "130C4F:Ysmir.esp",
+              "Data": {
+                "Magnitude": 150,
+                "Area": 0,
+                "Duration": 300
+              }
+            },
+            {
+              "effect": "130C52:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.25,
+                "Area": 0,
+                "Duration": 300
+              }
+            },
+            {
+              "effect": "00083A:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 300
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dragonborn_0200C0",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130C5A:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C5B:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 15,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "14001C:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 45,
+          "spell": "130C5C:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C70:Ysmir.esp",
+              "Data": {
+                "Magnitude": 75,
+                "Area": 20,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "14001C:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 60,
+          "spell": "130C5E:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C5D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 100,
+                "Area": 25,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "14001C:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_02395A",
+      "words": [
+        {
+          "cooldown": 40,
+          "spell": "130C66:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C65:Ysmir.esp",
+              "Data": {
+                "Magnitude": 7,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 45,
+          "spell": "130C69:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C67:Ysmir.esp",
+              "Data": {
+                "Magnitude": 15,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 50,
+          "spell": "130C6A:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C68:Ysmir.esp",
+              "Data": {
+                "Magnitude": 24,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_02F7BA",
+      "words": [
+        {
+          "cooldown": 20,
+          "spell": "130C78:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C77:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130BFB:Ysmir.esp",
+              "Data": {
+                "Magnitude": 9,
+                "Area": 0,
+                "Duration": 1
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 25,
+          "spell": "130C79:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C8E:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130BFB:Ysmir.esp",
+              "Data": {
+                "Magnitude": 9,
+                "Area": 0,
+                "Duration": 1
+              }
+            },
+            {
+              "effect": "130BFF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 9,
+                "Area": 0,
+                "Duration": 1
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 35,
+          "spell": "130C7A:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C8F:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "130C03:Ysmir.esp",
+              "Data": {
+                "Magnitude": 9,
+                "Area": 0,
+                "Duration": 1
+              }
+            },
+            {
+              "effect": "130BFF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 9,
+                "Area": 0,
+                "Duration": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_032920",
+      "words": [
+        {
+          "cooldown": 20,
+          "spell": "130CA9:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CAF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 8
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 30,
+          "spell": "130CAA:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CAF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 13
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 40,
+          "spell": "130CAB:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CAF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 18
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_032921",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130C75:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C73:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1.3,
+                "Area": 0,
+                "Duration": 15
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 40,
+          "spell": "130CD3:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130BD6:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1.5,
+                "Area": 0,
+                "Duration": 15
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 50,
+          "spell": "130CD4:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130BD7:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1.7,
+                "Area": 0,
+                "Duration": 15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_03CD34",
+      "words": [
+        {
+          "cooldown": 5,
+          "spell": "130CB9:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CB6:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 25
+              }
+            },
+            {
+              "effect": "14001D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 10,
+          "spell": "130CBA:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CB7:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 40
+              }
+            },
+            {
+              "effect": "14001D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 15,
+          "spell": "130CBB:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CB8:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "14001D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_03F9EA",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130C8B:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C61:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 0,
+                "Duration": 1
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.05,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 50,
+          "spell": "130C8C:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CA1:Ysmir.esp",
+              "Data": {
+                "Magnitude": 70,
+                "Area": 0,
+                "Duration": 1
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.5,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 100,
+          "spell": "130C8D:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CA2:Ysmir.esp",
+              "Data": {
+                "Magnitude": 90,
+                "Area": 0,
+                "Duration": 1
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_044250",
+      "words": [
+        {
+          "cooldown": 10,
+          "spell": "130C93:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C94:Ysmir.esp",
+              "Data": {
+                "Magnitude": 100,
+                "Area": 0,
+                "Duration": 15
+              }
+            },
+            {
+              "effect": "130C94:Ysmir.esp",
+              "Data": {
+                "Magnitude": 25,
+                "Area": 0,
+                "Duration": 15
+              }
+            },
+            {
+              "effect": "130C83:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 15
+              }
+            },
+            {
+              "effect": "130C83:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 15
+              }
+            },
+            {
+              "effect": "130C3E:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 12,
+          "spell": "130C6C:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C94:Ysmir.esp",
+              "Data": {
+                "Magnitude": 100,
+                "Area": 0,
+                "Duration": 18
+              }
+            },
+            {
+              "effect": "130C94:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 0,
+                "Duration": 18
+              }
+            },
+            {
+              "effect": "130C83:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 18
+              }
+            },
+            {
+              "effect": "130C83:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 18
+              }
+            },
+            {
+              "effect": "130C3E:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 15,
+          "spell": "130C6D:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C94:Ysmir.esp",
+              "Data": {
+                "Magnitude": 100,
+                "Area": 0,
+                "Duration": 22
+              }
+            },
+            {
+              "effect": "130C94:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 0,
+                "Duration": 22
+              }
+            },
+            {
+              "effect": "130C83:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 22
+              }
+            },
+            {
+              "effect": "130C83:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 22
+              }
+            },
+            {
+              "effect": "130C94:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 0,
+                "Duration": 70
+              }
+            },
+            {
+              "effect": "130C3E:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_046B8C",
+      "words": [
+        {
+          "cooldown": 5,
+          "spell": "130CEE:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CED:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 5,
+          "spell": "130CEE:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CED:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 300,
+          "spell": "130C95:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C9A:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_048AC9",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130C97:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130BC5:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 8
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 45,
+          "spell": "130C98:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130BC7:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 12
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 60,
+          "spell": "130C99:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130BC8:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_05196A",
+      "words": [
+        {
+          "cooldown": 180,
+          "spell": "130C9F:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C9B:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 60
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 180,
+          "spell": "130C9C:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C9D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 60
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 180,
+          "spell": "130CA0:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130C9E:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 60
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_05D16B",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130CA6:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CA3:Ysmir.esp",
+              "Data": {
+                "Magnitude": 10,
+                "Area": 0,
+                "Duration": 5
+              }
+            },
+            {
+              "effect": "130C0B:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 0,
+                "Duration": 5
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.05,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "14000D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 15
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 50,
+          "spell": "130CA7:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CA4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 14,
+                "Area": 0,
+                "Duration": 5
+              }
+            },
+            {
+              "effect": "130C0B:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 0,
+                "Duration": 5
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0.5,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "14000D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 15
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 100,
+          "spell": "130CA8:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CA5:Ysmir.esp",
+              "Data": {
+                "Magnitude": 18,
+                "Area": 0,
+                "Duration": 5
+              }
+            },
+            {
+              "effect": "130C0B:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 0,
+                "Duration": 5
+              }
+            },
+            {
+              "effect": "130C09:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1,
+                "Area": 0,
+                "Duration": 0
+              }
+            },
+            {
+              "effect": "14000D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_05FC77",
+      "words": [
+        {
+          "cooldown": 50,
+          "spell": "130CD8:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CD5:Ysmir.esp",
+              "Data": {
+                "Magnitude": 20,
+                "Area": 75,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "14001D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 60,
+          "spell": "130CD9:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CD6:Ysmir.esp",
+              "Data": {
+                "Magnitude": 20,
+                "Area": 150,
+                "Duration": 45
+              }
+            },
+            {
+              "effect": "14001D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 70,
+          "spell": "130CDA:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CD7:Ysmir.esp",
+              "Data": {
+                "Magnitude": 20,
+                "Area": 250,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "14001D:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097B",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130CC5:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CF1:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 500,
+                "Duration": 10
+              }
+            },
+            {
+              "effect": "130CC4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 300,
+                "Duration": 10
+              }
+            },
+            {
+              "effect": "130CF4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 10
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 40,
+          "spell": "130CC6:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CF1:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 500,
+                "Duration": 20
+              }
+            },
+            {
+              "effect": "130CC4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 300,
+                "Duration": 20
+              }
+            },
+            {
+              "effect": "130CF4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 20
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 50,
+          "spell": "130CC7:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CF1:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 500,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "130CC4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 300,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "130CF4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097C",
+      "words": [
+        {
+          "cooldown": 20,
+          "spell": "130C46:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CEF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1,
+                "Area": 0,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "130CF0:Ysmir.esp",
+              "Data": {
+                "Magnitude": 25,
+                "Area": 0,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "000800:Ysmir.esp",
+              "Data": {
+                "Magnitude": 25,
+                "Area": 0,
+                "Duration": 10
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 30,
+          "spell": "130C47:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CEF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 2,
+                "Area": 0,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "130CF0:Ysmir.esp",
+              "Data": {
+                "Magnitude": 50,
+                "Area": 0,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "000800:Ysmir.esp",
+              "Data": {
+                "Magnitude": 25,
+                "Area": 0,
+                "Duration": 20
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 40,
+          "spell": "130C48:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CEF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 3,
+                "Area": 0,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "130CF0:Ysmir.esp",
+              "Data": {
+                "Magnitude": 75,
+                "Area": 0,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "000800:Ysmir.esp",
+              "Data": {
+                "Magnitude": 25,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097D",
+      "words": [
+        {
+          "cooldown": 300,
+          "spell": "130C43:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "140019:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 60
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 480,
+          "spell": "130C44:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "14001A:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 120
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 600,
+          "spell": "130C45:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "14001B:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 180
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097E",
+      "words": [
+        {
+          "cooldown": 40,
+          "spell": "130CBE:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CC0:Ysmir.esp",
+              "Data": {
+                "Magnitude": 20,
+                "Area": 75,
+                "Duration": 60
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 50,
+          "spell": "130CC2:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CBF:Ysmir.esp",
+              "Data": {
+                "Magnitude": 20,
+                "Area": 150,
+                "Duration": 120
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 60,
+          "spell": "130CC3:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CC1:Ysmir.esp",
+              "Data": {
+                "Magnitude": 20,
+                "Area": 250,
+                "Duration": 180
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097F",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130CB5:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CB4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1,
+                "Area": 1,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 15,
+          "spell": "130CB5:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CB4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1,
+                "Area": 1,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 5,
+          "spell": "130CB5:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CB4:Ysmir.esp",
+              "Data": {
+                "Magnitude": 1,
+                "Area": 1,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_070980",
+      "words": [
+        {
+          "cooldown": 60,
+          "spell": "130CD0:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CDB:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 15
+              }
+            },
+            {
+              "effect": "130CEC:Ysmir.esp",
+              "Data": {
+                "Magnitude": 2,
+                "Area": 0,
+                "Duration": 15
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 90,
+          "spell": "130CD1:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CDB:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 30
+              }
+            },
+            {
+              "effect": "130CEC:Ysmir.esp",
+              "Data": {
+                "Magnitude": 2,
+                "Area": 0,
+                "Duration": 30
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 120,
+          "spell": "130CD2:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CDB:Ysmir.esp",
+              "Data": {
+                "Magnitude": 0,
+                "Area": 0,
+                "Duration": 60
+              }
+            },
+            {
+              "effect": "130CEC:Ysmir.esp",
+              "Data": {
+                "Magnitude": 2,
+                "Area": 0,
+                "Duration": 60
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_070981",
+      "words": [
+        {
+          "cooldown": 30,
+          "spell": "130CC9:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CC8:Ysmir.esp",
+              "Data": {
+                "Magnitude": 12,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 35,
+          "spell": "130CCA:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CE0:Ysmir.esp",
+              "Data": {
+                "Magnitude": 20,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        },
+        {
+          "cooldown": 40,
+          "spell": "130CCB:Ysmir.esp",
+          "effects": [
+            {
+              "effect": "130CE1:Ysmir.esp",
+              "Data": {
+                "Magnitude": 30,
+                "Area": 0,
+                "Duration": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

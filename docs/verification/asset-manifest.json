@@ -1,0 +1,94 @@
+[
+  {
+    "path": "meshes/forceful tongue/callofvalortargetfx.nif",
+    "sha256": "2a924d7bedf6cfe089c7854f2e67af550aa32fe4ce968505f194cc04ae8c0370"
+  },
+  {
+    "path": "meshes/forceful tongue/dlc1maginvshoutdrainvitality.nif",
+    "sha256": "581ff52e9d34622a1daac2f7318dded65c5c82ef1dce28ac7d3f78292e3de4f9"
+  },
+  {
+    "path": "meshes/forceful tongue/dlc1maginvshoutsummondurnehviir.nif",
+    "sha256": "d8716701a5eca27a3fbd81523eb542ee50fa511afd9cc63539c6f305ef5536da"
+  },
+  {
+    "path": "meshes/forceful tongue/dlc2maginvshoutcyclone.nif",
+    "sha256": "6d4b5e423bd6e7ed01398669c804dba4cf98d19378eb5683e109346717bb383d"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutanimalallegiance.nif",
+    "sha256": "2623e674494415bf48190e36ea6bf8274279494690984a3988dd0248ea7b2c4c"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutcallofvalor.nif",
+    "sha256": "3d6e44a4a7d37c17a43542f3eafcf01218a36b1a1876bd907817fe69cdc86002"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutclearskies.nif",
+    "sha256": "9d066dc422abf8e695abc90f2130251a69256a098779c54d382fae130c6d8a9e"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutdisarm.nif",
+    "sha256": "1f4196ede261376f0e5762928cf878249819152fb0aa83c77cf3edda0d6ad6eb"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutdismay.nif",
+    "sha256": "066198ff21ad2e9e847f4395f51d2ea40012e86bcecc32fc9e53adb0879b0c99"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutelementalfury.nif",
+    "sha256": "26bfa1ee14321bc20b6040cb88c3769d6e21c0831845916f96a1360e23c23205"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutkynespeace.nif",
+    "sha256": "3a11d14f9b8b614ca8cac69d4e1abfc54261b36b0a92127304fcc21b2ed69e15"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutstormcall.nif",
+    "sha256": "76e3ac4f5c19a5ef0f11d49bda7cef5bf4e30c55de13cd4bacdc36a5c632d702"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutthrowvoice.nif",
+    "sha256": "7141c98a3fab6fb2122af0e28d276b6a37e9d5a791f2a6e34b42a3cd767226ab"
+  },
+  {
+    "path": "meshes/forceful tongue/maginvshoutwhirlwindsprint.nif",
+    "sha256": "a5aa3346a4b6ffbc536a6ee58697314188c571ccf376286189729a7eb7edf1a3"
+  },
+  {
+    "path": "meshes/Magic/maginvshoutfire.nif",
+    "sha256": "bc5d6838c20529a90ad00fa8778e08bfe234e99845afaa20246c1dc00fcbe4a5"
+  },
+  {
+    "path": "meshes/Magic/MAGINVShoutFrost.nif",
+    "sha256": "5edf69030883067821c6f2ee613a90a302b9d5de5ffc5e3c668a891f0df5e008"
+  },
+  {
+    "path": "meshes/Magic/MAGINVShoutPinkMagic.nif",
+    "sha256": "0c42cf2cf008e385130337448e1d0e0de55e5b435fb48cc039c82a10fb016a33"
+  },
+  {
+    "path": "meshes/Magic/MAGINVShoutSelfWhite.nif",
+    "sha256": "ad217d37ca5e0346c48756cd201e15e2dc658c211caf1a66987703b1edce282d"
+  },
+  {
+    "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
+    "sha256": "98a388ff89356cedb96c9528f13b36e364d11596304463f376ebad764172c663"
+  },
+  {
+    "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
+    "sha256": "c4be79b209bc1f4cbafdc16aa386932329f5dbf18c8f9709cb0f0d423ce624b9"
+  },
+  {
+    "path": "textures/forceful tongue/gradsummoncallofvalorburst.dds",
+    "sha256": "1e88ca8c0b2080b77818cc173cfa1e4bf921a71816cea0040401277d3a0d0ed8"
+  },
+  {
+    "path": "textures/forceful tongue/gradsummoncallofvalordepth.dds",
+    "sha256": "5e01d0773515fb73884620b1c8a820830fcd085e7f4ccdc32e30771f98bdd29b"
+  },
+  {
+    "path": "textures/forceful tongue/gradsummoncallofvaloredge.dds",
+    "sha256": "02138d54120e51cfe34a1c255f19346727dc6e28a52f8b061b32ef9c12e3c8cd"
+  }
+]

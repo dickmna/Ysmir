@@ -1,0 +1,36 @@
+# Local builds and dependencies installed by build tools
+/build*/
+/artifacts/
+/vcpkg_installed/
+**/bin/
+**/obj/
+.vs/
+.idea/
+__pycache__/
+*.pyc
+*.user
+*.pdb
+*.obj
+*.lib
+
+# Locally supplied game/mod inputs and private integrated artifacts
+/data-builder/reference/*
+!/data-builder/reference/README.md
+*.esp
+*.esm
+*.esl
+*.bsa
+*.ba2
+*.nif
+*.dds
+*.pex
+*.dll
+*.zip
+*.7z
+TESV_Papyrus_Flags.flg
+
+# Local credentials and machine-specific configuration
+.env
+.env.*
+*.pem
+*.key

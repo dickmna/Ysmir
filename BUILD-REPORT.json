@@ -1,0 +1,366 @@
+{
+  "version": "0.4.0",
+  "releaseType": "Private integrated build; gameplay verification pending",
+  "finalRules": {
+    "ordinaryShouts": "Selected mod mechanics; winning official numeric baselines before soul progression",
+    "newMechanismParameters": "Source values where no corresponding vanilla mechanic exists",
+    "dragonAspect": "Complete FT 3.0.9.1 mechanics and numbers, including Ancient Dragonborn",
+    "stormCall": "SCSO v3 mechanics and numbers",
+    "callValorHeroes": "Explicit additional exception: FT attributes, spells, equipment and behavior; fixed level 150",
+    "battleFury": "Completely unchanged: no override, private graph or runtime mapping",
+    "qualityOfLife": "Selected fixes/usability and inventory meshes; no FT Black Book or meditation gameplay changes"
+  },
+  "build": {
+    "native": "MSVC 19.44 Release x64 / C++23 / CommonLibSSE-NG 7.2.0; compiled successfully",
+    "data": ".NET 9 / Mutagen 0.54.4; final builder compiled and generated successfully",
+    "papyrus": "Five scripts compiled with optimization; 0 errors, 0 warnings",
+    "gameLaunched": false,
+    "gameplayTestsRun": false,
+    "deployedToGame": false,
+    "verificationScope": "File, record and compiled metadata integrity only",
+    "nativeCompatibility": "Steam 1.7.104 guard inherited unchanged from 0.3.0; no new in-game hook validation"
+  },
+  "records": {
+    "version": "0.4.0",
+    "scope": "File and record integrity only; no gameplay tests",
+    "records": 351,
+    "privateRecords": 325,
+    "officialMenuOverrides": 26,
+    "recordTypes": {
+      "KYWD": 1,
+      "MGEF": 118,
+      "SPEL": 104,
+      "STAT": 27,
+      "NPC_": 8,
+      "PROJ": 36,
+      "EFSH": 1,
+      "PERK": 3,
+      "SHOU": 52,
+      "ARTO": 1
+    },
+    "manifestShouts": 26,
+    "classifiedWordSlots": 78,
+    "keywordDispelSelectorsProtected": 13,
+    "battleFury": "Excluded completely: no official override, private graph, script or runtime mapping",
+    "dragonAspect": "FT 3.0.9.1 spell numbers, 90s cooldown and Ancient Dragonborn attributes",
+    "callValor": "Six private NPCs preserve FT attributes/behavior and fixed level 150, per explicit user exception",
+    "slowTime": "3 native wrappers; original .3/.2/.1 magnitudes and fixed 8/12/16 seconds",
+    "inheritedRuntimeCompatibilityHeaderSha256": "7462fd48a3b03527bec1ee6e6bb9ae28326bb63315d4744e6c4dbe89ed0ad90d"
+  },
+  "unresolvedLinks": [],
+  "dll": {
+    "machine": "AMD64",
+    "version": "0.4.0",
+    "runtime": "1.7.104.0",
+    "minimumSKSE": "2.3.1",
+    "exports": [
+      "SKSEPlugin_Load",
+      "SKSEPlugin_Version"
+    ],
+    "bytes": 772096,
+    "sha256": "35538009d9418ec9130fff0f98b16a6e4e9fff57e1353dde690306bef7b828ea"
+  },
+  "esp": {
+    "bytes": 107053,
+    "sha256": "f229b629e2141a40424338c5f91331f417ea4b24b203f08ef37111dcb84b552e"
+  },
+  "assets": {
+    "nif": 19,
+    "dds": 4,
+    "files": [
+      {
+        "path": "meshes/forceful tongue/callofvalortargetfx.nif",
+        "sha256": "2a924d7bedf6cfe089c7854f2e67af550aa32fe4ce968505f194cc04ae8c0370"
+      },
+      {
+        "path": "meshes/forceful tongue/dlc1maginvshoutdrainvitality.nif",
+        "sha256": "581ff52e9d34622a1daac2f7318dded65c5c82ef1dce28ac7d3f78292e3de4f9"
+      },
+      {
+        "path": "meshes/forceful tongue/dlc1maginvshoutsummondurnehviir.nif",
+        "sha256": "d8716701a5eca27a3fbd81523eb542ee50fa511afd9cc63539c6f305ef5536da"
+      },
+      {
+        "path": "meshes/forceful tongue/dlc2maginvshoutcyclone.nif",
+        "sha256": "6d4b5e423bd6e7ed01398669c804dba4cf98d19378eb5683e109346717bb383d"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutanimalallegiance.nif",
+        "sha256": "2623e674494415bf48190e36ea6bf8274279494690984a3988dd0248ea7b2c4c"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutcallofvalor.nif",
+        "sha256": "3d6e44a4a7d37c17a43542f3eafcf01218a36b1a1876bd907817fe69cdc86002"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutclearskies.nif",
+        "sha256": "9d066dc422abf8e695abc90f2130251a69256a098779c54d382fae130c6d8a9e"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutdisarm.nif",
+        "sha256": "1f4196ede261376f0e5762928cf878249819152fb0aa83c77cf3edda0d6ad6eb"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutdismay.nif",
+        "sha256": "066198ff21ad2e9e847f4395f51d2ea40012e86bcecc32fc9e53adb0879b0c99"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutelementalfury.nif",
+        "sha256": "26bfa1ee14321bc20b6040cb88c3769d6e21c0831845916f96a1360e23c23205"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutkynespeace.nif",
+        "sha256": "3a11d14f9b8b614ca8cac69d4e1abfc54261b36b0a92127304fcc21b2ed69e15"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutstormcall.nif",
+        "sha256": "76e3ac4f5c19a5ef0f11d49bda7cef5bf4e30c55de13cd4bacdc36a5c632d702"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutthrowvoice.nif",
+        "sha256": "7141c98a3fab6fb2122af0e28d276b6a37e9d5a791f2a6e34b42a3cd767226ab"
+      },
+      {
+        "path": "meshes/forceful tongue/maginvshoutwhirlwindsprint.nif",
+        "sha256": "a5aa3346a4b6ffbc536a6ee58697314188c571ccf376286189729a7eb7edf1a3"
+      },
+      {
+        "path": "meshes/Magic/maginvshoutfire.nif",
+        "sha256": "bc5d6838c20529a90ad00fa8778e08bfe234e99845afaa20246c1dc00fcbe4a5"
+      },
+      {
+        "path": "meshes/Magic/MAGINVShoutFrost.nif",
+        "sha256": "5edf69030883067821c6f2ee613a90a302b9d5de5ffc5e3c668a891f0df5e008"
+      },
+      {
+        "path": "meshes/Magic/MAGINVShoutPinkMagic.nif",
+        "sha256": "0c42cf2cf008e385130337448e1d0e0de55e5b435fb48cc039c82a10fb016a33"
+      },
+      {
+        "path": "meshes/Magic/MAGINVShoutSelfWhite.nif",
+        "sha256": "ad217d37ca5e0346c48756cd201e15e2dc658c211caf1a66987703b1edce282d"
+      },
+      {
+        "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
+        "sha256": "98a388ff89356cedb96c9528f13b36e364d11596304463f376ebad764172c663"
+      },
+      {
+        "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
+        "sha256": "c4be79b209bc1f4cbafdc16aa386932329f5dbf18c8f9709cb0f0d423ce624b9"
+      },
+      {
+        "path": "textures/forceful tongue/gradsummoncallofvalorburst.dds",
+        "sha256": "1e88ca8c0b2080b77818cc173cfa1e4bf921a71816cea0040401277d3a0d0ed8"
+      },
+      {
+        "path": "textures/forceful tongue/gradsummoncallofvalordepth.dds",
+        "sha256": "5e01d0773515fb73884620b1c8a820830fcd085e7f4ccdc32e30771f98bdd29b"
+      },
+      {
+        "path": "textures/forceful tongue/gradsummoncallofvaloredge.dds",
+        "sha256": "02138d54120e51cfe34a1c255f19346727dc6e28a52f8b061b32ef9c12e3c8cd"
+      }
+    ]
+  },
+  "scripts": [
+    "CallDragonEffectScript",
+    "clearskieseffectscript",
+    "DLC1MagicSoulRendScript",
+    "DLC2AttachAshPileOnDeath25",
+    "DLC2CycloneEffectScript",
+    "DLC2DragonbornAspectArtSCRIPT",
+    "DLC2TameDragonEffectScript",
+    "DLC2VoiceBendWillEffectScript",
+    "DLC2VoiceFireBreathScript",
+    "magicCastAnotherSpellScript",
+    "MagicDispelSpellOnHitScript",
+    "magiceffectshadersonendscript",
+    "magicimodbeginloopend",
+    "magicImodScript",
+    "magicPlaceExplosionScript",
+    "magicSetActorAlphaScript",
+    "magicsoultrapfxscript",
+    "ReanimateAshPile",
+    "shaderparticlegeometryscript",
+    "VoiceCharmFactionScript",
+    "VoiceIceFormScript",
+    "YsmirDragonAspectSummonScript",
+    "YsmirSlowTimeScript",
+    "YsmirVoicePushEffectScript",
+    "YsmirWhirlwindDamageScript"
+  ],
+  "payload": [
+    {
+      "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
+      "bytes": 33266,
+      "sha256": "98a388ff89356cedb96c9528f13b36e364d11596304463f376ebad764172c663"
+    },
+    {
+      "path": "meshes/forceful tongue/callofvalortargetfx.nif",
+      "bytes": 71390,
+      "sha256": "2a924d7bedf6cfe089c7854f2e67af550aa32fe4ce968505f194cc04ae8c0370"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc1maginvshoutdrainvitality.nif",
+      "bytes": 33367,
+      "sha256": "581ff52e9d34622a1daac2f7318dded65c5c82ef1dce28ac7d3f78292e3de4f9"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc1maginvshoutsummondurnehviir.nif",
+      "bytes": 33395,
+      "sha256": "d8716701a5eca27a3fbd81523eb542ee50fa511afd9cc63539c6f305ef5536da"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc2maginvshoutcyclone.nif",
+      "bytes": 33111,
+      "sha256": "6d4b5e423bd6e7ed01398669c804dba4cf98d19378eb5683e109346717bb383d"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutanimalallegiance.nif",
+      "bytes": 33370,
+      "sha256": "2623e674494415bf48190e36ea6bf8274279494690984a3988dd0248ea7b2c4c"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutcallofvalor.nif",
+      "bytes": 33267,
+      "sha256": "3d6e44a4a7d37c17a43542f3eafcf01218a36b1a1876bd907817fe69cdc86002"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutclearskies.nif",
+      "bytes": 33266,
+      "sha256": "9d066dc422abf8e695abc90f2130251a69256a098779c54d382fae130c6d8a9e"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutdisarm.nif",
+      "bytes": 34231,
+      "sha256": "1f4196ede261376f0e5762928cf878249819152fb0aa83c77cf3edda0d6ad6eb"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutdismay.nif",
+      "bytes": 33367,
+      "sha256": "066198ff21ad2e9e847f4395f51d2ea40012e86bcecc32fc9e53adb0879b0c99"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutelementalfury.nif",
+      "bytes": 33102,
+      "sha256": "26bfa1ee14321bc20b6040cb88c3769d6e21c0831845916f96a1360e23c23205"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutkynespeace.nif",
+      "bytes": 33483,
+      "sha256": "3a11d14f9b8b614ca8cac69d4e1abfc54261b36b0a92127304fcc21b2ed69e15"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutstormcall.nif",
+      "bytes": 33488,
+      "sha256": "76e3ac4f5c19a5ef0f11d49bda7cef5bf4e30c55de13cd4bacdc36a5c632d702"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutthrowvoice.nif",
+      "bytes": 33108,
+      "sha256": "7141c98a3fab6fb2122af0e28d276b6a37e9d5a791f2a6e34b42a3cd767226ab"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutwhirlwindsprint.nif",
+      "bytes": 33486,
+      "sha256": "a5aa3346a4b6ffbc536a6ee58697314188c571ccf376286189729a7eb7edf1a3"
+    },
+    {
+      "path": "meshes/Magic/maginvshoutfire.nif",
+      "bytes": 33382,
+      "sha256": "bc5d6838c20529a90ad00fa8778e08bfe234e99845afaa20246c1dc00fcbe4a5"
+    },
+    {
+      "path": "meshes/Magic/MAGINVShoutFrost.nif",
+      "bytes": 33405,
+      "sha256": "5edf69030883067821c6f2ee613a90a302b9d5de5ffc5e3c668a891f0df5e008"
+    },
+    {
+      "path": "meshes/Magic/MAGINVShoutPinkMagic.nif",
+      "bytes": 33396,
+      "sha256": "0c42cf2cf008e385130337448e1d0e0de55e5b435fb48cc039c82a10fb016a33"
+    },
+    {
+      "path": "meshes/Magic/MAGINVShoutSelfWhite.nif",
+      "bytes": 33327,
+      "sha256": "ad217d37ca5e0346c48756cd201e15e2dc658c211caf1a66987703b1edce282d"
+    },
+    {
+      "path": "Scripts/Ysmir.pex",
+      "bytes": 859,
+      "sha256": "ae49518795fcb79f50f85c341592631196d46d869e9a15cbdde754d445d589c4"
+    },
+    {
+      "path": "Scripts/YsmirDragonAspectSummonScript.pex",
+      "bytes": 851,
+      "sha256": "49a98cb26a65d290d99438aa11754a8fa8f3d5aacaa26cbb06a369602eb83f2b"
+    },
+    {
+      "path": "Scripts/YsmirSlowTimeScript.pex",
+      "bytes": 737,
+      "sha256": "91b3a179f6a26904b4575c604f2e5ba20a6cc5eb4c08d9ade28a73d7ebebb9b9"
+    },
+    {
+      "path": "Scripts/YsmirVoicePushEffectScript.pex",
+      "bytes": 894,
+      "sha256": "8b21448334ff69f0a330b1995f480e82b7b066d0cb39f8f9370b23bf50f843c0"
+    },
+    {
+      "path": "Scripts/YsmirWhirlwindDamageScript.pex",
+      "bytes": 892,
+      "sha256": "189d36ab180fca74f9d66f76a3b5d55c5e7ac55c078aa35006d21ff4096b69eb"
+    },
+    {
+      "path": "SKSE/Plugins/Ysmir.dll",
+      "bytes": 772096,
+      "sha256": "35538009d9418ec9130fff0f98b16a6e4e9fff57e1353dde690306bef7b828ea"
+    },
+    {
+      "path": "SKSE/Plugins/Ysmir.ini",
+      "bytes": 2755,
+      "sha256": "a7e4f4257ed0c0558f56c327e50c66eca273e3f1f8c2c170edb308b6a18cdf2c"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
+      "bytes": 22052,
+      "sha256": "c4be79b209bc1f4cbafdc16aa386932329f5dbf18c8f9709cb0f0d423ce624b9"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalorburst.dds",
+      "bytes": 22052,
+      "sha256": "1e88ca8c0b2080b77818cc173cfa1e4bf921a71816cea0040401277d3a0d0ed8"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalordepth.dds",
+      "bytes": 22052,
+      "sha256": "5e01d0773515fb73884620b1c8a820830fcd085e7f4ccdc32e30771f98bdd29b"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvaloredge.dds",
+      "bytes": 22052,
+      "sha256": "02138d54120e51cfe34a1c255f19346727dc6e28a52f8b061b32ef9c12e3c8cd"
+    },
+    {
+      "path": "Ysmir.esp",
+      "bytes": 107053,
+      "sha256": "f229b629e2141a40424338c5f91331f417ea4b24b203f08ef37111dcb84b552e"
+    }
+  ],
+  "buildInputs": [
+    {
+      "path": "ForcefulTongue.esp",
+      "bytes": 158889,
+      "sha256": "e3db5982e36cbb1cba7d33029b4b2b3e394b80cbcbdb1c722d949e3056e2bac2"
+    },
+    {
+      "path": "Ysmir-0.3.0-reference.esp",
+      "bytes": 185604,
+      "sha256": "dc122f95b4582f9e4f5d94437239ae0f4ec5e3ffbed8d6179a6a58de672a5cc5"
+    }
+  ],
+  "limitations": [
+    "No gameplay verification performed at user request",
+    "Removed old quest/private records are not automatically migrated in existing saves",
+    "No extra overhaul patches beyond documented selected components"
+  ]
+}

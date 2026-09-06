@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "ysmir",
+  "version-semver": "0.4.0",
+  "description": "Integrated Skyrim shout overhaul runtime",
+  "license": "GPL-3.0-or-later",
+  "supports": "windows & x64",
+  "dependencies": [
+    "directxtk",
+    "rapidcsv",
+    "spdlog"
+  ]
+}

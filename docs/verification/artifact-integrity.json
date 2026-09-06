@@ -1,0 +1,1852 @@
+{
+  "version": "0.4.0",
+  "scope": "File and record integrity only; no gameplay tests",
+  "records": 351,
+  "privateRecords": 325,
+  "officialMenuOverrides": 26,
+  "recordTypes": {
+    "KYWD": 1,
+    "MGEF": 118,
+    "SPEL": 104,
+    "STAT": 27,
+    "NPC_": 8,
+    "PROJ": 36,
+    "EFSH": 1,
+    "PERK": 3,
+    "SHOU": 52,
+    "ARTO": 1
+  },
+  "manifestShouts": 26,
+  "classifiedWordSlots": 78,
+  "keywordDispelSelectorsProtected": 13,
+  "dispelEffects": [
+    "YSMIR_PlayerEffect_Dragonborn_0200BD",
+    "YSMIR_PlayerEffect_Dragonborn_028EBB",
+    "YSMIR_PlayerEffect_Dragonborn_0200BF",
+    "YSMIR_PlayerEffect_Skyrim_078B9D",
+    "YSMIR_PlayerEffect_Skyrim_10387B",
+    "YSMIR_PlayerEffect_Skyrim_103B04",
+    "YSMIR_PlayerEffect_Skyrim_078B9F",
+    "YSMIR_PlayerEffect_Skyrim_078BA1",
+    "YSMIR_PlayerEffect_Skyrim_09E0C8",
+    "YSMIR_PlayerEffect_Skyrim_09E0CA",
+    "YSMIR_PlayerEffect_Skyrim_09E0CB",
+    "FT_VoiceDragonAspectDummyEffect",
+    "YSMIR_Whirlwind_zzzDLC2WhirlwindCloakFFSelf"
+  ],
+  "battleFury": "Excluded completely: no official override, private graph, script or runtime mapping",
+  "dragonAspect": "FT 3.0.9.1 spell numbers, 90s cooldown and Ancient Dragonborn attributes",
+  "callValor": "Six private NPCs preserve FT attributes/behavior and fixed level 150, per explicit user exception",
+  "slowTime": "3 native wrappers; original .3/.2/.1 magnitudes and fixed 8/12/16 seconds",
+  "dll": {
+    "machine": "AMD64",
+    "version": "0.4.0",
+    "runtime": "1.7.104.0",
+    "minimumSKSE": "2.3.1",
+    "exports": [
+      "SKSEPlugin_Load",
+      "SKSEPlugin_Version"
+    ],
+    "bytes": 772096,
+    "sha256": "35538009d9418ec9130fff0f98b16a6e4e9fff57e1353dde690306bef7b828ea"
+  },
+  "inheritedRuntimeCompatibilityHeaderSha256": "7462fd48a3b03527bec1ee6e6bb9ae28326bb63315d4744e6c4dbe89ed0ad90d",
+  "esp": {
+    "bytes": 107053,
+    "sha256": "f229b629e2141a40424338c5f91331f417ea4b24b203f08ef37111dcb84b552e"
+  },
+  "voices": [
+    {
+      "shout": "YSMIR_PlayerShout_Dawnguard_0030D2",
+      "tiers": [
+        {
+          "cooldown": 5.0,
+          "effects": [
+            {
+              "effect": 68357357,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 5.0,
+          "effects": [
+            {
+              "effect": 68357357,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 300.0,
+          "effects": [
+            {
+              "effect": 68357157,
+              "numbers": [
+                0.0,
+                0,
+                86313600
+              ]
+            },
+            {
+              "effect": 68357170,
+              "numbers": [
+                0.0,
+                0,
+                180
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dawnguard_007CB6",
+      "tiers": [
+        {
+          "cooldown": 5.0,
+          "effects": [
+            {
+              "effect": 68357178,
+              "numbers": [
+                0.05000000074505806,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 5.0,
+          "effects": [
+            {
+              "effect": 68357193,
+              "numbers": [
+                0.30000001192092896,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 90.0,
+          "effects": [
+            {
+              "effect": 68357162,
+              "numbers": [
+                300.0,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357160,
+              "numbers": [
+                0.0,
+                0,
+                2
+              ]
+            },
+            {
+              "effect": 68357181,
+              "numbers": [
+                0.0,
+                0,
+                15
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dawnguard_008A62",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357166,
+              "numbers": [
+                5.0,
+                0,
+                30
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                0.800000011920929,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 60.0,
+          "effects": [
+            {
+              "effect": 68357166,
+              "numbers": [
+                5.0,
+                0,
+                30
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                0.800000011920929,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357164,
+              "numbers": [
+                5.0,
+                0,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 90.0,
+          "effects": [
+            {
+              "effect": 68357165,
+              "numbers": [
+                5.0,
+                0,
+                30
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                0.800000011920929,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357166,
+              "numbers": [
+                5.0,
+                0,
+                30
+              ]
+            },
+            {
+              "effect": 68357164,
+              "numbers": [
+                5.0,
+                0,
+                30
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_013E07",
+      "tiers": [
+        {
+          "cooldown": 15.0,
+          "effects": [
+            {
+              "effect": 68357172,
+              "numbers": [
+                0.75,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357135,
+              "numbers": [
+                2.0,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357135,
+              "numbers": [
+                8.0,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 20.0,
+          "effects": [
+            {
+              "effect": 68357308,
+              "numbers": [
+                1.25,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357135,
+              "numbers": [
+                5.0,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357135,
+              "numbers": [
+                20.0,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 45.0,
+          "effects": [
+            {
+              "effect": 68357309,
+              "numbers": [
+                1.5,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357135,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357308,
+              "numbers": [
+                1.5,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357209,
+              "numbers": [
+                40.0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dragonborn_0179D8",
+      "tiers": [
+        {
+          "cooldown": 10.0,
+          "effects": [
+            {
+              "effect": 68357204,
+              "numbers": [
+                0.75,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 90.0,
+          "effects": [
+            {
+              "effect": 68357204,
+              "numbers": [
+                0.75,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357208,
+              "numbers": [
+                99.0,
+                0,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 120.0,
+          "effects": [
+            {
+              "effect": 68357184,
+              "numbers": [
+                0.0,
+                0,
+                2
+              ]
+            },
+            {
+              "effect": 68357208,
+              "numbers": [
+                99.0,
+                0,
+                30
+              ]
+            },
+            {
+              "effect": 68357204,
+              "numbers": [
+                0.75,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dragonborn_01DF92",
+      "tiers": [
+        {
+          "cooldown": 90.0,
+          "effects": [
+            {
+              "effect": 68357196,
+              "numbers": [
+                0.0,
+                0,
+                300
+              ]
+            },
+            {
+              "effect": 67110970,
+              "numbers": [
+                0.0,
+                0,
+                300
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 90.0,
+          "effects": [
+            {
+              "effect": 68357218,
+              "numbers": [
+                0.0,
+                0,
+                300
+              ]
+            },
+            {
+              "effect": 68357199,
+              "numbers": [
+                150.0,
+                0,
+                300
+              ]
+            },
+            {
+              "effect": 68357200,
+              "numbers": [
+                25.0,
+                0,
+                300
+              ]
+            },
+            {
+              "effect": 67110970,
+              "numbers": [
+                0.0,
+                0,
+                300
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 90.0,
+          "effects": [
+            {
+              "effect": 68357219,
+              "numbers": [
+                0.0,
+                0,
+                300
+              ]
+            },
+            {
+              "effect": 68357200,
+              "numbers": [
+                25.0,
+                0,
+                300
+              ]
+            },
+            {
+              "effect": 68357199,
+              "numbers": [
+                150.0,
+                0,
+                300
+              ]
+            },
+            {
+              "effect": 68357202,
+              "numbers": [
+                0.25,
+                0,
+                300
+              ]
+            },
+            {
+              "effect": 67110970,
+              "numbers": [
+                0.0,
+                0,
+                300
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Dragonborn_0200C0",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357211,
+              "numbers": [
+                50.0,
+                15,
+                0
+              ]
+            },
+            {
+              "effect": 68419612,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 45.0,
+          "effects": [
+            {
+              "effect": 68357232,
+              "numbers": [
+                75.0,
+                20,
+                0
+              ]
+            },
+            {
+              "effect": 68419612,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 60.0,
+          "effects": [
+            {
+              "effect": 68357213,
+              "numbers": [
+                100.0,
+                25,
+                0
+              ]
+            },
+            {
+              "effect": 68419612,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_02395A",
+      "tiers": [
+        {
+          "cooldown": 40.0,
+          "effects": [
+            {
+              "effect": 68357221,
+              "numbers": [
+                7.0,
+                0,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 45.0,
+          "effects": [
+            {
+              "effect": 68357223,
+              "numbers": [
+                15.0,
+                0,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 50.0,
+          "effects": [
+            {
+              "effect": 68357224,
+              "numbers": [
+                24.0,
+                0,
+                30
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_02F7BA",
+      "tiers": [
+        {
+          "cooldown": 20.0,
+          "effects": [
+            {
+              "effect": 68357239,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357115,
+              "numbers": [
+                9.0,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 25.0,
+          "effects": [
+            {
+              "effect": 68357262,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357115,
+              "numbers": [
+                9.0,
+                0,
+                1
+              ]
+            },
+            {
+              "effect": 68357119,
+              "numbers": [
+                9.0,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 35.0,
+          "effects": [
+            {
+              "effect": 68357263,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68357123,
+              "numbers": [
+                9.0,
+                0,
+                1
+              ]
+            },
+            {
+              "effect": 68357119,
+              "numbers": [
+                9.0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_032920",
+      "tiers": [
+        {
+          "cooldown": 20.0,
+          "effects": [
+            {
+              "effect": 68357295,
+              "numbers": [
+                0.0,
+                0,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357295,
+              "numbers": [
+                0.0,
+                0,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 40.0,
+          "effects": [
+            {
+              "effect": 68357295,
+              "numbers": [
+                0.0,
+                0,
+                18
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_032921",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357235,
+              "numbers": [
+                1.2999999523162842,
+                0,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 40.0,
+          "effects": [
+            {
+              "effect": 68357078,
+              "numbers": [
+                1.5,
+                0,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 50.0,
+          "effects": [
+            {
+              "effect": 68357079,
+              "numbers": [
+                1.7000000476837158,
+                0,
+                15
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_03CD34",
+      "tiers": [
+        {
+          "cooldown": 5.0,
+          "effects": [
+            {
+              "effect": 68357302,
+              "numbers": [
+                10.0,
+                0,
+                25
+              ]
+            },
+            {
+              "effect": 68419613,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 10.0,
+          "effects": [
+            {
+              "effect": 68357303,
+              "numbers": [
+                10.0,
+                0,
+                40
+              ]
+            },
+            {
+              "effect": 68419613,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 15.0,
+          "effects": [
+            {
+              "effect": 68357304,
+              "numbers": [
+                10.0,
+                0,
+                60
+              ]
+            },
+            {
+              "effect": 68419613,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_03F9EA",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357217,
+              "numbers": [
+                50.0,
+                0,
+                1
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                0.05000000074505806,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 50.0,
+          "effects": [
+            {
+              "effect": 68357281,
+              "numbers": [
+                70.0,
+                0,
+                1
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                0.5,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 100.0,
+          "effects": [
+            {
+              "effect": 68357282,
+              "numbers": [
+                90.0,
+                0,
+                1
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                1.0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_044250",
+      "tiers": [
+        {
+          "cooldown": 10.0,
+          "effects": [
+            {
+              "effect": 68357268,
+              "numbers": [
+                100.0,
+                0,
+                15
+              ]
+            },
+            {
+              "effect": 68357268,
+              "numbers": [
+                25.0,
+                0,
+                15
+              ]
+            },
+            {
+              "effect": 68357251,
+              "numbers": [
+                0.0,
+                0,
+                15
+              ]
+            },
+            {
+              "effect": 68357251,
+              "numbers": [
+                0.0,
+                0,
+                15
+              ]
+            },
+            {
+              "effect": 68357182,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 12.0,
+          "effects": [
+            {
+              "effect": 68357268,
+              "numbers": [
+                100.0,
+                0,
+                18
+              ]
+            },
+            {
+              "effect": 68357268,
+              "numbers": [
+                50.0,
+                0,
+                18
+              ]
+            },
+            {
+              "effect": 68357251,
+              "numbers": [
+                0.0,
+                0,
+                18
+              ]
+            },
+            {
+              "effect": 68357251,
+              "numbers": [
+                0.0,
+                0,
+                18
+              ]
+            },
+            {
+              "effect": 68357182,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 15.0,
+          "effects": [
+            {
+              "effect": 68357268,
+              "numbers": [
+                100.0,
+                0,
+                22
+              ]
+            },
+            {
+              "effect": 68357268,
+              "numbers": [
+                50.0,
+                0,
+                22
+              ]
+            },
+            {
+              "effect": 68357251,
+              "numbers": [
+                0.0,
+                0,
+                22
+              ]
+            },
+            {
+              "effect": 68357251,
+              "numbers": [
+                0.0,
+                0,
+                22
+              ]
+            },
+            {
+              "effect": 68357268,
+              "numbers": [
+                50.0,
+                0,
+                70
+              ]
+            },
+            {
+              "effect": 68357182,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_046B8C",
+      "tiers": [
+        {
+          "cooldown": 5.0,
+          "effects": [
+            {
+              "effect": 68357357,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 5.0,
+          "effects": [
+            {
+              "effect": 68357357,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 300.0,
+          "effects": [
+            {
+              "effect": 68357274,
+              "numbers": [
+                10.0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_048AC9",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357061,
+              "numbers": [
+                0.0,
+                0,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 45.0,
+          "effects": [
+            {
+              "effect": 68357063,
+              "numbers": [
+                0.0,
+                0,
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 60.0,
+          "effects": [
+            {
+              "effect": 68357064,
+              "numbers": [
+                0.0,
+                0,
+                16
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_05196A",
+      "tiers": [
+        {
+          "cooldown": 180.0,
+          "effects": [
+            {
+              "effect": 68357275,
+              "numbers": [
+                0.0,
+                0,
+                60
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 180.0,
+          "effects": [
+            {
+              "effect": 68357277,
+              "numbers": [
+                0.0,
+                0,
+                60
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 180.0,
+          "effects": [
+            {
+              "effect": 68357278,
+              "numbers": [
+                0.0,
+                0,
+                60
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_05D16B",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357283,
+              "numbers": [
+                10.0,
+                0,
+                5
+              ]
+            },
+            {
+              "effect": 68357131,
+              "numbers": [
+                50.0,
+                0,
+                5
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                0.05000000074505806,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68419597,
+              "numbers": [
+                0.0,
+                0,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 50.0,
+          "effects": [
+            {
+              "effect": 68357284,
+              "numbers": [
+                14.0,
+                0,
+                5
+              ]
+            },
+            {
+              "effect": 68357131,
+              "numbers": [
+                50.0,
+                0,
+                5
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                0.5,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68419597,
+              "numbers": [
+                0.0,
+                0,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 100.0,
+          "effects": [
+            {
+              "effect": 68357285,
+              "numbers": [
+                18.0,
+                0,
+                5
+              ]
+            },
+            {
+              "effect": 68357131,
+              "numbers": [
+                50.0,
+                0,
+                5
+              ]
+            },
+            {
+              "effect": 68357129,
+              "numbers": [
+                1.0,
+                0,
+                0
+              ]
+            },
+            {
+              "effect": 68419597,
+              "numbers": [
+                0.0,
+                0,
+                15
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_05FC77",
+      "tiers": [
+        {
+          "cooldown": 50.0,
+          "effects": [
+            {
+              "effect": 68357333,
+              "numbers": [
+                20.0,
+                75,
+                30
+              ]
+            },
+            {
+              "effect": 68419613,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 60.0,
+          "effects": [
+            {
+              "effect": 68357334,
+              "numbers": [
+                20.0,
+                150,
+                45
+              ]
+            },
+            {
+              "effect": 68419613,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 70.0,
+          "effects": [
+            {
+              "effect": 68357335,
+              "numbers": [
+                20.0,
+                250,
+                60
+              ]
+            },
+            {
+              "effect": 68419613,
+              "numbers": [
+                0.0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097B",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357361,
+              "numbers": [
+                0.0,
+                500,
+                10
+              ]
+            },
+            {
+              "effect": 68357316,
+              "numbers": [
+                0.0,
+                300,
+                10
+              ]
+            },
+            {
+              "effect": 68357364,
+              "numbers": [
+                0.0,
+                0,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 40.0,
+          "effects": [
+            {
+              "effect": 68357361,
+              "numbers": [
+                0.0,
+                500,
+                20
+              ]
+            },
+            {
+              "effect": 68357316,
+              "numbers": [
+                0.0,
+                300,
+                20
+              ]
+            },
+            {
+              "effect": 68357364,
+              "numbers": [
+                0.0,
+                0,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 50.0,
+          "effects": [
+            {
+              "effect": 68357361,
+              "numbers": [
+                0.0,
+                500,
+                30
+              ]
+            },
+            {
+              "effect": 68357316,
+              "numbers": [
+                0.0,
+                300,
+                30
+              ]
+            },
+            {
+              "effect": 68357364,
+              "numbers": [
+                0.0,
+                0,
+                30
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097C",
+      "tiers": [
+        {
+          "cooldown": 20.0,
+          "effects": [
+            {
+              "effect": 68357359,
+              "numbers": [
+                1.0,
+                0,
+                60
+              ]
+            },
+            {
+              "effect": 68357360,
+              "numbers": [
+                25.0,
+                0,
+                60
+              ]
+            },
+            {
+              "effect": 67110912,
+              "numbers": [
+                25.0,
+                0,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357359,
+              "numbers": [
+                2.0,
+                0,
+                60
+              ]
+            },
+            {
+              "effect": 68357360,
+              "numbers": [
+                50.0,
+                0,
+                60
+              ]
+            },
+            {
+              "effect": 67110912,
+              "numbers": [
+                25.0,
+                0,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 40.0,
+          "effects": [
+            {
+              "effect": 68357359,
+              "numbers": [
+                3.0,
+                0,
+                60
+              ]
+            },
+            {
+              "effect": 68357360,
+              "numbers": [
+                75.0,
+                0,
+                60
+              ]
+            },
+            {
+              "effect": 67110912,
+              "numbers": [
+                25.0,
+                0,
+                30
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097D",
+      "tiers": [
+        {
+          "cooldown": 300.0,
+          "effects": [
+            {
+              "effect": 68419609,
+              "numbers": [
+                0.0,
+                0,
+                60
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 480.0,
+          "effects": [
+            {
+              "effect": 68419610,
+              "numbers": [
+                0.0,
+                0,
+                120
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 600.0,
+          "effects": [
+            {
+              "effect": 68419611,
+              "numbers": [
+                0.0,
+                0,
+                180
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097E",
+      "tiers": [
+        {
+          "cooldown": 40.0,
+          "effects": [
+            {
+              "effect": 68357312,
+              "numbers": [
+                20.0,
+                75,
+                60
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 50.0,
+          "effects": [
+            {
+              "effect": 68357311,
+              "numbers": [
+                20.0,
+                150,
+                120
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 60.0,
+          "effects": [
+            {
+              "effect": 68357313,
+              "numbers": [
+                20.0,
+                250,
+                180
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_07097F",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357300,
+              "numbers": [
+                1.0,
+                1,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 15.0,
+          "effects": [
+            {
+              "effect": 68357300,
+              "numbers": [
+                1.0,
+                1,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 5.0,
+          "effects": [
+            {
+              "effect": 68357300,
+              "numbers": [
+                1.0,
+                1,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_070980",
+      "tiers": [
+        {
+          "cooldown": 60.0,
+          "effects": [
+            {
+              "effect": 68357339,
+              "numbers": [
+                0.0,
+                0,
+                15
+              ]
+            },
+            {
+              "effect": 68357356,
+              "numbers": [
+                2.0,
+                0,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 90.0,
+          "effects": [
+            {
+              "effect": 68357339,
+              "numbers": [
+                0.0,
+                0,
+                30
+              ]
+            },
+            {
+              "effect": 68357356,
+              "numbers": [
+                2.0,
+                0,
+                30
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 120.0,
+          "effects": [
+            {
+              "effect": 68357339,
+              "numbers": [
+                0.0,
+                0,
+                60
+              ]
+            },
+            {
+              "effect": 68357356,
+              "numbers": [
+                2.0,
+                0,
+                60
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shout": "YSMIR_PlayerShout_Skyrim_070981",
+      "tiers": [
+        {
+          "cooldown": 30.0,
+          "effects": [
+            {
+              "effect": 68357320,
+              "numbers": [
+                12.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 35.0,
+          "effects": [
+            {
+              "effect": 68357344,
+              "numbers": [
+                20.0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "cooldown": 40.0,
+          "effects": [
+            {
+              "effect": 68357345,
+              "numbers": [
+                30.0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
