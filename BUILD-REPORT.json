@@ -1,75 +1,555 @@
 {
-  "version": "0.5.0",
-  "releaseType": "Local integrated build; public source-only release; gameplay verification pending",
-  "finalRules": {
-    "ordinaryShouts": "Selected mod mechanics; winning official numeric baselines before soul progression",
-    "newMechanismParameters": "Source values where no corresponding vanilla mechanic exists",
-    "dragonAspect": "Complete FT 3.0.9.1 mechanics and numbers, including Ancient Dragonborn",
-    "stormCall": "SCSO v3 mechanics and numbers",
-    "callValorHeroes": "Explicit additional exception: FT attributes, spells, equipment and behavior; fixed level 150",
-    "battleFury": "Completely unchanged: no override, private graph or runtime mapping",
-    "qualityOfLife": "Selected fixes/usability and inventory meshes; no FT Black Book or meditation gameplay changes"
-  },
+  "version": "0.7.0",
+  "date": "2026-10-21",
+  "baseSource": "https://github.com/dickmna/Ysmir/tree/ceaf25f0791f420badfc96c34630d23fe53fd2bf",
+  "scope": "User-authorized local refactor; complete runtime and matching source; no remote publication",
   "build": {
-    "native": "MSVC 19.44 Release x64 / C++23 / CommonLibSSE-NG 7.2.0 / MinHook; compiled successfully",
-    "data": ".NET 9 / Mutagen 0.54.4; compiled and generated from five original upstream plugins",
-    "papyrus": "Five optimized scripts; zero errors and warnings",
+    "native": "MSVC 19.44 Release x64 / C++23 / CommonLibSSE-NG 7.2.0 / MinHook; success",
+    "data": ".NET 9 / Mutagen 0.54.4; deterministic ESP/header generation",
+    "papyrus": {
+      "passed": true,
+      "count": 5,
+      "results": [
+        {
+          "file": "Ysmir.psc",
+          "exitCode": 0,
+          "log": "Starting 1 compile threads for 1 files...\nCompiling \"Ysmir\"...\nStarting assembly of Ysmir\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+        },
+        {
+          "file": "YsmirDragonAspectSummonScript.psc",
+          "exitCode": 0,
+          "log": "Starting 1 compile threads for 1 files...\nCompiling \"YsmirDragonAspectSummonScript\"...\nStarting assembly of YsmirDragonAspectSummonScript\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+        },
+        {
+          "file": "YsmirSlowTimeScript.psc",
+          "exitCode": 0,
+          "log": "Starting 1 compile threads for 1 files...\nCompiling \"YsmirSlowTimeScript\"...\nStarting assembly of YsmirSlowTimeScript\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+        },
+        {
+          "file": "YsmirVoicePushEffectScript.psc",
+          "exitCode": 0,
+          "log": "Starting 1 compile threads for 1 files...\nCompiling \"YsmirVoicePushEffectScript\"...\nStarting assembly of YsmirVoicePushEffectScript\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+        },
+        {
+          "file": "YsmirWhirlwindDamageScript.psc",
+          "exitCode": 0,
+          "log": "Starting 1 compile threads for 1 files...\nCompiling \"YsmirWhirlwindDamageScript\"...\nStarting assembly of YsmirWhirlwindDamageScript\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+        }
+      ]
+    },
+    "papyrusInterfaceSource": {
+      "source": "https://github.com/ianpatt/skse64",
+      "commit": "25b72352adb6543fa6d0bd3795780672b2e238e0",
+      "files": [
+        {
+          "file": "Activator.psc",
+          "gitBlob": "b506701f36d3e8c08945069c06ea713af80b9b4f"
+        },
+        {
+          "file": "ActiveMagicEffect.psc",
+          "gitBlob": "d46aa0116cfdc3ff085599e5058b64b49f027911"
+        },
+        {
+          "file": "Actor.psc",
+          "gitBlob": "15cae06c61b2c2933707fc4defe861f7059093bd"
+        },
+        {
+          "file": "ActorBase.psc",
+          "gitBlob": "56a3a273054baf26d87e7cd7b84ea158f233bc5d"
+        },
+        {
+          "file": "Alias.psc",
+          "gitBlob": "d098a5e91c024a28d63dd928d55a8ce9545098e9"
+        },
+        {
+          "file": "Ammo.psc",
+          "gitBlob": "98d7c0cc161ac989b85319855ea25895686d33ae"
+        },
+        {
+          "file": "Apparatus.psc",
+          "gitBlob": "bd0d3e9b8e84de64fbc6b552b80e19a3fd4be1e0"
+        },
+        {
+          "file": "Armor.psc",
+          "gitBlob": "d365ecf5857920294fdafaac3428a4fadb258778"
+        },
+        {
+          "file": "AssociationType.psc",
+          "gitBlob": "f1ef6f68dcf19ec783cf55d0a4f9d049e2dcd767"
+        },
+        {
+          "file": "Book.psc",
+          "gitBlob": "2553e18523eef6987d3d71b7ed63f56fa2e7b5ba"
+        },
+        {
+          "file": "Cell.psc",
+          "gitBlob": "7fcfcfcd316a83f3bdc6cfae803e3f85d0d758e8"
+        },
+        {
+          "file": "Class.psc",
+          "gitBlob": "666ca876652c7b5c5614fd9b7dd066c72ff3d4d5"
+        },
+        {
+          "file": "ConstructibleObject.psc",
+          "gitBlob": "c3ccbe61421e09798b8bc71ecaf9086ccf19d65b"
+        },
+        {
+          "file": "EffectShader.psc",
+          "gitBlob": "4a767951e66a06e58694591148adcf1c50b02bd3"
+        },
+        {
+          "file": "Enchantment.psc",
+          "gitBlob": "2cd09b97194840fc96143e6e68ced167e688c886"
+        },
+        {
+          "file": "EncounterZone.psc",
+          "gitBlob": "4aef1c2338f5119099fe9dd7ce9d1ef5499e6568"
+        },
+        {
+          "file": "Explosion.psc",
+          "gitBlob": "92fb95a0b36d3ae84e1ef5c0f641dc7bb7d492fd"
+        },
+        {
+          "file": "Faction.psc",
+          "gitBlob": "fc10e60069c2f81f7363c6972ebc621810de7826"
+        },
+        {
+          "file": "Flora.psc",
+          "gitBlob": "17535d45775ca4ed3c18217be50c328ef3448ebb"
+        },
+        {
+          "file": "Form.psc",
+          "gitBlob": "f20d52b9c6240336916a1553855266bc709898a2"
+        },
+        {
+          "file": "FormList.psc",
+          "gitBlob": "124303b023696a7475b1f91d73e0faf301d2b875"
+        },
+        {
+          "file": "Game.psc",
+          "gitBlob": "3f077e37796773a69bc37d764649abc2f0c812d8"
+        },
+        {
+          "file": "GlobalVariable.psc",
+          "gitBlob": "be7d7d86c778cdc916bf01dfd1b5ff61188ee33f"
+        },
+        {
+          "file": "Idle.psc",
+          "gitBlob": "e2d83c090ec7e72d3954bb7075761712997a1ae9"
+        },
+        {
+          "file": "ImageSpaceModifier.psc",
+          "gitBlob": "4b827f34dac551ceb1364bca5bd08537e62408e2"
+        },
+        {
+          "file": "ImpactDataSet.psc",
+          "gitBlob": "11ef2334f8b665a9757f1968d52f5ba0eb124c10"
+        },
+        {
+          "file": "Ingredient.psc",
+          "gitBlob": "cd5a3a3f621ec4a01164ddd0636c3d112fc09e11"
+        },
+        {
+          "file": "Key.psc",
+          "gitBlob": "db2fea40303324fc249e38652b2274e1d2b2a947"
+        },
+        {
+          "file": "Keyword.psc",
+          "gitBlob": "bbf2b24bc1a5ac682e36fa18ef84dd66c07364aa"
+        },
+        {
+          "file": "LeveledActor.psc",
+          "gitBlob": "21bd429dc23e3150fa90fbaf3844ae96452b9783"
+        },
+        {
+          "file": "LeveledItem.psc",
+          "gitBlob": "b41040e23c826d275f060dadf66237d9c241dfc6"
+        },
+        {
+          "file": "LeveledSpell.psc",
+          "gitBlob": "20bfdc7ea3d5aace5b92e79791108e3dacde3fa8"
+        },
+        {
+          "file": "Light.psc",
+          "gitBlob": "13c3d057bf2bb5229d569d9fb207bacd20e167c5"
+        },
+        {
+          "file": "Location.psc",
+          "gitBlob": "5a4b782fb36f916b613f9de1d3755f578f5c0f32"
+        },
+        {
+          "file": "LocationRefType.psc",
+          "gitBlob": "bce65106fe445c180e8cceb5853292d45d2a0bad"
+        },
+        {
+          "file": "MagicEffect.psc",
+          "gitBlob": "879479e0183e6e007bb9b38a4f59b3233b7d9b91"
+        },
+        {
+          "file": "Math.psc",
+          "gitBlob": "b143b727096d079ab165dd386674acc88c20dfd9"
+        },
+        {
+          "file": "MiscObject.psc",
+          "gitBlob": "a5369feaad356288f5ee5a8b1b79c7c0f9b203ea"
+        },
+        {
+          "file": "ObjectReference.psc",
+          "gitBlob": "2e4ca0d0b94bef2a76eb9e252498116d7c535cce"
+        },
+        {
+          "file": "Outfit.psc",
+          "gitBlob": "c92304db419d5e1d81be284099ca70496d7d0863"
+        },
+        {
+          "file": "Package.psc",
+          "gitBlob": "80e241836e349e39e4182a1f48a45ca3c8a46c45"
+        },
+        {
+          "file": "Perk.psc",
+          "gitBlob": "95705ebd46f6b1c41bbe8ddef7f64b6490ece31b"
+        },
+        {
+          "file": "Potion.psc",
+          "gitBlob": "71335d6d6bab29bdc4c96466406cc65fe77ef235"
+        },
+        {
+          "file": "Projectile.psc",
+          "gitBlob": "8ef3a839ce0c6a674971a9aa4efeddb9360c74ee"
+        },
+        {
+          "file": "Quest.psc",
+          "gitBlob": "0e954a91bca6b7ee074e45f733fada90cb9b5b0c"
+        },
+        {
+          "file": "Race.psc",
+          "gitBlob": "e3a78131c9458083e1a25f503ac310e2b6531c27"
+        },
+        {
+          "file": "ReferenceAlias.psc",
+          "gitBlob": "f34d343a92a93a06326aed7aae9073fa5c28f036"
+        },
+        {
+          "file": "Scene.psc",
+          "gitBlob": "c3ce2590ff7d54bb34bd9186122fcd447d264459"
+        },
+        {
+          "file": "Scroll.psc",
+          "gitBlob": "98be29e62463c39e3b00772d2b00dddf19eadc8a"
+        },
+        {
+          "file": "Shout.psc",
+          "gitBlob": "5727d279939cc0210badb976fe63d301f46979a4"
+        },
+        {
+          "file": "SoulGem.psc",
+          "gitBlob": "68919c2f900f52ec47230ded764a220f6468b5d6"
+        },
+        {
+          "file": "Sound.psc",
+          "gitBlob": "0fd6dba55a6eaef4070f3fd231b63edca1caade6"
+        },
+        {
+          "file": "Spell.psc",
+          "gitBlob": "7d061a67c77a186a00350c3ac206655aa371bec5"
+        },
+        {
+          "file": "Static.psc",
+          "gitBlob": "1b27eaf6a5e31819f98f424941132c5c5637d208"
+        },
+        {
+          "file": "TESV_Papyrus_Flags.flg",
+          "gitBlob": "78c5e081a560d1dc64a3d50f3a27e255a947a637"
+        },
+        {
+          "file": "TextureSet.psc",
+          "gitBlob": "866b5217c414a52271532d21c24db275cbd6bc93"
+        },
+        {
+          "file": "Topic.psc",
+          "gitBlob": "dfbbb21fa6730b261972a987bee1bc8102629a44"
+        },
+        {
+          "file": "Utility.psc",
+          "gitBlob": "f5ecb30bdec28a7a5a5b51061abb084f19ccb1b8"
+        },
+        {
+          "file": "VoiceType.psc",
+          "gitBlob": "c3efa8b9ad1ef3e3360ccd554d0918658d8d7a2e"
+        },
+        {
+          "file": "Weapon.psc",
+          "gitBlob": "e4e4846c65ac022b62a114ca32312359a9b0db9c"
+        },
+        {
+          "file": "Weather.psc",
+          "gitBlob": "c5a8d9c9141a8c0355db0cc20d074117647e87f3"
+        },
+        {
+          "file": "WordOfPower.psc",
+          "gitBlob": "f210078aa6fab777527bf6ee890d0c179257821a"
+        },
+        {
+          "file": "WorldSpace.psc",
+          "gitBlob": "7414f070aadd31dd094907cf4f442c761413f545"
+        }
+      ],
+      "purpose": "Compile-time vanilla interfaces only; not shipped in the mod"
+    },
     "gameLaunched": false,
     "gameplayTestsRun": false,
     "deployedToGame": false,
-    "verificationScope": "File, record, PE metadata and executable/address-library checks"
+    "addressLibraryFileRechecked": false,
+    "verificationScope": "Actual source adapters/functions with engine stubs; record payloads and Mutagen overlays; compiled metadata and hashes"
   },
-  "records": {
-    "version": "0.5.0",
-    "scope": "File, record and binary verification; no game execution",
-    "records": 350,
-    "privateRecords": 324,
-    "officialMenuOverrides": 26,
-    "recordTypes": {
-      "KYWD": 1,
-      "MGEF": 118,
-      "SPEL": 104,
-      "STAT": 26,
-      "NPC_": 8,
-      "PROJ": 36,
-      "EFSH": 1,
-      "PERK": 3,
-      "SHOU": 52,
-      "ARTO": 1
+  "featureCoverage050": [
+    {
+      "feature": "玩家范围与隔离",
+      "implementation": "26 条龙吼、78 个词位；NPC/龙/米拉克沿用官方图；私有效果 MagicShout、无学派，关键词驱散筛选保留",
+      "offlineEvidence": "根映射与 350 条旧记录检查"
     },
-    "manifestShouts": 26,
-    "classifiedWordSlots": 78,
-    "keywordDispelSelectorsProtected": 13,
-    "stableRetainedRecordIDs": 350,
-    "changedSpellNumbersFromV040": [
-      "YSMIR_PlayerSpell_Skyrim_02395B",
-      "YSMIR_PlayerSpell_Skyrim_02395E",
-      "YSMIR_PlayerSpell_Skyrim_023967"
+    {
+      "feature": "龙魂成长",
+      "implementation": "幅度、距离、范围、时长、碰撞和视觉默认 1+0.05S；冷却 0.95^S；未花费龙魂及可选已知词近似，无龙魂上限",
+      "offlineEvidence": "原 Capture/ScaledItem 函数测试，INI 对比"
+    },
+    {
+      "feature": "实例倍率与桥接",
+      "implementation": "旧投射物、cloak、延迟子法术使用各自倍率；父效果结束/销毁/加载/禁用取消排队；零持续推力仍可只读倍率",
+      "offlineEvidence": "17 项桥接/碰撞回归；保留六个桥接效果上下文"
+    },
+    {
+      "feature": "龙魂觉醒 / Dragon Aspect",
+      "implementation": "FT 3.0.9.1 完整关联图、战斗能力、perk 和远古龙裔；基础 300 秒/90 秒，远古龙裔原 FT 属性",
+      "offlineEvidence": "对应旧 SPEL/MGEF/PERK/NPC 载荷未改"
+    },
+    {
+      "feature": "英灵召唤 / Call of Valor",
+      "implementation": "FT 英灵属性、行为、装备和法术分工，英雄固定 150 级；召唤时长/冷却沿用官方",
+      "offlineEvidence": "六个英雄 NPC 及对应法术载荷未改"
+    },
+    {
+      "feature": "元素狂暴 / Elemental Fury",
+      "implementation": "保留原武器附魔兼容、着色与范围链；原攻速 1.3/1.5/1.7、15 秒和冷却；九条 50%/2 秒规则，重吼不清计时",
+      "offlineEvidence": "上游数据载荷未改；九组规则/边界回归"
+    },
+    {
+      "feature": "时间缓滞 / Slow Time",
+      "implementation": "玩家豁免；基础 0.3/0.2/0.1，固定 8/12/16 秒；成长增强减速、最低 0.01",
+      "offlineEvidence": "原数据与豁免 perk 未改；缩放与桥接回归"
+    },
+    {
+      "feature": "旋风冲刺 / Whirlwind Sprint",
+      "implementation": "原移动/冷却；49359 的沿途 cloak、stagger、推力效果链",
+      "offlineEvidence": "相关载荷、VMAD 与 PSC 保留"
+    },
+    {
+      "feature": "动态推力",
+      "implementation": "原生 PushActorAway 一次，按该次幅度倍率增长，不重复乘投射物 impactForce",
+      "offlineEvidence": "推力读取与零持续事件回归"
+    },
+    {
+      "feature": "灵魂撕裂 / Soul Tear",
+      "implementation": "锥形命中保留，基础角度纠正为 10°；官方伤害、复活门槛、持续与冷却；不加入可选包额外复活增强",
+      "offlineEvidence": "角度及 78 个词位数值清单检查"
+    },
+    {
+      "feature": "生命吸取 / Drain Vitality",
+      "implementation": "FT Absorb 机制；三属性官方每项 5、30 秒和原冷却",
+      "offlineEvidence": "原记录载荷未改"
+    },
+    {
+      "feature": "死亡印记 / Marked for Death",
+      "implementation": "生命 1/2/3、护甲 25/50/75、60 秒；可恢复减益和 FT 新增魔抗削弱",
+      "offlineEvidence": "原记录 flags、幅度与关联图未改"
+    },
+    {
+      "feature": "凯娜之和平、惊惧、气息低语",
+      "implementation": "人类安抚、全目标恐惧、敌我识别；惊惧新增范围 50/75/100，已有参数保持官方",
+      "offlineEvidence": "原记录条件与数值未改"
+    },
+    {
+      "feature": "火龙灵行为修复",
+      "implementation": "保留 FT 的敌对筛选和移动 package 修复",
+      "offlineEvidence": "NPC 载荷未改"
+    },
+    {
+      "feature": "风暴全目标错峰",
+      "implementation": "每批动态识别全部敌人并在发射前复查；按词阶一/二/三批，0.12–0.35 秒错峰；原搜索、起始/轮次节奏配置保留",
+      "offlineEvidence": "17 项风暴场景/边界回归"
+    },
+    {
+      "feature": "风暴引擎伤害和归责",
+      "implementation": "真实法术基础 40/60/80，ResistShock；MagicCaster 处理 power、归责与效果；保留 bBlameCaster，不再直接扣血",
+      "offlineEvidence": "实际 ESP 与真实调用函数体参数检查"
+    },
+    {
+      "feature": "风暴天气、时长、存档",
+      "implementation": "原版天气脚本和例外表、引擎效果持续；室内暂停攻击、时间继续、无补击积压；重吼和结束清理；读取旧 STRM v3",
+      "offlineEvidence": "引擎服务替身中的生命周期与 v3/v4 回归"
+    },
+    {
+      "feature": "碰撞与视觉",
+      "implementation": "不加宽角度；碰撞成长、统一根节点缩放、中心锚点、浓度及材质更换跟踪保留；不直接误写 bhk 对象",
+      "offlineEvidence": "碰撞函数回归、源码与既有原生布局证据"
+    },
+    {
+      "feature": "雷击外观修复",
+      "implementation": "保留高度/散布、声音、屏幕反馈、显示边界和 AlwaysDraw 配置",
+      "offlineEvidence": "参数检查与原视觉模块保留；画面待实测"
+    },
+    {
+      "feature": "True Cone 控制与 API",
+      "implementation": "Enabled、PatchRuntimeCollision、PatchVisuals 恢复；GetDragonSoulCount 保留；仅删 DistanceVisualScale 角度补偿",
+      "offlineEvidence": "三开关回归、全部 0.5 INI/Papyrus API 对比"
+    },
+    {
+      "feature": "库存模型与纹理",
+      "implementation": "完整 FT 17 个库存 NIF，1 个召唤 NIF，4 张纹理；无需 Community Shaders",
+      "offlineEvidence": "资源逐文件 SHA-256"
+    },
+    {
+      "feature": "其余范围",
+      "implementation": "其余纳入龙吼使用原有机制；Battle Fury、Phantom Form、获取任务/词墙和额外黑书/冥想玩法继续排除；社区着色器专用替换按此前明确要求排除",
+      "offlineEvidence": "记录类型/范围检查"
+    }
+  ],
+  "records": {
+    "passed": true,
+    "version": "0.7.0",
+    "baseline050": "ceaf25f0791f420badfc96c34630d23fe53fd2bf",
+    "recordCount": 360,
+    "privateRecords": 334,
+    "playerEffects": 122,
+    "playerSpells": 110,
+    "all350BaselineRecordsRetainedWithSameIDs": true,
+    "all78WordNumericListsIdenticalTo050": true,
+    "rawComparisonBaseline": "Locally rebuilt 0.6.0 ESP",
+    "unchangedExistingRecordPayloads": 348,
+    "changedExistingRecords": [
+      "YSMIR_SoulTearConeProjectile",
+      "YSMIR_StormCallProjectile"
     ],
-    "removedRecord": "Duplicate Dragon Aspect inventory model; retained model path is identical",
-    "ftHeroesAt150": [
-      "YSMIR_PlayerNpc_Skyrim_0923FA",
-      "YSMIR_PlayerNpc_Skyrim_044236",
-      "YSMIR_PlayerNpc_Skyrim_0923F9",
-      "YSMIR_PlayerNpc_Skyrim_044237",
-      "YSMIR_PlayerNpc_Skyrim_0923FB",
-      "YSMIR_PlayerNpc_Skyrim_044238"
+    "addedRecords": [
+      {
+        "key": "150005:Ysmir.esp",
+        "edid": "YSMIR_PlayerEffect_Skyrim_0E4CB6",
+        "type": "MagicEffect"
+      },
+      {
+        "key": "150007:Ysmir.esp",
+        "edid": "YSMIR_PlayerEffect_Skyrim_0E3F0A",
+        "type": "MagicEffect"
+      },
+      {
+        "key": "15000B:Ysmir.esp",
+        "edid": "YSMIR_PlayerEffect_Skyrim_0E3F09",
+        "type": "MagicEffect"
+      },
+      {
+        "key": "15000E:Ysmir.esp",
+        "edid": "YSMIR_PlayerEffect_Skyrim_0D5E81",
+        "type": "MagicEffect"
+      },
+      {
+        "key": "150004:Ysmir.esp",
+        "edid": "YSMIR_PlayerSpell_Skyrim_0E4CB7",
+        "type": "Spell"
+      },
+      {
+        "key": "15000A:Ysmir.esp",
+        "edid": "YSMIR_PlayerSpell_Skyrim_0E98A2",
+        "type": "Spell"
+      },
+      {
+        "key": "15000D:Ysmir.esp",
+        "edid": "YSMIR_PlayerSpell_Skyrim_0E98A3",
+        "type": "Spell"
+      },
+      {
+        "key": "150011:Ysmir.esp",
+        "edid": "YSMIR_StormWeather1",
+        "type": "Spell"
+      },
+      {
+        "key": "150012:Ysmir.esp",
+        "edid": "YSMIR_StormWeather2",
+        "type": "Spell"
+      },
+      {
+        "key": "150013:Ysmir.esp",
+        "edid": "YSMIR_StormWeather3",
+        "type": "Spell"
+      }
     ],
-    "ancientDragonborn": "FT stats unchanged",
-    "battleFuryExcluded": true,
-    "papyrusCompiled": 5,
-    "gameplayTested": false
+    "perks": 3,
+    "npcs": 8,
+    "scriptContexts": 6,
+    "originalNpcPerkInventoryAndOtherMechanicRecordPayloadsUnchanged": true,
+    "removedSettings": [
+      "TrueCone.distancevisualscale"
+    ],
+    "changedDefaultSettings": [
+      "Storm.Gameplay.fdamageword1",
+      "Storm.Gameplay.fdamageword3"
+    ],
+    "allOther050SettingsAndPublicPapyrusApiPreserved": true,
+    "magicShoutClassificationAndDispelSelectorsPreserved": true,
+    "stormBolts": [
+      {
+        "spell": "0E4CB7",
+        "damage": 40,
+        "resistance": "ResistShock"
+      },
+      {
+        "spell": "0E98A2",
+        "damage": 60,
+        "resistance": "ResistShock"
+      },
+      {
+        "spell": "0E98A3",
+        "damage": 80,
+        "resistance": "ResistShock"
+      }
+    ],
+    "stormWeather": [
+      {
+        "effect": "0E3F0A",
+        "vanillaWeatherScriptAndPropertiesIdentical": true
+      },
+      {
+        "effect": "0E3F09",
+        "vanillaWeatherScriptAndPropertiesIdentical": true
+      },
+      {
+        "effect": "0D5E81",
+        "vanillaWeatherScriptAndPropertiesIdentical": true
+      }
+    ],
+    "stormProjectileFieldsMatchOfficial": true,
+    "soulTearCone": {
+      "type": "Cone",
+      "ConeSpread": 10,
+      "CollisionRadius": 16,
+      "Speed": 1300,
+      "Range": 4000
+    },
+    "unresolvedLinks": [],
+    "deterministicEspAndHeader": true,
+    "espSha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546",
+    "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
+    "inspectionSha256": "27fe1b94f532fc7cfce6f1604d21bc431cd361e0f5e831fe35e111dc274f99f9",
+    "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay"
   },
-  "unresolvedLinks": [],
   "native": {
     "passed": true,
     "runtime": "1.7.104.0",
     "minimumSKSE": "2.3.1",
     "addressLibraryEncoding": 5,
-    "pluginVersion": "0.5.0",
+    "pluginVersion": "0.7.0",
     "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-    "dllSha256": "3bbf99b07f8ee420076aea9abf63e8ac8b003d92820fc3947bc59a5da407ab40",
-    "dllSize": 745984,
+    "dllSha256": "0361a8d18136d2372fe319b034c11312db3497c7cd41984c2cdddabc491cb785",
+    "dllSize": 731648,
     "exports": [
       "SKSEPlugin_Load",
       "SKSEPlugin_Version"
@@ -124,8 +604,7 @@
             "slot": "0x1",
             "targetRva": "0x7cc750"
           }
-        ],
-        "addressLibraryID": 208825
+        ]
       },
       {
         "class": "Projectile",
@@ -151,8 +630,7 @@
             "slot": "0xad",
             "targetRva": "0x7faf50"
           }
-        ],
-        "addressLibraryID": 210006
+        ]
       },
       {
         "class": "BeamProjectile",
@@ -178,8 +656,7 @@
             "slot": "0xad",
             "targetRva": "0x7faf50"
           }
-        ],
-        "addressLibraryID": 209914
+        ]
       },
       {
         "class": "MissileProjectile",
@@ -205,8 +682,7 @@
             "slot": "0xad",
             "targetRva": "0x7faf50"
           }
-        ],
-        "addressLibraryID": 209980
+        ]
       },
       {
         "class": "ConeProjectile",
@@ -228,8 +704,7 @@
             "slot": "0xc0",
             "targetRva": "0x7e27e0"
           }
-        ],
-        "addressLibraryID": 209925
+        ]
       },
       {
         "class": "ScriptEffect",
@@ -246,9 +721,12 @@
           {
             "slot": "0x14",
             "targetRva": "0x5dd4b0"
+          },
+          {
+            "slot": "0x15",
+            "targetRva": "0x5dd510"
           }
-        ],
-        "addressLibraryID": 206031
+        ]
       },
       {
         "class": "CloakEffect",
@@ -265,149 +743,109 @@
           {
             "slot": "0x14",
             "targetRva": "0x5c4160"
+          },
+          {
+            "slot": "0x15",
+            "targetRva": "0x5bedb0"
           }
-        ],
-        "addressLibraryID": 205849
+        ]
       }
     ],
-    "gameplayTested": false,
-    "addressLibrary": {
-      "sha256": "8aab3dd251d135b849bd983f86a4a205c920fa3e81f8e30c0e63ccfef9423842",
-      "format": 5,
-      "version": "1.7.104.0",
-      "entries": 565759,
-      "verifiedHookAddresses": 9
+    "gameplayTested": false
+  },
+  "regression": {
+    "passed": true,
+    "totalCases": 52,
+    "integration": {
+      "passed": true,
+      "scope": "Exact source bodies with engine-service stubs; no gameplay",
+      "authoredConeAnglePreserved": true,
+      "restoredConeRadiusUsesRecordBaseline": true,
+      "collisionGrowthIndependentOfDistance": true,
+      "noDirectPhysicsObjectWrite": true,
+      "coneMasterSwitchPreserved": true,
+      "coneCollisionSwitchIndependent": true,
+      "coneVisualSwitchIndependent": true,
+      "activeParentCasts": true,
+      "finishedParentCancels": true,
+      "finishedInstantPushRetainsSnapshot": true,
+      "destroyedParentCancels": true,
+      "loadGenerationCancels": true,
+      "globalDisableCancelsQueuedCast": true,
+      "globalDisableRejectsNewCast": true,
+      "delayedCastKeepsOriginalSnapshot": true,
+      "unrelatedChildRejected": true,
+      "reusedEffectAddressRejected": true,
+      "sourceBodiesSha256": {
+        "true_cone.cpp": "6728cce75914ff3f0f5077bb0315be93d4e459daf392f628d5be10bdbc21ff0a",
+        "CastFromEffect": "a61cacdf9188156c5ac165d0599c7dec36e2a17051a68b4f185b4a9068fab01f",
+        "EffectSnapshot": "d5d8dd80117141ad48b139637b320ce7e86460af77bfccad6a92f3556018e8e4",
+        "EndEffect": "530c18f2bf9d624fbfb39511436de51e121be5e37ccde66c097ecc80bc5094a6",
+        "Finish": "c922c1b3a8dc89f3ac9b3ba057247bdb8b83745062818110a07a0dddb4699577"
+      }
+    },
+    "gameplay": {
+      "storm": {
+        "passed": true,
+        "cases": 17,
+        "source": "src/storm_call.cpp",
+        "sourceSha256": "3b27f86a3e3e88b5da369d8d3f3728929ce3c1a02a89b7a350fdfb49c602e846",
+        "boundary": "Actual adapter; fake engine services"
+      },
+      "elementalFury": {
+        "passed": true,
+        "cases": 9,
+        "source": "src/elemental_fury.cpp",
+        "sourceSha256": "112143e52a9213d3faa6343bcd2283e0d7113d621f18ba96b78fa0039c992579",
+        "boundary": "Actual adapter; fake engine services; injectable wall clock"
+      }
+    },
+    "core": {
+      "passed": true,
+      "cases": 9,
+      "boundary": "Actual growth and launch function bodies; fake launch sink, not engine damage evaluation",
+      "sourceBodiesSha256": {
+        "Capture": "902539ac8f45332b9c1c36b29c00959d57393f70736a65e3c0667833fd59d565",
+        "ScaleInteger": "4aea2fd962fd2845d3260b790413681b57777f1c043930343db45e5924a0809c",
+        "ScaleFloat": "cfc39eb537b6683420b9e0ee09afb5867f3baf4effe5c884d9c83a63c6dde140",
+        "ScaledItem": "428c2788ccb64655da85990afb7e527a7a516d3a5957696a44e611b48123d273",
+        "LaunchFeatureSpell": "ab238629b42adf86b9287ad08dc60848843c659ba0c17c0aa81633ee9da67081",
+        "DirectedLaunch": "99abe8a8b25feb5fd0f343330a041def42b132002ebd674b05a57ea768008ea1",
+        "LaunchHook": "acd5cce02c4c51dc31c38cb1d04ad7deabb56d9952926e498f219050cc0efcc0"
+      }
     }
   },
-  "esp": {
-    "bytes": 106893,
-    "sha256": "62ff800369d4b7aee7e1c81ae71176d9f745e5a4760e11b5983d9d5c643c76be"
+  "sourceSize": {
+    "scope": "Seven project cpp files, including comments and blank lines; not performance",
+    "baseline060": {
+      "elemental_fury.cpp": 88,
+      "main.cpp": 152,
+      "progression.cpp": 114,
+      "projectile_visuals.cpp": 227,
+      "shout_dispatch.cpp": 525,
+      "storm_call.cpp": 942,
+      "true_cone.cpp": 18
+    },
+    "current070": {
+      "elemental_fury.cpp": 85,
+      "main.cpp": 153,
+      "progression.cpp": 114,
+      "projectile_visuals.cpp": 227,
+      "shout_dispatch.cpp": 563,
+      "storm_call.cpp": 297,
+      "true_cone.cpp": 28
+    },
+    "totalBefore": 2066,
+    "totalAfter": 1467
   },
-  "assets": {
-    "nif": 19,
-    "dds": 4,
-    "files": [
-      {
-        "path": "meshes/forceful tongue/callofvalortargetfx.nif",
-        "sha256": "2a924d7bedf6cfe089c7854f2e67af550aa32fe4ce968505f194cc04ae8c0370"
-      },
-      {
-        "path": "meshes/forceful tongue/dlc1maginvshoutdrainvitality.nif",
-        "sha256": "581ff52e9d34622a1daac2f7318dded65c5c82ef1dce28ac7d3f78292e3de4f9"
-      },
-      {
-        "path": "meshes/forceful tongue/dlc1maginvshoutsummondurnehviir.nif",
-        "sha256": "d8716701a5eca27a3fbd81523eb542ee50fa511afd9cc63539c6f305ef5536da"
-      },
-      {
-        "path": "meshes/forceful tongue/dlc2maginvshoutcyclone.nif",
-        "sha256": "6d4b5e423bd6e7ed01398669c804dba4cf98d19378eb5683e109346717bb383d"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutanimalallegiance.nif",
-        "sha256": "2623e674494415bf48190e36ea6bf8274279494690984a3988dd0248ea7b2c4c"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutcallofvalor.nif",
-        "sha256": "3d6e44a4a7d37c17a43542f3eafcf01218a36b1a1876bd907817fe69cdc86002"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutclearskies.nif",
-        "sha256": "9d066dc422abf8e695abc90f2130251a69256a098779c54d382fae130c6d8a9e"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutdisarm.nif",
-        "sha256": "1f4196ede261376f0e5762928cf878249819152fb0aa83c77cf3edda0d6ad6eb"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutdismay.nif",
-        "sha256": "066198ff21ad2e9e847f4395f51d2ea40012e86bcecc32fc9e53adb0879b0c99"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutelementalfury.nif",
-        "sha256": "26bfa1ee14321bc20b6040cb88c3769d6e21c0831845916f96a1360e23c23205"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutkynespeace.nif",
-        "sha256": "3a11d14f9b8b614ca8cac69d4e1abfc54261b36b0a92127304fcc21b2ed69e15"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutstormcall.nif",
-        "sha256": "76e3ac4f5c19a5ef0f11d49bda7cef5bf4e30c55de13cd4bacdc36a5c632d702"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutthrowvoice.nif",
-        "sha256": "7141c98a3fab6fb2122af0e28d276b6a37e9d5a791f2a6e34b42a3cd767226ab"
-      },
-      {
-        "path": "meshes/forceful tongue/maginvshoutwhirlwindsprint.nif",
-        "sha256": "a5aa3346a4b6ffbc536a6ee58697314188c571ccf376286189729a7eb7edf1a3"
-      },
-      {
-        "path": "meshes/Magic/maginvshoutfire.nif",
-        "sha256": "bc5d6838c20529a90ad00fa8778e08bfe234e99845afaa20246c1dc00fcbe4a5"
-      },
-      {
-        "path": "meshes/Magic/MAGINVShoutFrost.nif",
-        "sha256": "5edf69030883067821c6f2ee613a90a302b9d5de5ffc5e3c668a891f0df5e008"
-      },
-      {
-        "path": "meshes/Magic/MAGINVShoutPinkMagic.nif",
-        "sha256": "0c42cf2cf008e385130337448e1d0e0de55e5b435fb48cc039c82a10fb016a33"
-      },
-      {
-        "path": "meshes/Magic/MAGINVShoutSelfWhite.nif",
-        "sha256": "ad217d37ca5e0346c48756cd201e15e2dc658c211caf1a66987703b1edce282d"
-      },
-      {
-        "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
-        "sha256": "98a388ff89356cedb96c9528f13b36e364d11596304463f376ebad764172c663"
-      },
-      {
-        "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
-        "sha256": "c4be79b209bc1f4cbafdc16aa386932329f5dbf18c8f9709cb0f0d423ce624b9"
-      },
-      {
-        "path": "textures/forceful tongue/gradsummoncallofvalorburst.dds",
-        "sha256": "1e88ca8c0b2080b77818cc173cfa1e4bf921a71816cea0040401277d3a0d0ed8"
-      },
-      {
-        "path": "textures/forceful tongue/gradsummoncallofvalordepth.dds",
-        "sha256": "5e01d0773515fb73884620b1c8a820830fcd085e7f4ccdc32e30771f98bdd29b"
-      },
-      {
-        "path": "textures/forceful tongue/gradsummoncallofvaloredge.dds",
-        "sha256": "02138d54120e51cfe34a1c255f19346727dc6e28a52f8b061b32ef9c12e3c8cd"
-      }
-    ]
+  "payloadCounts": {
+    ".nif": 18,
+    ".pex": 5,
+    ".dll": 1,
+    ".ini": 1,
+    ".dds": 4,
+    ".esp": 1
   },
-  "scripts": [
-    "CallDragonEffectScript",
-    "clearskieseffectscript",
-    "DLC1MagicSoulRendScript",
-    "DLC2AttachAshPileOnDeath25",
-    "DLC2CycloneEffectScript",
-    "DLC2DragonbornAspectArtSCRIPT",
-    "DLC2TameDragonEffectScript",
-    "DLC2VoiceBendWillEffectScript",
-    "DLC2VoiceFireBreathScript",
-    "magicCastAnotherSpellScript",
-    "MagicDispelSpellOnHitScript",
-    "magiceffectshadersonendscript",
-    "magicimodbeginloopend",
-    "magicImodScript",
-    "magicPlaceExplosionScript",
-    "magicSetActorAlphaScript",
-    "magicsoultrapfxscript",
-    "ReanimateAshPile",
-    "shaderparticlegeometryscript",
-    "VoiceCharmFactionScript",
-    "VoiceIceFormScript",
-    "YsmirDragonAspectSummonScript",
-    "YsmirSlowTimeScript",
-    "YsmirVoicePushEffectScript",
-    "YsmirWhirlwindDamageScript"
-  ],
   "payload": [
     {
       "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
@@ -428,6 +866,11 @@
       "path": "meshes/forceful tongue/dlc1maginvshoutsummondurnehviir.nif",
       "bytes": 33395,
       "sha256": "d8716701a5eca27a3fbd81523eb542ee50fa511afd9cc63539c6f305ef5536da"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc2maginvshoutbattlefury.nif",
+      "bytes": 33111,
+      "sha256": "9f22752f85fd230542c6eb2c3d2150280dbae2656ef1917cef6303bcb4ae04c6"
     },
     {
       "path": "meshes/forceful tongue/dlc2maginvshoutcyclone.nif",
@@ -470,6 +913,11 @@
       "sha256": "3a11d14f9b8b614ca8cac69d4e1abfc54261b36b0a92127304fcc21b2ed69e15"
     },
     {
+      "path": "meshes/forceful tongue/maginvshoutphantomform.nif",
+      "bytes": 34244,
+      "sha256": "8c0affa04c0a9cbefab010bac6091db04de46db8abc707e8de56a5850f65fbb9"
+    },
+    {
       "path": "meshes/forceful tongue/maginvshoutstormcall.nif",
       "bytes": 33488,
       "sha256": "76e3ac4f5c19a5ef0f11d49bda7cef5bf4e30c55de13cd4bacdc36a5c632d702"
@@ -490,54 +938,39 @@
       "sha256": "bc5d6838c20529a90ad00fa8778e08bfe234e99845afaa20246c1dc00fcbe4a5"
     },
     {
-      "path": "meshes/Magic/MAGINVShoutFrost.nif",
-      "bytes": 33405,
-      "sha256": "5edf69030883067821c6f2ee613a90a302b9d5de5ffc5e3c668a891f0df5e008"
-    },
-    {
-      "path": "meshes/Magic/MAGINVShoutPinkMagic.nif",
-      "bytes": 33396,
-      "sha256": "0c42cf2cf008e385130337448e1d0e0de55e5b435fb48cc039c82a10fb016a33"
-    },
-    {
-      "path": "meshes/Magic/MAGINVShoutSelfWhite.nif",
-      "bytes": 33327,
-      "sha256": "ad217d37ca5e0346c48756cd201e15e2dc658c211caf1a66987703b1edce282d"
-    },
-    {
       "path": "Scripts/Ysmir.pex",
-      "bytes": 867,
-      "sha256": "af3c305becea243a53b89426cfbdf21afddb92f3a4a5942b6e765829ee10d98d"
+      "bytes": 853,
+      "sha256": "357cf26435ba6b829d6a657993858a703745a0320eb8a7ff2877558bbbbb6841"
     },
     {
       "path": "Scripts/YsmirDragonAspectSummonScript.pex",
-      "bytes": 859,
-      "sha256": "4d249424d8b6d041aff147b5a5166a819ed99036c759670f2a61d8956aa7a557"
+      "bytes": 845,
+      "sha256": "14085e87a6e34fe91b58f60939b0c5938659f3f9be54e326c29a3c1954cd12b4"
     },
     {
       "path": "Scripts/YsmirSlowTimeScript.pex",
-      "bytes": 703,
-      "sha256": "c720c83533a4dbd1dbbac6d08f042d1a45d205098ae938e7f2f86eb9e00838da"
+      "bytes": 689,
+      "sha256": "f8feed61c9caed381555d0465c3b492577b8db0ec9b0a2bd071360c878c8bde4"
     },
     {
       "path": "Scripts/YsmirVoicePushEffectScript.pex",
-      "bytes": 858,
-      "sha256": "ecde72951214c3b94315c64a61470a5d4289788122029a5f563bc087b8222b47"
+      "bytes": 844,
+      "sha256": "3e05677cc07a2cf9ba62d4c77b7bde3e85c1dc46345d7bbbecec53d875d92977"
     },
     {
       "path": "Scripts/YsmirWhirlwindDamageScript.pex",
-      "bytes": 856,
-      "sha256": "f2df9e91bb77ca005971c68ef299a7adbf3427b85b591128023a9ddded4d5f89"
+      "bytes": 842,
+      "sha256": "f3af7d860bc54cae1381248880d4d10c5435c2f40a5a8277d346e7fed9e82aea"
     },
     {
       "path": "SKSE/Plugins/Ysmir.dll",
-      "bytes": 745984,
-      "sha256": "3bbf99b07f8ee420076aea9abf63e8ac8b003d92820fc3947bc59a5da407ab40"
+      "bytes": 731648,
+      "sha256": "0361a8d18136d2372fe319b034c11312db3497c7cd41984c2cdddabc491cb785"
     },
     {
       "path": "SKSE/Plugins/Ysmir.ini",
-      "bytes": 2568,
-      "sha256": "6d55c44ef6e159824df6bf0a9c182a24d1c7bf050dfe9123da732575f3c4ec70"
+      "bytes": 2621,
+      "sha256": "12881a82071ba9891b035d7c7c5eadd869c46b4e0399d4c0ad024857efbc7154"
     },
     {
       "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
@@ -561,8 +994,98 @@
     },
     {
       "path": "Ysmir.esp",
-      "bytes": 106893,
-      "sha256": "62ff800369d4b7aee7e1c81ae71176d9f745e5a4760e11b5983d9d5c643c76be"
+      "bytes": 110125,
+      "sha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546"
+    }
+  ],
+  "assets": [
+    {
+      "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
+      "sha256": "98a388ff89356cedb96c9528f13b36e364d11596304463f376ebad764172c663"
+    },
+    {
+      "path": "meshes/forceful tongue/callofvalortargetfx.nif",
+      "sha256": "2a924d7bedf6cfe089c7854f2e67af550aa32fe4ce968505f194cc04ae8c0370"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc1maginvshoutdrainvitality.nif",
+      "sha256": "581ff52e9d34622a1daac2f7318dded65c5c82ef1dce28ac7d3f78292e3de4f9"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc1maginvshoutsummondurnehviir.nif",
+      "sha256": "d8716701a5eca27a3fbd81523eb542ee50fa511afd9cc63539c6f305ef5536da"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc2maginvshoutbattlefury.nif",
+      "sha256": "9f22752f85fd230542c6eb2c3d2150280dbae2656ef1917cef6303bcb4ae04c6"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc2maginvshoutcyclone.nif",
+      "sha256": "6d4b5e423bd6e7ed01398669c804dba4cf98d19378eb5683e109346717bb383d"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutanimalallegiance.nif",
+      "sha256": "2623e674494415bf48190e36ea6bf8274279494690984a3988dd0248ea7b2c4c"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutcallofvalor.nif",
+      "sha256": "3d6e44a4a7d37c17a43542f3eafcf01218a36b1a1876bd907817fe69cdc86002"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutclearskies.nif",
+      "sha256": "9d066dc422abf8e695abc90f2130251a69256a098779c54d382fae130c6d8a9e"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutdisarm.nif",
+      "sha256": "1f4196ede261376f0e5762928cf878249819152fb0aa83c77cf3edda0d6ad6eb"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutdismay.nif",
+      "sha256": "066198ff21ad2e9e847f4395f51d2ea40012e86bcecc32fc9e53adb0879b0c99"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutelementalfury.nif",
+      "sha256": "26bfa1ee14321bc20b6040cb88c3769d6e21c0831845916f96a1360e23c23205"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutkynespeace.nif",
+      "sha256": "3a11d14f9b8b614ca8cac69d4e1abfc54261b36b0a92127304fcc21b2ed69e15"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutphantomform.nif",
+      "sha256": "8c0affa04c0a9cbefab010bac6091db04de46db8abc707e8de56a5850f65fbb9"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutstormcall.nif",
+      "sha256": "76e3ac4f5c19a5ef0f11d49bda7cef5bf4e30c55de13cd4bacdc36a5c632d702"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutthrowvoice.nif",
+      "sha256": "7141c98a3fab6fb2122af0e28d276b6a37e9d5a791f2a6e34b42a3cd767226ab"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutwhirlwindsprint.nif",
+      "sha256": "a5aa3346a4b6ffbc536a6ee58697314188c571ccf376286189729a7eb7edf1a3"
+    },
+    {
+      "path": "meshes/magic/maginvshoutfire.nif",
+      "sha256": "bc5d6838c20529a90ad00fa8778e08bfe234e99845afaa20246c1dc00fcbe4a5"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
+      "sha256": "c4be79b209bc1f4cbafdc16aa386932329f5dbf18c8f9709cb0f0d423ce624b9"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalorburst.dds",
+      "sha256": "1e88ca8c0b2080b77818cc173cfa1e4bf921a71816cea0040401277d3a0d0ed8"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalordepth.dds",
+      "sha256": "5e01d0773515fb73884620b1c8a820830fcd085e7f4ccdc32e30771f98bdd29b"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvaloredge.dds",
+      "sha256": "02138d54120e51cfe34a1c255f19346727dc6e28a52f8b061b32ef9c12e3c8cd"
     }
   ],
   "buildInputs": [
@@ -587,16 +1110,18 @@
       "sha256": "66FD54CB9A923C6D122756320A57B5984AF58949F47EB811A9ECD7F791B4C837"
     }
   ],
-  "sourceLines": {
-    "v040": 4219,
-    "v050": 2278,
-    "removedNet": 1941
+  "communityShadersRequired": false,
+  "old060OutputsUnmodified": {
+    "Ysmir-0.6.0-Full.zip": "2fd5b5167b0b7a85cfaf381fb79cbd8d250291ca123dac6a4b904300c05a93da",
+    "Ysmir-0.6.0-Source.zip": "e2a2a9a356b93c044ae78410c36f769ebe5d94197ebe3fa66735356f6c8acc3f",
+    "Ysmir-0.6.0-功能与重构说明.md": "d82fb08089a48e2d0381e97882481ca41be4e4e7775bf5c2c7f318b004b98fb0",
+    "Ysmir-0.6.0-验证结果.json": "0409f71d828a9e680a7150da1296b9019759adaebbf74be6c31e816abaf727b3"
   },
   "limitations": [
-    "No gameplay tests or game deployment",
-    "Transient effect contexts are rebuilt after loading a save",
-    "Visual geometry assumes the original NIF and collision envelope are aligned",
-    "Shared materials can only display one density value at a time",
-    "Existing save migration is not verified"
+    "No in-game physics, actual damage/resistance/absorption, weather handoff or performance test",
+    "Real old-save migration and other-DLL combinations still need gameplay checks",
+    "Ordinary effect snapshots and elemental cooldowns rebuild after load; storm has separate serialization",
+    "Shared shader materials can display one density at a time; authored NIF animation may not align exactly with collision",
+    "Only Steam 1.7.104.0 and SKSE64 2.3.1 PE/metadata checked; external Address Library file not rechecked"
   ]
 }

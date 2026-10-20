@@ -14,3 +14,6 @@
 CMakeUserPresets.json
 CMakeFiles
 CMakeCache.txt
+
+# Required for a reproducible vendored source build.
+!cmake/*.cmake

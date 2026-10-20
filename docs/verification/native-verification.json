@@ -3,10 +3,10 @@
   "runtime": "1.7.104.0",
   "minimumSKSE": "2.3.1",
   "addressLibraryEncoding": 5,
-  "pluginVersion": "0.5.0",
+  "pluginVersion": "0.7.0",
   "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-  "dllSha256": "3bbf99b07f8ee420076aea9abf63e8ac8b003d92820fc3947bc59a5da407ab40",
-  "dllSize": 745984,
+  "dllSha256": "0361a8d18136d2372fe319b034c11312db3497c7cd41984c2cdddabc491cb785",
+  "dllSize": 731648,
   "exports": [
     "SKSEPlugin_Load",
     "SKSEPlugin_Version"
@@ -61,8 +61,7 @@
           "slot": "0x1",
           "targetRva": "0x7cc750"
         }
-      ],
-      "addressLibraryID": 208825
+      ]
     },
     {
       "class": "Projectile",
@@ -88,8 +87,7 @@
           "slot": "0xad",
           "targetRva": "0x7faf50"
         }
-      ],
-      "addressLibraryID": 210006
+      ]
     },
     {
       "class": "BeamProjectile",
@@ -115,8 +113,7 @@
           "slot": "0xad",
           "targetRva": "0x7faf50"
         }
-      ],
-      "addressLibraryID": 209914
+      ]
     },
     {
       "class": "MissileProjectile",
@@ -142,8 +139,7 @@
           "slot": "0xad",
           "targetRva": "0x7faf50"
         }
-      ],
-      "addressLibraryID": 209980
+      ]
     },
     {
       "class": "ConeProjectile",
@@ -165,8 +161,7 @@
           "slot": "0xc0",
           "targetRva": "0x7e27e0"
         }
-      ],
-      "addressLibraryID": 209925
+      ]
     },
     {
       "class": "ScriptEffect",
@@ -183,9 +178,12 @@
         {
           "slot": "0x14",
           "targetRva": "0x5dd4b0"
+        },
+        {
+          "slot": "0x15",
+          "targetRva": "0x5dd510"
         }
-      ],
-      "addressLibraryID": 206031
+      ]
     },
     {
       "class": "CloakEffect",
@@ -202,17 +200,13 @@
         {
           "slot": "0x14",
           "targetRva": "0x5c4160"
+        },
+        {
+          "slot": "0x15",
+          "targetRva": "0x5bedb0"
         }
-      ],
-      "addressLibraryID": 205849
+      ]
     }
   ],
-  "gameplayTested": false,
-  "addressLibrary": {
-    "sha256": "8aab3dd251d135b849bd983f86a4a205c920fa3e81f8e30c0e63ccfef9423842",
-    "format": 5,
-    "version": "1.7.104.0",
-    "entries": 565759,
-    "verifiedHookAddresses": 9
-  }
+  "gameplayTested": false
 }

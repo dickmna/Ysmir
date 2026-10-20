@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "totalCases": 52,
+  "integration": {
+    "passed": true,
+    "scope": "Exact source bodies with engine-service stubs; no gameplay",
+    "authoredConeAnglePreserved": true,
+    "restoredConeRadiusUsesRecordBaseline": true,
+    "collisionGrowthIndependentOfDistance": true,
+    "noDirectPhysicsObjectWrite": true,
+    "coneMasterSwitchPreserved": true,
+    "coneCollisionSwitchIndependent": true,
+    "coneVisualSwitchIndependent": true,
+    "activeParentCasts": true,
+    "finishedParentCancels": true,
+    "finishedInstantPushRetainsSnapshot": true,
+    "destroyedParentCancels": true,
+    "loadGenerationCancels": true,
+    "globalDisableCancelsQueuedCast": true,
+    "globalDisableRejectsNewCast": true,
+    "delayedCastKeepsOriginalSnapshot": true,
+    "unrelatedChildRejected": true,
+    "reusedEffectAddressRejected": true,
+    "sourceBodiesSha256": {
+      "true_cone.cpp": "6728cce75914ff3f0f5077bb0315be93d4e459daf392f628d5be10bdbc21ff0a",
+      "CastFromEffect": "a61cacdf9188156c5ac165d0599c7dec36e2a17051a68b4f185b4a9068fab01f",
+      "EffectSnapshot": "d5d8dd80117141ad48b139637b320ce7e86460af77bfccad6a92f3556018e8e4",
+      "EndEffect": "530c18f2bf9d624fbfb39511436de51e121be5e37ccde66c097ecc80bc5094a6",
+      "Finish": "c922c1b3a8dc89f3ac9b3ba057247bdb8b83745062818110a07a0dddb4699577"
+    }
+  },
+  "gameplay": {
+    "storm": {
+      "passed": true,
+      "cases": 17,
+      "source": "src/storm_call.cpp",
+      "sourceSha256": "3b27f86a3e3e88b5da369d8d3f3728929ce3c1a02a89b7a350fdfb49c602e846",
+      "boundary": "Actual adapter; fake engine services"
+    },
+    "elementalFury": {
+      "passed": true,
+      "cases": 9,
+      "source": "src/elemental_fury.cpp",
+      "sourceSha256": "112143e52a9213d3faa6343bcd2283e0d7113d621f18ba96b78fa0039c992579",
+      "boundary": "Actual adapter; fake engine services; injectable wall clock"
+    }
+  },
+  "core": {
+    "passed": true,
+    "cases": 9,
+    "boundary": "Actual growth and launch function bodies; fake launch sink, not engine damage evaluation",
+    "sourceBodiesSha256": {
+      "Capture": "902539ac8f45332b9c1c36b29c00959d57393f70736a65e3c0667833fd59d565",
+      "ScaleInteger": "4aea2fd962fd2845d3260b790413681b57777f1c043930343db45e5924a0809c",
+      "ScaleFloat": "cfc39eb537b6683420b9e0ee09afb5867f3baf4effe5c884d9c83a63c6dde140",
+      "ScaledItem": "428c2788ccb64655da85990afb7e527a7a516d3a5957696a44e611b48123d273",
+      "LaunchFeatureSpell": "ab238629b42adf86b9287ad08dc60848843c659ba0c17c0aa81633ee9da67081",
+      "DirectedLaunch": "99abe8a8b25feb5fd0f343330a041def42b132002ebd674b05a57ea768008ea1",
+      "LaunchHook": "acd5cce02c4c51dc31c38cb1d04ad7deabb56d9952926e498f219050cc0efcc0"
+    }
+  }
+}

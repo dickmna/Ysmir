@@ -107,7 +107,7 @@ namespace
 
 SKSE_PLUGIN_VERSION = [] {
 	SKSE::PluginVersionData version;
-	version.PluginVersion({ 0, 5, 0, 0 });
+	version.PluginVersion({ 0, 7, 0, 0 });
 	version.PluginName(PLUGIN_NAME);
 	version.AuthorName("dickmna and Codex");
 	version.UsesAddressLibrary();
@@ -125,7 +125,7 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 	}
 	SKSE::Init(a_skse);
 	SetupLog();
-	SKSE::log::info("{} v0.5.0 loading", PLUGIN_NAME);
+	SKSE::log::info("{} v0.7.0 loading", PLUGIN_NAME);
 	if (!ValidateRuntimeHooks()) {
 		return false;
 	}
@@ -141,13 +141,13 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 	if (!ysmir::storm_call::Initialize()) {
 		return false;
 	}
-	ysmir::projectile_visuals::Initialize();
 	ysmir::true_cone::Initialize();
+	ysmir::projectile_visuals::Initialize();
 	InstallFrameHook();
 	if (!g_frameHookInstalled) {
 		return false;
 	}
 
-	SKSE::log::info("{} v0.5.0 initialized", PLUGIN_NAME);
+	SKSE::log::info("{} v0.7.0 initialized", PLUGIN_NAME);
 	return true;
 }

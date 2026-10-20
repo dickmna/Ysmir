@@ -8,26 +8,26 @@
 
 ## FT 与元素狂暴
 
-已读取 [93681 v3 Dynamic Shaders](https://www.nexusmods.com/skyrimspecialedition/mods/93681?tab=files) 及其 FT 兼容补丁。使用补丁配套效果、关联法术与着色数据；原版攻速、15 秒持续和冷却保留。三个元素分别 50% 概率、2 秒触发冷却，沿用来源设置。
+已读取 [93681 v3 Dynamic Shaders](https://www.nexusmods.com/skyrimspecialedition/mods/93681?tab=files) 及其 FT 兼容补丁。使用补丁配套效果、关联法术与着色数据；原版攻速、15 秒持续和冷却保留。按三元素×三词阶的九条 DAC 规则分别 50% 概率、2 秒冷却；重吼不重置，多个词阶并存时逐条检查。计时使用包含菜单时间的墙钟，触发本身要求游戏未暂停。依据 [DAC 固定源码](https://github.com/ArcEarth/DynamicAnimationCasting/blob/4ec11a6aba1b91f219d2116a751125d62faf588f/src/Framework.cpp)。
 
 原包还带可选 Battle Fury DAC 逻辑，但本次按用户明确指示排除。运行包没有 Battle Fury 改动，也不需要原包的 DAC/OAR 动画目录。玩家 native hitframe 事件承担所选元素狂暴触发。
 
 ## True Cone / 动态推力 / Shout Progression
 
-[True Cone Shouts](https://www.nexusmods.com/skyrimspecialedition/mods/183927?tab=posts) 作者说明纯 SKSE 主文件不需要 Shout Progression 的 ESP 补丁；可选 Soul Tear ESP 涉及胜出顺序。本包把所选 Soul Tear 图直接生成成私有数据，True Cone 统一使用 15° 与本次施放快照。
+[True Cone Shouts](https://www.nexusmods.com/skyrimspecialedition/mods/183927?tab=posts) 作者说明纯 SKSE 主文件不需要 Shout Progression 的 ESP 补丁；可选 Soul Tear ESP 涉及胜出顺序。本包把所选 Soul Tear 图直接生成成私有数据，将旧 Ysmir 固化的 15° 改回 [上游构建器的 10°](https://github.com/dickmna/TrueConeShouts/blob/5b4d661ae597806b6e035c0ee6986be1a9e0759e/tools/SoulTearConeBuilder/Program.cs)。不导入该可选包的 99999 复活门槛或额外受控数量。0.7.0 不把其他锥形角度抬高，不猜测半角/全角，不按成长倍率修改运行时切线。碰撞起始半径与 VFX 各自使用公共施放快照。
 
 [Dynamic Unrelenting Force 源码](https://github.com/dickmna/DynamicUnrelentingForce) 的 Shout Progression 附加模块提供推力倍率接入参考。本版使用公共幅度快照，仅在脚本推力入口乘一次；不再同时增幅 projectile impactForce。
 
-[Shout Progression 162607](https://www.nexusmods.com/skyrimspecialedition/mods/162607) 本地源码仅四个文件，没有完整工程或稳定外部 API。因此公共核心依据其事件/快照模型独立实现，没有把原 DLL 当可调用底层，也没有要求并装原 DLL。
+[Shout Progression 162607](https://www.nexusmods.com/skyrimspecialedition/mods/162607) 本地源码仅四个文件，没有完整工程或稳定外部 API。因此公共核心依据其事件/原值缓存和成长目标独立实现；实例快照是为保留 Ysmir 0.5.0 的额外行为，没有把原 DLL 当可调用底层，也没有要求并装原 DLL。
 
 ## SCSO / FT
 
-使用用户的 [SCSO v3](https://www.nexusmods.com/skyrimspecialedition/mods/179244) 源码及其数值。没有查到可供核对的专用 FT 补丁；直接让 SCSO 单独拥有玩家风暴控制流程，并移除私有风暴根上的旧 Papyrus 控制器。只用一套扫描、错峰雷击和天气管理。
+对照选定的 [SCSO Pure SKSE 3.0.1 Beta 源码](https://github.com/dickmna/Storm-Call-Shout-Overhaul/blob/89739fd8b91c6b3f230ff96b8b231ee0eae2738d/beta/src/skse/main.cpp)：该分支保留引擎主雷击，复制原目标与法术补击，并修复显示边界；它不含动态寻敌。Ysmir 的“动态筛选全部敌人、每词阶批次重新扫描”属于既定附加目标，仍由小调度器完成，不能称作 SCSO 原样移植。0.7.0 纠正手工扣血及 30/60/120 默认值，采用官方 40/60/80 实际法术与 ResistShock；天气改回原版 magicSetWeatherScript。没有并行运行另一套原版引雷循环。
 
 [FT 3.0.9.1](https://www.nexusmods.com/skyrimspecialedition/mods/36276?tab=description) 的 Dragon Aspect 按完整关联图导入，包括经 perk 间接到达的战斗能力、召唤法术及远古龙裔 NPC；不仅复制三个表面法术。英灵召唤另按用户明确例外保留 FT 属性并固定 150 级；龙魂觉醒的远古龙裔保留 FT 原值，不套用英灵的 150 级。
 
 ## 库存模型
 
-[185443 Mesh Replacer](https://www.nexusmods.com/skyrimspecialedition/mods/185443) 的三个 loose NIF（SelfWhite、PinkMagic、Frost）原样保留。它们不是 DLL/API，三个公共替换文件不能独自表达 FT 的全部独特模型，所以所需 FT 私有 STAT/模型路径仍保留。最终包只带引用到的 FT 模型、召唤特效及所需纹理，不带 Phantom Form 或词墙模型。
+按用户最终要求，0.7.0 不打包 Nexus 185443 的 Community Shaders 专用模型替换（SelfWhite、PinkMagic、Frost），不以社区着色器为依赖。FT 的全部 17 个龙吼库存模型原样打包，另带 Call of Valor 召唤特效和 4 张所需纹理。FT 的 Battle Fury / Phantom Form 菜单模型文件也保留在资源包内，但未添加对应玩法记录或控制器；词墙模型不打包。
 
 这里只覆盖明确选定的组件。Stormcrown、Edmond's、Legendary Shouts、Thunderchild、Ultimate Shouts 等额外大修的补丁没有整合。

@@ -9,7 +9,6 @@
 #include <mutex>
 #include <sstream>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 namespace
@@ -43,7 +42,7 @@ namespace
             if (!Near(value,applied)) baseline=value;
             applied=target==DensityTarget::Alpha ? 1.f-std::pow(1.f-std::clamp(baseline,0.f,1.f),gain) :
                 std::min(std::max(0.f,baseline)*gain,std::max(baseline,64.f));
-            Write(shader.get(),target,applied);
+            if (!Near(value,applied)) Write(shader.get(),target,applied);
         }
     };
     struct BindingKey {
@@ -111,7 +110,6 @@ namespace
         const auto center=CenterInParent(projectile,root);
         // Fixed model-space anchor: preserve the original center in all three axes.
         state.centerAnchor=root->local.Invert()*center;
-        std::unordered_set<DensityBinding*> seen;
         RE::BSVisit::TraverseScenegraphObjects(root,[&](RE::NiAVObject* object) {
             if (state.storm && patchBounds) {
                 state.bounds.emplace_back(object);
@@ -119,10 +117,11 @@ namespace
                 if (alwaysDraw) object->GetFlags().set(RE::NiAVObject::Flag::kAlwaysDraw);
                 object->SetAppCulled(false);
             }
+            // Track every geometry so later material swaps remain observable.
+            // Bind() still shares one baseline per material; Apply() skips equal writes.
             if (state.compensate)
                 if (auto* geometry=object->AsGeometry())
-                    if (auto binding=Bind(geometry); binding && seen.insert(binding.get()).second)
-                        state.shaders.push_back({RE::NiPointer<RE::BSGeometry>{geometry},std::move(binding)});
+                    state.shaders.push_back({RE::NiPointer<RE::BSGeometry>{geometry},Bind(geometry)});
             return RE::BSVisit::BSVisitControl::kContinue;
         });
     }
@@ -153,7 +152,7 @@ namespace
         if (!root || !std::isfinite(root->local.scale) || root->local.scale<=0) return;
         if (state.root.get()!=root) BindRoot(state,projectile,root);
         else if (!Near(root->local.scale,state.applied)) state.baseline=root->local.scale;
-        const auto factor=cone ? ysmir::true_cone::VisualScale(cone,state.cone,state.snapshot) : state.snapshot.vfx;
+        const auto factor=state.snapshot.vfx;
         root->local.scale=state.baseline*factor; state.applied=root->local.scale;
         root->local.translate=CenterInParent(projectile,root)-root->local.rotate*(state.centerAnchor*root->local.scale);
         RE::NiUpdateData data{}; root->UpdateTransformAndBounds(data);

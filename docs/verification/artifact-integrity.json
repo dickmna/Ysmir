@@ -1,263 +1,293 @@
 {
-  "version": "0.5.0",
-  "scope": "File, record and binary verification; no game execution",
-  "records": 350,
-  "privateRecords": 324,
-  "officialMenuOverrides": 26,
-  "recordTypes": {
-    "KYWD": 1,
-    "MGEF": 118,
-    "SPEL": 104,
-    "STAT": 26,
-    "NPC_": 8,
-    "PROJ": 36,
-    "EFSH": 1,
-    "PERK": 3,
-    "SHOU": 52,
-    "ARTO": 1
+  "version": "0.7.0",
+  "counts": {
+    ".nif": 18,
+    ".pex": 5,
+    ".dll": 1,
+    ".ini": 1,
+    ".dds": 4,
+    ".esp": 1
   },
-  "manifestShouts": 26,
-  "classifiedWordSlots": 78,
-  "keywordDispelSelectorsProtected": 13,
-  "stableRetainedRecordIDs": 350,
-  "changedSpellNumbersFromV040": [
-    "YSMIR_PlayerSpell_Skyrim_02395B",
-    "YSMIR_PlayerSpell_Skyrim_02395E",
-    "YSMIR_PlayerSpell_Skyrim_023967"
+  "payload": [
+    {
+      "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
+      "bytes": 33266,
+      "sha256": "98a388ff89356cedb96c9528f13b36e364d11596304463f376ebad764172c663"
+    },
+    {
+      "path": "meshes/forceful tongue/callofvalortargetfx.nif",
+      "bytes": 71390,
+      "sha256": "2a924d7bedf6cfe089c7854f2e67af550aa32fe4ce968505f194cc04ae8c0370"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc1maginvshoutdrainvitality.nif",
+      "bytes": 33367,
+      "sha256": "581ff52e9d34622a1daac2f7318dded65c5c82ef1dce28ac7d3f78292e3de4f9"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc1maginvshoutsummondurnehviir.nif",
+      "bytes": 33395,
+      "sha256": "d8716701a5eca27a3fbd81523eb542ee50fa511afd9cc63539c6f305ef5536da"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc2maginvshoutbattlefury.nif",
+      "bytes": 33111,
+      "sha256": "9f22752f85fd230542c6eb2c3d2150280dbae2656ef1917cef6303bcb4ae04c6"
+    },
+    {
+      "path": "meshes/forceful tongue/dlc2maginvshoutcyclone.nif",
+      "bytes": 33111,
+      "sha256": "6d4b5e423bd6e7ed01398669c804dba4cf98d19378eb5683e109346717bb383d"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutanimalallegiance.nif",
+      "bytes": 33370,
+      "sha256": "2623e674494415bf48190e36ea6bf8274279494690984a3988dd0248ea7b2c4c"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutcallofvalor.nif",
+      "bytes": 33267,
+      "sha256": "3d6e44a4a7d37c17a43542f3eafcf01218a36b1a1876bd907817fe69cdc86002"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutclearskies.nif",
+      "bytes": 33266,
+      "sha256": "9d066dc422abf8e695abc90f2130251a69256a098779c54d382fae130c6d8a9e"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutdisarm.nif",
+      "bytes": 34231,
+      "sha256": "1f4196ede261376f0e5762928cf878249819152fb0aa83c77cf3edda0d6ad6eb"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutdismay.nif",
+      "bytes": 33367,
+      "sha256": "066198ff21ad2e9e847f4395f51d2ea40012e86bcecc32fc9e53adb0879b0c99"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutelementalfury.nif",
+      "bytes": 33102,
+      "sha256": "26bfa1ee14321bc20b6040cb88c3769d6e21c0831845916f96a1360e23c23205"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutkynespeace.nif",
+      "bytes": 33483,
+      "sha256": "3a11d14f9b8b614ca8cac69d4e1abfc54261b36b0a92127304fcc21b2ed69e15"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutphantomform.nif",
+      "bytes": 34244,
+      "sha256": "8c0affa04c0a9cbefab010bac6091db04de46db8abc707e8de56a5850f65fbb9"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutstormcall.nif",
+      "bytes": 33488,
+      "sha256": "76e3ac4f5c19a5ef0f11d49bda7cef5bf4e30c55de13cd4bacdc36a5c632d702"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutthrowvoice.nif",
+      "bytes": 33108,
+      "sha256": "7141c98a3fab6fb2122af0e28d276b6a37e9d5a791f2a6e34b42a3cd767226ab"
+    },
+    {
+      "path": "meshes/forceful tongue/maginvshoutwhirlwindsprint.nif",
+      "bytes": 33486,
+      "sha256": "a5aa3346a4b6ffbc536a6ee58697314188c571ccf376286189729a7eb7edf1a3"
+    },
+    {
+      "path": "meshes/Magic/maginvshoutfire.nif",
+      "bytes": 33382,
+      "sha256": "bc5d6838c20529a90ad00fa8778e08bfe234e99845afaa20246c1dc00fcbe4a5"
+    },
+    {
+      "path": "Scripts/Ysmir.pex",
+      "bytes": 853,
+      "sha256": "357cf26435ba6b829d6a657993858a703745a0320eb8a7ff2877558bbbbb6841"
+    },
+    {
+      "path": "Scripts/YsmirDragonAspectSummonScript.pex",
+      "bytes": 845,
+      "sha256": "14085e87a6e34fe91b58f60939b0c5938659f3f9be54e326c29a3c1954cd12b4"
+    },
+    {
+      "path": "Scripts/YsmirSlowTimeScript.pex",
+      "bytes": 689,
+      "sha256": "f8feed61c9caed381555d0465c3b492577b8db0ec9b0a2bd071360c878c8bde4"
+    },
+    {
+      "path": "Scripts/YsmirVoicePushEffectScript.pex",
+      "bytes": 844,
+      "sha256": "3e05677cc07a2cf9ba62d4c77b7bde3e85c1dc46345d7bbbecec53d875d92977"
+    },
+    {
+      "path": "Scripts/YsmirWhirlwindDamageScript.pex",
+      "bytes": 842,
+      "sha256": "f3af7d860bc54cae1381248880d4d10c5435c2f40a5a8277d346e7fed9e82aea"
+    },
+    {
+      "path": "SKSE/Plugins/Ysmir.dll",
+      "bytes": 731648,
+      "sha256": "0361a8d18136d2372fe319b034c11312db3497c7cd41984c2cdddabc491cb785"
+    },
+    {
+      "path": "SKSE/Plugins/Ysmir.ini",
+      "bytes": 2621,
+      "sha256": "12881a82071ba9891b035d7c7c5eadd869c46b4e0399d4c0ad024857efbc7154"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
+      "bytes": 22052,
+      "sha256": "c4be79b209bc1f4cbafdc16aa386932329f5dbf18c8f9709cb0f0d423ce624b9"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalorburst.dds",
+      "bytes": 22052,
+      "sha256": "1e88ca8c0b2080b77818cc173cfa1e4bf921a71816cea0040401277d3a0d0ed8"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvalordepth.dds",
+      "bytes": 22052,
+      "sha256": "5e01d0773515fb73884620b1c8a820830fcd085e7f4ccdc32e30771f98bdd29b"
+    },
+    {
+      "path": "textures/forceful tongue/gradsummoncallofvaloredge.dds",
+      "bytes": 22052,
+      "sha256": "02138d54120e51cfe34a1c255f19346727dc6e28a52f8b061b32ef9c12e3c8cd"
+    },
+    {
+      "path": "Ysmir.esp",
+      "bytes": 110125,
+      "sha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546"
+    }
   ],
-  "removedRecord": "Duplicate Dragon Aspect inventory model; retained model path is identical",
-  "ftHeroesAt150": [
-    "YSMIR_PlayerNpc_Skyrim_0923FA",
-    "YSMIR_PlayerNpc_Skyrim_044236",
-    "YSMIR_PlayerNpc_Skyrim_0923F9",
-    "YSMIR_PlayerNpc_Skyrim_044237",
-    "YSMIR_PlayerNpc_Skyrim_0923FB",
-    "YSMIR_PlayerNpc_Skyrim_044238"
-  ],
-  "ancientDragonborn": "FT stats unchanged",
-  "battleFuryExcluded": true,
-  "esp": {
-    "bytes": 106893,
-    "sha256": "62ff800369d4b7aee7e1c81ae71176d9f745e5a4760e11b5983d9d5c643c76be"
-  },
-  "native": {
+  "papyrusCompiled": 5,
+  "communityShadersRequired": false,
+  "dataComparison": {
     "passed": true,
-    "runtime": "1.7.104.0",
-    "minimumSKSE": "2.3.1",
-    "addressLibraryEncoding": 5,
-    "pluginVersion": "0.5.0",
-    "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-    "dllSha256": "3bbf99b07f8ee420076aea9abf63e8ac8b003d92820fc3947bc59a5da407ab40",
-    "dllSize": 745984,
-    "exports": [
-      "SKSEPlugin_Load",
-      "SKSEPlugin_Version"
+    "version": "0.7.0",
+    "baseline050": "ceaf25f0791f420badfc96c34630d23fe53fd2bf",
+    "recordCount": 360,
+    "privateRecords": 334,
+    "playerEffects": 122,
+    "playerSpells": 110,
+    "all350BaselineRecordsRetainedWithSameIDs": true,
+    "all78WordNumericListsIdenticalTo050": true,
+    "rawComparisonBaseline": "Locally rebuilt 0.6.0 ESP",
+    "unchangedExistingRecordPayloads": 348,
+    "changedExistingRecords": [
+      "YSMIR_SoulTearConeProjectile",
+      "YSMIR_StormCallProjectile"
     ],
-    "imports": [
-      "KERNEL32.dll",
-      "MSVCP140.dll",
-      "SHELL32.dll",
-      "USER32.dll",
-      "VCRUNTIME140.dll",
-      "VCRUNTIME140_1.dll",
-      "VERSION.dll",
-      "api-ms-win-crt-convert-l1-1-0.dll",
-      "api-ms-win-crt-filesystem-l1-1-0.dll",
-      "api-ms-win-crt-heap-l1-1-0.dll",
-      "api-ms-win-crt-locale-l1-1-0.dll",
-      "api-ms-win-crt-math-l1-1-0.dll",
-      "api-ms-win-crt-runtime-l1-1-0.dll",
-      "api-ms-win-crt-stdio-l1-1-0.dll",
-      "api-ms-win-crt-string-l1-1-0.dll",
-      "api-ms-win-crt-time-l1-1-0.dll",
-      "ole32.dll"
-    ],
-    "mainUpdateRva": "0x658870",
-    "frameCallRva": "0x6594a3",
-    "frameCallOffset": "0xc33",
-    "frameCallBytes": "e8 98 cf ce ff",
-    "frameCallTargetRva": "0x346440",
-    "frameCallee": [
-      "mov ecx, dword ptr [rip + 0x3353e32]",
-      "mov rax, qword ptr gs:[0x58]",
-      "mov rdx, qword ptr [rax + rcx*8]",
-      "xor ecx, ecx",
-      "mov eax, 0x608",
-      "mov qword ptr [rax + rdx], rcx",
-      "mov eax, 0x628",
-      "mov qword ptr [rax + rdx], rcx",
-      "mov eax, 0x610",
-      "mov dword ptr [rax + rdx], 0xffffffff",
-      "mov eax, 0x618",
-      "mov qword ptr [rax + rdx], rcx",
-      "ret "
-    ],
-    "projectileLaunchRva": "0x7f9300",
-    "projectileLaunchBytes": "48 89 4c 24 08",
-    "vtableHooks": [
+    "addedRecords": [
       {
-        "class": "VoiceSpellFireHandler",
-        "vtableRva": "0x1937f08",
-        "slots": [
-          {
-            "slot": "0x1",
-            "targetRva": "0x7cc750"
-          }
-        ],
-        "addressLibraryID": 208825
+        "key": "150005:Ysmir.esp",
+        "edid": "YSMIR_PlayerEffect_Skyrim_0E4CB6",
+        "type": "MagicEffect"
       },
       {
-        "class": "Projectile",
-        "vtableRva": "0x1942a10",
-        "slots": [
-          {
-            "slot": "0x66",
-            "targetRva": "0x7f9fc0"
-          },
-          {
-            "slot": "0xaa",
-            "targetRva": "0x7fa510"
-          },
-          {
-            "slot": "0xab",
-            "targetRva": "0x15a97c8"
-          },
-          {
-            "slot": "0xac",
-            "targetRva": "0x7fa910"
-          },
-          {
-            "slot": "0xad",
-            "targetRva": "0x7faf50"
-          }
-        ],
-        "addressLibraryID": 210006
+        "key": "150007:Ysmir.esp",
+        "edid": "YSMIR_PlayerEffect_Skyrim_0E3F0A",
+        "type": "MagicEffect"
       },
       {
-        "class": "BeamProjectile",
-        "vtableRva": "0x193d630",
-        "slots": [
-          {
-            "slot": "0x66",
-            "targetRva": "0x7f9fc0"
-          },
-          {
-            "slot": "0xaa",
-            "targetRva": "0x7fa510"
-          },
-          {
-            "slot": "0xab",
-            "targetRva": "0x7dffe0"
-          },
-          {
-            "slot": "0xac",
-            "targetRva": "0x7fa910"
-          },
-          {
-            "slot": "0xad",
-            "targetRva": "0x7faf50"
-          }
-        ],
-        "addressLibraryID": 209914
+        "key": "15000B:Ysmir.esp",
+        "edid": "YSMIR_PlayerEffect_Skyrim_0E3F09",
+        "type": "MagicEffect"
       },
       {
-        "class": "MissileProjectile",
-        "vtableRva": "0x1940e58",
-        "slots": [
-          {
-            "slot": "0x66",
-            "targetRva": "0x7f9fc0"
-          },
-          {
-            "slot": "0xaa",
-            "targetRva": "0x7fa510"
-          },
-          {
-            "slot": "0xab",
-            "targetRva": "0x7f2310"
-          },
-          {
-            "slot": "0xac",
-            "targetRva": "0x7f2ab0"
-          },
-          {
-            "slot": "0xad",
-            "targetRva": "0x7faf50"
-          }
-        ],
-        "addressLibraryID": 209980
+        "key": "15000E:Ysmir.esp",
+        "edid": "YSMIR_PlayerEffect_Skyrim_0D5E81",
+        "type": "MagicEffect"
       },
       {
-        "class": "ConeProjectile",
-        "vtableRva": "0x193dea0",
-        "slots": [
-          {
-            "slot": "0x66",
-            "targetRva": "0x7f9fc0"
-          },
-          {
-            "slot": "0xab",
-            "targetRva": "0x7e18f0"
-          },
-          {
-            "slot": "0xac",
-            "targetRva": "0x7e1b60"
-          },
-          {
-            "slot": "0xc0",
-            "targetRva": "0x7e27e0"
-          }
-        ],
-        "addressLibraryID": 209925
+        "key": "150004:Ysmir.esp",
+        "edid": "YSMIR_PlayerSpell_Skyrim_0E4CB7",
+        "type": "Spell"
       },
       {
-        "class": "ScriptEffect",
-        "vtableRva": "0x18fadd0",
-        "slots": [
-          {
-            "slot": "0x4",
-            "targetRva": "0x5dd590"
-          },
-          {
-            "slot": "0x13",
-            "targetRva": "0x5dda80"
-          },
-          {
-            "slot": "0x14",
-            "targetRva": "0x5dd4b0"
-          }
-        ],
-        "addressLibraryID": 206031
+        "key": "15000A:Ysmir.esp",
+        "edid": "YSMIR_PlayerSpell_Skyrim_0E98A2",
+        "type": "Spell"
       },
       {
-        "class": "CloakEffect",
-        "vtableRva": "0x18f6678",
-        "slots": [
-          {
-            "slot": "0x4",
-            "targetRva": "0x5c4170"
-          },
-          {
-            "slot": "0x13",
-            "targetRva": "0x5c4620"
-          },
-          {
-            "slot": "0x14",
-            "targetRva": "0x5c4160"
-          }
-        ],
-        "addressLibraryID": 205849
+        "key": "15000D:Ysmir.esp",
+        "edid": "YSMIR_PlayerSpell_Skyrim_0E98A3",
+        "type": "Spell"
+      },
+      {
+        "key": "150011:Ysmir.esp",
+        "edid": "YSMIR_StormWeather1",
+        "type": "Spell"
+      },
+      {
+        "key": "150012:Ysmir.esp",
+        "edid": "YSMIR_StormWeather2",
+        "type": "Spell"
+      },
+      {
+        "key": "150013:Ysmir.esp",
+        "edid": "YSMIR_StormWeather3",
+        "type": "Spell"
       }
     ],
-    "gameplayTested": false,
-    "addressLibrary": {
-      "sha256": "8aab3dd251d135b849bd983f86a4a205c920fa3e81f8e30c0e63ccfef9423842",
-      "format": 5,
-      "version": "1.7.104.0",
-      "entries": 565759,
-      "verifiedHookAddresses": 9
-    }
+    "perks": 3,
+    "npcs": 8,
+    "scriptContexts": 6,
+    "originalNpcPerkInventoryAndOtherMechanicRecordPayloadsUnchanged": true,
+    "removedSettings": [
+      "TrueCone.distancevisualscale"
+    ],
+    "changedDefaultSettings": [
+      "Storm.Gameplay.fdamageword1",
+      "Storm.Gameplay.fdamageword3"
+    ],
+    "allOther050SettingsAndPublicPapyrusApiPreserved": true,
+    "magicShoutClassificationAndDispelSelectorsPreserved": true,
+    "stormBolts": [
+      {
+        "spell": "0E4CB7",
+        "damage": 40,
+        "resistance": "ResistShock"
+      },
+      {
+        "spell": "0E98A2",
+        "damage": 60,
+        "resistance": "ResistShock"
+      },
+      {
+        "spell": "0E98A3",
+        "damage": 80,
+        "resistance": "ResistShock"
+      }
+    ],
+    "stormWeather": [
+      {
+        "effect": "0E3F0A",
+        "vanillaWeatherScriptAndPropertiesIdentical": true
+      },
+      {
+        "effect": "0E3F09",
+        "vanillaWeatherScriptAndPropertiesIdentical": true
+      },
+      {
+        "effect": "0D5E81",
+        "vanillaWeatherScriptAndPropertiesIdentical": true
+      }
+    ],
+    "stormProjectileFieldsMatchOfficial": true,
+    "soulTearCone": {
+      "type": "Cone",
+      "ConeSpread": 10,
+      "CollisionRadius": 16,
+      "Speed": 1300,
+      "Range": 4000
+    },
+    "unresolvedLinks": [],
+    "deterministicEspAndHeader": true,
+    "espSha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546",
+    "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
+    "inspectionSha256": "27fe1b94f532fc7cfce6f1604d21bc431cd361e0f5e831fe35e111dc274f99f9",
+    "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay"
   },
-  "papyrusCompiled": 5,
-  "gameplayTested": false
+  "scope": "Local artifacts; not gameplay"
 }

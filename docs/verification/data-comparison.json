@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "version": "0.7.0",
+  "baseline050": "ceaf25f0791f420badfc96c34630d23fe53fd2bf",
+  "recordCount": 360,
+  "privateRecords": 334,
+  "playerEffects": 122,
+  "playerSpells": 110,
+  "all350BaselineRecordsRetainedWithSameIDs": true,
+  "all78WordNumericListsIdenticalTo050": true,
+  "rawComparisonBaseline": "Locally rebuilt 0.6.0 ESP",
+  "unchangedExistingRecordPayloads": 348,
+  "changedExistingRecords": [
+    "YSMIR_SoulTearConeProjectile",
+    "YSMIR_StormCallProjectile"
+  ],
+  "addedRecords": [
+    {
+      "key": "150005:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0E4CB6",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "150007:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0E3F0A",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "15000B:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0E3F09",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "15000E:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0D5E81",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "150004:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_0E4CB7",
+      "type": "Spell"
+    },
+    {
+      "key": "15000A:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_0E98A2",
+      "type": "Spell"
+    },
+    {
+      "key": "15000D:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_0E98A3",
+      "type": "Spell"
+    },
+    {
+      "key": "150011:Ysmir.esp",
+      "edid": "YSMIR_StormWeather1",
+      "type": "Spell"
+    },
+    {
+      "key": "150012:Ysmir.esp",
+      "edid": "YSMIR_StormWeather2",
+      "type": "Spell"
+    },
+    {
+      "key": "150013:Ysmir.esp",
+      "edid": "YSMIR_StormWeather3",
+      "type": "Spell"
+    }
+  ],
+  "perks": 3,
+  "npcs": 8,
+  "scriptContexts": 6,
+  "originalNpcPerkInventoryAndOtherMechanicRecordPayloadsUnchanged": true,
+  "removedSettings": [
+    "TrueCone.distancevisualscale"
+  ],
+  "changedDefaultSettings": [
+    "Storm.Gameplay.fdamageword1",
+    "Storm.Gameplay.fdamageword3"
+  ],
+  "allOther050SettingsAndPublicPapyrusApiPreserved": true,
+  "magicShoutClassificationAndDispelSelectorsPreserved": true,
+  "stormBolts": [
+    {
+      "spell": "0E4CB7",
+      "damage": 40,
+      "resistance": "ResistShock"
+    },
+    {
+      "spell": "0E98A2",
+      "damage": 60,
+      "resistance": "ResistShock"
+    },
+    {
+      "spell": "0E98A3",
+      "damage": 80,
+      "resistance": "ResistShock"
+    }
+  ],
+  "stormWeather": [
+    {
+      "effect": "0E3F0A",
+      "vanillaWeatherScriptAndPropertiesIdentical": true
+    },
+    {
+      "effect": "0E3F09",
+      "vanillaWeatherScriptAndPropertiesIdentical": true
+    },
+    {
+      "effect": "0D5E81",
+      "vanillaWeatherScriptAndPropertiesIdentical": true
+    }
+  ],
+  "stormProjectileFieldsMatchOfficial": true,
+  "soulTearCone": {
+    "type": "Cone",
+    "ConeSpread": 10,
+    "CollisionRadius": 16,
+    "Speed": 1300,
+    "Range": 4000
+  },
+  "unresolvedLinks": [],
+  "deterministicEspAndHeader": true,
+  "espSha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546",
+  "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
+  "inspectionSha256": "27fe1b94f532fc7cfce6f1604d21bc431cd361e0f5e831fe35e111dc274f99f9",
+  "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay"
+}

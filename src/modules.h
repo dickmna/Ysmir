@@ -7,9 +7,11 @@
 namespace ysmir::storm_call
 {
 	bool Initialize();
+	bool Available();
+	void Configure();
+	void BeforeShout(RE::Actor& player);
 	void HandleMessage(SKSE::MessagingInterface::Message* a_message);
 	void FrameUpdate();
-	bool TryConsumeVoiceFire(RE::Actor& a_actor, const progression::ScalingSnapshot& snapshot);
 }
 
 namespace ysmir::elemental_fury
@@ -20,12 +22,11 @@ namespace ysmir::elemental_fury
 
 namespace ysmir::true_cone
 {
-    struct Geometry { float radius{}, tangent{}, correctedTangent{}; };
     void Initialize();
+    bool PatchVisuals();
+    struct Geometry { float radius{}; };
     Geometry Capture(RE::ConeProjectile* projectile);
     void ApplyCollision(RE::ConeProjectile* projectile, const Geometry& geometry, const progression::ScalingSnapshot& snapshot);
-    float VisualScale(RE::ConeProjectile* projectile, const Geometry& geometry, const progression::ScalingSnapshot& snapshot);
-    bool PatchVisuals();
 }
 
 namespace ysmir::projectile_visuals

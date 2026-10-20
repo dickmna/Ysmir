@@ -1,0 +1,112 @@
+[
+  {
+    "feature": "玩家范围与隔离",
+    "implementation": "26 条龙吼、78 个词位；NPC/龙/米拉克沿用官方图；私有效果 MagicShout、无学派，关键词驱散筛选保留",
+    "offlineEvidence": "根映射与 350 条旧记录检查"
+  },
+  {
+    "feature": "龙魂成长",
+    "implementation": "幅度、距离、范围、时长、碰撞和视觉默认 1+0.05S；冷却 0.95^S；未花费龙魂及可选已知词近似，无龙魂上限",
+    "offlineEvidence": "原 Capture/ScaledItem 函数测试，INI 对比"
+  },
+  {
+    "feature": "实例倍率与桥接",
+    "implementation": "旧投射物、cloak、延迟子法术使用各自倍率；父效果结束/销毁/加载/禁用取消排队；零持续推力仍可只读倍率",
+    "offlineEvidence": "17 项桥接/碰撞回归；保留六个桥接效果上下文"
+  },
+  {
+    "feature": "龙魂觉醒 / Dragon Aspect",
+    "implementation": "FT 3.0.9.1 完整关联图、战斗能力、perk 和远古龙裔；基础 300 秒/90 秒，远古龙裔原 FT 属性",
+    "offlineEvidence": "对应旧 SPEL/MGEF/PERK/NPC 载荷未改"
+  },
+  {
+    "feature": "英灵召唤 / Call of Valor",
+    "implementation": "FT 英灵属性、行为、装备和法术分工，英雄固定 150 级；召唤时长/冷却沿用官方",
+    "offlineEvidence": "六个英雄 NPC 及对应法术载荷未改"
+  },
+  {
+    "feature": "元素狂暴 / Elemental Fury",
+    "implementation": "保留原武器附魔兼容、着色与范围链；原攻速 1.3/1.5/1.7、15 秒和冷却；九条 50%/2 秒规则，重吼不清计时",
+    "offlineEvidence": "上游数据载荷未改；九组规则/边界回归"
+  },
+  {
+    "feature": "时间缓滞 / Slow Time",
+    "implementation": "玩家豁免；基础 0.3/0.2/0.1，固定 8/12/16 秒；成长增强减速、最低 0.01",
+    "offlineEvidence": "原数据与豁免 perk 未改；缩放与桥接回归"
+  },
+  {
+    "feature": "旋风冲刺 / Whirlwind Sprint",
+    "implementation": "原移动/冷却；49359 的沿途 cloak、stagger、推力效果链",
+    "offlineEvidence": "相关载荷、VMAD 与 PSC 保留"
+  },
+  {
+    "feature": "动态推力",
+    "implementation": "原生 PushActorAway 一次，按该次幅度倍率增长，不重复乘投射物 impactForce",
+    "offlineEvidence": "推力读取与零持续事件回归"
+  },
+  {
+    "feature": "灵魂撕裂 / Soul Tear",
+    "implementation": "锥形命中保留，基础角度纠正为 10°；官方伤害、复活门槛、持续与冷却；不加入可选包额外复活增强",
+    "offlineEvidence": "角度及 78 个词位数值清单检查"
+  },
+  {
+    "feature": "生命吸取 / Drain Vitality",
+    "implementation": "FT Absorb 机制；三属性官方每项 5、30 秒和原冷却",
+    "offlineEvidence": "原记录载荷未改"
+  },
+  {
+    "feature": "死亡印记 / Marked for Death",
+    "implementation": "生命 1/2/3、护甲 25/50/75、60 秒；可恢复减益和 FT 新增魔抗削弱",
+    "offlineEvidence": "原记录 flags、幅度与关联图未改"
+  },
+  {
+    "feature": "凯娜之和平、惊惧、气息低语",
+    "implementation": "人类安抚、全目标恐惧、敌我识别；惊惧新增范围 50/75/100，已有参数保持官方",
+    "offlineEvidence": "原记录条件与数值未改"
+  },
+  {
+    "feature": "火龙灵行为修复",
+    "implementation": "保留 FT 的敌对筛选和移动 package 修复",
+    "offlineEvidence": "NPC 载荷未改"
+  },
+  {
+    "feature": "风暴全目标错峰",
+    "implementation": "每批动态识别全部敌人并在发射前复查；按词阶一/二/三批，0.12–0.35 秒错峰；原搜索、起始/轮次节奏配置保留",
+    "offlineEvidence": "17 项风暴场景/边界回归"
+  },
+  {
+    "feature": "风暴引擎伤害和归责",
+    "implementation": "真实法术基础 40/60/80，ResistShock；MagicCaster 处理 power、归责与效果；保留 bBlameCaster，不再直接扣血",
+    "offlineEvidence": "实际 ESP 与真实调用函数体参数检查"
+  },
+  {
+    "feature": "风暴天气、时长、存档",
+    "implementation": "原版天气脚本和例外表、引擎效果持续；室内暂停攻击、时间继续、无补击积压；重吼和结束清理；读取旧 STRM v3",
+    "offlineEvidence": "引擎服务替身中的生命周期与 v3/v4 回归"
+  },
+  {
+    "feature": "碰撞与视觉",
+    "implementation": "不加宽角度；碰撞成长、统一根节点缩放、中心锚点、浓度及材质更换跟踪保留；不直接误写 bhk 对象",
+    "offlineEvidence": "碰撞函数回归、源码与既有原生布局证据"
+  },
+  {
+    "feature": "雷击外观修复",
+    "implementation": "保留高度/散布、声音、屏幕反馈、显示边界和 AlwaysDraw 配置",
+    "offlineEvidence": "参数检查与原视觉模块保留；画面待实测"
+  },
+  {
+    "feature": "True Cone 控制与 API",
+    "implementation": "Enabled、PatchRuntimeCollision、PatchVisuals 恢复；GetDragonSoulCount 保留；仅删 DistanceVisualScale 角度补偿",
+    "offlineEvidence": "三开关回归、全部 0.5 INI/Papyrus API 对比"
+  },
+  {
+    "feature": "库存模型与纹理",
+    "implementation": "完整 FT 17 个库存 NIF，1 个召唤 NIF，4 张纹理；无需 Community Shaders",
+    "offlineEvidence": "资源逐文件 SHA-256"
+  },
+  {
+    "feature": "其余范围",
+    "implementation": "其余纳入龙吼使用原有机制；Battle Fury、Phantom Form、获取任务/词墙和额外黑书/冥想玩法继续排除；社区着色器专用替换按此前明确要求排除",
+    "offlineEvidence": "记录类型/范围检查"
+  }
+]

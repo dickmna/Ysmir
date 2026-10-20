@@ -28,7 +28,10 @@ assert {'SKSEPlugin_Load', 'SKSEPlugin_Version'} <= exports.keys()
 metadata = dll.get_data(exports['SKSEPlugin_Version'], 0x350)
 u32 = lambda off: struct.unpack_from('<I', metadata, off)[0]
 pack = lambda a,b,c,d: a << 24 | b << 16 | c << 4 | d
-assert u32(0) == 1 and u32(4) == pack(0, 5, 0, 0)
+project_version = re.search(r'VERSION\s+(\d+\.\d+\.\d+)',
+    (src.parent / 'CMakeLists.txt').read_text('utf-8')).group(1)
+expected_version = (*map(int, project_version.split('.')), 0)
+assert u32(0) == 1 and u32(4) == pack(*expected_version)
 assert metadata[8:264].split(b'\0')[0] == b'Ysmir'
 assert u32(0x304) == 2  # Supports Address Library format 5; no false NoStructUse claim.
 assert u32(0x308) == 5  # Uses Address Library and updated post-629 structures.
@@ -60,8 +63,8 @@ for name, key, slots in [
     ('BeamProjectile', 'BeamVTableRva', [0x66, 0xAA, 0xAB, 0xAC, 0xAD]),
     ('MissileProjectile', 'MissileVTableRva', [0x66, 0xAA, 0xAB, 0xAC, 0xAD]),
     ('ConeProjectile', 'ConeVTableRva', [0x66, 0xAB, 0xAC, 0xC0]),
-    ('ScriptEffect', 'ScriptEffectVTableRva', [4, 0x13, 0x14]),
-    ('CloakEffect', 'CloakEffectVTableRva', [4, 0x13, 0x14]),
+    ('ScriptEffect', 'ScriptEffectVTableRva', [4, 0x13, 0x14, 0x15]),
+    ('CloakEffect', 'CloakEffectVTableRva', [4, 0x13, 0x14, 0x15]),
 ]:
     vt = values[key]
     col_va = struct.unpack('<Q', exe.get_data(vt-8,8))[0]
@@ -82,7 +85,7 @@ assert exe.get_data(launch,len(launch_bytes))==launch_bytes
 assert sum(i.size for i in cs.disasm(launch_bytes,base+launch))==len(launch_bytes)
 report = {
     'passed': True, 'runtime': '1.7.104.0', 'minimumSKSE': '2.3.1',
-    'addressLibraryEncoding': 5, 'pluginVersion': '0.5.0',
+    'addressLibraryEncoding': 5, 'pluginVersion': project_version,
     'exeSha256': hashlib.sha256(raw).hexdigest(),
     'dllSha256': hashlib.sha256(dll_path.read_bytes()).hexdigest(),
     'dllSize': dll_path.stat().st_size, 'exports': sorted(exports),

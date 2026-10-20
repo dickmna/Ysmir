@@ -1,5 +1,9 @@
 [
   {
+    "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
+    "sha256": "98a388ff89356cedb96c9528f13b36e364d11596304463f376ebad764172c663"
+  },
+  {
     "path": "meshes/forceful tongue/callofvalortargetfx.nif",
     "sha256": "2a924d7bedf6cfe089c7854f2e67af550aa32fe4ce968505f194cc04ae8c0370"
   },
@@ -10,6 +14,10 @@
   {
     "path": "meshes/forceful tongue/dlc1maginvshoutsummondurnehviir.nif",
     "sha256": "d8716701a5eca27a3fbd81523eb542ee50fa511afd9cc63539c6f305ef5536da"
+  },
+  {
+    "path": "meshes/forceful tongue/dlc2maginvshoutbattlefury.nif",
+    "sha256": "9f22752f85fd230542c6eb2c3d2150280dbae2656ef1917cef6303bcb4ae04c6"
   },
   {
     "path": "meshes/forceful tongue/dlc2maginvshoutcyclone.nif",
@@ -44,6 +52,10 @@
     "sha256": "3a11d14f9b8b614ca8cac69d4e1abfc54261b36b0a92127304fcc21b2ed69e15"
   },
   {
+    "path": "meshes/forceful tongue/maginvshoutphantomform.nif",
+    "sha256": "8c0affa04c0a9cbefab010bac6091db04de46db8abc707e8de56a5850f65fbb9"
+  },
+  {
     "path": "meshes/forceful tongue/maginvshoutstormcall.nif",
     "sha256": "76e3ac4f5c19a5ef0f11d49bda7cef5bf4e30c55de13cd4bacdc36a5c632d702"
   },
@@ -56,24 +68,8 @@
     "sha256": "a5aa3346a4b6ffbc536a6ee58697314188c571ccf376286189729a7eb7edf1a3"
   },
   {
-    "path": "meshes/Magic/maginvshoutfire.nif",
+    "path": "meshes/magic/maginvshoutfire.nif",
     "sha256": "bc5d6838c20529a90ad00fa8778e08bfe234e99845afaa20246c1dc00fcbe4a5"
-  },
-  {
-    "path": "meshes/Magic/MAGINVShoutFrost.nif",
-    "sha256": "5edf69030883067821c6f2ee613a90a302b9d5de5ffc5e3c668a891f0df5e008"
-  },
-  {
-    "path": "meshes/Magic/MAGINVShoutPinkMagic.nif",
-    "sha256": "0c42cf2cf008e385130337448e1d0e0de55e5b435fb48cc039c82a10fb016a33"
-  },
-  {
-    "path": "meshes/Magic/MAGINVShoutSelfWhite.nif",
-    "sha256": "ad217d37ca5e0346c48756cd201e15e2dc658c211caf1a66987703b1edce282d"
-  },
-  {
-    "path": "meshes/dlc02/effects/maginvshoutbendwill.nif",
-    "sha256": "98a388ff89356cedb96c9528f13b36e364d11596304463f376ebad764172c663"
   },
   {
     "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",

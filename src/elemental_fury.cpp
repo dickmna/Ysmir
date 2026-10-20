@@ -4,7 +4,7 @@
 #include <SKSE/SKSE.h>
 #include <algorithm>
 #include <array>
-#include <optional>
+#include <chrono>
 #include <random>
 
 namespace
@@ -12,21 +12,13 @@ namespace
     constexpr RE::FormID ElementalFury=0x32921;
     std::array<std::array<RE::SpellItem*,3>,3> spells{};
     std::array<RE::EffectSetting*,3> activation{};
-    std::array<double,3> ready{};
-    ysmir::progression::ScalingSnapshot snapshot;
+    std::array<std::array<double,3>,3> ready{};
+    std::array<ysmir::progression::ScalingSnapshot,3> snapshots{};
     bool enabled{true}; float chance{.5f}, cooldown{2.f};
     std::mt19937 rng{std::random_device{}()};
 
-    std::optional<std::uint32_t> ActiveTier(RE::PlayerCharacter& player)
-    {
-        auto* target=player.AsMagicTarget();
-        if (!target) return {};
-        for (std::uint32_t reverse=0; reverse<3; ++reverse) {
-            auto tier=2-reverse;
-            if (activation[tier] && target->HasMagicEffect(activation[tier])) return tier;
-        }
-        return {};
-    }
+    // DAC timestamps are wall time, including menu time, and belong to a rule.
+    double Now() { return std::chrono::duration<double>(std::chrono::steady_clock::now().time_since_epoch()).count(); }
     class AnimationSink final : public RE::BSTEventSink<RE::BSAnimationGraphEvent>
     {
     public:
@@ -36,13 +28,18 @@ namespace
             auto* player=RE::PlayerCharacter::GetSingleton();
             if (!enabled || !ysmir::progression::Enabled() || !event || !player || event->holder!=player ||
                 _stricmp(event->tag.c_str(),"hitframe")!=0 || ysmir::progression::Paused()) return RE::BSEventNotifyControl::kContinue;
-            const auto tier=ActiveTier(*player);
-            if (!tier) return RE::BSEventNotifyControl::kContinue;
+            auto* target=player->AsMagicTarget();
+            if (!target) return RE::BSEventNotifyControl::kContinue;
             std::uniform_real_distribution<float> roll(0.f,1.f);
-            const auto now=ysmir::progression::Now();
-            for (std::uint32_t element=0; element<3; ++element)
-                if (now>=ready[element] && roll(rng)<=chance &&
-                    ysmir::core::CastFeatureSpell(spells[element][*tier],*player,player,snapshot)) ready[element]=now+cooldown;
+            const auto now=Now();
+            for (std::uint32_t tier=0; tier<3; ++tier) {
+                if (!activation[tier] || !target->HasMagicEffect(activation[tier])) continue;
+                for (std::uint32_t element=0; element<3; ++element)
+                    if (roll(rng)<chance && now>ready[element][tier]) {
+                        ready[element][tier]=now+cooldown;
+                        ysmir::core::CastFeatureSpell(spells[element][tier],*player,player,snapshots[tier]);
+                    }
+            }
             return RE::BSEventNotifyControl::kContinue;
         }
     };
@@ -52,9 +49,9 @@ namespace
 
 namespace ysmir::elemental_fury
 {
-    void OnShout(RE::TESShout* shout,std::uint32_t,const progression::ScalingSnapshot& value)
+    void OnShout(RE::TESShout* shout,std::uint32_t tier,const progression::ScalingSnapshot& value)
     {
-        if (shout && shout->GetFormID()==ElementalFury) { snapshot=value; ready.fill(progression::Now()); }
+        if (shout && shout->GetFormID()==ElementalFury && tier<3) snapshots[tier]=value;
     }
     void HandleMessage(SKSE::MessagingInterface::Message* message)
     {
@@ -82,7 +79,7 @@ namespace ysmir::elemental_fury
             Attach();
         }
         if (message->type==SKSE::MessagingInterface::kPostLoadGame || message->type==SKSE::MessagingInterface::kNewGame) {
-            snapshot=core::CurrentScaling(); ready.fill(progression::Now()); Attach();
+            snapshots.fill(core::CurrentScaling()); ready={}; Attach();
         }
     }
 }

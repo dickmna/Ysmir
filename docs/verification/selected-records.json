@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.7.0",
   "inputs": [
     {
       "file": "ForcefulTongue.esp",
@@ -22,14 +22,14 @@
       "sha256": "66FD54CB9A923C6D122756320A57B5984AF58949F47EB811A9ECD7F791B4C837"
     }
   ],
-  "records": 350,
-  "privateRecords": 324,
-  "playerEffects": 118,
+  "records": 360,
+  "privateRecords": 334,
+  "playerEffects": 122,
   "unresolvedLinks": [],
   "recordTypes": {
     "Keyword": 1,
-    "MagicEffect": 118,
-    "Spell": 104,
+    "MagicEffect": 122,
+    "Spell": 110,
     "Static": 26,
     "Npc": 8,
     "Projectile": 36,
@@ -40,7 +40,6 @@
   },
   "scripts": [
     "CallDragonEffectScript",
-    "clearskieseffectscript",
     "DLC1MagicSoulRendScript",
     "DLC2AttachAshPileOnDeath25",
     "DLC2CycloneEffectScript",
@@ -48,22 +47,24 @@
     "DLC2TameDragonEffectScript",
     "DLC2VoiceBendWillEffectScript",
     "DLC2VoiceFireBreathScript",
-    "magicCastAnotherSpellScript",
     "MagicDispelSpellOnHitScript",
-    "magiceffectshadersonendscript",
-    "magicimodbeginloopend",
-    "magicImodScript",
-    "magicPlaceExplosionScript",
-    "magicSetActorAlphaScript",
-    "magicsoultrapfxscript",
     "ReanimateAshPile",
-    "shaderparticlegeometryscript",
     "VoiceCharmFactionScript",
     "VoiceIceFormScript",
     "YsmirDragonAspectSummonScript",
     "YsmirSlowTimeScript",
     "YsmirVoicePushEffectScript",
-    "YsmirWhirlwindDamageScript"
+    "YsmirWhirlwindDamageScript",
+    "clearskieseffectscript",
+    "magicCastAnotherSpellScript",
+    "magicImodScript",
+    "magicPlaceExplosionScript",
+    "magicSetActorAlphaScript",
+    "magicSetWeatherScript",
+    "magiceffectshadersonendscript",
+    "magicimodbeginloopend",
+    "magicsoultrapfxscript",
+    "shaderparticlegeometryscript"
   ],
   "selected": [
     {
@@ -112,13 +113,13 @@
       "type": "MagicEffect"
     },
     {
-      "key": "130C29:Ysmir.esp",
-      "edid": "YSMIR_PlayerEffect_Dawnguard_007CB4",
+      "key": "140003:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_10EAD9",
       "type": "MagicEffect"
     },
     {
-      "key": "140003:Ysmir.esp",
-      "edid": "YSMIR_PlayerEffect_Skyrim_10EAD9",
+      "key": "130C29:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Dawnguard_007CB4",
       "type": "MagicEffect"
     },
     {
@@ -507,13 +508,33 @@
       "type": "MagicEffect"
     },
     {
+      "key": "150005:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0E4CB6",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "150007:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0E3F0A",
+      "type": "MagicEffect"
+    },
+    {
       "key": "14001D:Ysmir.esp",
       "edid": "YSMIR_ShoutClassification_FireAndForget_Self",
       "type": "MagicEffect"
     },
     {
+      "key": "15000B:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0E3F09",
+      "type": "MagicEffect"
+    },
+    {
       "key": "14001C:Ysmir.esp",
       "edid": "YSMIR_ShoutClassification_FireAndForget_Aimed",
+      "type": "MagicEffect"
+    },
+    {
+      "key": "15000E:Ysmir.esp",
+      "edid": "YSMIR_PlayerEffect_Skyrim_0D5E81",
       "type": "MagicEffect"
     },
     {
@@ -972,6 +993,11 @@
       "type": "Spell"
     },
     {
+      "key": "130CD1:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_09CAF1",
+      "type": "Spell"
+    },
+    {
       "key": "130CD0:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_09CAF0",
       "type": "Spell"
@@ -979,11 +1005,6 @@
     {
       "key": "130CD2:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_09CAF2",
-      "type": "Spell"
-    },
-    {
-      "key": "130CD1:Ysmir.esp",
-      "edid": "YSMIR_PlayerSpell_Skyrim_09CAF1",
       "type": "Spell"
     },
     {
@@ -1047,13 +1068,28 @@
       "type": "Spell"
     },
     {
+      "key": "150004:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_0E4CB7",
+      "type": "Spell"
+    },
+    {
       "key": "130C44:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_01860A",
       "type": "Spell"
     },
     {
+      "key": "15000A:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_0E98A2",
+      "type": "Spell"
+    },
+    {
       "key": "130C45:Ysmir.esp",
       "edid": "YSMIR_PlayerSpell_Skyrim_01860D",
+      "type": "Spell"
+    },
+    {
+      "key": "15000D:Ysmir.esp",
+      "edid": "YSMIR_PlayerSpell_Skyrim_0E98A3",
       "type": "Spell"
     },
     {
@@ -1179,6 +1215,21 @@
     {
       "key": "130BE9:Ysmir.esp",
       "edid": "YSMIR_ElementalFuryShockDamage3",
+      "type": "Spell"
+    },
+    {
+      "key": "150011:Ysmir.esp",
+      "edid": "YSMIR_StormWeather1",
+      "type": "Spell"
+    },
+    {
+      "key": "150012:Ysmir.esp",
+      "edid": "YSMIR_StormWeather2",
+      "type": "Spell"
+    },
+    {
+      "key": "150013:Ysmir.esp",
+      "edid": "YSMIR_StormWeather3",
       "type": "Spell"
     },
     {

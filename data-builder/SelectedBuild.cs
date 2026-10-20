@@ -130,6 +130,9 @@ internal sealed class SelectedBuild : IDisposable
             }
             // NPCs keep their original official spells/perks/equipment; only their selected NPC templates and custom assets are private.
             if(source is INpcGetter && official.ContainsKey(link.FormKey) && next is not INpcGetter) continue;
+            // Cost perks are references to the player's existing perk, not private shout mechanics.
+            if(source is ISpellGetter spellSource && next is IPerkGetter &&
+                spellSource.HalfCostPerk.FormKey==link.FormKey && official.ContainsKey(link.FormKey)) continue;
             if(CanImport(next)) Import(link.FormKey,selectedMechanics,keepNumbers);
             else if(!official.ContainsKey(link.FormKey)) throw new InvalidDataException("Selected graph reaches unsupported record: "+source.EditorID+" -> "+link.FormKey);
         }
@@ -175,7 +178,7 @@ internal sealed class SelectedBuild : IDisposable
     {
         Directory.CreateDirectory(destination);
         mod.ModHeader.Author="dickmna; selected FT assets by Delta";
-        mod.ModHeader.Description="Ysmir 0.5.0: direct upstream build, shared cast contexts and centered projectile scaling.";
+        mod.ModHeader.Description="Ysmir 0.7.0: engine spell damage and weather, player progression and hostile storm volleys.";
         foreach(var rule in SourceRules.Shouts) {
             var key=rule.Key;
             var original=(IShoutGetter)official[key];
@@ -267,13 +270,7 @@ internal sealed class SelectedBuild : IDisposable
                     foreach(var property in script.Properties.Where(p=>p.Name!="CastSpellName").ToArray()) script.Properties.Remove(property);
             }
         }
-        for(var tier=0;tier<3;++tier) {
-            var voice=Voice(K("Skyrim",0x07097D),tier);
-            var name=$"YSMIR_StormDuration{tier+1}";
-            var stub=mod.MagicEffects.DuplicateInAsNewRecord((IMagicEffectGetter)official[K("Skyrim",0x10E4FD)],Id(name));
-            stub.EditorID=name; stub.VirtualMachineAdapter=null; voice.Effects.Clear();
-            var e=new Effect { Data=new EffectData { Duration=60*(tier+1) } }; e.BaseEffect.SetTo(stub.FormKey); voice.Effects.Add(e);
-        }
+        BuildStormEffects(stormProjectile);
         // Only dependencies reachable from the selected player roots enter the artifact.
         var records = mod.EnumerateMajorRecords().ToDictionary(r => r.FormKey);
         var reachable = Closure(runtimeRoots.Concat(mod.Shouts.Where(s => s.FormKey.ModKey != OutputKey).Select(s => s.FormKey)), records, false);
@@ -332,6 +329,9 @@ internal sealed class SelectedBuild : IDisposable
             MastersListOrdering = new MastersListOrderingByLoadOrder(masters.Select(m => m.ModKey))
         });
         ExportManifest(destination, playerGraph);
+        File.WriteAllText(Path.Combine(destination, "FormIds.json"), JsonSerializer.Serialize(
+            identifiers.ToDictionary(p=>p.Key,p=>$"{p.Value:X6}"),
+            new JsonSerializerOptions { WriteIndented=true }) + "\n");
         File.WriteAllText(Path.Combine(destination, "selected-records.json"), JsonSerializer.Serialize(new
         {
             version = SourceRules.Version, inputs = SourceRules.Inputs.Select(x => new { file=x.File, sha256=x.Sha256 }), records = records.Count, privateRecords = records.Keys.Count(k => k.ModKey == OutputKey),
@@ -366,7 +366,7 @@ internal sealed class SelectedBuild : IDisposable
         var cone=new Projectile(Id("YSMIR_SoulTearConeProjectile"),SkyrimRelease.SkyrimSE) {
             EditorID="YSMIR_SoulTearConeProjectile", ObjectBounds=source.ObjectBounds.DeepCopy(), Model=source.Model?.DeepCopy(),
             Type=Projectile.TypeEnum.Cone, Flags=Projectile.Flag.Supersonic|Projectile.Flag.PassThroughSmallTransparent,
-            Gravity=0,Speed=1300,Range=4000,ConeSpread=15,CollisionRadius=16,ImpactForce=source.ImpactForce,
+            Gravity=0,Speed=1300,Range=4000,ConeSpread=10,CollisionRadius=16,ImpactForce=source.ImpactForce,
             TracerChance=source.TracerChance,FadeDuration=source.FadeDuration,SoundLevel=source.SoundLevel
         };
         mod.Projectiles.Add(cone);
@@ -380,16 +380,37 @@ internal sealed class SelectedBuild : IDisposable
     {
         var projectile=mod.Projectiles.DuplicateInAsNewRecord((IProjectileGetter)official[K("Skyrim",0x0E4CB5)],Id("YSMIR_StormCallProjectile"));
         projectile.EditorID="YSMIR_StormCallProjectile";
-        projectile.Model ??=new Model(); projectile.Model.File="Magic\\LightningBolt03.nif";
-        projectile.Flags=(Projectile.Flag)0x0200; projectile.Type=(Projectile.TypeEnum)0x0004;
-        projectile.Gravity=0; projectile.Speed=90000; projectile.Range=10000;
-        projectile.Light.Clear(); projectile.MuzzleFlash.Clear(); projectile.TracerChance=0;
-        projectile.ExplosionAltTriggerProximity=0; projectile.ExplosionAltTriggerTimer=0; projectile.Explosion.Clear();
-        projectile.Sound.SetTo(K("Skyrim",0x057C6C)); projectile.MuzzleFlashDuration=0;
-        projectile.FadeDuration=.5f; projectile.ImpactForce=400; projectile.CountdownSound.Clear(); projectile.DisaleSound.Clear();
-        projectile.DefaultWeaponSource.Clear(); projectile.ConeSpread=0; projectile.CollisionRadius=10;
-        projectile.Lifetime=.35f; projectile.RelaunchInterval=.15f; projectile.DecalData.Clear(); projectile.CollisionLayer.Clear(); projectile.SoundLevel=0;
         return projectile.FormKey;
+    }
+    void BuildStormEffects(FormKey projectile)
+    {
+        // Retain the saved duration-effect IDs. The engine owns their lifetime.
+        // Weather stays on its own vanilla effect; the scheduler never writes Sky.
+        var selfIds = new uint[]{0x0E3F0A,0x0E3F09,0x0D5E81};
+        var boltIds = new uint[]{0x0E4CB7,0x0E98A2,0x0E98A3};
+        for(var tier=0;tier<3;++tier) {
+            var voice=Voice(K("Skyrim",0x07097D),tier);
+            var name=$"YSMIR_StormDuration{tier+1}";
+            var timer=mod.MagicEffects.DuplicateInAsNewRecord((IMagicEffectGetter)official[K("Skyrim",0x10E4FD)],Id(name));
+            timer.EditorID=name; timer.VirtualMachineAdapter=null;
+            voice.Effects.Clear();
+            var duration=new Effect { Data=new EffectData { Duration=60*(tier+1) } };
+            duration.BaseEffect.SetTo(timer.FormKey); voice.Effects.Add(duration);
+            var weather=mod.MagicEffects[Private(K("Skyrim",selfIds[tier]))];
+            weather.Projectile.SetTo(projectile);
+            foreach(var script in weather.VirtualMachineAdapter!.Scripts.Where(s=>!s.Name.Equals("magicSetWeatherScript",StringComparison.OrdinalIgnoreCase)).ToArray())
+                weather.VirtualMachineAdapter.Scripts.Remove(script);
+            // Cast independently when the player reaches an eligible exterior.
+            var weatherSpell=new Spell(Id($"YSMIR_StormWeather{tier+1}"),SkyrimRelease.SkyrimSE) {
+                EditorID=$"YSMIR_StormWeather{tier+1}", CastType=CastType.FireAndForget, TargetType=TargetType.Self
+            };
+            var item=new Effect { Data=new EffectData { Magnitude=1,Duration=60*(tier+1) } };
+            item.BaseEffect.SetTo(weather.FormKey); weatherSpell.Effects.Add(item);
+            mod.Spells.Add(weatherSpell); runtimeRoots.Add(weatherSpell.FormKey);
+            var bolt=mod.Spells[Private(K("Skyrim",boltIds[tier]))];
+            runtimeRoots.Add(bolt.FormKey);
+            mod.MagicEffects[bolt.Effects[0].BaseEffect.FormKey].Projectile.SetTo(projectile);
+        }
     }
     HashSet<FormKey> Closure(IEnumerable<FormKey> start, IReadOnlyDictionary<FormKey, IMajorRecord> db, bool gameplayOnly)
     {
@@ -420,6 +441,12 @@ internal sealed class SelectedBuild : IDisposable
             t.AppendLine("{ " + string.Join(", ", Enumerable.Range(1, 3).Select(i => H(Named($"YSMIR_ElementalFury{element}{i}").FormKey))) + " },");
         t.AppendLine("}};\ninline constexpr std::array<std::uint32_t,3> SlowTimeActualSpells{ " + string.Join(", ", Enumerable.Range(1, 3).Select(i => H(Named($"YSMIR_SlowTimeActual{i}").FormKey))) + " };");
         t.AppendLine($"inline constexpr std::uint32_t StormProjectile = {H(Named("YSMIR_StormCallProjectile").FormKey)};");
+        foreach(var group in new[]{"StormDuration","StormWeather"})
+            t.AppendLine($"inline constexpr std::array<std::uint32_t,3> {group}{{ " + string.Join(", ",Enumerable.Range(1,3).Select(i=>H(Named($"YSMIR_{group}{i}").FormKey))) + " };");
+        t.AppendLine("inline constexpr std::array<std::uint32_t,3> StormBolts{ " + string.Join(", ",new uint[]{0x0E4CB7,0x0E98A2,0x0E98A3}.Select(id=>H(Private(K("Skyrim",id))))) + " };");
+        // Only these ScriptEffects need a cast snapshot: delayed bridges and push.
+        var contexts=mod.MagicEffects.Where(e=>e.VirtualMachineAdapter?.Scripts.Any(s=>s.Name.StartsWith("Ysmir",StringComparison.Ordinal))==true).Select(e=>e.FormKey).OrderBy(k=>k.ID).ToArray();
+        t.AppendLine($"inline constexpr std::array<std::uint32_t,{contexts.Length}> ScriptContexts{{ " + string.Join(", ",contexts.Select(H)) + " };");
         var spells = mod.Spells.Where(s => graph.Contains(s.FormKey)).OrderBy(s => s.FormKey.ID).ToArray();
         t.AppendLine($"inline constexpr std::array<std::uint32_t,{spells.Length}> PlayerSpells{{ " + string.Join(", ", spells.Select(s => H(s.FormKey))) + " };");
         IEnumerable<FormKey> ChildSpells(ISpellGetter spell)

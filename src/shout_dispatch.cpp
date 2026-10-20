@@ -9,10 +9,10 @@
 #include <cmath>
 #include <limits>
 #include <mutex>
+#include <memory>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include <optional>
 #include <MinHook.h>
 
 namespace
@@ -20,9 +20,8 @@ namespace
     using Snapshot = ysmir::progression::ScalingSnapshot;
     constexpr RE::FormID SlowTime = 0x48AC9;
     struct Mapping { RE::TESShout* privateShout{}; std::array<RE::SpellItem*,3> original{}; };
-    struct Origin { RE::FormID shout{}; std::uint32_t tier{}; };
     std::unordered_map<RE::TESShout*,Mapping> mappings;
-    std::unordered_map<RE::FormID,Origin> origins;
+    std::unordered_map<RE::FormID,RE::FormID> origins;
     std::recursive_mutex mutex;
     std::mutex snapshotMutex;
     std::atomic<std::uint64_t> generation{};
@@ -41,9 +40,15 @@ namespace
     };
     std::unordered_map<RE::SpellItem*,SpellPlan> plans;
     std::unordered_map<RE::SpellItem*,Snapshot> spellSnapshots;
-    struct EffectContext { std::uint16_t id{}; RE::MagicItem* spell{}; Snapshot snapshot; };
+    struct EffectContext {
+        std::uint16_t id{};
+        RE::MagicItem* spell{};
+        Snapshot snapshot;
+        std::atomic<bool> active{true};
+        EffectContext(std::uint16_t key,RE::MagicItem* source,const Snapshot& value) : id(key),spell(source),snapshot(value) {}
+    };
     struct ProjectileContext { RE::ProjectileHandle handle; Snapshot snapshot; };
-    std::unordered_map<RE::ActiveEffect*,EffectContext> activeEffects;
+    std::unordered_map<RE::ActiveEffect*,std::shared_ptr<EffectContext>> activeEffects;
     std::unordered_map<std::uint32_t,ProjectileContext> projectileContexts;
     thread_local const Snapshot* casting{};
     class CastScope {
@@ -52,7 +57,22 @@ namespace
         explicit CastScope(const Snapshot& value) { casting=&value; }
         ~CastScope() { casting=previous; }
     };
+    struct DirectedLaunch;
+    thread_local DirectedLaunch* directedLaunch{};
+    // Let MagicCaster build the spell, power and actor cause. Only relocate its launch.
+    struct DirectedLaunch {
+        RE::SpellItem* spell;
+        const RE::NiPoint3& origin;
+        RE::Projectile::ProjectileRot angles;
+        RE::Actor& target;
+        RE::ProjectileHandle handle;
+        DirectedLaunch* previous{directedLaunch};
+        DirectedLaunch(RE::SpellItem* s,const RE::NiPoint3& p,RE::Projectile::ProjectileRot a,RE::Actor& t)
+            : spell(s),origin(p),angles(a),target(t) { directedLaunch=this; }
+        ~DirectedLaunch() { directedLaunch=previous; }
+    };
     std::unordered_set<RE::SpellItem*> authorized;
+    std::unordered_set<RE::EffectSetting*> scriptContexts;
     std::unordered_map<RE::SpellItem*,std::vector<RE::SpellItem*>> children;
 
     template<class T> T ScaleInteger(T base, float factor)
@@ -78,7 +98,7 @@ namespace
             plan.spells.push_back(spell);
             if (auto linked=children.find(spell); linked!=children.end())
                 pending.insert(pending.end(),linked->second.begin(),linked->second.end());
-            if (auto it=origins.find(spell->GetFormID()); it!=origins.end() && it->second.shout==SlowTime) plan.fixedDuration=true;
+            if (auto it=origins.find(spell->GetFormID()); it!=origins.end() && it->second==SlowTime) plan.fixedDuration=true;
             for (auto* effect : spell->effects) {
                 if (!effect || !effect->baseEffect) continue;
                 auto* setting=effect->baseEffect;
@@ -161,23 +181,42 @@ namespace
             for (const auto& e : projectiles) e.projectile->data=e.data;
         }
     };
-    std::optional<EffectContext> EffectSnapshot(RE::ActiveEffect* effect) {
-        if (!effect) return std::nullopt;
+    std::shared_ptr<EffectContext> EffectSnapshot(RE::ActiveEffect* effect,bool requireActive=true) {
+        if (!effect) return {};
         std::scoped_lock lock(snapshotMutex);
         auto it=activeEffects.find(effect);
-        if (it==activeEffects.end() || it->second.id!=effect->usUniqueID || it->second.spell!=effect->spell) return std::nullopt;
+        if (it==activeEffects.end() || it->second->id!=effect->usUniqueID || it->second->spell!=effect->spell) return {};
+        if (requireActive && (!it->second->active.load() ||
+            effect->flags.any(RE::ActiveEffect::Flag::kDispelled))) return {};
         return it->second;
     }
     void RememberEffect(RE::ActiveEffect* effect) {
-        if (EffectSnapshot(effect)) return;
+        if (!effect || !ysmir::progression::Enabled() || effect->flags.any(RE::ActiveEffect::Flag::kDispelled)) return;
+        auto* base=effect->GetBaseObject();
+        if (!base || (!base->HasArchetype(RE::EffectSetting::Archetype::kCloak) && !scriptContexts.contains(base))) return;
+        {
+            std::scoped_lock lock(snapshotMutex);
+            const auto found=activeEffects.find(effect);
+            // Keep a finished entry until destruction, so a final Update cannot
+            // accidentally revive its queued casts.
+            if (found!=activeEffects.end() && found->second->id==effect->usUniqueID && found->second->spell==effect->spell) return;
+        }
         auto* spell=effect->spell ? effect->spell->As<RE::SpellItem>() : nullptr;
         if (!authorized.contains(spell) || !ysmir::core::IsPlayerActor(effect->GetCasterActor().get())) return;
         const auto snapshot=casting ? *casting : ysmir::core::ScalingForSpell(spell);
         std::scoped_lock lock(snapshotMutex);
-        activeEffects.insert_or_assign(effect,EffectContext{effect->usUniqueID,effect->spell,snapshot});
+        activeEffects.insert_or_assign(effect,std::make_shared<EffectContext>(effect->usUniqueID,effect->spell,snapshot));
+    }
+    void EndEffect(RE::ActiveEffect* effect,bool remove) {
+        std::scoped_lock lock(snapshotMutex);
+        const auto found=activeEffects.find(effect);
+        if (found==activeEffects.end()) return;
+        found->second->active=false;
+        if (remove) activeEffects.erase(found);
     }
     template<std::size_t I> struct EffectHook {
         static inline void(*start)(RE::ActiveEffect*);
+        static inline void(*finish)(RE::ActiveEffect*);
         static inline void(*update)(RE::ActiveEffect*,float);
         static inline void*(*destroy)(RE::ActiveEffect*,std::uint32_t);
         static void Start(RE::ActiveEffect* effect) {
@@ -189,13 +228,18 @@ namespace
             // once from the load's spell baseline, then keep that instance fixed.
             RememberEffect(effect); update(effect,delta);
         }
+        static void Finish(RE::ActiveEffect* effect) {
+            EndEffect(effect,false);
+            finish(effect);
+        }
         static void* Destroy(RE::ActiveEffect* effect,std::uint32_t flags) {
-            { std::scoped_lock lock(snapshotMutex); activeEffects.erase(effect); }
+            EndEffect(effect,true);
             return destroy(effect,flags);
         }
         static void Install(std::uintptr_t address) {
             REL::Relocation<std::uintptr_t> table{address};
             start=reinterpret_cast<decltype(start)>(table.write_vfunc(0x14,Start));
+            finish=reinterpret_cast<decltype(finish)>(table.write_vfunc(0x15,Finish));
             destroy=reinterpret_cast<decltype(destroy)>(table.write_vfunc(0x13,Destroy));
             if constexpr (I==0) update=reinterpret_cast<decltype(update)>(table.write_vfunc(4,Update));
         }
@@ -237,11 +281,19 @@ namespace
         static inline RE::ProjectileHandle*(*original)(RE::ProjectileHandle*,RE::Projectile::LaunchData&);
         static RE::ProjectileHandle* Launch(RE::ProjectileHandle* out,RE::Projectile::LaunchData& data) {
             auto* spell=data.spell ? data.spell->As<RE::SpellItem>() : nullptr;
-            if (!authorized.contains(spell) || !data.shooter || !ysmir::core::IsPlayerActor(data.shooter->As<RE::Actor>())) return original(out,data);
+            if (!authorized.contains(spell) || !data.shooter ||
+                !ysmir::core::IsPlayerActor(data.shooter->As<RE::Actor>())) return original(out,data);
             const auto snapshot=casting ? *casting : ysmir::core::ScalingForSpell(spell);
             CastScope scope(snapshot);
+            auto* directed=directedLaunch && directedLaunch->spell==spell ? directedLaunch : nullptr;
+            if (directed) {
+                data.origin=directed->origin; data.angleX=directed->angles.x; data.angleZ=directed->angles.z;
+                data.desiredTarget=&directed->target; data.parentCell=directed->target.GetParentCell();
+                data.useOrigin=true; data.alwaysHit=true; data.autoAim=true;
+            }
             auto* result=original(out,data);
             if (result) ysmir::core::TrackProjectile(*result,snapshot);
+            if (directed && result) directed->handle=*result;
             return result;
         }
     };
@@ -275,7 +327,7 @@ namespace
     void Resolve()
     {
         std::scoped_lock lock(mutex);
-        Restore(); mappings.clear(); origins.clear(); authorized.clear(); plans.clear();
+        Restore(); mappings.clear(); origins.clear(); authorized.clear(); plans.clear(); scriptContexts.clear();
         auto* data=RE::TESDataHandler::GetSingleton();
         if (!data) return;
         for (const auto& expected : ysmir::forms::PlayerShouts) {
@@ -291,7 +343,7 @@ namespace
             if (!valid) { SKSE::log::error("Private shout {:06X} disagrees with the ESP manifest; disabled",expected.privateFormID); continue; }
             mappings.emplace(official,entry);
             for (std::uint32_t tier=0; tier<3; ++tier)
-                origins.insert_or_assign(privateShout->variations[tier].spell->GetFormID(),Origin{official->GetFormID(),tier});
+                origins.insert_or_assign(privateShout->variations[tier].spell->GetFormID(),official->GetFormID());
         }
         for (auto id : ysmir::forms::PlayerSpells) {
             if (auto* spell=data->LookupForm<RE::SpellItem>(id,ysmir::forms::PluginName)) authorized.insert(spell);
@@ -303,6 +355,9 @@ namespace
             auto* child=data->LookupForm<RE::SpellItem>(edge.child,ysmir::forms::PluginName);
             if (parent && child) children[parent].push_back(child);
         }
+        for (auto id : ysmir::forms::ScriptContexts)
+            if (auto* effect=data->LookupForm<RE::EffectSetting>(id,ysmir::forms::PluginName)) scriptContexts.insert(effect);
+        ysmir::storm_call::Configure();
         for (auto* spell : authorized) plans.emplace(spell,BuildPlan(spell));
         SetCurrent(ysmir::progression::Capture());
         SKSE::log::info("Progression ready: {} of {} private shouts, {} precompiled spell plans",mappings.size(),ysmir::forms::PlayerShouts.size(),plans.size());
@@ -320,7 +375,7 @@ namespace
         { if (s && replacement) { shout=s; tier=t; original=s->variations[t].spell; s->variations[t].spell=replacement; } }
         ~VariationScope() { if (shout) shout->variations[tier].spell=original; }
     };
-    void Cooldown(RE::Actor& actor,const Snapshot& s,bool consumed=false)
+    void Cooldown(RE::Actor& actor,const Snapshot& s)
     {
         if (auto* high=actor.GetHighProcess()) {
             auto base=high->voiceRecoveryTime;
@@ -328,9 +383,8 @@ namespace
                 const auto found=mappings.find(shout);
                 const auto tier=Tier(actor);
                 const auto selected=found!=mappings.end() ? found->second.privateShout->variations[tier].recoveryTime : shout->variations[tier].recoveryTime;
-                // Native storms skip the engine handler. Dragon Aspect has FT's
-                // 90-second baseline, while the shared NPC shout remains vanilla.
-                if (consumed || selected!=shout->variations[tier].recoveryTime) {
+                // Dragon Aspect has FT's 90-second baseline; NPC records stay vanilla.
+                if (selected!=shout->variations[tier].recoveryTime) {
                     const auto* owner=actor.AsActorValueOwner();
                     const auto recovery=owner ? owner->GetActorValue(RE::ActorValue::kShoutRecoveryMult) : 1.f;
                     base=selected*(std::isfinite(recovery) ? std::max(0.f,recovery) : 1.f);
@@ -354,16 +408,14 @@ namespace
             if (!ysmir::progression::Enabled() || found==mappings.end()) return original(handler,actor,tag);
             const auto s=ysmir::progression::Capture();
             SetCurrent(s);
-            if (ysmir::storm_call::TryConsumeVoiceFire(actor,s)) { Cooldown(actor,s,true); return true; }
-            // A disabled/unavailable storm adapter falls back to the untouched
-            // official spell, rather than casting the native controller's stub.
-            if (shout->GetFormID()==0x7097D) {
+            if (shout->GetFormID()==0x7097D && !ysmir::storm_call::Available()) {
                 const auto result=original(handler,actor,tag);
                 if (result) Cooldown(actor,s);
                 return result;
             }
             const auto tier=Tier(actor); auto* spell=found->second.privateShout->variations[tier].spell;
             Apply(spell,s);
+            if (shout->GetFormID()==0x7097D) ysmir::storm_call::BeforeShout(actor);
             CastScope castScope(s);
             VariationScope scope(shout,tier,spell);
             const auto result=original(handler,actor,tag);
@@ -375,24 +427,28 @@ namespace
     float PushForce(RE::StaticFunctionTag*,float force,RE::Actor* caster,RE::ActiveEffect* effect)
     {
         if (!ysmir::core::IsPlayerActor(caster) || !ysmir::progression::Enabled()) return force;
-        const auto snapshot=EffectSnapshot(effect);
+        // A zero-duration push effect may finish before its queued Papyrus event
+        // reads the immutable scale. This read does not start a new child spell.
+        const auto snapshot=EffectSnapshot(effect,false);
         return snapshot ? ScaleFloat(force,snapshot->snapshot.magnitude) : force;
     }
     void CastFromEffect(RE::StaticFunctionTag*,RE::SpellItem* spell,RE::Actor* target,RE::Actor* caster,RE::ActiveEffect* wrapper)
     {
-        if (!spell || !target || !ysmir::core::IsPlayerActor(caster) || !authorized.contains(spell)) return;
+        if (!ysmir::progression::Enabled() || !spell || !target || !ysmir::core::IsPlayerActor(caster) || !authorized.contains(spell)) return;
         const auto snapshot=EffectSnapshot(wrapper); if (!snapshot) return;
         auto* parent=snapshot->spell ? snapshot->spell->As<RE::SpellItem>() : nullptr;
         const auto plan=plans.find(parent);
         if (plan==plans.end() || std::find(plan->second.spells.begin(),plan->second.spells.end(),spell)==plan->second.spells.end()) return;
         const auto targetHandle=target->GetHandle(), casterHandle=caster->GetHandle();
         const auto castGeneration=generation.load();
+        const std::weak_ptr<EffectContext> context=snapshot;
         // The VM receives its ActiveMagicEffect instance, then copies its immutable
         // context before queueing engine work. Loading another save invalidates it.
-        if (auto* tasks=SKSE::GetTaskInterface()) tasks->AddTask([spell,targetHandle,casterHandle,s=snapshot->snapshot,castGeneration] {
-            if (generation.load()!=castGeneration) return;
+        if (auto* tasks=SKSE::GetTaskInterface()) tasks->AddTask([spell,targetHandle,casterHandle,castGeneration,context] {
+            const auto parent=context.lock();
+            if (!ysmir::progression::Enabled() || generation.load()!=castGeneration || !parent || !parent->active.load()) return;
             const auto target=targetHandle.get(), caster=casterHandle.get();
-            if (target && caster) ysmir::core::CastFeatureSpell(spell,*caster,target.get(),s);
+            if (target && caster) ysmir::core::CastFeatureSpell(spell,*caster,target.get(),parent->snapshot);
         });
     }
     std::int32_t SoulCount(RE::StaticFunctionTag*) { std::scoped_lock lock(snapshotMutex); return static_cast<std::int32_t>(std::min(current.souls,static_cast<std::uint32_t>(INT32_MAX))); }
@@ -416,14 +472,7 @@ namespace ysmir::core
         return shooter && IsPlayerActor(shooter->As<RE::Actor>());
     }
     // These registries are immutable after DataLoaded installs the voice hook.
-    bool HasPrivatePlayerShoutMapping(const RE::TESShout* shout) { return mappings.contains(const_cast<RE::TESShout*>(shout)); }
     bool IsPlayerVoiceSpellRuntimeAuthorized(const RE::SpellItem* spell) { return authorized.contains(const_cast<RE::SpellItem*>(spell)); }
-    bool TryGetPlayerShoutTierForSpell(RE::FormID spell,RE::FormID shout,std::uint32_t& tier)
-    {
-        auto it=origins.find(spell);
-        if (it==origins.end() || it->second.shout!=shout) return false;
-        tier=it->second.tier; return true;
-    }
     Snapshot CurrentScaling() { std::scoped_lock lock(snapshotMutex); return current; }
     Snapshot ScalingForSpell(RE::SpellItem* spell)
     {
@@ -455,10 +504,26 @@ namespace ysmir::core
     }
     bool CastFeatureSpell(RE::SpellItem* spell,RE::Actor& actor,RE::Actor* target,const Snapshot& s)
     {
+        if (!progression::Enabled() || !IsPlayerActor(&actor)) return false;
         std::scoped_lock lock(mutex);
         auto* caster=actor.GetMagicCaster(RE::MagicSystem::CastingSource::kInstant);
         if (!caster || !authorized.contains(spell)) return false;
         Apply(spell,s); CastScope scope(s); caster->CastSpellImmediate(spell,false,target,1.f,false,0.f,&actor); return true;
+    }
+    RE::ProjectileHandle LaunchFeatureSpell(RE::SpellItem* spell,RE::Actor& blame,RE::Actor& target,
+        const RE::NiPoint3& origin,const RE::NiPoint3& destination,const Snapshot& s)
+    {
+        if (!progression::Enabled() || !authorized.contains(spell)) return {};
+        auto* player=RE::PlayerCharacter::GetSingleton();
+        auto* caster=player ? player->GetMagicCaster(RE::MagicSystem::CastingSource::kInstant) : nullptr;
+        if (!caster) return {};
+        std::scoped_lock lock(mutex);
+        Apply(spell,s); CastScope scope(s);
+        const auto dx=destination.x-origin.x,dy=destination.y-origin.y,dz=destination.z-origin.z;
+        const RE::Projectile::ProjectileRot angles{std::atan2(-dz,std::hypot(dx,dy)),std::atan2(dx,dy)};
+        DirectedLaunch directed(spell,origin,angles,target);
+        caster->CastSpellImmediate(spell,false,&target,1.f,false,0.f,&blame);
+        return directed.handle;
     }
     RE::TESShout* PrivateShout(RE::FormID official)
     {
