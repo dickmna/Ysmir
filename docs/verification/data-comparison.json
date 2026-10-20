@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "version": "0.7.0",
+  "version": "0.8.0",
   "baseline050": "ceaf25f0791f420badfc96c34630d23fe53fd2bf",
   "recordCount": 360,
   "privateRecords": 334,
@@ -120,8 +120,15 @@
   },
   "unresolvedLinks": [],
   "deterministicEspAndHeader": true,
-  "espSha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546",
+  "espSha256": "eb3a82bbf3d74e973e551a36e090b5d81b5ff7f7ee1c32ad0b00cbff3be77b68",
   "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
   "inspectionSha256": "27fe1b94f532fc7cfce6f1604d21bc431cd361e0f5e831fe35e111dc274f99f9",
-  "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay"
+  "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay",
+  "comparisonTo070": {
+    "all360RecordPayloadsAndFlagsIdentical": true,
+    "addedRecords": 0,
+    "removedRecords": 0,
+    "headerOnlyChangedSubrecord": "SNAM (version description)",
+    "stableRuntimeHeader": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf"
+  }
 }

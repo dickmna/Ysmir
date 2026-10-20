@@ -57,20 +57,6 @@ namespace
         explicit CastScope(const Snapshot& value) { casting=&value; }
         ~CastScope() { casting=previous; }
     };
-    struct DirectedLaunch;
-    thread_local DirectedLaunch* directedLaunch{};
-    // Let MagicCaster build the spell, power and actor cause. Only relocate its launch.
-    struct DirectedLaunch {
-        RE::SpellItem* spell;
-        const RE::NiPoint3& origin;
-        RE::Projectile::ProjectileRot angles;
-        RE::Actor& target;
-        RE::ProjectileHandle handle;
-        DirectedLaunch* previous{directedLaunch};
-        DirectedLaunch(RE::SpellItem* s,const RE::NiPoint3& p,RE::Projectile::ProjectileRot a,RE::Actor& t)
-            : spell(s),origin(p),angles(a),target(t) { directedLaunch=this; }
-        ~DirectedLaunch() { directedLaunch=previous; }
-    };
     std::unordered_set<RE::SpellItem*> authorized;
     std::unordered_set<RE::EffectSetting*> scriptContexts;
     std::unordered_map<RE::SpellItem*,std::vector<RE::SpellItem*>> children;
@@ -281,19 +267,24 @@ namespace
         static inline RE::ProjectileHandle*(*original)(RE::ProjectileHandle*,RE::Projectile::LaunchData&);
         static RE::ProjectileHandle* Launch(RE::ProjectileHandle* out,RE::Projectile::LaunchData& data) {
             auto* spell=data.spell ? data.spell->As<RE::SpellItem>() : nullptr;
+            if (ysmir::storm_call::IsBolt(spell)) {
+                Snapshot snapshot;
+                if (!ysmir::storm_call::AcceptLaunch(data,snapshot)) { *out={}; return out; }
+                std::scoped_lock lock(mutex);
+                InstanceScope scope(spell,snapshot);
+                auto* result=original(out,data);
+                if (result && *result) {
+                    ysmir::projectile_visuals::TrackStorm(*result,snapshot);
+                    ysmir::storm_call::Launched(data.shooter);
+                }
+                return result;
+            }
             if (!authorized.contains(spell) || !data.shooter ||
                 !ysmir::core::IsPlayerActor(data.shooter->As<RE::Actor>())) return original(out,data);
             const auto snapshot=casting ? *casting : ysmir::core::ScalingForSpell(spell);
             CastScope scope(snapshot);
-            auto* directed=directedLaunch && directedLaunch->spell==spell ? directedLaunch : nullptr;
-            if (directed) {
-                data.origin=directed->origin; data.angleX=directed->angles.x; data.angleZ=directed->angles.z;
-                data.desiredTarget=&directed->target; data.parentCell=directed->target.GetParentCell();
-                data.useOrigin=true; data.alwaysHit=true; data.autoAim=true;
-            }
             auto* result=original(out,data);
             if (result) ysmir::core::TrackProjectile(*result,snapshot);
-            if (directed && result) directed->handle=*result;
             return result;
         }
     };
@@ -468,6 +459,12 @@ namespace ysmir::core
     bool IsPlayerOwnedProjectile(RE::Projectile* projectile)
     {
         if (!projectile) return false;
+        {
+            std::scoped_lock lock(snapshotMutex);
+            const RE::ProjectileHandle handle{projectile};
+            const auto found=projectileContexts.find(handle.native_handle());
+            if (found!=projectileContexts.end() && found->second.handle.get().get()==projectile) return true;
+        }
         const auto shooter=projectile->GetProjectileRuntimeData().shooter.get();
         return shooter && IsPlayerActor(shooter->As<RE::Actor>());
     }
@@ -510,20 +507,9 @@ namespace ysmir::core
         if (!caster || !authorized.contains(spell)) return false;
         Apply(spell,s); CastScope scope(s); caster->CastSpellImmediate(spell,false,target,1.f,false,0.f,&actor); return true;
     }
-    RE::ProjectileHandle LaunchFeatureSpell(RE::SpellItem* spell,RE::Actor& blame,RE::Actor& target,
-        const RE::NiPoint3& origin,const RE::NiPoint3& destination,const Snapshot& s)
-    {
-        if (!progression::Enabled() || !authorized.contains(spell)) return {};
-        auto* player=RE::PlayerCharacter::GetSingleton();
-        auto* caster=player ? player->GetMagicCaster(RE::MagicSystem::CastingSource::kInstant) : nullptr;
-        if (!caster) return {};
-        std::scoped_lock lock(mutex);
-        Apply(spell,s); CastScope scope(s);
-        const auto dx=destination.x-origin.x,dy=destination.y-origin.y,dz=destination.z-origin.z;
-        const RE::Projectile::ProjectileRot angles{std::atan2(-dz,std::hypot(dx,dy)),std::atan2(dx,dy)};
-        DirectedLaunch directed(spell,origin,angles,target);
-        caster->CastSpellImmediate(spell,false,&target,1.f,false,0.f,&blame);
-        return directed.handle;
+    void PrepareFeatureSpell(RE::SpellItem* spell,const Snapshot& snapshot) {
+        if (!progression::Enabled() || !authorized.contains(spell)) return;
+        std::scoped_lock lock(mutex); Apply(spell,snapshot);
     }
     RE::TESShout* PrivateShout(RE::FormID official)
     {

@@ -24,6 +24,7 @@ __pycache__/
 *.nif
 *.dds
 *.pex
+*.pas
 *.dll
 *.zip
 *.7z

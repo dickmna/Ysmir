@@ -1,4 +1,4 @@
-# 从公开源码构建 0.7.0
+# 从公开源码构建 0.8.0
 
 本仓库可以编译原生 DLL，包含它对应的 `src/RuntimeForms.h`。重新生成 ESP 需要五个原始上游插件，见 [数据构建器](../data-builder/README.md)。本仓库不包含完整可安装的模组包。
 
@@ -23,9 +23,10 @@ DLL 和配置输出到 `build/Data/SKSE/Plugins/`。必须配合生成该版本 
 
 ## Papyrus
 
-使用自己的 Creation Kit PapyrusCompiler、游戏脚本接口和 `TESV_Papyrus_Flags.flg`。include 目录包含 `package/Source/Scripts` 和游戏的 `Data/Source/Scripts`。以下五个文件使用 `-op` 编译，输出到本地 `package/Data/Scripts`：
+使用自己的 Creation Kit PapyrusCompiler、游戏脚本接口和 `TESV_Papyrus_Flags.flg`。include 目录包含 `package/Source/Scripts` 和游戏的 `Data/Source/Scripts`。以下六个文件使用 `-op` 编译，输出到本地 `package/Data/Scripts`：
 
 - Ysmir.psc
+- YsmirStormScript.psc
 - YsmirSlowTimeScript.psc
 - YsmirVoicePushEffectScript.psc
 - YsmirWhirlwindDamageScript.psc
@@ -48,6 +49,7 @@ DLL 和配置输出到 `build/Data/SKSE/Plugins/`。必须配合生成该版本 
 python tools/regression/test_integration.py build-regression
 python tools/regression/test_gameplay.py build-regression
 python tools/regression/test_core.py build-regression
+python tools/regression/test_storm_pex.py package/Data/Scripts/YsmirStormScript.pex build-regression/papyrus-control-flow.json
 ```
 
-测试编译当前源码的完整风暴/元素适配器及成长、锥形、桥接、原生施法函数体，使用引擎服务替身；元素计时替换为可控墙钟。共 52 项场景/结果，包含九规则独立计时、动态全目标错峰、旧风暴记录迁移、天气生命周期调用、原生施法来源/归责参数、成长及快照。它不模拟真实 Skyrim 的物理、VM、抗性结算或天气画面。
+测试编译当前源码的完整风暴/元素适配器及成长、锥形、桥接、原生施法函数体，使用引擎服务替身；元素计时替换为可控墙钟。共 65 项场景/结果：17 项桥接/碰撞/开关、20 组实际风暴适配器状态、9 组元素触发、11 组成长与发射钩子、8 组编译 PEX 控制流。覆盖独立目标时序、新敌人、失效取消、旧风暴记录与 v5 引用恢复、天气调用、成长及发射参数保持。它不模拟真实 Skyrim 的物理、VM、抗性结算或天气画面。

@@ -1,8 +1,8 @@
 {
-  "version": "0.7.0",
+  "version": "0.8.0",
   "counts": {
     ".nif": 18,
-    ".pex": 5,
+    ".pex": 6,
     ".dll": 1,
     ".ini": 1,
     ".dds": 4,
@@ -101,38 +101,43 @@
     },
     {
       "path": "Scripts/Ysmir.pex",
-      "bytes": 853,
-      "sha256": "357cf26435ba6b829d6a657993858a703745a0320eb8a7ff2877558bbbbb6841"
+      "bytes": 971,
+      "sha256": "c9e43bed4184587e626cc60002141ec245c7432d9cfff3bcf8eee88b0c80b4ce"
     },
     {
       "path": "Scripts/YsmirDragonAspectSummonScript.pex",
       "bytes": 845,
-      "sha256": "14085e87a6e34fe91b58f60939b0c5938659f3f9be54e326c29a3c1954cd12b4"
+      "sha256": "4878fa0b0630caba995504aaa69c4c01dce8fdbbf34ea342bf8cee57676e0e27"
     },
     {
       "path": "Scripts/YsmirSlowTimeScript.pex",
       "bytes": 689,
-      "sha256": "f8feed61c9caed381555d0465c3b492577b8db0ec9b0a2bd071360c878c8bde4"
+      "sha256": "4854faa04c04e93b45060df1cc92485ee385fe6a85a72bf896ebbde5add89371"
+    },
+    {
+      "path": "Scripts/YsmirStormScript.pex",
+      "bytes": 1327,
+      "sha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1"
     },
     {
       "path": "Scripts/YsmirVoicePushEffectScript.pex",
       "bytes": 844,
-      "sha256": "3e05677cc07a2cf9ba62d4c77b7bde3e85c1dc46345d7bbbecec53d875d92977"
+      "sha256": "07b231818a60ce2cba9ab149323bd4253d5e395ae93e1f64a8e4ddd4bed4b631"
     },
     {
       "path": "Scripts/YsmirWhirlwindDamageScript.pex",
       "bytes": 842,
-      "sha256": "f3af7d860bc54cae1381248880d4d10c5435c2f40a5a8277d346e7fed9e82aea"
+      "sha256": "19a2889c3c6c26fed170fe704fc253252e5e625b317d2625eb7ed889b809d385"
     },
     {
       "path": "SKSE/Plugins/Ysmir.dll",
-      "bytes": 731648,
-      "sha256": "0361a8d18136d2372fe319b034c11312db3497c7cd41984c2cdddabc491cb785"
+      "bytes": 755200,
+      "sha256": "3695363393da4bcaf7e8b6a9b54e1dcf9ce90ddb2269fb67b528e7542abbfe19"
     },
     {
       "path": "SKSE/Plugins/Ysmir.ini",
-      "bytes": 2621,
-      "sha256": "12881a82071ba9891b035d7c7c5eadd869c46b4e0399d4c0ad024857efbc7154"
+      "bytes": 2864,
+      "sha256": "7f850d68407d18ff5fb12920dddebcc2689aadb2460d8371c5ec4bdc0ff345fd"
     },
     {
       "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
@@ -156,15 +161,15 @@
     },
     {
       "path": "Ysmir.esp",
-      "bytes": 110125,
-      "sha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546"
+      "bytes": 110137,
+      "sha256": "eb3a82bbf3d74e973e551a36e090b5d81b5ff7f7ee1c32ad0b00cbff3be77b68"
     }
   ],
-  "papyrusCompiled": 5,
+  "papyrusCompiled": 6,
   "communityShadersRequired": false,
   "dataComparison": {
     "passed": true,
-    "version": "0.7.0",
+    "version": "0.8.0",
     "baseline050": "ceaf25f0791f420badfc96c34630d23fe53fd2bf",
     "recordCount": 360,
     "privateRecords": 334,
@@ -284,10 +289,17 @@
     },
     "unresolvedLinks": [],
     "deterministicEspAndHeader": true,
-    "espSha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546",
+    "espSha256": "eb3a82bbf3d74e973e551a36e090b5d81b5ff7f7ee1c32ad0b00cbff3be77b68",
     "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
     "inspectionSha256": "27fe1b94f532fc7cfce6f1604d21bc431cd361e0f5e831fe35e111dc274f99f9",
-    "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay"
+    "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay",
+    "comparisonTo070": {
+      "all360RecordPayloadsAndFlagsIdentical": true,
+      "addedRecords": 0,
+      "removedRecords": 0,
+      "headerOnlyChangedSubrecord": "SNAM (version description)",
+      "stableRuntimeHeader": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf"
+    }
   },
-  "scope": "Local artifacts; not gameplay"
+  "scope": "Offline local artifacts"
 }

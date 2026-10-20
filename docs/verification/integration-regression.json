@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "totalCases": 52,
+  "totalCases": 65,
   "integration": {
     "passed": true,
     "scope": "Exact source bodies with engine-service stubs; no gameplay",
@@ -32,9 +32,9 @@
   "gameplay": {
     "storm": {
       "passed": true,
-      "cases": 17,
+      "cases": 20,
       "source": "src/storm_call.cpp",
-      "sourceSha256": "3b27f86a3e3e88b5da369d8d3f3728929ce3c1a02a89b7a350fdfb49c602e846",
+      "sourceSha256": "a2c4487a89f54ee0a26abb9f68bcb4d3769db9a1c4ed51d1cc5247f7abcf00eb",
       "boundary": "Actual adapter; fake engine services"
     },
     "elementalFury": {
@@ -47,16 +47,33 @@
   },
   "core": {
     "passed": true,
-    "cases": 9,
+    "cases": 11,
     "boundary": "Actual growth and launch function bodies; fake launch sink, not engine damage evaluation",
     "sourceBodiesSha256": {
       "Capture": "902539ac8f45332b9c1c36b29c00959d57393f70736a65e3c0667833fd59d565",
       "ScaleInteger": "4aea2fd962fd2845d3260b790413681b57777f1c043930343db45e5924a0809c",
       "ScaleFloat": "cfc39eb537b6683420b9e0ee09afb5867f3baf4effe5c884d9c83a63c6dde140",
       "ScaledItem": "428c2788ccb64655da85990afb7e527a7a516d3a5957696a44e611b48123d273",
-      "LaunchFeatureSpell": "ab238629b42adf86b9287ad08dc60848843c659ba0c17c0aa81633ee9da67081",
-      "DirectedLaunch": "99abe8a8b25feb5fd0f343330a041def42b132002ebd674b05a57ea768008ea1",
-      "LaunchHook": "acd5cce02c4c51dc31c38cb1d04ad7deabb56d9952926e498f219050cc0efcc0"
+      "PrepareFeatureSpell": "35af222f59c8a9693912b2fc9298177d6f766435a1b893a02de9b13b386bd11e",
+      "IsPlayerOwnedProjectile": "418802c9043bdb060f3fe59d1debbcff9bf82d4178abf5fd6dd92c909815857c",
+      "LaunchHook": "a9543543707e88d8dfcbf88f69f497fe66a08971860c1eaf2af358ebed008722"
     }
+  },
+  "compiledPapyrus": {
+    "passed": true,
+    "cases": 8,
+    "checks": [
+      "1 words: exact cast count, original arguments, sequential random gaps",
+      "2 words: exact cast count, original arguments, sequential random gaps",
+      "3 words: exact cast count, original arguments, sequential random gaps",
+      "Cancellation before first, second or third cast stops the remaining burst",
+      "Pause/retry does not consume a strike",
+      "Independent interleaved stacks have different gaps and no shared completion barrier",
+      "Delayed VM wakeup makes one cast and schedules a fresh gap, never a catch-up burst",
+      "Suspended local counter resumes without replay in the bytecode harness; real save VM untested"
+    ],
+    "instructionCount": 27,
+    "pexSha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1",
+    "boundary": "Compiled PEX control flow with simulated natives/time; NOT game VM or save-format validation"
   }
 }

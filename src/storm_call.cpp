@@ -8,6 +8,8 @@
 #include <optional>
 #include <random>
 #include <vector>
+#include <unordered_map>
+#include <unordered_set>
 
 namespace
 {
@@ -41,6 +43,25 @@ namespace
     RE::BGSListForm* exceptions{};
     RE::TESImageSpaceModifier* imod{};
     RE::BGSSoundDescriptorForm* sound{};
+    RE::TESBoundObject* marker{};
+    struct Target {
+        RE::ActorHandle actor;
+        RE::ObjectRefHandle source, aim;
+        double next{};
+        bool busy{};
+    };
+    struct SavedTarget { RE::FormID actor{}, source{}, aim{}; float delay{}; std::uint32_t busy{}; };
+    constexpr std::uint32_t TargetRecordID=0x54475254; // TRGT, v1
+    std::unordered_map<std::uint32_t,Target> targets;
+    std::vector<SavedTarget> restoredTargets;
+    double scanAt{};
+    void DeleteMarker(const RE::ObjectRefHandle& handle) {
+        if (auto ref=handle.get(); ref && ref->GetBaseObject()==marker) { ref->Disable(); ref->SetDelete(true); }
+    }
+    void ClearTargets(bool release=true) {
+        if (release) for (const auto& [key,target] : targets) { DeleteMarker(target.source); DeleteMarker(target.aim); }
+        targets.clear();
+    }
     bool resolved{}, loading{};
     Saved state;
     std::optional<Saved> resume;
@@ -107,50 +128,95 @@ namespace
             }
         }
     }
-    std::size_t StrikePass(RE::Actor& player) {
-        auto* world=RE::TES::GetSingleton(); if (!world) return 0;
-        const auto radius=static_cast<float>(std::min(static_cast<double>(settings.radius)*state.scaling.area,
+    float Radius() {
+        return static_cast<float>(std::min(static_cast<double>(settings.radius)*state.scaling.area,
             static_cast<double>(std::numeric_limits<float>::max())));
-        std::vector<RE::ActorHandle> targets;
-        world->ForEachReferenceInRange(&player,radius,[&](RE::TESObjectREFR* ref) {
+    }
+    bool Paused(RE::Actor& player) {
+        auto* cell=player.GetParentCell();
+        return ysmir::progression::Paused() || (settings.pauseIndoors && (!cell || cell->IsInteriorCell()));
+    }
+    bool Running(RE::Actor& player) {
+        std::uint32_t tier{};
+        auto* timer=Timer(player,tier);
+        return !loading && ysmir::storm_call::Available() && !player.IsDead() &&
+            timer && timer==identity && timer->usUniqueID==identityID && tier==state.tier;
+    }
+    Target* Find(RE::TESObjectREFR* source) {
+        if (!source) return nullptr;
+        const auto it=targets.find(source->GetHandle().native_handle());
+        return it!=targets.end() && it->second.source.get().get()==source ? &it->second : nullptr;
+    }
+    void Discover(RE::Actor& player,double now) {
+        auto* world=RE::TES::GetSingleton(); if (!world) return;
+        std::unordered_set<std::uint32_t> known;
+        for (const auto& [key,target] : targets) known.insert(target.actor.native_handle());
+        std::vector<RE::ActorHandle> added;
+        world->ForEachReferenceInRange(&player,Radius(),[&](RE::TESObjectREFR* ref) {
             auto* actor=ref ? ref->As<RE::Actor>() : nullptr;
-            if (ValidTarget(actor,player,radius)) targets.push_back(actor->GetHandle());
+            if (ValidTarget(actor,player,Radius()) && known.insert(actor->GetHandle().native_handle()).second)
+                added.push_back(actor->GetHandle());
             return RE::BSContainer::ForEachResult::kContinue;
         });
-        std::size_t strikes{};
-        for (const auto& handle : targets) if (auto target=handle.get(); ValidTarget(target.get(),player,radius)) {
-            auto origin=target->GetPosition();
-            origin.x+=Random(-settings.spread[state.tier],settings.spread[state.tier]);
-            origin.y+=Random(-settings.spread[state.tier],settings.spread[state.tier]);
-            origin.z+=settings.height;
-            auto destination=target->GetPosition(); destination.z+=settings.targetHeight;
-            auto* blame=settings.blameCaster ? &player : target.get();
-            auto projectile=ysmir::core::LaunchFeatureSpell(bolts[state.tier],*blame,*target,origin,destination,state.scaling);
-            if (projectile) { ysmir::projectile_visuals::TrackStorm(projectile,state.scaling); Feedback(player,*target); ++strikes; }
+        // Create references after traversal, never while the cell reference list is being visited.
+        for (const auto& handle : added) if (auto actor=handle.get(); ValidTarget(actor.get(),player,Radius())) {
+            auto source=actor->PlaceObjectAtMe(marker,true), aim=actor->PlaceObjectAtMe(marker,true);
+            if (!source || !aim) {
+                if (source) DeleteMarker(source->GetHandle());
+                if (aim) DeleteMarker(aim->GetHandle());
+                continue;
+            }
+            targets.emplace(source->GetHandle().native_handle(),Target{
+                handle,source->GetHandle(),aim->GetHandle(),now+Random(settings.initialMin,settings.initialMax),false});
         }
-        return strikes;
     }
-    // Each global pass reacquires ALL eligible hostiles, including new arrivals.
     void Advance(RE::Actor& player,float delta) {
-        state.cycle-=delta;
-        for (std::uint32_t i=0;i<state.count;++i) state.pending[i]-=delta;
-        // One overdue pass per frame: a hitch cannot collapse all three strikes.
-        if (state.count && state.pending[0]<=0) {
-            const auto overdue=state.pending[0];
-            StrikePass(player);
-            for (std::uint32_t i=1;i<state.count;++i) state.pending[i-1]=state.pending[i]-overdue;
-            --state.count; state.cycle-=overdue;
+        const auto now=ysmir::progression::Now();
+        for (auto it=targets.begin();it!=targets.end();) {
+            auto actor=it->second.actor.get();
+            if (!ValidTarget(actor.get(),player,Radius()) || !it->second.source.get() || !it->second.aim.get()) {
+                DeleteMarker(it->second.source); DeleteMarker(it->second.aim); it=targets.erase(it);
+            } else ++it;
+        }
+        if (Paused(player)) {
+            for (auto& [key,target] : targets) if (!target.busy) target.next+=delta;
+            scanAt=now;
             return;
         }
-        if (state.count || state.cycle>0) return;
-        const auto targets=StrikePass(player);
-        state.count=targets ? state.tier : 0;
-        float stagger{};
-        for (std::uint32_t i=0;i<state.count;++i) {
-            stagger+=Random(settings.staggerMin,settings.staggerMax);
-            state.pending[i]=stagger;
+        if (now>=scanAt) { Discover(player,now); scanAt=now+settings.retry; }
+        auto* vm=RE::BSScript::Internal::VirtualMachine::GetSingleton(); if (!vm) return;
+        for (auto& [key,target] : targets) {
+            if (target.busy || now<target.next) continue;
+            auto actor=target.actor.get(); auto source=target.source.get(), aim=target.aim.get();
+            if (!actor || !source || !aim) continue;
+            auto* blame=settings.blameCaster ? &player : actor.get();
+            // One short, saveable Papyrus stack per target burst. It owns the 1/2/3 calls and waits.
+            // No callback/barrier and no pre-queued second or third strike.
+            target.busy=true;
+            RE::BSTSmartPointer<RE::BSScript::IStackCallbackFunctor> callback;
+            auto* args=RE::MakeFunctionArguments(static_cast<RE::SpellItem*>(bolts[state.tier]),
+                source.get(),aim.get(),actor.get(),static_cast<RE::Actor*>(blame),
+                static_cast<std::int32_t>(state.tier+1),float(settings.staggerMin),float(settings.staggerMax),float(settings.retry));
+            if (!vm->DispatchStaticCall("YsmirStormScript","Burst",args,callback)) {
+                target.busy=false; target.next=now+settings.retry;
+                SKSE::log::warn("Could not dispatch YsmirStormScript.Burst");
+            }
         }
-        state.cycle=stagger+(targets ? Random(settings.minimum[state.tier],settings.maximum[state.tier]) : settings.retry);
+    }
+    void RestoreTargets() {
+        for (const auto& saved : restoredTargets) {
+            auto* actor=RE::TESForm::LookupByID<RE::Actor>(saved.actor);
+            auto* source=RE::TESForm::LookupByID<RE::TESObjectREFR>(saved.source);
+            auto* aim=RE::TESForm::LookupByID<RE::TESObjectREFR>(saved.aim);
+            if (actor && source && aim && source->GetBaseObject()==marker && aim->GetBaseObject()==marker)
+                targets.emplace(source->GetHandle().native_handle(),Target{actor->GetHandle(),source->GetHandle(),
+                    aim->GetHandle(),ysmir::progression::Now()+saved.delay,saved.busy!=0});
+            else {
+                if (source) DeleteMarker(source->GetHandle());
+                if (aim) DeleteMarker(aim->GetHandle());
+            }
+        }
+        restoredTargets.clear();
     }
     bool ValidSaved(const Saved& saved) {
         const auto& s=saved.scaling;
@@ -169,13 +235,32 @@ namespace
         if (!effect || effect!=identity || effect->usUniqueID!=identityID) return;
         auto saved=state; saved.remaining=effect->duration-effect->elapsedSeconds; saved.cycle=std::max(0.f,saved.cycle);
         for (auto& due : saved.pending) due=std::max(0.f,due);
-        if (ValidSaved(saved)) io->WriteRecord(RecordID,4,saved);
+        if (!ValidSaved(saved)) return;
+        // Retain the old fixed header for v3/v4 compatibility; global pass fields are now unused.
+        saved.cycle=0; saved.pending={}; saved.count=0;
+        io->WriteRecord(RecordID,5,saved);
+        for (const auto& [key,target] : targets) {
+            auto actor=target.actor.get(); auto source=target.source.get(), aim=target.aim.get();
+            if (!actor || !source || !aim) continue;
+            const SavedTarget item{actor->GetFormID(),source->GetFormID(),aim->GetFormID(),
+                static_cast<float>(std::max(0.0,target.next-ysmir::progression::Now())),target.busy?1u:0u};
+            io->WriteRecord(TargetRecordID,1,item);
+        }
     }
     void Load(SKSE::SerializationInterface* io) {
-        resume.reset(); std::uint32_t type{},version{},length{};
+        resume.reset(); restoredTargets.clear(); std::uint32_t type{},version{},length{};
         while (io->GetNextRecordInfo(type,version,length)) {
             Saved saved{}; bool read=false;
-            if (type==RecordID && version==4 && length==sizeof(Saved))
+            if (type==TargetRecordID && version==1 && length==sizeof(SavedTarget)) {
+                SavedTarget target{};
+                if (io->ReadRecordData(&target,length)==length && std::isfinite(target.delay) && target.delay>=0 && target.busy<=1) {
+                    // Resolve separately so a missing actor cannot orphan its surviving markers.
+                    for (auto* id : {&target.actor,&target.source,&target.aim}) {
+                        RE::FormID mapped{}; *id=io->ResolveFormID(*id,mapped) ? mapped : 0;
+                    }
+                    restoredTargets.push_back(target);
+                }
+            } else if (type==RecordID && (version==4 || version==5) && length==sizeof(Saved))
                 read=io->ReadRecordData(&saved,length)==length;
             else if (type==RecordID && version==3 && length==sizeof(Legacy)) {
                 Legacy old{}; RE::FormID caster{};
@@ -199,12 +284,67 @@ namespace
             if (read && ValidSaved(saved)) resume=saved;
         }
     }
-    void Reset() { identity=nullptr; identityID=0; state={}; resume.reset(); lastTick=ysmir::progression::Now(); }
+    void Reset(bool release=true) {
+        if (release) for (const auto& saved : restoredTargets) {
+            if (auto* source=RE::TESForm::LookupByID<RE::TESObjectREFR>(saved.source)) DeleteMarker(source->GetHandle());
+            if (auto* aim=RE::TESForm::LookupByID<RE::TESObjectREFR>(saved.aim)) DeleteMarker(aim->GetHandle());
+        }
+        ClearTargets(release); restoredTargets.clear(); identity=nullptr; identityID=0;
+        state={}; resume.reset(); scanAt=0; lastTick=ysmir::progression::Now();
+    }
 }
 
 namespace ysmir::storm_call
 {
     bool Available() { return settings.enabled && resolved && progression::Enabled(); }
+    // Normal native functions run on the VM's game-thread path (not tasklets).
+    std::int32_t Ready(RE::StaticFunctionTag*,RE::TESObjectREFR* source,RE::Actor* actor) {
+        if (loading || resume) return 0; // Restored Papyrus waits for the cosave to be rebound.
+        auto* player=RE::PlayerCharacter::GetSingleton(); auto* target=Find(source);
+        if (!player || !target || !target->busy || target->actor.get().get()!=actor ||
+            !Running(*player) || !ValidTarget(actor,*player,Radius())) return -1;
+        if (Paused(*player)) return 0;
+        auto aim=target->aim.get(); if (!aim) return -1;
+        auto from=actor->GetPosition(), to=from;
+        from.x+=Random(-settings.spread[state.tier],settings.spread[state.tier]);
+        from.y+=Random(-settings.spread[state.tier],settings.spread[state.tier]);
+        from.z+=settings.height; to.z+=settings.targetHeight;
+        source->SetPosition(from); aim->SetPosition(to);
+        core::PrepareFeatureSpell(bolts[state.tier],state.scaling);
+        return 1;
+    }
+    void Finished(RE::StaticFunctionTag*,RE::TESObjectREFR* source) {
+        if (!source) return;
+        if (auto* target=Find(source)) {
+            target->busy=false; target->next=progression::Now()+Random(settings.minimum[state.tier],settings.maximum[state.tier]);
+        } else if (resume) {
+            // A saved stack may return before the first post-load frame restores its references.
+            for (auto& target : restoredTargets) if (target.source==source->GetFormID()) {
+                target.busy=0; target.delay=Random(settings.minimum[resume->tier],settings.maximum[resume->tier]);
+            }
+        }
+    }
+    bool RegisterPapyrus(RE::BSScript::IVirtualMachine* vm) {
+        vm->RegisterFunction("StormReady","Ysmir",Ready);
+        vm->RegisterFunction("StormFinished","Ysmir",Finished);
+        return true;
+    }
+    bool IsBolt(RE::SpellItem* spell) {
+        return spell && std::find(bolts.begin(),bolts.end(),spell)!=bolts.end();
+    }
+    bool AcceptLaunch(const RE::Projectile::LaunchData& data,progression::ScalingSnapshot& snapshot) {
+        auto* player=RE::PlayerCharacter::GetSingleton(); auto* target=Find(data.shooter);
+        auto actor=target ? target->actor.get() : RE::NiPointer<RE::Actor>{};
+        auto aim=target ? target->aim.get() : RE::NiPointer<RE::TESObjectREFR>{};
+        if (!player || !target || !target->busy || !actor || !aim || !Running(*player) || Paused(*player) ||
+            data.spell!=bolts[state.tier] || data.desiredTarget!=aim.get() || !ValidTarget(actor.get(),*player,Radius())) return false;
+        snapshot=state.scaling;
+        return true;
+    }
+    void Launched(RE::TESObjectREFR* source) {
+        auto* player=RE::PlayerCharacter::GetSingleton(); auto* target=Find(source);
+        if (player && target) if (auto actor=target->actor.get()) Feedback(*player,*actor);
+    }
     bool Initialize() {
         settings.enabled=config::Bool("Storm","bEnable",true);
         settings.pauseIndoors=config::Bool("Storm","bPauseInInteriors",true);
@@ -226,6 +366,8 @@ namespace ysmir::storm_call
             settings.maximum[i]=std::max(settings.minimum[i],Setting("Storm.Timing",("fRecastDelayMaxWord"+word).c_str(),settings.maximum[i],3600));
             settings.spread[i]=Setting("Storm.Visual",("fSpreadWord"+word).c_str(),settings.spread[i]);
         }
+        const auto papyrus=SKSE::GetPapyrusInterface();
+        if (!papyrus || !papyrus->Register(RegisterPapyrus)) return false;
         auto* io=SKSE::GetSerializationInterface(); if (!io) return false;
         io->SetUniqueID(SerializationID); io->SetSaveCallback(Save); io->SetLoadCallback(Load);
         io->SetRevertCallback([](SKSE::SerializationInterface*){Reset();});
@@ -249,7 +391,8 @@ namespace ysmir::storm_call
         imod=data->LookupForm<RE::TESImageSpaceModifier>(0xA9D93,"Skyrim.esm");
         sound=data->LookupForm<RE::BGSSoundDescriptorForm>(0xEB382,"Skyrim.esm");
         auto* projectile=Lookup<RE::BGSProjectile>(forms::StormProjectile);
-        resolved=resolved && projectile;
+        marker=data->LookupForm<RE::TESBoundObject>(0xB79FF,"Skyrim.esm");
+        resolved=resolved && projectile && marker;
         projectile_visuals::SetStormBase(projectile);
     }
     void BeforeShout(RE::Actor& player) {
@@ -263,7 +406,7 @@ namespace ysmir::storm_call
     void HandleMessage(SKSE::MessagingInterface::Message* message) {
         if (!message) return;
         if (message->type==SKSE::MessagingInterface::kPreLoadGame || message->type==SKSE::MessagingInterface::kNewGame) {
-            Reset(); loading=message->type==SKSE::MessagingInterface::kPreLoadGame; projectile_visuals::Clear();
+            Reset(false); loading=message->type==SKSE::MessagingInterface::kPreLoadGame; projectile_visuals::Clear();
         }
         if (message->type==SKSE::MessagingInterface::kPostLoadGame) { loading=false; lastTick=progression::Now(); }
     }
@@ -285,13 +428,13 @@ namespace ysmir::storm_call
         }
         if (!effect) { EndWeather(*player); Reset(); return; }
         if (effect!=identity || effect->usUniqueID!=identityID) {
-            state=resume && resume->tier==tier ? *resume : Saved{tier,0,Random(settings.initialMin,settings.initialMax),{},0,core::ScalingForSpell(roots[tier])};
+            ClearTargets();
+            state=resume && resume->tier==tier ? *resume : Saved{tier,0,0,{},0,core::ScalingForSpell(roots[tier])};
             resume.reset(); identity=effect; identityID=effect->usUniqueID;
+            RestoreTargets();
         }
         state.remaining=effect->duration-effect->elapsedSeconds;
         MaintainWeather(*player,state.remaining);
-        auto* cell=player->GetParentCell();
-        if (settings.pauseIndoors && (!cell || cell->IsInteriorCell())) return;
         Advance(*player,delta);
     }
 }

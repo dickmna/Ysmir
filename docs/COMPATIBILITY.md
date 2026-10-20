@@ -22,7 +22,7 @@
 
 ## SCSO / FT
 
-对照选定的 [SCSO Pure SKSE 3.0.1 Beta 源码](https://github.com/dickmna/Storm-Call-Shout-Overhaul/blob/89739fd8b91c6b3f230ff96b8b231ee0eae2738d/beta/src/skse/main.cpp)：该分支保留引擎主雷击，复制原目标与法术补击，并修复显示边界；它不含动态寻敌。Ysmir 的“动态筛选全部敌人、每词阶批次重新扫描”属于既定附加目标，仍由小调度器完成，不能称作 SCSO 原样移植。0.7.0 纠正手工扣血及 30/60/120 默认值，采用官方 40/60/80 实际法术与 ResistShock；天气改回原版 magicSetWeatherScript。没有并行运行另一套原版引雷循环。
+对照选定的 [SCSO Pure SKSE 3.0.1 Beta 源码](https://github.com/dickmna/Storm-Call-Shout-Overhaul/blob/89739fd8b91c6b3f230ff96b8b231ee0eae2738d/beta/src/skse/main.cpp)：该分支保留引擎主雷击，复制原目标与法术补击，并修复显示边界；它不含动态寻敌。Ysmir 的动态寻敌属于既定附加目标，不能称作 SCSO 原样移植。0.8.0 按新的用户要求采用每目标独立随机节奏，SKSE 发现和复查目标，短脚本走原版 RemoteCast 单次引雷 1/2/3 次；新目标可以独立加入。原版空中/瞄准标记机制复用，既有发射钩子只做取消检查与成长跟踪，删除方向/alwaysHit/autoAim 改写。0.7.0 纠正手工扣血及 30/60/120 默认值，采用官方 40/60/80 实际法术与 ResistShock；天气改回原版 magicSetWeatherScript。没有并行运行另一套原版引雷循环。
 
 [FT 3.0.9.1](https://www.nexusmods.com/skyrimspecialedition/mods/36276?tab=description) 的 Dragon Aspect 按完整关联图导入，包括经 perk 间接到达的战斗能力、召唤法术及远古龙裔 NPC；不仅复制三个表面法术。英灵召唤另按用户明确例外保留 FT 属性并固定 150 级；龙魂觉醒的远古龙裔保留 FT 原值，不套用英灵的 150 级。
 

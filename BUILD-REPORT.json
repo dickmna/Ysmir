@@ -1,39 +1,53 @@
 {
-  "version": "0.7.0",
+  "version": "0.8.0",
   "date": "2026-10-21",
-  "baseSource": "https://github.com/dickmna/Ysmir/tree/ceaf25f0791f420badfc96c34630d23fe53fd2bf",
-  "scope": "User-authorized local refactor; complete runtime and matching source; no remote publication",
+  "rollback": {
+    "repository": "https://github.com/dickmna/Ysmir",
+    "tag": "v0.7.0",
+    "branch": "backup/ysmir-0.7.0",
+    "commit": "5bcfaaa8fcb2890b90989d322b8d312cbd7d0b6e",
+    "remoteVerified": true,
+    "preparedBeforeCodeEdits": true,
+    "newSourceBranch": "codex/ysmir-remotecast",
+    "mainChanged": false
+  },
+  "scope": "Independent per-target storm refactor; local full/source artifacts; source branch on GitHub; no game deployment",
   "build": {
     "native": "MSVC 19.44 Release x64 / C++23 / CommonLibSSE-NG 7.2.0 / MinHook; success",
-    "data": ".NET 9 / Mutagen 0.54.4; deterministic ESP/header generation",
+    "data": ".NET 9 / Mutagen 0.54.4; deterministic ESP/header/FormIDs",
     "papyrus": {
       "passed": true,
-      "count": 5,
+      "count": 6,
       "results": [
         {
           "file": "Ysmir.psc",
           "exitCode": 0,
-          "log": "Starting 1 compile threads for 1 files...\nCompiling \"Ysmir\"...\nStarting assembly of Ysmir\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+          "log": "Starting 1 compile threads for 1 files...\r\nCompiling \"Ysmir\"...\r\nStarting assembly of Ysmir\r\n0 error(s), 0 warning(s)\r\nAssembly succeeded\r\n\r\nCompilation succeeded.\r\n\r\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\r\n"
         },
         {
           "file": "YsmirDragonAspectSummonScript.psc",
           "exitCode": 0,
-          "log": "Starting 1 compile threads for 1 files...\nCompiling \"YsmirDragonAspectSummonScript\"...\nStarting assembly of YsmirDragonAspectSummonScript\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+          "log": "Starting 1 compile threads for 1 files...\r\nCompiling \"YsmirDragonAspectSummonScript\"...\r\nStarting assembly of YsmirDragonAspectSummonScript\r\n0 error(s), 0 warning(s)\r\nAssembly succeeded\r\n\r\nCompilation succeeded.\r\n\r\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\r\n"
         },
         {
           "file": "YsmirSlowTimeScript.psc",
           "exitCode": 0,
-          "log": "Starting 1 compile threads for 1 files...\nCompiling \"YsmirSlowTimeScript\"...\nStarting assembly of YsmirSlowTimeScript\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+          "log": "Starting 1 compile threads for 1 files...\r\nCompiling \"YsmirSlowTimeScript\"...\r\nStarting assembly of YsmirSlowTimeScript\r\n0 error(s), 0 warning(s)\r\nAssembly succeeded\r\n\r\nCompilation succeeded.\r\n\r\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\r\n"
+        },
+        {
+          "file": "YsmirStormScript.psc",
+          "exitCode": 0,
+          "log": "Starting 1 compile threads for 1 files...\r\nCompiling \"YsmirStormScript\"...\r\nStarting assembly of YsmirStormScript\r\n0 error(s), 0 warning(s)\r\nAssembly succeeded\r\n\r\nCompilation succeeded.\r\n\r\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\r\n"
         },
         {
           "file": "YsmirVoicePushEffectScript.psc",
           "exitCode": 0,
-          "log": "Starting 1 compile threads for 1 files...\nCompiling \"YsmirVoicePushEffectScript\"...\nStarting assembly of YsmirVoicePushEffectScript\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+          "log": "Starting 1 compile threads for 1 files...\r\nCompiling \"YsmirVoicePushEffectScript\"...\r\nStarting assembly of YsmirVoicePushEffectScript\r\n0 error(s), 0 warning(s)\r\nAssembly succeeded\r\n\r\nCompilation succeeded.\r\n\r\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\r\n"
         },
         {
           "file": "YsmirWhirlwindDamageScript.psc",
           "exitCode": 0,
-          "log": "Starting 1 compile threads for 1 files...\nCompiling \"YsmirWhirlwindDamageScript\"...\nStarting assembly of YsmirWhirlwindDamageScript\n0 error(s), 0 warning(s)\nAssembly succeeded\n\nCompilation succeeded.\n\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\n"
+          "log": "Starting 1 compile threads for 1 files...\r\nCompiling \"YsmirWhirlwindDamageScript\"...\r\nStarting assembly of YsmirWhirlwindDamageScript\r\n0 error(s), 0 warning(s)\r\nAssembly succeeded\r\n\r\nCompilation succeeded.\r\n\r\nBatch compile of 1 files finished. 1 succeeded, 0 failed.\r\n"
         }
       ]
     },
@@ -300,7 +314,7 @@
     "gameplayTestsRun": false,
     "deployedToGame": false,
     "addressLibraryFileRechecked": false,
-    "verificationScope": "Actual source adapters/functions with engine stubs; record payloads and Mutagen overlays; compiled metadata and hashes"
+    "verificationScope": "Actual adapters/function bodies with fake engine services, actual PEX with fake native/time, ESP overlays and payload comparison, PE/RTTI metadata"
   },
   "featureCoverage050": [
     {
@@ -375,18 +389,18 @@
     },
     {
       "feature": "风暴全目标错峰",
-      "implementation": "每批动态识别全部敌人并在发射前复查；按词阶一/二/三批，0.12–0.35 秒错峰；原搜索、起始/轮次节奏配置保留",
-      "offlineEvidence": "17 项风暴场景/边界回归"
+      "implementation": "每目标独立初始/下一轮等待，短脚本按词阶 RemoteCast 1/2/3 次，每个间隔独立随机；动态纳入新敌人，每发前和实际发射均复查。",
+      "offlineEvidence": "20 组真实风暴适配器状态 + 8 组实际编译 PEX 控制流；游戏 VM 时序未测"
     },
     {
       "feature": "风暴引擎伤害和归责",
-      "implementation": "真实法术基础 40/60/80，ResistShock；MagicCaster 处理 power、归责与效果；保留 bBlameCaster，不再直接扣血",
-      "offlineEvidence": "实际 ESP 与真实调用函数体参数检查"
+      "implementation": "官方实际法术 40/60/80、ResistShock；原版 RemoteCast 来源/归责/瞄准参数；保留 bBlameCaster；不手改 LaunchData 或直接扣血。",
+      "offlineEvidence": "360 记录原样保留，PEX 参数与 C++ 发射参数保持检查；实际结算待实测"
     },
     {
       "feature": "风暴天气、时长、存档",
-      "implementation": "原版天气脚本和例外表、引擎效果持续；室内暂停攻击、时间继续、无补击积压；重吼和结束清理；读取旧 STRM v3",
-      "offlineEvidence": "引擎服务替身中的生命周期与 v3/v4 回归"
+      "implementation": "原版天气与引擎持续效果保留，室内暂停攻击但时长继续；STRM v5/每目标 TRGT，兼容读取 v3/v4，失效定位物清理。",
+      "offlineEvidence": "状态/记录往返、禁用及缺失目标清理；真实 VM/存档联合恢复未测"
     },
     {
       "feature": "碰撞与视觉",
@@ -396,7 +410,7 @@
     {
       "feature": "雷击外观修复",
       "implementation": "保留高度/散布、声音、屏幕反馈、显示边界和 AlwaysDraw 配置",
-      "offlineEvidence": "参数检查与原视觉模块保留；画面待实测"
+      "offlineEvidence": "原视觉模块与配置未改；发射参数保持；真实画面待实测"
     },
     {
       "feature": "True Cone 控制与 API",
@@ -414,9 +428,24 @@
       "offlineEvidence": "记录类型/范围检查"
     }
   ],
+  "unchangedSourceComparedTo070": [
+    "src/progression.cpp",
+    "src/progression.h",
+    "src/elemental_fury.cpp",
+    "src/true_cone.cpp",
+    "src/projectile_visuals.cpp",
+    "src/RuntimeForms.h",
+    "src/RuntimeCompatibility.h",
+    "data-builder/FormIds.json",
+    "package/Source/Scripts/YsmirSlowTimeScript.psc",
+    "package/Source/Scripts/YsmirVoicePushEffectScript.psc",
+    "package/Source/Scripts/YsmirWhirlwindDamageScript.psc",
+    "package/Source/Scripts/YsmirDragonAspectSummonScript.psc"
+  ],
+  "allIniValuesAndSectionsMatch070": true,
   "records": {
     "passed": true,
-    "version": "0.7.0",
+    "version": "0.8.0",
     "baseline050": "ceaf25f0791f420badfc96c34630d23fe53fd2bf",
     "recordCount": 360,
     "privateRecords": 334,
@@ -536,20 +565,27 @@
     },
     "unresolvedLinks": [],
     "deterministicEspAndHeader": true,
-    "espSha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546",
+    "espSha256": "eb3a82bbf3d74e973e551a36e090b5d81b5ff7f7ee1c32ad0b00cbff3be77b68",
     "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
     "inspectionSha256": "27fe1b94f532fc7cfce6f1604d21bc431cd361e0f5e831fe35e111dc274f99f9",
-    "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay"
+    "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay",
+    "comparisonTo070": {
+      "all360RecordPayloadsAndFlagsIdentical": true,
+      "addedRecords": 0,
+      "removedRecords": 0,
+      "headerOnlyChangedSubrecord": "SNAM (version description)",
+      "stableRuntimeHeader": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf"
+    }
   },
   "native": {
     "passed": true,
     "runtime": "1.7.104.0",
     "minimumSKSE": "2.3.1",
     "addressLibraryEncoding": 5,
-    "pluginVersion": "0.7.0",
+    "pluginVersion": "0.8.0",
     "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-    "dllSha256": "0361a8d18136d2372fe319b034c11312db3497c7cd41984c2cdddabc491cb785",
-    "dllSize": 731648,
+    "dllSha256": "3695363393da4bcaf7e8b6a9b54e1dcf9ce90ddb2269fb67b528e7542abbfe19",
+    "dllSize": 755200,
     "exports": [
       "SKSEPlugin_Load",
       "SKSEPlugin_Version"
@@ -755,7 +791,7 @@
   },
   "regression": {
     "passed": true,
-    "totalCases": 52,
+    "totalCases": 65,
     "integration": {
       "passed": true,
       "scope": "Exact source bodies with engine-service stubs; no gameplay",
@@ -787,9 +823,9 @@
     "gameplay": {
       "storm": {
         "passed": true,
-        "cases": 17,
+        "cases": 20,
         "source": "src/storm_call.cpp",
-        "sourceSha256": "3b27f86a3e3e88b5da369d8d3f3728929ce3c1a02a89b7a350fdfb49c602e846",
+        "sourceSha256": "a2c4487a89f54ee0a26abb9f68bcb4d3769db9a1c4ed51d1cc5247f7abcf00eb",
         "boundary": "Actual adapter; fake engine services"
       },
       "elementalFury": {
@@ -802,45 +838,39 @@
     },
     "core": {
       "passed": true,
-      "cases": 9,
+      "cases": 11,
       "boundary": "Actual growth and launch function bodies; fake launch sink, not engine damage evaluation",
       "sourceBodiesSha256": {
         "Capture": "902539ac8f45332b9c1c36b29c00959d57393f70736a65e3c0667833fd59d565",
         "ScaleInteger": "4aea2fd962fd2845d3260b790413681b57777f1c043930343db45e5924a0809c",
         "ScaleFloat": "cfc39eb537b6683420b9e0ee09afb5867f3baf4effe5c884d9c83a63c6dde140",
         "ScaledItem": "428c2788ccb64655da85990afb7e527a7a516d3a5957696a44e611b48123d273",
-        "LaunchFeatureSpell": "ab238629b42adf86b9287ad08dc60848843c659ba0c17c0aa81633ee9da67081",
-        "DirectedLaunch": "99abe8a8b25feb5fd0f343330a041def42b132002ebd674b05a57ea768008ea1",
-        "LaunchHook": "acd5cce02c4c51dc31c38cb1d04ad7deabb56d9952926e498f219050cc0efcc0"
+        "PrepareFeatureSpell": "35af222f59c8a9693912b2fc9298177d6f766435a1b893a02de9b13b386bd11e",
+        "IsPlayerOwnedProjectile": "418802c9043bdb060f3fe59d1debbcff9bf82d4178abf5fd6dd92c909815857c",
+        "LaunchHook": "a9543543707e88d8dfcbf88f69f497fe66a08971860c1eaf2af358ebed008722"
       }
+    },
+    "compiledPapyrus": {
+      "passed": true,
+      "cases": 8,
+      "checks": [
+        "1 words: exact cast count, original arguments, sequential random gaps",
+        "2 words: exact cast count, original arguments, sequential random gaps",
+        "3 words: exact cast count, original arguments, sequential random gaps",
+        "Cancellation before first, second or third cast stops the remaining burst",
+        "Pause/retry does not consume a strike",
+        "Independent interleaved stacks have different gaps and no shared completion barrier",
+        "Delayed VM wakeup makes one cast and schedules a fresh gap, never a catch-up burst",
+        "Suspended local counter resumes without replay in the bytecode harness; real save VM untested"
+      ],
+      "instructionCount": 27,
+      "pexSha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1",
+      "boundary": "Compiled PEX control flow with simulated natives/time; NOT game VM or save-format validation"
     }
-  },
-  "sourceSize": {
-    "scope": "Seven project cpp files, including comments and blank lines; not performance",
-    "baseline060": {
-      "elemental_fury.cpp": 88,
-      "main.cpp": 152,
-      "progression.cpp": 114,
-      "projectile_visuals.cpp": 227,
-      "shout_dispatch.cpp": 525,
-      "storm_call.cpp": 942,
-      "true_cone.cpp": 18
-    },
-    "current070": {
-      "elemental_fury.cpp": 85,
-      "main.cpp": 153,
-      "progression.cpp": 114,
-      "projectile_visuals.cpp": 227,
-      "shout_dispatch.cpp": 563,
-      "storm_call.cpp": 297,
-      "true_cone.cpp": 28
-    },
-    "totalBefore": 2066,
-    "totalAfter": 1467
   },
   "payloadCounts": {
     ".nif": 18,
-    ".pex": 5,
+    ".pex": 6,
     ".dll": 1,
     ".ini": 1,
     ".dds": 4,
@@ -939,38 +969,43 @@
     },
     {
       "path": "Scripts/Ysmir.pex",
-      "bytes": 853,
-      "sha256": "357cf26435ba6b829d6a657993858a703745a0320eb8a7ff2877558bbbbb6841"
+      "bytes": 971,
+      "sha256": "c9e43bed4184587e626cc60002141ec245c7432d9cfff3bcf8eee88b0c80b4ce"
     },
     {
       "path": "Scripts/YsmirDragonAspectSummonScript.pex",
       "bytes": 845,
-      "sha256": "14085e87a6e34fe91b58f60939b0c5938659f3f9be54e326c29a3c1954cd12b4"
+      "sha256": "4878fa0b0630caba995504aaa69c4c01dce8fdbbf34ea342bf8cee57676e0e27"
     },
     {
       "path": "Scripts/YsmirSlowTimeScript.pex",
       "bytes": 689,
-      "sha256": "f8feed61c9caed381555d0465c3b492577b8db0ec9b0a2bd071360c878c8bde4"
+      "sha256": "4854faa04c04e93b45060df1cc92485ee385fe6a85a72bf896ebbde5add89371"
+    },
+    {
+      "path": "Scripts/YsmirStormScript.pex",
+      "bytes": 1327,
+      "sha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1"
     },
     {
       "path": "Scripts/YsmirVoicePushEffectScript.pex",
       "bytes": 844,
-      "sha256": "3e05677cc07a2cf9ba62d4c77b7bde3e85c1dc46345d7bbbecec53d875d92977"
+      "sha256": "07b231818a60ce2cba9ab149323bd4253d5e395ae93e1f64a8e4ddd4bed4b631"
     },
     {
       "path": "Scripts/YsmirWhirlwindDamageScript.pex",
       "bytes": 842,
-      "sha256": "f3af7d860bc54cae1381248880d4d10c5435c2f40a5a8277d346e7fed9e82aea"
+      "sha256": "19a2889c3c6c26fed170fe704fc253252e5e625b317d2625eb7ed889b809d385"
     },
     {
       "path": "SKSE/Plugins/Ysmir.dll",
-      "bytes": 731648,
-      "sha256": "0361a8d18136d2372fe319b034c11312db3497c7cd41984c2cdddabc491cb785"
+      "bytes": 755200,
+      "sha256": "3695363393da4bcaf7e8b6a9b54e1dcf9ce90ddb2269fb67b528e7542abbfe19"
     },
     {
       "path": "SKSE/Plugins/Ysmir.ini",
-      "bytes": 2621,
-      "sha256": "12881a82071ba9891b035d7c7c5eadd869c46b4e0399d4c0ad024857efbc7154"
+      "bytes": 2864,
+      "sha256": "7f850d68407d18ff5fb12920dddebcc2689aadb2460d8371c5ec4bdc0ff345fd"
     },
     {
       "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
@@ -994,8 +1029,8 @@
     },
     {
       "path": "Ysmir.esp",
-      "bytes": 110125,
-      "sha256": "5d88e1c5bc8572f63ab883d4c45d12a8ece5b1afa681cd17b0bce2e5d3937546"
+      "bytes": 110137,
+      "sha256": "eb3a82bbf3d74e973e551a36e090b5d81b5ff7f7ee1c32ad0b00cbff3be77b68"
     }
   ],
   "assets": [
@@ -1111,17 +1146,20 @@
     }
   ],
   "communityShadersRequired": false,
-  "old060OutputsUnmodified": {
-    "Ysmir-0.6.0-Full.zip": "2fd5b5167b0b7a85cfaf381fb79cbd8d250291ca123dac6a4b904300c05a93da",
-    "Ysmir-0.6.0-Source.zip": "e2a2a9a356b93c044ae78410c36f769ebe5d94197ebe3fa66735356f6c8acc3f",
-    "Ysmir-0.6.0-功能与重构说明.md": "d82fb08089a48e2d0381e97882481ca41be4e4e7775bf5c2c7f318b004b98fb0",
-    "Ysmir-0.6.0-验证结果.json": "0409f71d828a9e680a7150da1296b9019759adaebbf74be6c31e816abaf727b3"
+  "old070OutputsUnmodified": {
+    "Ysmir-0.7.0-Full.zip": "e9930a991afc91f70c63b3cdfa0202b2873b596c7eb0b77d311aec001c28253d",
+    "Ysmir-0.7.0-Source.zip": "8761a7bf1daae3947c21970556e61d1c914a0dffcb5bbf54999e4445edcb7e42",
+    "Ysmir-0.7.0-功能与重构说明.md": "f58a0032b3261009cf4704d3f552ececa75aca34423dccda8986ee2366c31669",
+    "Ysmir-0.7.0-验证结果.json": "6c6ec756dabfdb8592eb86f6035268de51511cb56f23d57e1556dc7755446494"
   },
   "limitations": [
-    "No in-game physics, actual damage/resistance/absorption, weather handoff or performance test",
-    "Real old-save migration and other-DLL combinations still need gameplay checks",
-    "Ordinary effect snapshots and elemental cooldowns rebuild after load; storm has separate serialization",
-    "Shared shader materials can display one density at a time; authored NIF animation may not align exactly with collision",
-    "Only Steam 1.7.104.0 and SKSE64 2.3.1 PE/metadata checked; external Address Library file not rechecked"
+    "Not game-tested: RemoteCast emission/impact, resistance/absorption/blame, rendering, weather handoff or performance",
+    "Real Papyrus waiting-stack persistence plus SKSE TRGT restoration requires in-game save/load validation",
+    "Utility.Wait can stretch under VM load; timing is not hard real-time; no catch-up queue",
+    "Cancellation stops future launches; already emitted projectiles follow the engine",
+    "Each valid target retains two native markers and at most one active burst stack; no artificial target cap",
+    "Ordinary effect snapshots and elemental cooldowns retain previous load-rebuild behavior",
+    "Shared shader material density and authored NIF/collision alignment limits remain unchanged",
+    "Only Steam 1.7.104.0 / SKSE64 2.3.1 checked; Address Library binary not rechecked"
   ]
 }

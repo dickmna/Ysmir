@@ -3,10 +3,10 @@
   "runtime": "1.7.104.0",
   "minimumSKSE": "2.3.1",
   "addressLibraryEncoding": 5,
-  "pluginVersion": "0.7.0",
+  "pluginVersion": "0.8.0",
   "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-  "dllSha256": "0361a8d18136d2372fe319b034c11312db3497c7cd41984c2cdddabc491cb785",
-  "dllSize": 731648,
+  "dllSha256": "3695363393da4bcaf7e8b6a9b54e1dcf9ce90ddb2269fb67b528e7542abbfe19",
+  "dllSize": 755200,
   "exports": [
     "SKSEPlugin_Load",
     "SKSEPlugin_Version"

@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/dickmna/Ysmir",
+  "tag": "v0.7.0",
+  "branch": "backup/ysmir-0.7.0",
+  "commit": "5bcfaaa8fcb2890b90989d322b8d312cbd7d0b6e",
+  "remoteVerified": true,
+  "preparedBeforeCodeEdits": true,
+  "newSourceBranch": "codex/ysmir-remotecast",
+  "mainChanged": false
+}

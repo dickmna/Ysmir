@@ -8,6 +8,9 @@ namespace ysmir::storm_call
 {
 	bool Initialize();
 	bool Available();
+	bool IsBolt(RE::SpellItem* spell);
+	bool AcceptLaunch(const RE::Projectile::LaunchData& data, progression::ScalingSnapshot& snapshot);
+	void Launched(RE::TESObjectREFR* source);
 	void Configure();
 	void BeforeShout(RE::Actor& player);
 	void HandleMessage(SKSE::MessagingInterface::Message* a_message);

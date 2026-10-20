@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "cases": 8,
+  "checks": [
+    "1 words: exact cast count, original arguments, sequential random gaps",
+    "2 words: exact cast count, original arguments, sequential random gaps",
+    "3 words: exact cast count, original arguments, sequential random gaps",
+    "Cancellation before first, second or third cast stops the remaining burst",
+    "Pause/retry does not consume a strike",
+    "Independent interleaved stacks have different gaps and no shared completion barrier",
+    "Delayed VM wakeup makes one cast and schedules a fresh gap, never a catch-up burst",
+    "Suspended local counter resumes without replay in the bytecode harness; real save VM untested"
+  ],
+  "instructionCount": 27,
+  "pexSha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1",
+  "boundary": "Compiled PEX control flow with simulated natives/time; NOT game VM or save-format validation"
+}

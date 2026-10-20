@@ -71,18 +71,18 @@
   },
   {
     "feature": "风暴全目标错峰",
-    "implementation": "每批动态识别全部敌人并在发射前复查；按词阶一/二/三批，0.12–0.35 秒错峰；原搜索、起始/轮次节奏配置保留",
-    "offlineEvidence": "17 项风暴场景/边界回归"
+    "implementation": "每目标独立初始/下一轮等待，短脚本按词阶 RemoteCast 1/2/3 次，每个间隔独立随机；动态纳入新敌人，每发前和实际发射均复查。",
+    "offlineEvidence": "20 组真实风暴适配器状态 + 8 组实际编译 PEX 控制流；游戏 VM 时序未测"
   },
   {
     "feature": "风暴引擎伤害和归责",
-    "implementation": "真实法术基础 40/60/80，ResistShock；MagicCaster 处理 power、归责与效果；保留 bBlameCaster，不再直接扣血",
-    "offlineEvidence": "实际 ESP 与真实调用函数体参数检查"
+    "implementation": "官方实际法术 40/60/80、ResistShock；原版 RemoteCast 来源/归责/瞄准参数；保留 bBlameCaster；不手改 LaunchData 或直接扣血。",
+    "offlineEvidence": "360 记录原样保留，PEX 参数与 C++ 发射参数保持检查；实际结算待实测"
   },
   {
     "feature": "风暴天气、时长、存档",
-    "implementation": "原版天气脚本和例外表、引擎效果持续；室内暂停攻击、时间继续、无补击积压；重吼和结束清理；读取旧 STRM v3",
-    "offlineEvidence": "引擎服务替身中的生命周期与 v3/v4 回归"
+    "implementation": "原版天气与引擎持续效果保留，室内暂停攻击但时长继续；STRM v5/每目标 TRGT，兼容读取 v3/v4，失效定位物清理。",
+    "offlineEvidence": "状态/记录往返、禁用及缺失目标清理；真实 VM/存档联合恢复未测"
   },
   {
     "feature": "碰撞与视觉",
@@ -92,7 +92,7 @@
   {
     "feature": "雷击外观修复",
     "implementation": "保留高度/散布、声音、屏幕反馈、显示边界和 AlwaysDraw 配置",
-    "offlineEvidence": "参数检查与原视觉模块保留；画面待实测"
+    "offlineEvidence": "原视觉模块与配置未改；发射参数保持；真实画面待实测"
   },
   {
     "feature": "True Cone 控制与 API",

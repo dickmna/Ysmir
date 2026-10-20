@@ -1,4 +1,4 @@
-# Ysmir 0.7.0 数据构建器
+# Ysmir 0.8.0 数据构建器
 
 .NET 9 / Mutagen.Bethesda.Skyrim 0.54.4。三个位置参数依次为官方游戏 Data 目录、上游输入目录、输出目录。
 
