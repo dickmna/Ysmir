@@ -27,9 +27,7 @@ namespace ysmir::true_cone
 {
     void Initialize();
     bool PatchVisuals();
-    struct Geometry { float radius{}; };
-    Geometry Capture(RE::ConeProjectile* projectile);
-    void ApplyCollision(RE::ConeProjectile* projectile, const Geometry& geometry, const progression::ScalingSnapshot& snapshot);
+    float VisualScale(RE::ConeProjectile* projectile, const progression::ScalingSnapshot& snapshot);
 }
 
 namespace ysmir::projectile_visuals

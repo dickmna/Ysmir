@@ -4,7 +4,7 @@ using Mutagen.Bethesda.Plugins;
 
 internal static class SourceRules
 {
-    internal const string Version = "0.8.0";
+    internal const string Version = "0.9.0";
     internal const string Forceful = "ForcefulTongue.esp";
     internal const string Elemental = "Elemental Fury for MCO ADXP.esp";
     internal const string ElementalPatch = "Elemental Fury Shout Overhaul - Forceful Tongue Patch.esp";

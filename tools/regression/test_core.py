@@ -24,6 +24,7 @@ def body(path, signature):
     raise ValueError(signature)
 
 capture = body("src/progression.cpp", "ScalingSnapshot Capture()")
+visual_density = body("src/progression.cpp", "float VisualDensity(")
 integer = body("src/shout_dispatch.cpp", "template<class T> T ScaleInteger(")
 floating = body("src/shout_dispatch.cpp", "float ScaleFloat(")
 scaled = body("src/shout_dispatch.cpp", "RE::Effect::EffectItem ScaledItem(")
@@ -165,7 +166,7 @@ delete RE::Projectile::observed;
 std::cout<<"{\"passed\":true,\"cases\":"<<cases<<"}";
 }
 """
-source = (prefix + "\nnamespace ysmir::progression {\n" + capture + "\n}\n" +
+source = (prefix + "\nnamespace ysmir::progression {\n" + visual_density + "\n" + capture + "\n}\n" +
           integer + "\n" + floating + "\n" + scaled +
           "\nstruct LaunchHook {\nstatic inline decltype(&RE::Projectile::Launch) original;\n" +
           launch_hook + "\n};\nnamespace ysmir::core {\n" + prepare + "\n" + owned + "\n}\n" + main)
@@ -184,7 +185,7 @@ run.check_returncode()
 result = json.loads(run.stdout)
 result["boundary"] = "Actual growth and launch function bodies; fake launch sink, not engine damage evaluation"
 result["sourceBodiesSha256"] = {key: hashlib.sha256(value.encode()).hexdigest() for key, value in
-                               (("Capture",capture),("ScaleInteger",integer),("ScaleFloat",floating),
+                               (("Capture",capture),("VisualDensity",visual_density),("ScaleInteger",integer),("ScaleFloat",floating),
                                 ("ScaledItem",scaled),("PrepareFeatureSpell",prepare),("IsPlayerOwnedProjectile",owned),("LaunchHook",launch_hook))}
 (OUT / "results.json").write_text(json.dumps(result, indent=2)+"\n", "utf-8")
 print(json.dumps(result, indent=2))

@@ -178,7 +178,7 @@ internal sealed class SelectedBuild : IDisposable
     {
         Directory.CreateDirectory(destination);
         mod.ModHeader.Author="dickmna; selected FT assets by Delta";
-        mod.ModHeader.Description="Ysmir 0.8.0: independent target bursts using vanilla RemoteCast, player progression and engine weather.";
+        mod.ModHeader.Description="Ysmir 0.9.0: native cone collision with smooth distance-based visuals, player progression and per-target RemoteCast storms.";
         foreach(var rule in SourceRules.Shouts) {
             var key=rule.Key;
             var original=(IShoutGetter)official[key];

@@ -1,4 +1,4 @@
-# 0.8.0 实现与保留边界
+# 0.9.0 实现与保留边界
 
 ## 公共成长
 
@@ -34,11 +34,26 @@ StormReady 每次检查有效风暴、目标敌友/存活/范围状态，按当�
 
 ## 锥形和视觉
 
-只移除角度加宽、最低角度和切线/视觉角度补偿。Soul Tear 的数据 ConeSpread 为上游 10°。True Cone 的 Enabled、PatchRuntimeCollision、PatchVisuals 三个独立控制保留；DistanceVisualScale 属于已删除的角度补偿。
+保留记录与引擎给出的原始锥角和初始半径，Soul Tear 的 ConeSpread 仍为上游 10°。删除 initialCollisionSphereRadius 写入、Geometry 半径缓存和 Cone Update 前的碰撞处理。原生更新继续负责 R(d)=r+d*t 的碰撞扩张、bhk/Havok 形状与单位转换。这里的 R 是移动碰撞球的半径，不是一个静止圆锥的精确命中边界。
 
-原始半径从 PROJ 读取，适配器仅写 initialCollisionSphereRadius。引擎计算锥体扩展、Havok 实际形状和单位转换；不直接把 bhk 包装对象当作 hkpSphereShape 写入。距离控制速度/射程，碰撞控制初始半径，视觉控制根节点均匀缩放。
+沿用现有视觉更新钩子，只读原生 distanceMoved、initialCollisionSphereRadius 和 coneAngleTangent，不猜测记录角度的半角/全角。K 为本次施放的距离倍率，默认 1+0.05S，继续同时作用于速度和射程。视觉使用：
 
-模型空间中心锚点保证缩放围绕原中心，无额外 Z 抬高或子节点二次缩放。浓度独立处理普通 Alpha 和加法材质；共享材质使用共同基线，逐几何节点检查材质替换。共享材质只能同时显示一组浓度，这一边界不影响各实例的数值。
+```text
+Q(d) = (r + d*t) / (r + (d/K)*t)
+u = clamp(d/L, 0, 1)
+w = u*u*(3 - 2*u)
+V(d) = 1 + (C*Q(d) - 1)*w
+```
+
+C 为基础视觉参考，fBaseVisualScale 默认 4；L 为实际移动的过渡距离，fVisualTransitionDistance 默认 256 引擎单位，两项至少取 1。不是按时间、最大射程或帧数计时。d=0 时严格为 1；Q 的分母为零时取 1，非有限/无效运行数据返回原始尺寸。r=0、t>0 时平滑权重仍保证出生连续。每帧从原始/引擎动画更新后的基线计算，不累乘上一次结果；每个投射物沿用自己的施放快照。
+
+零龙魂时 Q=1，默认在 d=0/128/256 时依次为 1/2.5/4 倍。龙魂距离成长使目标 C*Q(d) 随传播继续变化，4 倍不是龙魂上限。smoothstep 消除过渡权重在两端的斜率突变；有距离成长时，过渡结束后目标自身仍可继续平滑增长。d/K 假设原模型传播进度与成长前对应，因此这是几何依据的视觉近似，不是逐模型边缘拟合。
+
+模型空间锚点复用原实现：T'=C_parent-R*(scale*anchor)。它固定投射物参考点对应的模型位置，不额外加 Z、不单独放大子节点、不替换 NIF。模型上下边缘仍会随整体放大自然扩张；也不保证整个喷射期间嘴边粒子始终保持原尺寸。
+
+浓度保留原 Alpha/加法材质公式和排除列表，改为以当前平滑后的 V 计算 1+(fTrueConeDensityAt4x-1)*(V-1)/3；出生补偿为 1，默认 V=4 时为 2.2。共享材质仍共用一个基线，材质替换和清理恢复保留；共享材质只能同时显示一组浓度。
+
+TrueCone.Enabled、PatchVisuals 和 DragonSouls.bScaleVFX 任一关闭，均不应用锥形尺寸/浓度补偿。PatchRuntimeCollision 已删除并忽略旧键；非锥形碰撞仍使用 bScaleCollisionRadius/fCollisionRadiusPerSoul。fVFXPerSoul 继续控制非锥形视觉，锥形改由距离倍率和上述几何补偿驱动，不再叠乘它。非锥形/风暴的原视觉倍率、显示边界与 AlwaysDraw 路径保留。
 
 ## 数据与状态
 

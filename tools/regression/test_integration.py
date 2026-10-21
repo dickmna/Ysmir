@@ -37,7 +37,8 @@ end_body = function_body("src/shout_dispatch.cpp", "void EndEffect(")
 finish_body = function_body("src/shout_dispatch.cpp", "static void Finish(")
 visuals_source = (ROOT / "src/projectile_visuals.cpp").read_text()
 assert "true_cone::PatchVisuals" in visuals_source
-assert "true_cone::VisualScale" not in visuals_source
+assert "true_cone::VisualScale" in visuals_source
+assert "ApplyCollision" not in visuals_source
 prefix = r"""
 #include <algorithm>
 #include <array>
@@ -58,7 +59,7 @@ prefix = r"""
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-namespace fixture { bool coneEnabled=true,coneCollision=true,coneVisuals=true,globallyEnabled=true; double now=0; int casts=0; float lastMagnitude=0; }
+namespace fixture { bool coneEnabled=true,scaleVFX=true,coneVisuals=true,globallyEnabled=true; double now=0; int casts=0; float lastMagnitude=0; }
 namespace RE {
 struct StaticFunctionTag {};
 struct SpellItem { template<class T> T* As() { return static_cast<T*>(this); } };
@@ -94,10 +95,11 @@ struct ConeProjectile {
 namespace ysmir::config {
 bool Bool(const char*,const char* key,bool fallback) {
     if(std::string(key)=="Enabled")return fixture::coneEnabled;
-    if(std::string(key)=="PatchRuntimeCollision")return fixture::coneCollision;
+    if(std::string(key)=="bScaleVFX")return fixture::scaleVFX;
     if(std::string(key)=="PatchVisuals")return fixture::coneVisuals;
     return fallback;
 }
+float Float(const char*,const char*,float fallback) { return fallback; }
 }
 namespace ysmir::progression {
 struct ScalingSnapshot {
@@ -107,7 +109,6 @@ struct ScalingSnapshot {
 bool Enabled() { return fixture::globallyEnabled; }
 double Now() { return fixture::now; }
 }
-namespace ysmir::true_cone { struct Geometry { float radius{}; }; }
 namespace ysmir::core {
 bool IsPlayerActor(RE::Actor* p) { return p==&RE::player; }
 bool CastFeatureSpell(RE::SpellItem*,RE::Actor&,RE::Actor*,const progression::ScalingSnapshot& s) { ++fixture::casts; fixture::lastMagnitude=s.magnitude; return true; }
@@ -152,25 +153,23 @@ int main() {
     RE::ConeProjectile p;
     p.cone.collisionShape=&declaredPointee;
     p.cone.coneAngleTangent=.005f; // Deliberately narrower than the old 15 degree floor.
-    p.cone.initialCollisionSphereRadius=96; // Restored runtime value is not the baseline.
-    auto geometry=true_cone::Capture(&p);
-    true_cone::ApplyCollision(&p,geometry,s);
-    assert(geometry.radius==16);
-    assert(p.cone.initialCollisionSphereRadius==32);
+    p.cone.initialCollisionSphereRadius=96; // Read native state without taking ownership of it.
+    true_cone::Initialize();
+    assert(true_cone::VisualScale(&p,s)==1);
+    p.runtime.distanceMoved=256;
+    const auto grown=true_cone::VisualScale(&p,s);
+    assert(grown>4 && p.cone.initialCollisionSphereRadius==96);
     assert(p.cone.coneAngleTangent==.005f);
     assert(declaredPointee.radius==0 && nativeSphere.radius==.2286f);
     s.collision=1;
-    true_cone::ApplyCollision(&p,geometry,s);
-    assert(p.cone.initialCollisionSphereRadius==16);
+    assert(true_cone::VisualScale(&p,s)==grown);
+    assert(p.cone.initialCollisionSphereRadius==96);
     fixture::coneEnabled=false;true_cone::Initialize();
-    s.collision=2;true_cone::ApplyCollision(&p,geometry,s);
-    assert(p.cone.initialCollisionSphereRadius==16&&!true_cone::PatchVisuals());
-    fixture::coneEnabled=true;fixture::coneCollision=false;true_cone::Initialize();
-    true_cone::ApplyCollision(&p,geometry,s);
-    assert(p.cone.initialCollisionSphereRadius==16&&true_cone::PatchVisuals());
-    fixture::coneCollision=true;fixture::coneVisuals=false;true_cone::Initialize();
-    true_cone::ApplyCollision(&p,geometry,s);
-    assert(p.cone.initialCollisionSphereRadius==32&&!true_cone::PatchVisuals());
+    assert(true_cone::VisualScale(&p,s)==1&&!true_cone::PatchVisuals());
+    fixture::coneEnabled=true;fixture::scaleVFX=false;true_cone::Initialize();
+    assert(true_cone::VisualScale(&p,s)==1&&!true_cone::PatchVisuals());
+    fixture::scaleVFX=true;fixture::coneVisuals=false;true_cone::Initialize();
+    assert(true_cone::VisualScale(&p,s)==1&&!true_cone::PatchVisuals());
     fixture::coneVisuals=true;true_cone::Initialize();
 
     RE::SpellItem parent,child;
@@ -220,11 +219,11 @@ int main() {
       "passed": true,
       "scope": "Exact source bodies with engine-service stubs; no gameplay",
       "authoredConeAnglePreserved": true,
-      "restoredConeRadiusUsesRecordBaseline": true,
-      "collisionGrowthIndependentOfDistance": true,
+      "nativeInitialConeRadiusPreserved": true,
+      "coneVisualScaleIndependentOfCollisionFactor": true,
       "noDirectPhysicsObjectWrite": true,
       "coneMasterSwitchPreserved": true,
-      "coneCollisionSwitchIndependent": true,
+      "globalVFXSwitchPreserved": true,
       "coneVisualSwitchIndependent": true,
       "activeParentCasts": true,
       "finishedParentCancels": true,

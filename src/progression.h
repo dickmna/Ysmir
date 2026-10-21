@@ -21,6 +21,7 @@ namespace ysmir::progression
 
     void Initialize();
     bool Enabled();
+    float VisualDensity(float scale);
     // Capture is the sole soul-count read for a player shout dispatch.
     ScalingSnapshot Capture();
     void UpdateClock();

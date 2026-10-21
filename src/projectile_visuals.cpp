@@ -58,7 +58,6 @@ namespace
     struct State {
         RE::ProjectileHandle handle;
         Snapshot snapshot;
-        ysmir::true_cone::Geometry cone;
         bool isCone{}, storm{}, compensate{};
         RE::NiPointer<RE::NiAVObject> root;
         float baseline{1}, applied{1};
@@ -125,7 +124,7 @@ namespace
             return RE::BSVisit::BSVisitControl::kContinue;
         });
     }
-    void Apply(RE::Projectile* projectile,RE::NiAVObject* suppliedRoot,bool draw=true)
+    void Apply(RE::Projectile* projectile,RE::NiAVObject* suppliedRoot)
     {
         if (!projectile || !ysmir::progression::Enabled()) return;
         auto* base=projectile->GetProjectileBase(); if (!base) return;
@@ -143,16 +142,15 @@ namespace
         if (state.handle.get().get()!=projectile) {
             state={}; state.handle=handle; state.snapshot=snapshot; state.storm=storm;
             state.isCone=base->IsCone(); state.compensate=state.isCone && density && !Excluded(base);
-            if (state.isCone) state.cone=ysmir::true_cone::Capture(static_cast<RE::ConeProjectile*>(projectile));
         }
         auto* cone=state.isCone ? static_cast<RE::ConeProjectile*>(projectile) : nullptr;
-        if (cone) ysmir::true_cone::ApplyCollision(cone,state.cone,state.snapshot);
-        if (!draw || (cone && !ysmir::true_cone::PatchVisuals())) return;
+        if (cone && !ysmir::true_cone::PatchVisuals()) return;
         auto* root=suppliedRoot ? suppliedRoot : projectile->Get3D();
         if (!root || !std::isfinite(root->local.scale) || root->local.scale<=0) return;
         if (state.root.get()!=root) BindRoot(state,projectile,root);
         else if (!Near(root->local.scale,state.applied)) state.baseline=root->local.scale;
-        const auto factor=state.snapshot.vfx;
+        const auto factor=cone ? ysmir::true_cone::VisualScale(cone,state.snapshot) : state.snapshot.vfx;
+        const auto densityGain=cone ? ysmir::progression::VisualDensity(factor) : state.snapshot.density;
         root->local.scale=state.baseline*factor; state.applied=root->local.scale;
         root->local.translate=CenterInParent(projectile,root)-root->local.rotate*(state.centerAnchor*root->local.scale);
         RE::NiUpdateData data{}; root->UpdateTransformAndBounds(data);
@@ -165,7 +163,7 @@ namespace
             if (!slot.binding || !slot.binding->valid() || !shader || shader->material!=slot.binding->material ||
                 (slot.binding->target==DensityTarget::Emissive && shader!=slot.binding->shader.get()))
                 slot.binding=Bind(slot.geometry.get());
-            if (slot.binding) slot.binding->Apply(state.snapshot.density);
+            if (slot.binding) slot.binding->Apply(densityGain);
         }
     }
     template<std::size_t I> struct Hook {
@@ -182,7 +180,7 @@ namespace
     struct ConeHook {
         static inline void(*update)(RE::ConeProjectile*,float);
         static inline void(*loaded)(RE::ConeProjectile*);
-        static void Update(RE::ConeProjectile* p,float delta) { Apply(p,nullptr,false); update(p,delta); Apply(p,nullptr); }
+        static void Update(RE::ConeProjectile* p,float delta) { update(p,delta); Apply(p,nullptr); }
         static void Loaded(RE::ConeProjectile* p) { loaded(p); Apply(p,nullptr); }
     };
 }

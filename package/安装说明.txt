@@ -1,24 +1,26 @@
-Ysmir 0.8.0 — 完整本地安装包
+Ysmir 0.9.0 — 完整本地安装包
 
 对应 Steam Skyrim 1.7.104.0、SKSE64 2.3.1、匹配 Address Library、
 官方 masters 和 Visual C++ x64 Runtime。其他运行时未验证。
 
 用 MO2/Vortex 安装本 ZIP，把 Data 设为数据目录并启用 Ysmir.esp；
-完整替换旧 Ysmir 模组目录。Source.zip 用于重编译，不能当运行模组安装。
-0.7.0 配置数值可继续用；更老 INI 中的 30/120 风暴伤害覆盖不会自动纠正。
-停用已整合的独立 Shout Progression、FT、True Cone、DUF、SCSO、
-93681、62686、49359 相应组件及旧补丁，避免重复运行。
+完整替换旧 Ysmir 模组目录。Source.zip 用于构建，不能当运行模组安装。
+停用已整合的 Shout Progression、FT、True Cone、DUF、SCSO、
+93681、62686、49359 相应控制器及补丁，避免重复运行。
 
-风暴现为每目标独立随机错峰：SKSE 动态识别敌人，短脚本 RemoteCast
-按词阶施放 1/2/3 次。新敌人加入，失效目标和结束风暴停止后续施放。
-保留龙魂成长、归责设置、原版天气与时长，以及所有既有非角度功能。
+取消锥形初始碰撞半径成长，保留原始角度和龙魂距离成长。
+VFX 从原始大小按距离平滑放大、保持原锚点；不抬高、不换 NIF。
+默认基础视觉参考 4 倍，过渡 256 单位，INI 可调；实际贴合度待游戏测试。
+旧 PatchRuntimeCollision 忽略；fVFXPerSoul 仅继续控制非锥形特效。
+其他配置值保留。旧 INI 缺少新键时用默认值；旧 30/120 风暴伤害值仍需自行迁移。
+风暴、元素狂暴、Soul Tear、Slow Time、FT、推力及其他既有功能保留。
+
 含 1 DLL、1 ESP、1 INI、6 PEX、18 NIF、4 DDS，附源码/许可证/说明。
 FT 全部 17 个库存模型保留，无 Community Shaders 依赖。
+DLL 与数据重新构建，六个 PEX 复用 0.8.0 原字节；89 项离线场景通过。
+未做游戏实测，视觉与命中、存读档联合恢复及性能仍待验证。
+详见 docs/REFACTOR-090.md 和 docs/KNOWN_ISSUES.md。
 
-DLL、数据与六个脚本编译通过；65 项离线场景及记录/PE/包完整性检查通过。
-未做游戏实测，实际命中、画面、存读档联合恢复与性能仍待验证。
-详见 docs/REFACTOR-080.md 和 docs/KNOWN_ISSUES.md。
-
-重构前源码已备份至 GitHub v0.7.0，提交 5bcfaaa；
-旧完整包保留。回退请使用旧包和升级前存档。
+重构前源码已备份至 GitHub v0.8.0，提交 5c53daf，旧完整包保留。
+升级前留独立存档；回退请使用旧包和升级前存档。
 本次没有部署到游戏或更改加载顺序，第三方资源仍归原作者所有。

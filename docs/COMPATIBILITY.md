@@ -14,7 +14,7 @@
 
 ## True Cone / 动态推力 / Shout Progression
 
-[True Cone Shouts](https://www.nexusmods.com/skyrimspecialedition/mods/183927?tab=posts) 作者说明纯 SKSE 主文件不需要 Shout Progression 的 ESP 补丁；可选 Soul Tear ESP 涉及胜出顺序。本包把所选 Soul Tear 图直接生成成私有数据，将旧 Ysmir 固化的 15° 改回 [上游构建器的 10°](https://github.com/dickmna/TrueConeShouts/blob/5b4d661ae597806b6e035c0ee6986be1a9e0759e/tools/SoulTearConeBuilder/Program.cs)。不导入该可选包的 99999 复活门槛或额外受控数量。0.7.0 不把其他锥形角度抬高，不猜测半角/全角，不按成长倍率修改运行时切线。碰撞起始半径与 VFX 各自使用公共施放快照。
+[True Cone Shouts](https://www.nexusmods.com/skyrimspecialedition/mods/183927?tab=posts) 作者说明纯 SKSE 主文件不需要 Shout Progression 的 ESP 补丁；可选 Soul Tear ESP 涉及胜出顺序。本包把所选 Soul Tear 图直接生成成私有数据，将旧 Ysmir 固化的 15° 改回 [上游构建器的 10°](https://github.com/dickmna/TrueConeShouts/blob/5b4d661ae597806b6e035c0ee6986be1a9e0759e/tools/SoulTearConeBuilder/Program.cs)。不导入该可选包的 99999 复活门槛或额外受控数量。0.7.0 不把其他锥形角度抬高，不猜测半角/全角，不按成长倍率修改运行时切线。0.9.0 进一步按用户要求取消锥形起始碰撞半径成长；只读引擎半径、切线与已移动距离计算视觉补偿，smoothstep 从原始尺寸过渡，固定既有锚点。默认 4 倍是用户先前实测给出的参考，并非对所有原始碰撞/NIF 都验证过的校准值；不导入 TCSF 的角度加宽、半径下限、固定抬高或内部节点额外放大。
 
 [Dynamic Unrelenting Force 源码](https://github.com/dickmna/DynamicUnrelentingForce) 的 Shout Progression 附加模块提供推力倍率接入参考。本版使用公共幅度快照，仅在脚本推力入口乘一次；不再同时增幅 projectile impactForce。
 

@@ -82,6 +82,11 @@ namespace ysmir::progression
         cooldownRate = std::clamp(config::Float("DragonSouls", "fCooldownReductionPerSoul", .05f), 0.f, .999999f);
     }
     bool Enabled() { return enabled; }
+    float VisualDensity(float scale)
+    {
+        const auto progress=(scale-1.f)/3.f;
+        return 1.f+(densityAt4x-1.f)*progress;
+    }
     ScalingSnapshot Capture()
     {
         ScalingSnapshot s;
@@ -91,8 +96,7 @@ namespace ysmir::progression
         s.distance=linear(0); s.magnitude=linear(1); s.duration=linear(2); s.area=linear(3); s.collision=linear(4);
         if (vfxEnabled) {
             s.vfx = 1.f + static_cast<float>(s.souls) * vfxRate;
-            const auto progress = (s.vfx-1.f)/3.f;
-            s.density = 1.f + (densityAt4x-1.f)*progress;
+            s.density = VisualDensity(s.vfx);
         }
         if (cooldownEnabled)
             s.cooldown = static_cast<float>(std::max(std::pow(1.0-static_cast<double>(cooldownRate), s.souls),
