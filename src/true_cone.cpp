@@ -3,7 +3,7 @@
 #include <cmath>
 #include <limits>
 
-namespace { bool visuals{true}; float baseScale{4.f},transitionDistance{256.f}; }
+namespace { bool visuals{true}; float transitionDistance{256.f}; }
 
 namespace ysmir::true_cone
 {
@@ -11,7 +11,6 @@ namespace ysmir::true_cone
     {
         visuals=config::Bool("TrueCone","Enabled",true) && config::Bool("TrueCone","PatchVisuals",true) &&
             config::Bool("DragonSouls","bScaleVFX",true);
-        baseScale=std::max(1.f,config::Float("TrueCone","fBaseVisualScale",4.f));
         transitionDistance=std::max(1.f,config::Float("TrueCone","fVisualTransitionDistance",256.f));
     }
     bool PatchVisuals() { return visuals; }
@@ -28,7 +27,7 @@ namespace ysmir::true_cone
         const auto originalRadius=r+(d/k)*t;
         const auto ratio=originalRadius>0 ? (r+d*t)/originalRadius : 1.;
         const auto u=std::clamp(d/transitionDistance,0.,1.);
-        const auto scale=1.+(baseScale*ratio-1.)*(u*u*(3.-2.*u));
+        const auto scale=1.+(ratio-1.)*(u*u*(3.-2.*u));
         return std::isfinite(scale) && scale<=std::numeric_limits<float>::max() ? static_cast<float>(scale) : 1.f;
     }
 }

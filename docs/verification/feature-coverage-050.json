@@ -6,8 +6,8 @@
   },
   {
     "feature": "龙魂成长",
-    "implementation": "幅度、距离、范围、时长、碰撞和视觉默认 1+0.05S；冷却 0.95^S；未花费龙魂及可选已知词近似，无龙魂上限",
-    "offlineEvidence": "原 Capture/ScaledItem 函数测试，INI 对比"
+    "implementation": "幅度、距离、范围、时长、非锥形碰撞/视觉默认 1+0.05S；冷却 0.95^S；锥形起始半径不成长，VFX 按距离半径比平滑接入；无龙魂上限。",
+    "offlineEvidence": "真实成长/发射函数 11 组，17 项桥接/开关结果，36 组视觉场景；非视觉 INI 值与 0.8.0 相同。"
   },
   {
     "feature": "实例倍率与桥接",
@@ -86,18 +86,18 @@
   },
   {
     "feature": "碰撞与视觉",
-    "implementation": "不加宽角度；碰撞成长、统一根节点缩放、中心锚点、浓度及材质更换跟踪保留；不直接误写 bhk 对象",
-    "offlineEvidence": "碰撞函数回归、源码与既有原生布局证据"
+    "implementation": "不加宽角度、不改初始锥形半径；原版物理扩张和龙魂距离成长保留。出生大小原始；九个原版波模型分层增长与平铺 UV 补偿，其他模型保留通用锚点/浓度路径。无额外高度或投射 NIF。",
+    "offlineEvidence": "九份 NIF 只读结构核验、36 组真实视觉模块回归、原生 3D 更新及材质生命周期静态检查；真实画面待实测。"
   },
   {
     "feature": "雷击外观修复",
     "implementation": "保留高度/散布、声音、屏幕反馈、显示边界和 AlwaysDraw 配置",
-    "offlineEvidence": "原视觉模块与配置未改；发射参数保持；真实画面待实测"
+    "offlineEvidence": "风暴配置与发射逻辑未改；视觉模块中的风暴缩放/边界/AlwaysDraw 路径通过回归，实际画面待测试。"
   },
   {
     "feature": "True Cone 控制与 API",
-    "implementation": "Enabled、PatchRuntimeCollision、PatchVisuals 恢复；GetDragonSoulCount 保留；仅删 DistanceVisualScale 角度补偿",
-    "offlineEvidence": "三开关回归、全部 0.5 INI/Papyrus API 对比"
+    "implementation": "保留 Enabled、PatchVisuals、bScaleVFX、GetDragonSoulCount；新增 NativeWaveGrowth 同物理对照开关及 fVisualTransitionDistance；按用户要求移除起始半径成长和旧角度键。",
+    "offlineEvidence": "开关、旧键忽略、出生连续和只读半径/角度回归；其余 INI 数值和 Papyrus API 不变。"
   },
   {
     "feature": "库存模型与纹理",

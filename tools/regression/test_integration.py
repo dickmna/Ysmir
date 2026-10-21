@@ -39,6 +39,7 @@ visuals_source = (ROOT / "src/projectile_visuals.cpp").read_text()
 assert "true_cone::PatchVisuals" in visuals_source
 assert "true_cone::VisualScale" in visuals_source
 assert "ApplyCollision" not in visuals_source
+assert "write_vfunc(0xAB" not in visuals_source  # Visual adapter never hooks physics updates.
 prefix = r"""
 #include <algorithm>
 #include <array>
@@ -158,7 +159,7 @@ int main() {
     assert(true_cone::VisualScale(&p,s)==1);
     p.runtime.distanceMoved=256;
     const auto grown=true_cone::VisualScale(&p,s);
-    assert(grown>4 && p.cone.initialCollisionSphereRadius==96);
+    assert(grown>1 && grown<4 && p.cone.initialCollisionSphereRadius==96);
     assert(p.cone.coneAngleTangent==.005f);
     assert(declaredPointee.radius==0 && nativeSphere.radius==.2286f);
     s.collision=1;

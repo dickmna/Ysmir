@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/dickmna/Ysmir",
+  "tag": "v0.8.0",
+  "branch": "backup/ysmir-0.8.0",
+  "commit": "5c53dafc93fccd355d0fa892d9e16cb458cdd1d4",
+  "remoteVerified": true,
+  "preparedBeforeCodeEdits": true,
+  "unshippedDraftBackup": {
+    "branch": "backup/ysmir-before-native-vfx-20261021",
+    "commit": "9397ff2b9b59054066b72cb73300c9aa9e4708fd",
+    "remoteVerified": true,
+    "installRecommendation": false
+  },
+  "newSourceBranch": "codex/ysmir-distance-visuals",
+  "mainChanged": false
+}

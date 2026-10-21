@@ -1,0 +1,326 @@
+{
+  "version": "0.9.0",
+  "passed": true,
+  "modelCount": 9,
+  "models": [
+    {
+      "model": "meshes\\magic\\voiceflamewaveproject01.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "1aba00f7a5fd2b6ca2052912b54e8614de7749d384d227fab3fd6f4c97e2248b",
+      "selectedOuterLayers": [
+        "Wisps02",
+        "Trail05",
+        "Trail06",
+        "Trail07",
+        "Trail08",
+        "RefractMesh02"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    },
+    {
+      "model": "meshes\\magic\\voiceflamewaveproject02.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "1f42ae747ae8720ca9ae7bee3f84fd6a9d6bf0c271e8c28acf78483ad9ac66e5",
+      "selectedOuterLayers": [
+        "Wisps02",
+        "Trail05",
+        "Trail06",
+        "Trail07",
+        "Trail08",
+        "RefractMesh02"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    },
+    {
+      "model": "meshes\\magic\\voiceflamewaveproject03.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "25c671a705f73ec939dfcf03ff0899358456386891a939906ff68968251f910b",
+      "selectedOuterLayers": [
+        "Trail12",
+        "RefractMesh03",
+        "Wisps03"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    },
+    {
+      "model": "meshes\\magic\\voicefrostwaveproject01.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "17174f199c597edd72f3200e6206c31c9b1da756b6d661af0fa8598a74f2c05f",
+      "selectedOuterLayers": [
+        "Wisps02",
+        "Trail05",
+        "Trail06",
+        "Trail07",
+        "Trail08",
+        "RefractMesh02"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    },
+    {
+      "model": "meshes\\magic\\voicefrostwaveproject02.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "32dfc60bd6caf08447cac674ca6e856b527ff05d12f7b66f68289bdbfb6b9bce",
+      "selectedOuterLayers": [
+        "Wisps02",
+        "Trail05",
+        "Trail06",
+        "Trail07",
+        "Trail08",
+        "RefractMesh02"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    },
+    {
+      "model": "meshes\\magic\\voicefrostwaveproject03.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "5351c312cd924670609909f89ae9ef4db5a82f89cdbc592b5e12901871649e36",
+      "selectedOuterLayers": [
+        "Trail12",
+        "RefractMesh03",
+        "Wisps03"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\CloudTile.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    },
+    {
+      "model": "meshes\\magic\\voicepushprojectile01.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "cd33c1c45902863b60c38bcbd0a1348853849baa2caed7074aceff0e8edcdcd4",
+      "selectedOuterLayers": [
+        "RefractMesh01",
+        "Wisps01",
+        "Trail02",
+        "Trail03",
+        "Trail04",
+        "Trail01"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    },
+    {
+      "model": "meshes\\magic\\voicepushprojectile02.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "966de69a075e341ac550e85d69eec090075ecc663bb17e887a642805567e06b5",
+      "selectedOuterLayers": [
+        "Wisps02",
+        "Trail05",
+        "Trail06",
+        "Trail07",
+        "Trail08",
+        "RefractMesh02"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    },
+    {
+      "model": "meshes\\magic\\voicepushprojectile03.nif",
+      "archive": "Skyrim - Meshes1.bsa",
+      "sha256": "0cf19f2bde0f2f4eed0119b63b47f0bcdcfdb9070a6fe053bf08ed875dea3725",
+      "selectedOuterLayers": [
+        "Trail09",
+        "Trail10",
+        "Trail11",
+        "Trail12",
+        "RefractMesh03",
+        "Wisps03"
+      ],
+      "materials": [
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        },
+        {
+          "texture": "textures\\effects\\VaporTile01.dds",
+          "clamp": 3
+        }
+      ],
+      "particleSystemBlocks": []
+    }
+  ],
+  "scope": "Original game BSA block types, hierarchy, scale animation and effect-material fields; no original asset bytes included and no renderer validation."
+}

@@ -1,5 +1,5 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.0",
   "counts": {
     ".nif": 18,
     ".pex": 6,
@@ -131,13 +131,13 @@
     },
     {
       "path": "SKSE/Plugins/Ysmir.dll",
-      "bytes": 755200,
-      "sha256": "3695363393da4bcaf7e8b6a9b54e1dcf9ce90ddb2269fb67b528e7542abbfe19"
+      "bytes": 768000,
+      "sha256": "cb9fb67bd8db397d814cadd98eec868d609d969abbc3c65eef12b23fdc6911ce"
     },
     {
       "path": "SKSE/Plugins/Ysmir.ini",
-      "bytes": 2864,
-      "sha256": "7f850d68407d18ff5fb12920dddebcc2689aadb2460d8371c5ec4bdc0ff345fd"
+      "bytes": 3522,
+      "sha256": "bf822a208bebf997038855821b2839ff6755e2233344fc5014198930c204fc3a"
     },
     {
       "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
@@ -161,145 +161,69 @@
     },
     {
       "path": "Ysmir.esp",
-      "bytes": 110137,
-      "sha256": "eb3a82bbf3d74e973e551a36e090b5d81b5ff7f7ee1c32ad0b00cbff3be77b68"
+      "bytes": 110157,
+      "sha256": "52fe81011d6a62b766ba96c63e1335e3c2cbc38f234ebc4eea212d515e6519bf"
     }
   ],
-  "papyrusCompiled": 6,
+  "papyrusReusedFrom080": 6,
   "communityShadersRequired": false,
   "dataComparison": {
     "passed": true,
-    "version": "0.8.0",
-    "baseline050": "ceaf25f0791f420badfc96c34630d23fe53fd2bf",
+    "version": "0.9.0",
+    "comparisonBaseline": "0.8.0 local full package and deterministic build",
     "recordCount": 360,
-    "privateRecords": 334,
-    "playerEffects": 122,
-    "playerSpells": 110,
-    "all350BaselineRecordsRetainedWithSameIDs": true,
-    "all78WordNumericListsIdenticalTo050": true,
-    "rawComparisonBaseline": "Locally rebuilt 0.6.0 ESP",
-    "unchangedExistingRecordPayloads": 348,
-    "changedExistingRecords": [
-      "YSMIR_SoulTearConeProjectile",
-      "YSMIR_StormCallProjectile"
-    ],
-    "addedRecords": [
-      {
-        "key": "150005:Ysmir.esp",
-        "edid": "YSMIR_PlayerEffect_Skyrim_0E4CB6",
-        "type": "MagicEffect"
-      },
-      {
-        "key": "150007:Ysmir.esp",
-        "edid": "YSMIR_PlayerEffect_Skyrim_0E3F0A",
-        "type": "MagicEffect"
-      },
-      {
-        "key": "15000B:Ysmir.esp",
-        "edid": "YSMIR_PlayerEffect_Skyrim_0E3F09",
-        "type": "MagicEffect"
-      },
-      {
-        "key": "15000E:Ysmir.esp",
-        "edid": "YSMIR_PlayerEffect_Skyrim_0D5E81",
-        "type": "MagicEffect"
-      },
-      {
-        "key": "150004:Ysmir.esp",
-        "edid": "YSMIR_PlayerSpell_Skyrim_0E4CB7",
-        "type": "Spell"
-      },
-      {
-        "key": "15000A:Ysmir.esp",
-        "edid": "YSMIR_PlayerSpell_Skyrim_0E98A2",
-        "type": "Spell"
-      },
-      {
-        "key": "15000D:Ysmir.esp",
-        "edid": "YSMIR_PlayerSpell_Skyrim_0E98A3",
-        "type": "Spell"
-      },
-      {
-        "key": "150011:Ysmir.esp",
-        "edid": "YSMIR_StormWeather1",
-        "type": "Spell"
-      },
-      {
-        "key": "150012:Ysmir.esp",
-        "edid": "YSMIR_StormWeather2",
-        "type": "Spell"
-      },
-      {
-        "key": "150013:Ysmir.esp",
-        "edid": "YSMIR_StormWeather3",
-        "type": "Spell"
-      }
-    ],
-    "perks": 3,
-    "npcs": 8,
-    "scriptContexts": 6,
-    "originalNpcPerkInventoryAndOtherMechanicRecordPayloadsUnchanged": true,
-    "removedSettings": [
-      "TrueCone.distancevisualscale"
-    ],
-    "changedDefaultSettings": [
-      "Storm.Gameplay.fdamageword1",
-      "Storm.Gameplay.fdamageword3"
-    ],
-    "allOther050SettingsAndPublicPapyrusApiPreserved": true,
-    "magicShoutClassificationAndDispelSelectorsPreserved": true,
-    "stormBolts": [
-      {
-        "spell": "0E4CB7",
-        "damage": 40,
-        "resistance": "ResistShock"
-      },
-      {
-        "spell": "0E98A2",
-        "damage": 60,
-        "resistance": "ResistShock"
-      },
-      {
-        "spell": "0E98A3",
-        "damage": 80,
-        "resistance": "ResistShock"
-      }
-    ],
-    "stormWeather": [
-      {
-        "effect": "0E3F0A",
-        "vanillaWeatherScriptAndPropertiesIdentical": true
-      },
-      {
-        "effect": "0E3F09",
-        "vanillaWeatherScriptAndPropertiesIdentical": true
-      },
-      {
-        "effect": "0D5E81",
-        "vanillaWeatherScriptAndPropertiesIdentical": true
-      }
-    ],
-    "stormProjectileFieldsMatchOfficial": true,
-    "soulTearCone": {
-      "type": "Cone",
-      "ConeSpread": 10,
-      "CollisionRadius": 16,
-      "Speed": 1300,
-      "Range": 4000
-    },
+    "all360RecordPayloadsAndFlagsIdentical": true,
+    "addedRecords": 0,
+    "removedRecords": 0,
+    "headerOnlyChangedSubrecord": "SNAM (version description)",
+    "all78WordNumericListsIdentical": true,
+    "selectedRecordManifestUnchangedExceptVersion": true,
+    "runtimeHeaderAndFormIdsUnchanged": true,
+    "deterministicEspHeaderAndFormIds": true,
     "unresolvedLinks": [],
-    "deterministicEspAndHeader": true,
-    "espSha256": "eb3a82bbf3d74e973e551a36e090b5d81b5ff7f7ee1c32ad0b00cbff3be77b68",
+    "espSha256": "52fe81011d6a62b766ba96c63e1335e3c2cbc38f234ebc4eea212d515e6519bf",
     "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
-    "inspectionSha256": "27fe1b94f532fc7cfce6f1604d21bc431cd361e0f5e831fe35e111dc274f99f9",
-    "boundary": "Actual ESP inspected with Mutagen; old payloads compared byte-for-byte after record decompression; no gameplay",
-    "comparisonTo070": {
-      "all360RecordPayloadsAndFlagsIdentical": true,
-      "addedRecords": 0,
-      "removedRecords": 0,
-      "headerOnlyChangedSubrecord": "SNAM (version description)",
-      "stableRuntimeHeader": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf"
-    }
+    "formIdsSha256": "d538a870a198964394085b14e2031bd078b6186f4a2b47dcf9bae169d22b7d83",
+    "papyrusReusedUnmodified": [
+      {
+        "script": "Ysmir",
+        "pexSha256": "c9e43bed4184587e626cc60002141ec245c7432d9cfff3bcf8eee88b0c80b4ce",
+        "sourceSha256": "07119d936f811e355a75bc76ec8b3c0c0f7b09cd603cfd930ac5b6d1225aa11c",
+        "matches080": true
+      },
+      {
+        "script": "YsmirDragonAspectSummonScript",
+        "pexSha256": "4878fa0b0630caba995504aaa69c4c01dce8fdbbf34ea342bf8cee57676e0e27",
+        "sourceSha256": "478b2abffb4b4d292747bacf2edfe421df8522d67e005e46daed91725f2bd53d",
+        "matches080": true
+      },
+      {
+        "script": "YsmirSlowTimeScript",
+        "pexSha256": "4854faa04c04e93b45060df1cc92485ee385fe6a85a72bf896ebbde5add89371",
+        "sourceSha256": "f55cf05672357d11bd354e2333a3de6c1edfc03c458f31cd2886a69c442e94eb",
+        "matches080": true
+      },
+      {
+        "script": "YsmirStormScript",
+        "pexSha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1",
+        "sourceSha256": "e6e62f7f48be583ba2cc285075817986e0155799730f71242715c94d2b7d39a7",
+        "matches080": true
+      },
+      {
+        "script": "YsmirVoicePushEffectScript",
+        "pexSha256": "07b231818a60ce2cba9ab149323bd4253d5e395ae93e1f64a8e4ddd4bed4b631",
+        "sourceSha256": "9c636390ed6d54e995f6e790b60af11cba3038231de9b4841e7dc2fc44508ca8",
+        "matches080": true
+      },
+      {
+        "script": "YsmirWhirlwindDamageScript",
+        "pexSha256": "19a2889c3c6c26fed170fe704fc253252e5e625b317d2625eb7ed889b809d385",
+        "sourceSha256": "f6473a26bcc47fad27be94a7b8df3fe7eacc878e847e96cf0df5e57d277611ba",
+        "matches080": true
+      }
+    ],
+    "inherited050Coverage": "0.8.0 verified 350 original IDs and 78 word lists; all 360 gameplay payloads retained byte-for-byte here",
+    "boundary": "Fresh data builds and decompressed record payload/flag comparisons; no gameplay"
   },
   "scope": "Offline local artifacts"
 }

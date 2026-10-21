@@ -34,26 +34,30 @@ StormReady 每次检查有效风暴、目标敌友/存活/范围状态，按当�
 
 ## 锥形和视觉
 
-保留记录与引擎给出的原始锥角和初始半径，Soul Tear 的 ConeSpread 仍为上游 10°。删除 initialCollisionSphereRadius 写入、Geometry 半径缓存和 Cone Update 前的碰撞处理。原生更新继续负责 R(d)=r+d*t 的碰撞扩张、bhk/Havok 形状与单位转换。这里的 R 是移动碰撞球的半径，不是一个静止圆锥的精确命中边界。
+原始锥角与初始碰撞半径不变，Soul Tear 的基础角度仍为上游 10°。取消所有锥形 initialCollisionSphereRadius 写入和半径快照。引擎继续负责 R(d)=r+d*t 的移动碰撞球扩张、bhk/Havok 形状和单位换算；这个球并不是一个静止圆锥的精确命中边界。
 
-沿用现有视觉更新钩子，只读原生 distanceMoved、initialCollisionSphereRadius 和 coneAngleTangent，不猜测记录角度的半角/全角。K 为本次施放的距离倍率，默认 1+0.05S，继续同时作用于速度和射程。视觉使用：
+距离成长继续同时增加速度和最大距离，默认 K=1+0.05S。只读运行时 distanceMoved、initialCollisionSphereRadius 和 coneAngleTangent，不猜测记录锥角的半角/全角。附加视觉倍率为：
 
 ```text
 Q(d) = (r + d*t) / (r + (d/K)*t)
 u = clamp(d/L, 0, 1)
 w = u*u*(3 - 2*u)
-V(d) = 1 + (C*Q(d) - 1)*w
+V(d) = 1 + (Q(d) - 1)*w
 ```
 
-C 为基础视觉参考，fBaseVisualScale 默认 4；L 为实际移动的过渡距离，fVisualTransitionDistance 默认 256 引擎单位，两项至少取 1。不是按时间、最大射程或帧数计时。d=0 时严格为 1；Q 的分母为零时取 1，非有限/无效运行数据返回原始尺寸。r=0、t>0 时平滑权重仍保证出生连续。每帧从原始/引擎动画更新后的基线计算，不累乘上一次结果；每个投射物沿用自己的施放快照。
+L 为 fVisualTransitionDistance，默认 256 引擎单位。出生时 V=1；K=1 时始终 V=1；没有固定四倍参考或四倍上限。无效或非有限几何返回 1，零半径也通过过渡权重保持出生连续。d/K 表示没有距离成长时的对应传播进度；Q 修正额外的距离增长，不宣称原版视觉边缘本就与碰撞完全重合，也不把模型包围球当作可见边界。
 
-零龙魂时 Q=1，默认在 d=0/128/256 时依次为 1/2.5/4 倍。龙魂距离成长使目标 C*Q(d) 随传播继续变化，4 倍不是龙魂上限。smoothstep 消除过渡权重在两端的斜率突变；有距离成长时，过渡结束后目标自身仍可继续平滑增长。d/K 假设原模型传播进度与成长前对应，因此这是几何依据的视觉近似，不是逐模型边缘拟合。
+原版不卸之力、火焰吐息、寒霜吐息三个词阶的九个 NIF 已只读检查。它们包含 RefractMesh、Wisps、Trail 网格动画和可平铺材质；按精确模型文件名及实际节点结构启用分层路径。主波、烟雾和拖尾每个分支只选择最外层节点，防止三词火/霜的嵌套 Trail 重复放大。保留原版当前动画缩放，并乘 V；根节点、节点平移、旋转、关键帧时间和装饰/附加节点不改。不是顶点增生或重新生成冲击波。
 
-模型空间锚点复用原实现：T'=C_parent-R*(scale*anchor)。它固定投射物参考点对应的模型位置，不额外加 Z、不单独放大子节点、不替换 NIF。模型上下边缘仍会随整体放大自然扩张；也不保证整个喷射期间嘴边粒子始终保持原尺寸。
+视觉适配器不再挂 Cone UpdateImpl/0xAB；它在 Handle3DLoaded/0xC0 和 Update3D/0xAD 工作。Update3D 前撤回上一帧自己的附加缩放/UV，调用原生更新一次，再应用本帧补偿和刷新变换/边界。这样原动画继续按原时间播放，且不会覆盖补偿或累乘它。公共成长自身的 UpdateImpl 快照钩子不变。
 
-浓度保留原 Alpha/加法材质公式和排除列表，改为以当前平滑后的 V 计算 1+(fTrueConeDensityAt4x-1)*(V-1)/3；出生补偿为 1，默认 V=4 时为 2.2。共享材质仍共用一个基线，材质替换和清理恢复保留；共享材质只能同时显示一组浓度。
+DensityCompensation 在分层路径中只对 Vaportile01.dds、CloudTile.dds 且双轴 wrap 的 effect 材质增加 UV 重复，比例为 V。两组原生 UV scale 均从当前基线计算，原 UV offset/滚动、alpha、发光强度不变。纹理重复只维持额外扩张后的细节尺度，不改变网格厚度或保证无接缝。只接受独占 shader property，调用原生 SetMaterial(material,true) 获得可变材质副本；共享 property、遮罩、非平铺材质和不支持的类型跳过。由原生资源管理器同时处理复制、缓存和释放，不绕过其引用生命周期。
 
-TrueCone.Enabled、PatchVisuals 和 DragonSouls.bScaleVFX 任一关闭，均不应用锥形尺寸/浓度补偿。PatchRuntimeCollision 已删除并忽略旧键；非锥形碰撞仍使用 bScaleCollisionRadius/fCollisionRadiusPerSoul。fVFXPerSoul 继续控制非锥形视觉，锥形改由距离倍率和上述几何补偿驱动，不再叠乘它。非锥形/风暴的原视觉倍率、显示边界与 AlwaysDraw 路径保留。
+其他锥形模型（包括 Soul Tear），或模型路径符合但节点结构不符合者，使用通用根节点 V 缩放和既有锚点补偿；保留原 Alpha/加法材质浓度公式、Cyclone/BendWill 排除规则与材质跟踪。浓度为 1+(fTrueConeDensityAt4x-1)*(V-1)/3。该参数名保留兼容性，不是基础四倍倍率。通用路径的共享材质仍只能同时显示一组浓度。
+
+NativeWaveGrowth=0 可在相同玩法条件下对照通用路径；它不启用角度加宽、起始半径增长、固定四倍或高度偏移，也不等同于 TCSF 的原始模式。TrueCone.Enabled、PatchVisuals 和 DragonSouls.bScaleVFX 任一关闭，停止锥形视觉补偿。PatchRuntimeCollision、旧角度键和未发布草稿的 fBaseVisualScale 均忽略。fVFXPerSoul 仍只控制非锥形视觉；非锥形碰撞成长、风暴视觉边界/AlwaysDraw 和其他玩法不变。
+
+已有实例、换根、材质替换、禁用和清理都恢复仍属于本模块的写入，不覆盖后来外部修改。没有新增脚本、定时器、存档记录、第二 DLL 或外部运行依赖。实际画面、材质是否独占、高龙魂边缘与命中的对应，仍需游戏验证；不能仅凭离线测试断言优于用户实测有效的 TCSF。
 
 ## 数据与状态
 

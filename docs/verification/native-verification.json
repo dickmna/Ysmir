@@ -3,10 +3,10 @@
   "runtime": "1.7.104.0",
   "minimumSKSE": "2.3.1",
   "addressLibraryEncoding": 5,
-  "pluginVersion": "0.8.0",
+  "pluginVersion": "0.9.0",
   "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-  "dllSha256": "3695363393da4bcaf7e8b6a9b54e1dcf9ce90ddb2269fb67b528e7542abbfe19",
-  "dllSize": 755200,
+  "dllSha256": "cb9fb67bd8db397d814cadd98eec868d609d969abbc3c65eef12b23fdc6911ce",
+  "dllSize": 768000,
   "exports": [
     "SKSEPlugin_Load",
     "SKSEPlugin_Version"
@@ -156,6 +156,10 @@
         {
           "slot": "0xac",
           "targetRva": "0x7e1b60"
+        },
+        {
+          "slot": "0xad",
+          "targetRva": "0x7faf50"
         },
         {
           "slot": "0xc0",
