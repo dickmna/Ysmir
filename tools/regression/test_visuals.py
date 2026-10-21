@@ -136,7 +136,7 @@ struct BGSProjectile {
     bool IsCone(){return cone;}const char* GetFormEditorID(){return editor.c_str();}const char* GetModel(){return model.c_str();}
 };
 struct Projectile {
-    struct Runtime {float distanceMoved{};SpellItem* spell{};} runtime;
+    struct Runtime {float distanceMoved{},range{512};SpellItem* spell{};} runtime;
     BGSProjectile base;NiAVObject* root{};NiPoint3 position;
     int id=fixture::nextID++;bool alive=true;
     BGSProjectile* GetProjectileBase(){return &base;}Runtime& GetProjectileRuntimeData(){return runtime;}
@@ -217,20 +217,20 @@ Reset();
     Equal(s.root.local.translate,{10,20,30});Equal(s.refract.local.translate,{0,250,-28});
     assert(s.shader.material==&s.material&&s.material.alpha==.5f);Pass("birthPreservesNativeRootChildrenOffsetsAndMaterials");
     s.cone.runtime.distanceMoved=256;Apply(&s.cone,nullptr);
-    assert(Close(s.root.local.scale,4.5f)&&s.refract.local.scale==1&&s.wisps.local.scale==2&&s.trail.local.scale==3);
+    assert(Close(s.root.local.scale,5.25f)&&s.refract.local.scale==1&&s.wisps.local.scale==2&&s.trail.local.scale==3);
     assert(s.nested.local.scale==.5f&&s.decoration.local.scale==1);
     Equal(s.refract.local.translate,{0,250,-28});Equal(s.wisps.local.translate,{0,180,-12});Equal(s.nested.local.translate,{4,8,12});
-    auto grown=[&](RE::NiPoint3 point){return s.cone.position+(point-s.cone.position)*3;};
+    auto grown=[&](RE::NiPoint3 point){return s.cone.position+(point-s.cone.position)*3.5f;};
     Equal(s.refract.world*RE::NiPoint3{1,2,3},grown(refract));Equal(s.wisps.world*RE::NiPoint3{3,4,5},grown(smoke));
     Equal(s.nested.world*RE::NiPoint3{6,7,8},grown(tail));Equal(s.decoration.world*RE::NiPoint3{9,10,11},grown(decoration));
     Pass("allLayerSizesGapsNestedNodesAndDecorationsShareOneTransform");
     assert(s.shader.material==&s.material&&s.material.texCoordScale[0].x==1&&s.material.texCoordScale[1].y==1);
-    assert(Close(s.material.alpha,1-std::pow(.5f,1.8f))&&s.material.baseColorScale==2);
+    assert(Close(s.material.alpha,1-std::pow(.5f,2.f))&&s.material.baseColorScale==2);
     Pass("legacyOpacityCompensationWithoutUVEditsOrMaterialReplacement");
     for(int i=0;i<120;++i)Apply(&s.cone,nullptr);
-    assert(Close(s.root.local.scale,4.5f)&&Close(s.material.alpha,1-std::pow(.5f,1.8f)));
+    assert(Close(s.root.local.scale,5.25f)&&Close(s.material.alpha,1-std::pow(.5f,2.f)));
     Equal(s.nested.world*RE::NiPoint3{6,7,8},grown(tail));Pass("repeatedUpdatesDoNotAccumulateScaleOffsetsOrDensity");
-    fixture::snapshot.distance=99;Apply(&s.cone,nullptr);assert(Close(s.root.local.scale,4.5f));Pass("castSnapshotSurvivesSubsequentSoulChanges");
+    fixture::snapshot.distance=99;Apply(&s.cone,nullptr);assert(Close(s.root.local.scale,5.25f));Pass("castSnapshotSurvivesSubsequentSoulChanges");
     projectile_visuals::Clear();assert(s.root.local.scale==1.5f&&s.material.alpha==.5f&&s.nested.local.scale==.5f);
     Equal(s.root.local.translate,{10,20,30});Pass("clearRestoresOwnedRootTransformAndDensity");
 }
@@ -283,7 +283,7 @@ Reset();
     s.root.parent=&s.parent;s.cone.position={130,260,310};
     const auto anchor=s.root.local.Invert()*(s.parent.world.Invert()*s.cone.position);
     Apply(&s.cone,nullptr);assert(Close(s.root.local.scale,1.5f));Equal(s.root.local.translate,{10,20,30});
-    s.cone.runtime.distanceMoved=128;Apply(&s.cone,nullptr);assert(Close(s.root.local.scale,2.25f));
+    s.cone.runtime.distanceMoved=128;Apply(&s.cone,nullptr);assert(Close(s.root.local.scale,2.203125f));
     Equal(s.parent.world*(s.root.local*anchor),s.cone.position);
     s.cone.runtime.distanceMoved=256;s.cone.position={300,400,500};Apply(&s.cone,nullptr);
     assert(Close(s.root.local.scale,3.75f));Equal(s.parent.world*(s.root.local*anchor),s.cone.position);
@@ -300,22 +300,63 @@ Reset();
     Pass("highSoulGrowthHasNoArtificialFourTimesCap");
     s.cone.cone.collisionShape=&s;true_cone::VisualScale(&s.cone,fixture::snapshot);
     assert(s.cone.cone.collisionShape==&s&&s.cone.cone.initialCollisionSphereRadius==16&&s.cone.cone.coneAngleTangent==.25f);
-    Pass("nativeCollisionShapeRadiusAndAngleAreReadOnly");
+    Pass("nativeCollisionShapeRadiusAndAngleAreUntouched");
 }
 Reset();
 {
     Scene s(true);s.cone.runtime.distanceMoved=10000;Apply(&s.cone,nullptr);
     assert(s.refract.local.scale==1&&s.root.local.scale==1&&s.shader.material==&s.material&&s.material.alpha==.5f);
     Pass("zeroSoulsLeavesNativeAppearanceUnchangedAtEveryDistance");
-    auto& c=s.cone;auto& k=fixture::snapshot;k.distance=6;c.runtime.distanceMoved=256;c.cone.coneAngleTangent=0;
-    assert(true_cone::VisualScale(&c,k)==1);c.cone.initialCollisionSphereRadius=0;assert(true_cone::VisualScale(&c,k)==1);
-    c.cone.coneAngleTangent=.25f;assert(true_cone::VisualScale(&c,k)==6);c.runtime.distanceMoved=0;assert(true_cone::VisualScale(&c,k)==1);
-    c.runtime.distanceMoved=.001f;assert(Close(true_cone::VisualScale(&c,k),1));Pass("zeroRadiusAndAngleRemainFiniteAndContinuousAtBirth");
+    auto& c=s.cone;auto& k=fixture::snapshot;k.distance=6;c.runtime.distanceMoved=0;
+    assert(true_cone::VisualScale(&c,k)==1);
+    c.runtime.distanceMoved=.001f;assert(Close(true_cone::VisualScale(&c,k),1));Pass("birthStartsAtOneWithContinuousEntrance");
     const auto nan=std::numeric_limits<float>::quiet_NaN(),inf=std::numeric_limits<float>::infinity();
     for(float d:{-1.f,nan,inf}){c.runtime.distanceMoved=d;assert(true_cone::VisualScale(&c,k)==1);}c.runtime.distanceMoved=256;
-    for(float r:{-1.f,nan,inf}){c.cone.initialCollisionSphereRadius=r;assert(true_cone::VisualScale(&c,k)==1);}c.cone.initialCollisionSphereRadius=16;
-    for(float t:{-1.f,nan,inf}){c.cone.coneAngleTangent=t;assert(true_cone::VisualScale(&c,k)==1);}c.cone.coneAngleTangent=.25f;
-    for(float d:{0.f,nan,inf}){k.distance=d;assert(true_cone::VisualScale(&c,k)==1);}Pass("invalidRuntimeGeometryCannotWriteNaNToScene");
+    for(float r:{0.f,-1.f,nan,inf}){c.runtime.range=r;assert(true_cone::VisualScale(&c,k)==1);}c.runtime.range=512;
+    for(float d:{0.f,-1.f,nan,inf}){k.distance=d;assert(true_cone::VisualScale(&c,k)==1);}
+    Pass("invalidDistanceRangeOrGrowthCannotWriteNaNToScene");
+    k.distance=6;
+    for(float r:{0.f,-1.f,nan,inf,10000.f})for(float t:{0.f,-1.f,nan,inf,100.f}){
+        c.cone.initialCollisionSphereRadius=r;c.cone.coneAngleTangent=t;
+        assert(Close(true_cone::VisualScale(&c,k),3.5f));
+    }
+    Pass("visualCurveHasNoDependencyOnCollisionRadiusOrAngle");
+}
+Reset();
+{
+    Scene s;auto& p=s.cone.runtime;auto& k=fixture::snapshot;k.distance=6;p.range=60000;
+    const std::array<float,5> distance{0,15000,30000,45000,60000};
+    const std::array<float,5> expected{1,1.78125f,3.5f,5.21875f,6};
+    for(std::size_t i=0;i<distance.size();++i){p.distanceMoved=distance[i];assert(Close(true_cone::VisualScale(&s.cone,k),expected[i]));}
+    Pass("hundredSoulsFivePercentMatchesQuarterFlightMilestones");
+    for(float range:{.001f,512.f,6000.f,60000.f,1e30f}){
+        p.range=range;p.distanceMoved=range*.5f;assert(Close(true_cone::VisualScale(&s.cone,k),3.5f));
+        p.distanceMoved=range;assert(true_cone::VisualScale(&s.cone,k)==6);
+    }
+    Pass("differentInstanceRangesShareNormalizedCurveWithoutDoubleGrowth");
+    p.range=60000;
+    for(float d:{60000.f,120000.f,std::numeric_limits<float>::max()}){
+        p.distanceMoved=d;assert(true_cone::VisualScale(&s.cone,k)==6);
+    }
+    Pass("endOfRangeAndFrameOvershootStayAtSoulDistanceMultiplier");
+    p.distanceMoved=60000;
+    for(float growth:{1.f,1.05f,2.f,6.f,12.f,1000.f,std::numeric_limits<float>::max()}){
+        k.distance=growth;assert(true_cone::VisualScale(&s.cone,k)==growth);
+    }
+    Pass("endpointMatchesEachFiniteGrowthIncludingLargeSoulCounts");
+    k.distance=6;p.distanceMoved=6;
+    assert(true_cone::VisualScale(&s.cone,k)-1<1e-5f);
+    p.distanceMoved=59994;assert(6-true_cone::VisualScale(&s.cone,k)<1e-5f);
+    Pass("smoothstepHasGentleEntranceAndExitAcrossFullFlight");
+}
+Reset();
+{
+    Scene first,second;fixture::snapshot.distance=6;first.cone.runtime.range=60000;first.cone.runtime.distanceMoved=30000;Apply(&first.cone,nullptr);
+    fixture::snapshot.distance=2;second.cone.runtime.range=2000;second.cone.runtime.distanceMoved=1000;Apply(&second.cone,nullptr);
+    Apply(&first.cone,nullptr);assert(Close(first.root.local.scale,3.5f)&&Close(second.root.local.scale,1.5f));
+    first.cone.runtime.distanceMoved=45000;Apply(&first.cone,nullptr);
+    assert(Close(first.root.local.scale,5.21875f)&&Close(second.root.local.scale,1.5f));
+    Pass("simultaneousProjectilesKeepTheirOwnRangeAndCastGrowth");
 }
 Reset();
 {
@@ -323,8 +364,10 @@ Reset();
     fixture::numbers["fBaseVisualScale"]=999;fixture::toggles["PatchRuntimeCollision"]=true;fixture::toggles["NativeWaveGrowth"]=true;true_cone::Initialize();projectile_visuals::Initialize();
     assert(Close(true_cone::VisualScale(&s.cone,fixture::snapshot),2.5f));Apply(&s.cone,nullptr);assert(Close(s.root.local.scale,2.5f)&&s.material.texCoordScale[0].x==1);
     Pass("legacyLayerFixedScaleAndCollisionKeysCannotRestoreRemovedBehavior");
-    fixture::numbers["fVisualTransitionDistance"]=512;true_cone::Initialize();
-    assert(Close(true_cone::VisualScale(&s.cone,fixture::snapshot),1.75f));Pass("transitionDistanceControlsOnlySmoothEntrance");
+    fixture::numbers["fVisualTransitionDistance"]=1;true_cone::Initialize();
+    assert(Close(true_cone::VisualScale(&s.cone,fixture::snapshot),2.5f));
+    fixture::numbers["fVisualTransitionDistance"]=100000;true_cone::Initialize();
+    assert(Close(true_cone::VisualScale(&s.cone,fixture::snapshot),2.5f));Pass("removedTransitionDistanceCannotOverrideFullFlightProgress");
 }
 for(const char* key:{"Enabled","PatchVisuals","bScaleVFX"}){
     Reset();Scene s(true);fixture::snapshot.distance=4;fixture::toggles[key]=false;true_cone::Initialize();s.cone.runtime.distanceMoved=256;Apply(&s.cone,nullptr);

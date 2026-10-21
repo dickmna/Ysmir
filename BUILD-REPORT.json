@@ -1,23 +1,23 @@
 {
-  "version": "0.9.1",
+  "version": "0.9.2",
   "status": "In-game comparison build; not gameplay validated",
   "date": "2026-10-21",
   "rollback": {
     "repository": "https://github.com/dickmna/Ysmir",
-    "tag": "v0.9.0",
-    "branch": "backup/ysmir-0.9.0",
-    "commit": "733c0c82c51834f1e6aa123b4f0b90417edaf476",
+    "tag": "v0.9.1",
+    "branch": "backup/ysmir-0.9.1",
+    "commit": "a85d55d71cbc9b4d7e8a94694d61060339258b5f",
     "remoteVerified": true,
     "preparedBeforeCodeEdits": true,
     "newSourceBranch": "codex/ysmir-uniform-visuals",
     "mainChanged": false
   },
-  "scope": "One anchored uniform root transform for every cone; layered and UV systems removed; other gameplay retained",
+  "scope": "Replace cone visual geometry ratio with smooth full-flight range progress; preserve anchored uniform scaling and other gameplay",
   "build": {
     "native": "MSVC 19.44 Release x64 / C++23 / CommonLibSSE-NG 7.2.0 / MinHook; success",
     "data": ".NET 9 / Mutagen 0.54.4; two deterministic ESP/header/FormIDs builds",
     "papyrus": {
-      "reusedUnmodifiedFrom": "0.9.0",
+      "reusedUnmodifiedFrom": "0.9.1",
       "count": 6,
       "sha256Compared": true,
       "stormPexControlFlowRetested": true
@@ -285,7 +285,7 @@
     "gameplayTestsRun": false,
     "deployedToGame": false,
     "addressLibraryFileRechecked": false,
-    "verificationScope": "Production modules with engine/scene stubs including hierarchical transforms; actual PEX with fake native/time; record payloads; final PE/RTTI checks"
+    "verificationScope": "Production modules with engine/scene stubs; actual PEX with fake natives/time; record payloads; final PE/RTTI and native travel-field checks"
   },
   "featureCoverage050": [
     {
@@ -295,8 +295,8 @@
     },
     {
       "feature": "龙魂成长",
-      "implementation": "幅度、距离、范围、时长、非锥形碰撞/视觉默认 1+0.05S；冷却 0.95^S；锥形半径不额外成长，VFX 按距离半径比平滑整体放大；无龙魂上限。",
-      "offlineEvidence": "距离与成长源码不变，11 组成长/发射、17 项桥接/开关、31 组视觉检查；除删除 NativeWaveGrowth 外 INI 数值相同。"
+      "implementation": "既定幅度、距离、范围、时长、非锥形碰撞/视觉及冷却成长不变；锥形视觉按实例射程进度从 1 平滑增至该次距离倍率。",
+      "offlineEvidence": "成长、发射、快照源码与 0.9.1 相同；11 成长/发射、17 桥接/开关、38 视觉检查；所有其他 INI 数值相同。"
     },
     {
       "feature": "实例倍率与桥接",
@@ -375,8 +375,8 @@
     },
     {
       "feature": "碰撞与视觉",
-      "implementation": "原始角度和初始半径不变；原生碰撞扩张和龙魂距离成长保留。所有模型从原版出生大小起围绕原锚点整体放大，保留浓度补偿；分层、专用 UV 和模型特例已删除。无额外高度或投射 NIF。",
-      "offlineEvidence": "31 组真实视觉模块回归，含组合内几何点/间距、嵌套节点、旋转父节点及移动锚点；距离公式与浓度函数不变，真实渲染待测。"
+      "implementation": "原角度和初始半径不变；视觉计算不再读取它们。使用 d/runtime.range 的 smoothstep，原锚点整体缩放及浓度补偿不变，无新 NIF/UV/高度改动。",
+      "offlineEvidence": "38 组实际视觉模块检查；完整 projectile_visuals.cpp 与 0.9.1 相同；不同射程、终点/越界/无效值、同时施放、锚点、浓度通过。真实渲染待测。"
     },
     {
       "feature": "雷击外观修复",
@@ -385,8 +385,8 @@
     },
     {
       "feature": "True Cone 控制与 API",
-      "implementation": "保留 Enabled、PatchVisuals、bScaleVFX、DensityCompensation、fVisualTransitionDistance 和 GetDragonSoulCount；删除 NativeWaveGrowth，旧键忽略；初始半径和角度改写继续移除。",
-      "offlineEvidence": "开关、旧键忽略、出生连续及半径/角度只读回归；其余 INI 值和 Papyrus API 不变。"
+      "implementation": "保留 Enabled、PatchVisuals、bScaleVFX、DensityCompensation 和 GetDragonSoulCount；移除 fVisualTransitionDistance，旧键忽略。",
+      "offlineEvidence": "开关和旧键忽略检查通过；其余配置逐项相同。"
     },
     {
       "feature": "库存模型与纹理",
@@ -399,57 +399,69 @@
       "offlineEvidence": "记录类型/范围检查"
     }
   ],
-  "unchangedSourceComparedTo090": [
-    "src/shout_dispatch.cpp",
-    "src/storm_call.cpp",
-    "src/elemental_fury.cpp",
-    "src/core.h",
-    "src/RuntimeForms.h",
-    "src/RuntimeCompatibility.h",
-    "data-builder/FormIds.json",
-    "src/true_cone.cpp",
-    "src/progression.cpp",
-    "src/progression.h",
-    "src/modules.h",
+  "unchangedSourceComparedTo091": [
     "package/Source/Scripts/Ysmir.psc",
     "package/Source/Scripts/YsmirDragonAspectSummonScript.psc",
     "package/Source/Scripts/YsmirSlowTimeScript.psc",
     "package/Source/Scripts/YsmirStormScript.psc",
     "package/Source/Scripts/YsmirVoicePushEffectScript.psc",
-    "package/Source/Scripts/YsmirWhirlwindDamageScript.psc"
+    "package/Source/Scripts/YsmirWhirlwindDamageScript.psc",
+    "src/RuntimeCompatibility.h",
+    "src/RuntimeForms.h",
+    "src/core.h",
+    "src/elemental_fury.cpp",
+    "src/modules.h",
+    "src/progression.cpp",
+    "src/progression.h",
+    "src/projectile_visuals.cpp",
+    "src/shout_dispatch.cpp",
+    "src/storm_call.cpp",
+    "data-builder/FormIds.json"
   ],
-  "iniChangesFrom090": {
+  "iniChangesFrom091": {
     "removed": [
-      "TrueCone.NativeWaveGrowth"
+      "TrueCone.fVisualTransitionDistance"
     ],
     "otherValuesAndSectionsIdentical": true
   },
-  "simplification": {
-    "removedComponents": [
-      "WaveLayer",
-      "TileSlot",
-      "KnownWave",
-      "WaveNode",
-      "InWave(",
-      "NativeWaveGrowth",
-      "nativeWave",
-      "texCoordScale",
-      "SetMaterial(",
-      "VaporTile",
-      "CloudTile"
+  "visualCurve": {
+    "version": "0.9.2",
+    "formula": "p=clamp(distanceMoved/instanceRange,0,1); V=1+(K-1)*p*p*(3-2*p)",
+    "instanceRangeAlreadyGrown": true,
+    "usesFrozenCastGrowth": true,
+    "readsCollisionGeometry": false,
+    "birthScale": 1,
+    "endpointAndOvershootScale": "K",
+    "invalidInputScale": 1,
+    "progress": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
     ],
-    "visualSourceLinesBefore": 390,
-    "visualSourceLinesAfter": 257,
-    "distanceFormulaByteIdenticalTo090": true,
-    "legacyDensityBodiesIdenticalTo090": true,
+    "sixTimesGrowthScales": [
+      1,
+      1.78125,
+      3.5,
+      5.21875,
+      6
+    ],
+    "removedConfig": [
+      "TrueCone.fVisualTransitionDistance"
+    ],
+    "projectileVisualAdapterIdenticalTo091": true,
+    "densityImplementationIdenticalTo091": true,
+    "coneSourceLinesBefore": 33,
+    "coneSourceLinesAfter": 29,
     "newRuntimeDependency": false,
     "newPapyrusScript": false,
     "serializationChanged": false
   },
   "records": {
     "passed": true,
-    "version": "0.9.1",
-    "comparisonBaseline": "0.9.0 local full package and deterministic build",
+    "version": "0.9.2",
+    "comparisonBaseline": "0.9.1 local full package and deterministic build",
     "recordCount": 360,
     "all360RecordPayloadsAndFlagsIdentical": true,
     "addedRecords": 0,
@@ -460,7 +472,7 @@
     "runtimeHeaderAndFormIdsUnchanged": true,
     "deterministicEspHeaderAndFormIds": true,
     "unresolvedLinks": [],
-    "espSha256": "201679057aa5af285dd2c94eca57ed920503043e4ba97b254c4fd7d12884bcdb",
+    "espSha256": "edde8b8894a51897b9f0b670379a072bc6292678ce0eb8994126d7ef686d827f",
     "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
     "formIdsSha256": "d538a870a198964394085b14e2031bd078b6186f4a2b47dcf9bae169d22b7d83",
     "papyrusReusedUnmodified": [
@@ -468,37 +480,37 @@
         "script": "Ysmir",
         "pexSha256": "c9e43bed4184587e626cc60002141ec245c7432d9cfff3bcf8eee88b0c80b4ce",
         "sourceSha256": "07119d936f811e355a75bc76ec8b3c0c0f7b09cd603cfd930ac5b6d1225aa11c",
-        "matches090": true
+        "matches091": true
       },
       {
         "script": "YsmirDragonAspectSummonScript",
         "pexSha256": "4878fa0b0630caba995504aaa69c4c01dce8fdbbf34ea342bf8cee57676e0e27",
         "sourceSha256": "478b2abffb4b4d292747bacf2edfe421df8522d67e005e46daed91725f2bd53d",
-        "matches090": true
+        "matches091": true
       },
       {
         "script": "YsmirSlowTimeScript",
         "pexSha256": "4854faa04c04e93b45060df1cc92485ee385fe6a85a72bf896ebbde5add89371",
         "sourceSha256": "f55cf05672357d11bd354e2333a3de6c1edfc03c458f31cd2886a69c442e94eb",
-        "matches090": true
+        "matches091": true
       },
       {
         "script": "YsmirStormScript",
         "pexSha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1",
         "sourceSha256": "e6e62f7f48be583ba2cc285075817986e0155799730f71242715c94d2b7d39a7",
-        "matches090": true
+        "matches091": true
       },
       {
         "script": "YsmirVoicePushEffectScript",
         "pexSha256": "07b231818a60ce2cba9ab149323bd4253d5e395ae93e1f64a8e4ddd4bed4b631",
         "sourceSha256": "9c636390ed6d54e995f6e790b60af11cba3038231de9b4841e7dc2fc44508ca8",
-        "matches090": true
+        "matches091": true
       },
       {
         "script": "YsmirWhirlwindDamageScript",
         "pexSha256": "19a2889c3c6c26fed170fe704fc253252e5e625b317d2625eb7ed889b809d385",
         "sourceSha256": "f6473a26bcc47fad27be94a7b8df3fe7eacc878e847e96cf0df5e57d277611ba",
-        "matches090": true
+        "matches091": true
       }
     ],
     "inherited050Coverage": "0.8.0 verified 350 original IDs and 78 word lists; all 360 gameplay payloads retained byte-for-byte here",
@@ -509,14 +521,20 @@
     "runtime": "1.7.104.0",
     "minimumSKSE": "2.3.1",
     "addressLibraryEncoding": 5,
-    "pluginVersion": "0.9.1",
+    "pluginVersion": "0.9.2",
     "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-    "dllSha256": "efe9c23be8e9a04b381a3770b51ed625411495625406e292890025fb29df21ad",
+    "dllSha256": "c9faf908540bb4519c5e6fd39e88585655c47927c18a9cf26a7e3e04dd41c0a3",
     "dllSize": 757760,
     "exports": [
       "SKSEPlugin_Load",
       "SKSEPlugin_Version"
     ],
+    "nativeConeTravelFields": {
+      "updateImplRva": "0x7e18f0",
+      "distanceMovedOffset": "0x1c8",
+      "instanceRangeOffset": "0x198",
+      "verified": true
+    },
     "imports": [
       "KERNEL32.dll",
       "MSVCP140.dll",
@@ -721,10 +739,10 @@
     "gameplayTested": false
   },
   "nativeVisualAPI": {
-    "version": "0.9.1",
+    "version": "0.9.2",
     "runtime": "1.7.104.0",
     "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-    "method": "Retained 0.9.0 read-only update-order evidence plus final DLL PE/RTTI verification",
+    "method": "Retained update-order evidence; fresh final DLL/EXE PE check plus native instance travel-field comparison",
     "coneUpdateImplRva": "0x7e18f0",
     "coneUpdate3DRva": "0x7faf50",
     "niAVObjectUpdateRva": "0xee0930",
@@ -734,11 +752,17 @@
     ],
     "nativeMaterialCopyRemoved": true,
     "addressLibraryFileChecked": false,
-    "boundary": "No game execution, renderer or Address Library binary validation"
+    "boundary": "No game execution, renderer or Address Library binary validation",
+    "nativeConeTravelFields": {
+      "updateImplRva": "0x7e18f0",
+      "distanceMovedOffset": "0x1c8",
+      "instanceRangeOffset": "0x198",
+      "verified": true
+    }
   },
   "regression": {
     "passed": true,
-    "totalCases": 96,
+    "totalCases": 103,
     "integration": {
       "passed": true,
       "scope": "Exact source bodies with engine-service stubs; no gameplay",
@@ -760,7 +784,7 @@
       "unrelatedChildRejected": true,
       "reusedEffectAddressRejected": true,
       "sourceBodiesSha256": {
-        "true_cone.cpp": "730669739cea67f9bc6b53983a704d20fdc1722d8fe52740eb857e708c64af0f",
+        "true_cone.cpp": "5c0907c0da13dd65adfcdc521df1b987333e87d98e72408691c2ad3d19fd7471",
         "CastFromEffect": "a61cacdf9188156c5ac165d0599c7dec36e2a17051a68b4f185b4a9068fab01f",
         "EffectSnapshot": "d5d8dd80117141ad48b139637b320ce7e86460af77bfccad6a92f3556018e8e4",
         "EndEffect": "530c18f2bf9d624fbfb39511436de51e121be5e37ccde66c097ecc80bc5094a6",
@@ -800,7 +824,7 @@
     },
     "visuals": {
       "passed": true,
-      "cases": 31,
+      "cases": 38,
       "scenarios": [
         "birthPreservesNativeRootChildrenOffsetsAndMaterials",
         "allLayerSizesGapsNestedNodesAndDecorationsShareOneTransform",
@@ -817,12 +841,19 @@
         "movingAnchorSurvivesRotatedScaledParentWithoutExtraHeight",
         "distanceGrowthIsSmoothMonotoneAndIndependentOfCollisionAndVFXFactors",
         "highSoulGrowthHasNoArtificialFourTimesCap",
-        "nativeCollisionShapeRadiusAndAngleAreReadOnly",
+        "nativeCollisionShapeRadiusAndAngleAreUntouched",
         "zeroSoulsLeavesNativeAppearanceUnchangedAtEveryDistance",
-        "zeroRadiusAndAngleRemainFiniteAndContinuousAtBirth",
-        "invalidRuntimeGeometryCannotWriteNaNToScene",
+        "birthStartsAtOneWithContinuousEntrance",
+        "invalidDistanceRangeOrGrowthCannotWriteNaNToScene",
+        "visualCurveHasNoDependencyOnCollisionRadiusOrAngle",
+        "hundredSoulsFivePercentMatchesQuarterFlightMilestones",
+        "differentInstanceRangesShareNormalizedCurveWithoutDoubleGrowth",
+        "endOfRangeAndFrameOvershootStayAtSoulDistanceMultiplier",
+        "endpointMatchesEachFiniteGrowthIncludingLargeSoulCounts",
+        "smoothstepHasGentleEntranceAndExitAcrossFullFlight",
+        "simultaneousProjectilesKeepTheirOwnRangeAndCastGrowth",
         "legacyLayerFixedScaleAndCollisionKeysCannotRestoreRemovedBehavior",
-        "transitionDistanceControlsOnlySmoothEntrance",
+        "removedTransitionDistanceCannotOverrideFullFlightProgress",
         "coneAndGlobalVisualSwitchesSkipAllVisualChanges",
         "disabledForeignUnapprovedAndUnassignedProjectilesAreUntouched",
         "densitySwitchDisablesOnlyOpacityIntensityCompensation",
@@ -835,7 +866,7 @@
         "expiredProjectileCleanupRestoresVisualsAndReleasesState"
       ],
       "sourceSha256": {
-        "true_cone.cpp": "0daca698c6e1665528212b0cac84df48e4f4fc6d4d540a005a2dae4844cba007",
+        "true_cone.cpp": "e586f9d41dd33cf1bfa9c559962778bb05714a319b33f7faacb045fdff1384d5",
         "projectile_visuals.cpp": "4f9b08f73aed80f93c1ab44d63ec840f9d70f333a9c3f2752d6204d6c412ecb1"
       },
       "visualDensityBodySha256": "8fb99ade806fd97fd525e6567d92ac3db95f5eb534642a9312a3905f0b22e32d",
@@ -991,12 +1022,12 @@
     {
       "path": "SKSE/Plugins/Ysmir.dll",
       "bytes": 757760,
-      "sha256": "efe9c23be8e9a04b381a3770b51ed625411495625406e292890025fb29df21ad"
+      "sha256": "c9faf908540bb4519c5e6fd39e88585655c47927c18a9cf26a7e3e04dd41c0a3"
     },
     {
       "path": "SKSE/Plugins/Ysmir.ini",
-      "bytes": 3435,
-      "sha256": "4624134a2674211312f59f5a632a8cd26da310db4f96b2052fd95df77cb46282"
+      "bytes": 3536,
+      "sha256": "3ee26dbd5b4438186024a3ee1ac4e345cdb1fabfbcddba3c7ec6c1c4d9c23b9b"
     },
     {
       "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
@@ -1020,8 +1051,8 @@
     },
     {
       "path": "Ysmir.esp",
-      "bytes": 110158,
-      "sha256": "201679057aa5af285dd2c94eca57ed920503043e4ba97b254c4fd7d12884bcdb"
+      "bytes": 110167,
+      "sha256": "edde8b8894a51897b9f0b670379a072bc6292678ce0eb8994126d7ef686d827f"
     }
   ],
   "assets": [
@@ -1137,20 +1168,19 @@
     }
   ],
   "communityShadersRequired": false,
-  "old090OutputsUnmodified": {
-    "Ysmir-0.9.0-Full.zip": "3c90c57694f6179ac111ccfc99436129e9fc5ecab60ebb69a01be5913c61a1af",
-    "Ysmir-0.9.0-Source.zip": "39f6ec28f2a61d5969831188cb0c64726a514d5070bf2b3727d702c02f394793",
-    "Ysmir-0.9.0-功能与重构说明.md": "25c7ec0ba6b416f5f68bccdf05729bcc5efd3fcdc57fe1cbf59f4f0f7667ec8b",
-    "Ysmir-0.9.0-安装与游戏测试.txt": "095f3dffc179292d5dcf569f72058a71dd14cc9cea9c05759c9f8429bbdb0d34",
-    "Ysmir-0.9.0-验证结果.json": "861640a958f0186dbddecf115911c0b32082d0c35d6e62fd0c78d2fc0c98786e",
-    "Ysmir-0.9.0-SHA256.json": "8cbcb07723ac954717ea8131c1e04502fdfd706fc35fac5ff6c6901cce5dd397"
+  "old091OutputsUnmodified": {
+    "Ysmir-0.9.1-Full.zip": "7eab20aacbd054010675ad47f1d5cd7413c6be95518bee87b69b5b547cca7529",
+    "Ysmir-0.9.1-Source.zip": "cde07ae6898b364e1ce627ed15d980a7b311f73c3e2d82801b9d5d3d39db4048",
+    "Ysmir-0.9.1-功能与重构说明.md": "745a9a2ba86e99fa17af8d718962845629e63772d7ba18346a141a6803471d16",
+    "Ysmir-0.9.1-安装与游戏测试.txt": "d75d5cbe30454ae9009a8d744e86b118c628e9a727341c518fc5b71144cf3b3f",
+    "Ysmir-0.9.1-验证结果.json": "04f5e9da1c4fdba35193b7fd3c55f4ac71996d55631d02154f88c1b423325341",
+    "Ysmir-0.9.1-SHA256.json": "7c290f17a41cda7e15fe020e28b7da5e717f92b163449bc2305c233a43220abd"
   },
   "limitations": [
-    "No in-game rendering, collision-edge comparison, VM, save/load or performance test; TCSF remains the empirical reference",
-    "Uniform mesh scaling preserves the model composition but still scales ripple thickness and texture detail; no new geometry or particles",
-    "Original VFX/collision mismatch and smooth birth underrepresentation are not automatically calibrated",
-    "Legacy shared-material density can display only one density value at a time; model replacements and other visual plugins require in-game checks",
-    "Storm gameplay, scheduling and save restoration retain 0.9.0 behavior and its validation limits",
-    "Only Steam 1.7.104.0 / SKSE64 2.3.1 checked; Address Library binary was not rechecked"
+    "No in-game renderer, collision-edge, VM, save/load or performance test",
+    "Normalized progress is a visual curve, not a measurement of visible edges; early destruction may end below K",
+    "Root scaling retains the native composition but also scales texture detail and ripple thickness",
+    "Existing shared-material density and model replacement limitations remain",
+    "Only Steam 1.7.104.0 / SKSE64 2.3.1 checked; Address Library binary not rechecked"
   ]
 }

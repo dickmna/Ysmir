@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "version": "0.9.1",
-  "comparisonBaseline": "0.9.0 local full package and deterministic build",
+  "version": "0.9.2",
+  "comparisonBaseline": "0.9.1 local full package and deterministic build",
   "recordCount": 360,
   "all360RecordPayloadsAndFlagsIdentical": true,
   "addedRecords": 0,
@@ -12,7 +12,7 @@
   "runtimeHeaderAndFormIdsUnchanged": true,
   "deterministicEspHeaderAndFormIds": true,
   "unresolvedLinks": [],
-  "espSha256": "201679057aa5af285dd2c94eca57ed920503043e4ba97b254c4fd7d12884bcdb",
+  "espSha256": "edde8b8894a51897b9f0b670379a072bc6292678ce0eb8994126d7ef686d827f",
   "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
   "formIdsSha256": "d538a870a198964394085b14e2031bd078b6186f4a2b47dcf9bae169d22b7d83",
   "papyrusReusedUnmodified": [
@@ -20,37 +20,37 @@
       "script": "Ysmir",
       "pexSha256": "c9e43bed4184587e626cc60002141ec245c7432d9cfff3bcf8eee88b0c80b4ce",
       "sourceSha256": "07119d936f811e355a75bc76ec8b3c0c0f7b09cd603cfd930ac5b6d1225aa11c",
-      "matches090": true
+      "matches091": true
     },
     {
       "script": "YsmirDragonAspectSummonScript",
       "pexSha256": "4878fa0b0630caba995504aaa69c4c01dce8fdbbf34ea342bf8cee57676e0e27",
       "sourceSha256": "478b2abffb4b4d292747bacf2edfe421df8522d67e005e46daed91725f2bd53d",
-      "matches090": true
+      "matches091": true
     },
     {
       "script": "YsmirSlowTimeScript",
       "pexSha256": "4854faa04c04e93b45060df1cc92485ee385fe6a85a72bf896ebbde5add89371",
       "sourceSha256": "f55cf05672357d11bd354e2333a3de6c1edfc03c458f31cd2886a69c442e94eb",
-      "matches090": true
+      "matches091": true
     },
     {
       "script": "YsmirStormScript",
       "pexSha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1",
       "sourceSha256": "e6e62f7f48be583ba2cc285075817986e0155799730f71242715c94d2b7d39a7",
-      "matches090": true
+      "matches091": true
     },
     {
       "script": "YsmirVoicePushEffectScript",
       "pexSha256": "07b231818a60ce2cba9ab149323bd4253d5e395ae93e1f64a8e4ddd4bed4b631",
       "sourceSha256": "9c636390ed6d54e995f6e790b60af11cba3038231de9b4841e7dc2fc44508ca8",
-      "matches090": true
+      "matches091": true
     },
     {
       "script": "YsmirWhirlwindDamageScript",
       "pexSha256": "19a2889c3c6c26fed170fe704fc253252e5e625b317d2625eb7ed889b809d385",
       "sourceSha256": "f6473a26bcc47fad27be94a7b8df3fe7eacc878e847e96cf0df5e57d277611ba",
-      "matches090": true
+      "matches091": true
     }
   ],
   "inherited050Coverage": "0.8.0 verified 350 original IDs and 78 word lists; all 360 gameplay payloads retained byte-for-byte here",

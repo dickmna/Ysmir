@@ -6,8 +6,8 @@
   },
   {
     "feature": "龙魂成长",
-    "implementation": "幅度、距离、范围、时长、非锥形碰撞/视觉默认 1+0.05S；冷却 0.95^S；锥形半径不额外成长，VFX 按距离半径比平滑整体放大；无龙魂上限。",
-    "offlineEvidence": "距离与成长源码不变，11 组成长/发射、17 项桥接/开关、31 组视觉检查；除删除 NativeWaveGrowth 外 INI 数值相同。"
+    "implementation": "既定幅度、距离、范围、时长、非锥形碰撞/视觉及冷却成长不变；锥形视觉按实例射程进度从 1 平滑增至该次距离倍率。",
+    "offlineEvidence": "成长、发射、快照源码与 0.9.1 相同；11 成长/发射、17 桥接/开关、38 视觉检查；所有其他 INI 数值相同。"
   },
   {
     "feature": "实例倍率与桥接",
@@ -86,8 +86,8 @@
   },
   {
     "feature": "碰撞与视觉",
-    "implementation": "原始角度和初始半径不变；原生碰撞扩张和龙魂距离成长保留。所有模型从原版出生大小起围绕原锚点整体放大，保留浓度补偿；分层、专用 UV 和模型特例已删除。无额外高度或投射 NIF。",
-    "offlineEvidence": "31 组真实视觉模块回归，含组合内几何点/间距、嵌套节点、旋转父节点及移动锚点；距离公式与浓度函数不变，真实渲染待测。"
+    "implementation": "原角度和初始半径不变；视觉计算不再读取它们。使用 d/runtime.range 的 smoothstep，原锚点整体缩放及浓度补偿不变，无新 NIF/UV/高度改动。",
+    "offlineEvidence": "38 组实际视觉模块检查；完整 projectile_visuals.cpp 与 0.9.1 相同；不同射程、终点/越界/无效值、同时施放、锚点、浓度通过。真实渲染待测。"
   },
   {
     "feature": "雷击外观修复",
@@ -96,8 +96,8 @@
   },
   {
     "feature": "True Cone 控制与 API",
-    "implementation": "保留 Enabled、PatchVisuals、bScaleVFX、DensityCompensation、fVisualTransitionDistance 和 GetDragonSoulCount；删除 NativeWaveGrowth，旧键忽略；初始半径和角度改写继续移除。",
-    "offlineEvidence": "开关、旧键忽略、出生连续及半径/角度只读回归；其余 INI 值和 Papyrus API 不变。"
+    "implementation": "保留 Enabled、PatchVisuals、bScaleVFX、DensityCompensation 和 GetDragonSoulCount；移除 fVisualTransitionDistance，旧键忽略。",
+    "offlineEvidence": "开关和旧键忽略检查通过；其余配置逐项相同。"
   },
   {
     "feature": "库存模型与纹理",

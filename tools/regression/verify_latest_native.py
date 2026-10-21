@@ -83,12 +83,22 @@ launch=values['ProjectileLaunchRva']
 launch_bytes=bytes(int(x,16) for x in re.findall(r'0x[\dA-F]+', header.split('ProjectileLaunchBytes{')[1].split('}')[0]))
 assert exe.get_data(launch,len(launch_bytes))==launch_bytes
 assert sum(i.size for i in cs.disasm(launch_bytes,base+launch))==len(launch_bytes)
+# The visual curve now uses the same per-instance distance/range that the
+# native cone update compares when deciding whether its flight has ended.
+cone_update = next(slot['targetRva'] for table in vtables if table['class']=='ConeProjectile'
+                   for slot in table['slots'] if slot['slot']=='0xab')
+cone_update_rva = int(cone_update,16)
+travel = [(i.mnemonic,i.op_str) for i in cs.disasm(exe.get_data(cone_update_rva,0x40),base+cone_update_rva)]
+assert ('movss','xmm0, dword ptr [rcx + 0x1c8]') in travel
+assert ('comiss','xmm0, dword ptr [rcx + 0x198]') in travel
 report = {
     'passed': True, 'runtime': '1.7.104.0', 'minimumSKSE': '2.3.1',
     'addressLibraryEncoding': 5, 'pluginVersion': project_version,
     'exeSha256': hashlib.sha256(raw).hexdigest(),
     'dllSha256': hashlib.sha256(dll_path.read_bytes()).hexdigest(),
     'dllSize': dll_path.stat().st_size, 'exports': sorted(exports),
+    'nativeConeTravelFields': {'updateImplRva': cone_update, 'distanceMovedOffset': '0x1c8',
+                              'instanceRangeOffset': '0x198', 'verified': True},
     'imports': sorted(x.dll.decode() for x in dll.DIRECTORY_ENTRY_IMPORT),
     'mainUpdateRva': hex(main), 'frameCallRva': hex(site), 'frameCallOffset': hex(values['FrameCallOffset']),
     'frameCallBytes': bytes(call.bytes).hex(' '), 'frameCallTargetRva': hex(target),

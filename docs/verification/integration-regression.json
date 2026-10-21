@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "totalCases": 96,
+  "totalCases": 103,
   "integration": {
     "passed": true,
     "scope": "Exact source bodies with engine-service stubs; no gameplay",
@@ -22,7 +22,7 @@
     "unrelatedChildRejected": true,
     "reusedEffectAddressRejected": true,
     "sourceBodiesSha256": {
-      "true_cone.cpp": "730669739cea67f9bc6b53983a704d20fdc1722d8fe52740eb857e708c64af0f",
+      "true_cone.cpp": "5c0907c0da13dd65adfcdc521df1b987333e87d98e72408691c2ad3d19fd7471",
       "CastFromEffect": "a61cacdf9188156c5ac165d0599c7dec36e2a17051a68b4f185b4a9068fab01f",
       "EffectSnapshot": "d5d8dd80117141ad48b139637b320ce7e86460af77bfccad6a92f3556018e8e4",
       "EndEffect": "530c18f2bf9d624fbfb39511436de51e121be5e37ccde66c097ecc80bc5094a6",
@@ -62,7 +62,7 @@
   },
   "visuals": {
     "passed": true,
-    "cases": 31,
+    "cases": 38,
     "scenarios": [
       "birthPreservesNativeRootChildrenOffsetsAndMaterials",
       "allLayerSizesGapsNestedNodesAndDecorationsShareOneTransform",
@@ -79,12 +79,19 @@
       "movingAnchorSurvivesRotatedScaledParentWithoutExtraHeight",
       "distanceGrowthIsSmoothMonotoneAndIndependentOfCollisionAndVFXFactors",
       "highSoulGrowthHasNoArtificialFourTimesCap",
-      "nativeCollisionShapeRadiusAndAngleAreReadOnly",
+      "nativeCollisionShapeRadiusAndAngleAreUntouched",
       "zeroSoulsLeavesNativeAppearanceUnchangedAtEveryDistance",
-      "zeroRadiusAndAngleRemainFiniteAndContinuousAtBirth",
-      "invalidRuntimeGeometryCannotWriteNaNToScene",
+      "birthStartsAtOneWithContinuousEntrance",
+      "invalidDistanceRangeOrGrowthCannotWriteNaNToScene",
+      "visualCurveHasNoDependencyOnCollisionRadiusOrAngle",
+      "hundredSoulsFivePercentMatchesQuarterFlightMilestones",
+      "differentInstanceRangesShareNormalizedCurveWithoutDoubleGrowth",
+      "endOfRangeAndFrameOvershootStayAtSoulDistanceMultiplier",
+      "endpointMatchesEachFiniteGrowthIncludingLargeSoulCounts",
+      "smoothstepHasGentleEntranceAndExitAcrossFullFlight",
+      "simultaneousProjectilesKeepTheirOwnRangeAndCastGrowth",
       "legacyLayerFixedScaleAndCollisionKeysCannotRestoreRemovedBehavior",
-      "transitionDistanceControlsOnlySmoothEntrance",
+      "removedTransitionDistanceCannotOverrideFullFlightProgress",
       "coneAndGlobalVisualSwitchesSkipAllVisualChanges",
       "disabledForeignUnapprovedAndUnassignedProjectilesAreUntouched",
       "densitySwitchDisablesOnlyOpacityIntensityCompensation",
@@ -97,7 +104,7 @@
       "expiredProjectileCleanupRestoresVisualsAndReleasesState"
     ],
     "sourceSha256": {
-      "true_cone.cpp": "0daca698c6e1665528212b0cac84df48e4f4fc6d4d540a005a2dae4844cba007",
+      "true_cone.cpp": "e586f9d41dd33cf1bfa9c559962778bb05714a319b33f7faacb045fdff1384d5",
       "projectile_visuals.cpp": "4f9b08f73aed80f93c1ab44d63ec840f9d70f333a9c3f2752d6204d6c412ecb1"
     },
     "visualDensityBodySha256": "8fb99ade806fd97fd525e6567d92ac3db95f5eb534642a9312a3905f0b22e32d",

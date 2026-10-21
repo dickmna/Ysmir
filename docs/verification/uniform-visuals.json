@@ -1,21 +1,33 @@
 {
-  "removedComponents": [
-    "WaveLayer",
-    "TileSlot",
-    "KnownWave",
-    "WaveNode",
-    "InWave(",
-    "NativeWaveGrowth",
-    "nativeWave",
-    "texCoordScale",
-    "SetMaterial(",
-    "VaporTile",
-    "CloudTile"
+  "version": "0.9.2",
+  "formula": "p=clamp(distanceMoved/instanceRange,0,1); V=1+(K-1)*p*p*(3-2*p)",
+  "instanceRangeAlreadyGrown": true,
+  "usesFrozenCastGrowth": true,
+  "readsCollisionGeometry": false,
+  "birthScale": 1,
+  "endpointAndOvershootScale": "K",
+  "invalidInputScale": 1,
+  "progress": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
   ],
-  "visualSourceLinesBefore": 390,
-  "visualSourceLinesAfter": 257,
-  "distanceFormulaByteIdenticalTo090": true,
-  "legacyDensityBodiesIdenticalTo090": true,
+  "sixTimesGrowthScales": [
+    1,
+    1.78125,
+    3.5,
+    5.21875,
+    6
+  ],
+  "removedConfig": [
+    "TrueCone.fVisualTransitionDistance"
+  ],
+  "projectileVisualAdapterIdenticalTo091": true,
+  "densityImplementationIdenticalTo091": true,
+  "coneSourceLinesBefore": 33,
+  "coneSourceLinesAfter": 29,
   "newRuntimeDependency": false,
   "newPapyrusScript": false,
   "serializationChanged": false

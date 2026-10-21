@@ -86,7 +86,7 @@ static_assert(offsetof(hkpSphereShape,radius)==0x20);
 struct BGSProjectile { struct Data { float coneSpread=15,collisionRadius=16; } data; };
 struct ConeProjectile {
     struct ConeData { float initialCollisionSphereRadius=16,coneAngleTangent=.25f; hkpSphereShape* collisionShape{}; } cone;
-    struct Runtime { float distanceMoved=0; } runtime;
+    struct Runtime { float distanceMoved=0,range=512; } runtime;
     BGSProjectile base;
     ConeData& GetConeRuntimeData() { return cone; }
     Runtime& GetProjectileRuntimeData() { return runtime; }

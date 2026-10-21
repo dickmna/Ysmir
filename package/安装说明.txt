@@ -1,38 +1,37 @@
-Ysmir 0.9.1 — 整体缩放游戏测试包
+Ysmir 0.9.2 — 按传播进度平滑整体缩放测试包
 
 运行要求：Steam Skyrim 1.7.104.0、SKSE64 2.3.1、匹配 Address Library、
 官方 masters 和 Visual C++ x64 Runtime。其他运行时未验证。
 
-用 MO2/Vortex 安装 ZIP，把 Data 设为数据目录并启用 Ysmir.esp。
-完整替换旧 Ysmir 模组目录；保留升级前存档。Source.zip 不是运行包。
+用 MO2/Vortex 安装 Full.zip，把 Data 设为数据目录并启用 Ysmir.esp。
+完整替换旧 Ysmir，保留升级前存档。Source.zip 是源码，不能当运行包。
 停用已整合的 Shout Progression、FT、True Cone、DUF、SCSO、93681、
 62686、49359 对应控制器及补丁，避免重复执行；其他未整合组件按需保留。
-独立 TCSF 请用单独配置作参照，不与本版叠加评价新效果。
+独立 TCSF 用单独配置作参照，不与本版叠加评价效果。
 
-本版删除分层、模型特例和专用 UV 处理，所有锥形特效统一整体缩放。
-保留原版出生大小与锚点；倍率随龙魂距离成长平滑增加，无固定四倍。
-角度和初始碰撞半径不改，不抬高、不换投射 NIF。
-原有浓度补偿和风暴、元素狂暴、Soul Tear、Slow Time、FT、推力、成长保留。
+本版只改变锥形视觉倍率的计算：按已传播距离/成长后实例射程，
+从 1 倍平滑增加到该次龙魂距离倍率。100 龙魂、每魂 5% 时，
+0/25/50/75/100% 射程分别为 1/1.78125/3.5/5.21875/6 倍。
+提前撞击或消失时停在当前倍率。原版动画继续自身运动和扩张。
+不读取碰撞半径、角度或模型尺寸；原锚点整体缩放、浓度补偿保留。
+不抬高、不换投射 NIF、不增加分层或 UV 处理。其他功能保持不变。
 
-测试顺序：
-1. 用三词不卸之力比较零龙魂和 100 龙魂（每魂 5%）。
-2. 观察出生、近处、中段、远端覆盖，波面/烟雾/拖尾的比例衔接及高度。
-3. 检查火焰/寒霜各词阶、Soul Tear，以及风暴/元素狂暴/Slow Time。
-4. [TrueCone] DensityCompensation=0 可单独关闭浓度补偿作对照；默认 1。
-5. PatchVisuals=0 可关闭锥形视觉补偿，龙魂距离成长继续保留。
-所有 INI 修改后退出并重启游戏；建议安装本版配置后迁移自定义数值。
+fVisualTransitionDistance 已移除并忽略旧键，不再有 256 单位接入。
+NativeWaveGrowth、PatchRuntimeCollision、旧角度键和 fBaseVisualScale
+也继续忽略。fVFXPerSoul 只影响非锥形；锥形终点倍率使用 fDistancePerSoul。
+建议安装新版 INI，再迁移自定义数值。任何 INI 修改后需重启游戏。
 
-fVisualTransitionDistance=256 控制平滑接入距离。
-NativeWaveGrowth 已删除并忽略旧键；不再存在可切换的分层路径。
-旧 PatchRuntimeCollision、角度键和 fBaseVisualScale 也继续忽略。
-fVFXPerSoul 只控制非锥形视觉。需要诊断时设置 General.bDebugLogging=1，
-日志 SKSE/Ysmir.log 会记录 uniform root scale、浓度目标数和距离倍率。
+测试：先比较三词不卸之力在 0 与 100 龙魂下的近中远端大小、
+波面/烟雾/拖尾衔接和高度，再测火焰、寒霜各词阶、Soul Tear，
+以及风暴、元素狂暴和 Slow Time。
+DensityCompensation=0 只关闭浓度；PatchVisuals=0 只关闭锥形视觉，
+龙魂距离成长继续保留。General.bDebugLogging=1 可启用既有诊断日志。
 
-包含 1 DLL、1 ESP、1 INI、6 PEX、18 NIF、4 DDS；保留 FT 17 个库存模型。
-没有新增或替换投射 NIF，无 Community Shaders 依赖。
-Release 构建和 96 项离线检查通过；360 条玩法记录、六份脚本和原资产
-与 0.9.0 核对一致。尚未进行真实游戏画面、命中、帧率和存档联合测试。
+包内 1 DLL、1 ESP、1 INI、6 PEX、18 NIF、4 DDS；FT 17 个库存模型保留。
+没有 Community Shaders 依赖。Release 编译及 103 项离线检查通过；
+360 条玩法记录、六份脚本和全部模型纹理与 0.9.1 核对一致。
+尚未进行游戏画面、真实命中、性能或存档联合测试。
 
-回退：恢复 0.9.0 完整包及升级前存档；GitHub v0.9.0 / backup/ysmir-0.9.0
-对应 733c0c8。本次没有自动部署到游戏或更改加载顺序。
-详细信息见 docs/REFACTOR-091.md、docs/KNOWN_ISSUES.md、BUILD-REPORT.json。
+回退使用旧 0.9.1 完整包及升级前存档。GitHub v0.9.1 /
+backup/ysmir-0.9.1 对应 a85d55d。未自动部署或修改加载顺序。
+详见 docs/REFACTOR-092.md、docs/KNOWN_ISSUES.md、BUILD-REPORT.json。
