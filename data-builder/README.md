@@ -1,4 +1,4 @@
-# Ysmir 0.9.0 数据构建器
+# Ysmir 0.9.1 数据构建器
 
 .NET 9 / Mutagen.Bethesda.Skyrim 0.54.4。三个位置参数依次为官方游戏 Data 目录、上游输入目录、输出目录。
 
@@ -19,7 +19,7 @@ Copy-Item artifacts/Ysmir.esp package/Data/Ysmir.esp
 | Slow Time Edit.esp | Nexus 62686 |
 | WhirlwindSprintRedone version 2.esp | Nexus 49359 version 2 |
 
-这些上游插件是构建输入，无须在运行时启用；未随公开仓库分发。风暴克隆官方雷击和天气图，Ysmir 的小型调度器负责动态敌我筛选与全目标错峰；参考 SCSO Pure SKSE Beta 的保留引擎结算原则。True Cone 只保留动态碰撞/视觉成长与 10° Soul Tear 锥形记录。
+这些上游插件是构建输入，无须在运行时启用；未随公开仓库分发。风暴克隆官方雷击和天气图，Ysmir 的小型调度器负责动态敌我筛选与全目标错峰；参考 SCSO Pure SKSE Beta 的保留引擎结算原则。True Cone 保留 10° Soul Tear 锥形记录；锥形初始半径/角度不做运行时成长，视觉使用随龙魂距离成长的整体缩放。
 
 依次加载 Skyrim.esm、Update.esm、Dawnguard.esm、Dragonborn.esm 的获胜记录。官方英文字符串从其 BSA 临时读取；不读取 Plugins.txt，不修改游戏目录。
 

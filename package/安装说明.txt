@@ -1,40 +1,38 @@
-Ysmir 0.9.0 — 完整游戏测试包
+Ysmir 0.9.1 — 整体缩放游戏测试包
 
 运行要求：Steam Skyrim 1.7.104.0、SKSE64 2.3.1、匹配 Address Library、
 官方 masters 和 Visual C++ x64 Runtime。其他运行时未验证。
 
-用 MO2/Vortex 安装 ZIP，把 Data 设为数据目录并启用 Ysmir.esp；
-完整替换旧 Ysmir 模组目录。Source.zip 用于构建，不能当运行模组安装。
+用 MO2/Vortex 安装 ZIP，把 Data 设为数据目录并启用 Ysmir.esp。
+完整替换旧 Ysmir 模组目录；保留升级前存档。Source.zip 不是运行包。
 停用已整合的 Shout Progression、FT、True Cone、DUF、SCSO、93681、
-62686、49359 对应控制器及补丁，避免重复执行。TCSF 请用单独配置作参照，
-不要与本版同时叠加来评价新算法。
+62686、49359 对应控制器及补丁，避免重复执行；其他未整合组件按需保留。
+独立 TCSF 请用单独配置作参照，不与本版叠加评价新效果。
 
-保留龙魂速度/距离成长、原始角度、初始碰撞半径和视觉出生大小。
-不换投射 NIF，不加高度偏移；没有固定四倍。
-原版不卸之力、火焰、寒霜共九个模型采用分层扩张与可平铺烟雾 UV 补偿。
-其他模型保留通用视觉路径。风暴、元素狂暴、Soul Tear、Slow Time、FT、
-动态推力和其余成长功能保持原有机制。
+本版删除分层、模型特例和专用 UV 处理，所有锥形特效统一整体缩放。
+保留原版出生大小与锚点；倍率随龙魂距离成长平滑增加，无固定四倍。
+角度和初始碰撞半径不改，不抬高、不换投射 NIF。
+原有浓度补偿和风暴、元素狂暴、Soul Tear、Slow Time、FT、推力、成长保留。
 
 测试顺序：
-1. 保留升级前存档，先用三词不卸之力比较零龙魂和 100 龙魂（每魂 5%）。
-2. 比较出生、近处、中段、远端：范围、波纹厚度、烟雾细度、消散与实际命中。
-3. 再测试火焰/寒霜各词阶、Soul Tear，以及风暴/元素狂暴/Slow Time。
-4. 相同场景、龙魂与词阶下，可将 [TrueCone] NativeWaveGrowth=0，
-   对照通用根节点路径；默认 1 为新版分层路径。它不是原 TCSF 四倍模式。
-5. DensityCompensation=0 可单独关闭纹理/浓度补偿；PatchVisuals=0 可
-   关闭锥形视觉补偿，距离成长继续保留。修改 INI 后退出并重启游戏。
+1. 用三词不卸之力比较零龙魂和 100 龙魂（每魂 5%）。
+2. 观察出生、近处、中段、远端覆盖，波面/烟雾/拖尾的比例衔接及高度。
+3. 检查火焰/寒霜各词阶、Soul Tear，以及风暴/元素狂暴/Slow Time。
+4. [TrueCone] DensityCompensation=0 可单独关闭浓度补偿作对照；默认 1。
+5. PatchVisuals=0 可关闭锥形视觉补偿，龙魂距离成长继续保留。
+所有 INI 修改后退出并重启游戏；建议安装本版配置后迁移自定义数值。
 
-默认 fVisualTransitionDistance=256；旧 PatchRuntimeCollision、角度键和
-未发布草稿的 fBaseVisualScale 均忽略。fVFXPerSoul 仍只控制非锥形视觉。
-需要诊断时设 [General] bDebugLogging=1，检查游戏文档目录 SKSE/Ysmir.log
-中的 native wave、layers 与 UV isolated 信息。shared property 会跳过 UV。
+fVisualTransitionDistance=256 控制平滑接入距离。
+NativeWaveGrowth 已删除并忽略旧键；不再存在可切换的分层路径。
+旧 PatchRuntimeCollision、角度键和 fBaseVisualScale 也继续忽略。
+fVFXPerSoul 只控制非锥形视觉。需要诊断时设置 General.bDebugLogging=1，
+日志 SKSE/Ysmir.log 会记录 uniform root scale、浓度目标数和距离倍率。
 
-含 1 DLL、1 ESP、1 INI、6 PEX、18 NIF、4 DDS；FT 17 个库存模型保留。
+包含 1 DLL、1 ESP、1 INI、6 PEX、18 NIF、4 DDS；保留 FT 17 个库存模型。
 没有新增或替换投射 NIF，无 Community Shaders 依赖。
-Release 编译和 101 项离线结果通过；360 条玩法记录、六份脚本和资产与
-0.8.0 核对一致。尚未验证真实画面、命中边缘、帧率及游戏存档联合恢复。
+Release 构建和 96 项离线检查通过；360 条玩法记录、六份脚本和原资产
+与 0.9.0 核对一致。尚未进行真实游戏画面、命中、帧率和存档联合测试。
 
-回退：完整恢复 0.8.0 包及升级前存档；GitHub v0.8.0 对应 5c53daf。
-草稿备份分支 backup/ysmir-before-native-vfx-20261021 对应 9397ff2。
-详细说明见 docs/REFACTOR-090.md、docs/KNOWN_ISSUES.md、BUILD-REPORT.json。
-本次没有自动部署到游戏或更改加载顺序。
+回退：恢复 0.9.0 完整包及升级前存档；GitHub v0.9.0 / backup/ysmir-0.9.0
+对应 733c0c8。本次没有自动部署到游戏或更改加载顺序。
+详细信息见 docs/REFACTOR-091.md、docs/KNOWN_ISSUES.md、BUILD-REPORT.json。

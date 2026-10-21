@@ -2,13 +2,11 @@
 #include "modules.h"
 #include <RE/B/BSVisit.h>
 #include <algorithm>
-#include <array>
 #include <cmath>
 #include <cctype>
 #include <memory>
 #include <mutex>
 #include <sstream>
-#include <string_view>
 #include <unordered_map>
 #include <vector>
 
@@ -56,87 +54,20 @@ namespace
     // Weak ownership deduplicates shared materials without pinning dead scene data.
     std::unordered_map<BindingKey,std::weak_ptr<DensityBinding>,BindingHash> materials;
     struct ShaderSlot { RE::NiPointer<RE::BSGeometry> geometry; std::shared_ptr<DensityBinding> binding; };
-    struct WaveLayer {
-        RE::NiPointer<RE::NiAVObject> object;
-        float baseline{1},applied{1};
-        void Restore() {
-            if (Near(object->local.scale,applied)) object->local.scale=applied=baseline;
-        }
-        void Apply(float factor) {
-            if (!Near(object->local.scale,applied)) baseline=object->local.scale;
-            const auto value=baseline*factor;
-            if (std::isfinite(value) && value>0) object->local.scale=applied=value;
-        }
-    };
-    bool Tileable(RE::BSShaderMaterial* material);
-    struct TileSlot {
-        RE::NiPointer<RE::BSGeometry> geometry;
-        RE::BSShaderProperty* shader{};
-        RE::BSShaderMaterial* material{};
-        std::array<RE::NiPoint2,2> baseline{},applied{};
-        bool isolated{};
-        bool Valid() const {
-            return isolated && geometry->GetGeometryRuntimeData().shaderProperty.get()==shader && shader->material==material;
-        }
-        void Restore() {
-            if (!Valid()) return;
-            for (std::size_t i=0;i<2;++i) {
-                auto& uv=material->texCoordScale[i];
-                if (Near(uv.x,applied[i].x)) uv.x=applied[i].x=baseline[i].x;
-                if (Near(uv.y,applied[i].y)) uv.y=applied[i].y=baseline[i].y;
-            }
-        }
-        void Apply(float factor,bool debugLogging) {
-            auto* current=geometry->GetGeometryRuntimeData().shaderProperty.get();
-            if (current!=shader || (current && current->material!=material)) {
-                Restore(); shader=current; material=current ? current->material : nullptr; isolated=false;
-                // Animated properties normally belong to one geometry. Do not edit a
-                // shared property: making only its material unique would affect all owners.
-                if (factor>1 && current && current->GetRefCount()==1 && Tileable(material)) {
-                    auto* original=material;
-                    // SetMaterial creates the copy before releasing the old cache entry.
-                    // Leave both acquisition and release to the native resource manager.
-                    current->SetMaterial(original,true);
-                    material=current->material;
-                    isolated=material && material!=original;
-                    if (isolated)
-                        for (std::size_t i=0;i<2;++i) baseline[i]=applied[i]=material->texCoordScale[i];
-                }
-                // Defer allocation at birth; retry when there is actual distance growth.
-                if (factor<=1) { shader=nullptr; material=nullptr; }
-                else if (debugLogging) {
-                    const auto* name=geometry->name.c_str();
-                    SKSE::log::info("Cone VFX UV {}: isolated={}, property refs={}",
-                        name ? name : "<unnamed>",isolated,current ? current->GetRefCount() : 0);
-                }
-            }
-            if (!Valid()) return;
-            if (shader->GetRefCount()!=1) { Restore(); return; }
-            for (std::size_t i=0;i<2;++i) {
-                auto& uv=material->texCoordScale[i];
-                if (!Near(uv.x,applied[i].x)) baseline[i].x=uv.x;
-                if (!Near(uv.y,applied[i].y)) baseline[i].y=uv.y;
-                const RE::NiPoint2 next{baseline[i].x*factor,baseline[i].y*factor};
-                if (std::isfinite(next.x) && std::isfinite(next.y)) uv=applied[i]=next;
-            }
-        }
-    };
     struct State {
         RE::ProjectileHandle handle;
         Snapshot snapshot;
-        bool isCone{}, storm{}, compensate{},nativeWave{};
+        bool isCone{}, storm{}, compensate{};
         RE::NiPointer<RE::NiAVObject> root;
         float baseline{1}, applied{1};
         RE::NiPoint3 centerAnchor;
         std::vector<RE::NiPointer<RE::NiAVObject>> bounds;
         std::vector<ShaderSlot> shaders;
-        std::vector<WaveLayer> waves;
-        std::vector<TileSlot> tiles;
     };
     std::unordered_map<std::uint32_t,State> states;
     std::mutex mutex;
     RE::BGSProjectile* stormBase{};
-    bool patchBounds{true}, alwaysDraw{true}, density{true},nativeGrowth{true},debug{};
+    bool patchBounds{true}, alwaysDraw{true}, density{true},debug{};
     float boundRadius{18000};
     std::vector<std::string> exclusions;
     double pruneAt{};
@@ -144,51 +75,9 @@ namespace
         std::transform(value.begin(),value.end(),value.begin(),[](unsigned char c) { return static_cast<char>(std::tolower(c)); });
         return value;
     }
-    bool Tileable(RE::BSShaderMaterial* material) {
-        if (!material || material->GetType()!=RE::BSShaderMaterial::Type::kEffect) return false;
-        const auto* effect=static_cast<RE::BSEffectShaderMaterial*>(material);
-        if (effect->effectClampMode!=RE::BSGraphics::TextureAddressMode::kWrapSWrapT) return false;
-        const auto* texture=effect->sourceTexturePath.c_str(); if (!texture) return false;
-        auto path=Lower(texture);
-        const auto slash=path.find_last_of("\\/");
-        const auto name=path.substr(slash==std::string::npos ? 0 : slash+1);
-        return name=="vaportile01.dds" || name=="cloudtile.dds";
-    }
-    bool KnownWave(RE::BGSProjectile* base) {
-        const auto* model=base->GetModel(); if (!model) return false;
-        const auto path=Lower(model); const auto slash=path.find_last_of("\\/");
-        const std::string_view name{path.data()+(slash==std::string::npos ? 0 : slash+1)};
-        for (const auto stem : {"voicepushprojectile","voiceflamewaveproject","voicefrostwaveproject"}) {
-            const std::string_view prefix{stem};
-            if (name.starts_with(prefix)) {
-                const auto suffix=name.substr(prefix.size());
-                return suffix=="01.nif" || suffix=="02.nif" || suffix=="03.nif";
-            }
-        }
-        return false;
-    }
-    bool WaveNode(RE::NiAVObject* object) {
-        if (!object->AsNode()) return false;
-        const auto* label=object->name.c_str(); if (!label) return false;
-        const std::string_view name{label};
-        for (const auto stem : {"RefractMesh","Wisps","Trail"}) {
-            const std::string_view prefix{stem};
-            if (!name.starts_with(prefix)) continue;
-            const auto suffix=name.substr(prefix.size());
-            return suffix.size()==2 && std::all_of(suffix.begin(),suffix.end(),[](char c) { return c>='0' && c<='9'; });
-        }
-        return false;
-    }
-    bool InWave(const State& state,RE::NiAVObject* object) {
-        for (auto* parent=object->parent; parent; parent=parent->parent)
-            if (std::any_of(state.waves.begin(),state.waves.end(),[&](const auto& wave) { return wave.object.get()==parent; })) return true;
-        return false;
-    }
     void RestoreCone(State& state,RE::Projectile* projectile) {
         if (!state.isCone) return;
-        for (auto& wave : state.waves) wave.Restore();
-        for (auto& tile : state.tiles) tile.Restore();
-        if (!state.nativeWave && state.root && Near(state.root->local.scale,state.applied)) {
+        if (state.root && Near(state.root->local.scale,state.applied)) {
             state.root->local.scale=state.applied=state.baseline;
             if (projectile) {
                 const auto center=state.root->parent ? state.root->parent->world.Invert()*projectile->GetPosition() : projectile->GetPosition();
@@ -231,23 +120,11 @@ namespace
     }
     void BindRoot(State& state,RE::Projectile* projectile,RE::NiAVObject* root) {
         RestoreCone(state,projectile);
-        state.bounds.clear(); state.shaders.clear(); state.waves.clear(); state.tiles.clear(); state.root.reset(root);
+        state.bounds.clear(); state.shaders.clear(); state.root.reset(root);
         state.baseline=state.applied=root->local.scale;
         const auto center=CenterInParent(projectile,root);
         // Fixed model-space anchor: preserve the original center in all three axes.
         state.centerAnchor=root->local.Invert()*center;
-        bool core=false,wisps=false;
-        if (state.isCone && nativeGrowth && KnownWave(projectile->GetProjectileBase()))
-            RE::BSVisit::TraverseScenegraphObjects(root,[&](RE::NiAVObject* object) {
-                if (WaveNode(object) && !InWave(state,object)) {
-                    state.waves.push_back({RE::NiPointer<RE::NiAVObject>{object},object->local.scale,object->local.scale});
-                    const std::string_view name{object->name.c_str()};
-                    core|=name.starts_with("RefractMesh"); wisps|=name.starts_with("Wisps");
-                }
-                return RE::BSVisit::BSVisitControl::kContinue;
-            });
-        state.nativeWave=core && wisps;
-        if (!state.nativeWave) state.waves.clear();
         RE::BSVisit::TraverseScenegraphObjects(root,[&](RE::NiAVObject* object) {
             if (state.storm && patchBounds) {
                 state.bounds.emplace_back(object);
@@ -258,17 +135,14 @@ namespace
             // Track every geometry so later material swaps remain observable.
             // Bind() still shares one baseline per material; Apply() skips equal writes.
             if (state.compensate)
-                if (auto* geometry=object->AsGeometry()) {
-                    if (state.nativeWave) {
-                        if (InWave(state,geometry)) state.tiles.push_back({RE::NiPointer<RE::BSGeometry>{geometry}});
-                    } else state.shaders.push_back({RE::NiPointer<RE::BSGeometry>{geometry},Bind(geometry)});
-                }
+                if (auto* geometry=object->AsGeometry())
+                    state.shaders.push_back({RE::NiPointer<RE::BSGeometry>{geometry},Bind(geometry)});
             return RE::BSVisit::BSVisitControl::kContinue;
         });
         if (debug && state.isCone) {
             const auto* model=projectile->GetProjectileBase()->GetModel();
-            SKSE::log::info("Cone VFX {}: native wave={}, layers={}, material candidates={}, distance growth={}",
-                model ? model : "<no model>",state.nativeWave,state.waves.size(),state.tiles.size(),state.snapshot.distance);
+            SKSE::log::info("Cone VFX {}: uniform root scale, density targets={}, distance growth={}",
+                model ? model : "<no model>",state.shaders.size(),state.snapshot.distance);
         }
     }
     void Apply(RE::Projectile* projectile,RE::NiAVObject* suppliedRoot)
@@ -299,15 +173,9 @@ namespace
         else if (!Near(root->local.scale,state.applied)) state.baseline=root->local.scale;
         const auto factor=cone ? ysmir::true_cone::VisualScale(cone,state.snapshot) : state.snapshot.vfx;
         const auto densityGain=cone ? ysmir::progression::VisualDensity(factor) : state.snapshot.density;
-        if (state.nativeWave) {
-            // Native controllers retain their time, translation, rotation and alpha.
-            // Correct only the outer wave layers, once per branch; the root stays native.
-            for (auto& wave : state.waves) wave.Apply(factor);
-            for (auto& tile : state.tiles) tile.Apply(factor,debug);
-        } else {
-            root->local.scale=state.baseline*factor; state.applied=root->local.scale;
-            root->local.translate=CenterInParent(projectile,root)-root->local.rotate*(state.centerAnchor*root->local.scale);
-        }
+        // One transform preserves the whole model's proportions around its original anchor.
+        root->local.scale=state.baseline*factor; state.applied=root->local.scale;
+        root->local.translate=CenterInParent(projectile,root)-root->local.rotate*(state.centerAnchor*root->local.scale);
         RE::NiUpdateData data{}; root->UpdateTransformAndBounds(data);
         for (const auto& object : state.bounds) {
             object->worldBound.center=object->world.translate;
@@ -348,7 +216,6 @@ namespace ysmir::projectile_visuals
         alwaysDraw=config::Bool("Storm","bForceProjectileAlwaysDraw",true);
         boundRadius=std::clamp(config::Float("Storm.Visual","fProjectileBoundRadius",18000.f),512.f,1000000.f);
         density=config::Bool("TrueCone","DensityCompensation",true);
-        nativeGrowth=config::Bool("TrueCone","NativeWaveGrowth",true);
         debug=config::Bool("General","bDebugLogging",false);
         exclusions.clear();
         std::istringstream tokens(config::String("TrueCone","DensityExcludedTokens","Cyclone,BendWill"));

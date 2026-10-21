@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/dickmna/Ysmir",
+  "tag": "v0.9.0",
+  "branch": "backup/ysmir-0.9.0",
+  "commit": "733c0c82c51834f1e6aa123b4f0b90417edaf476",
+  "remoteVerified": true,
+  "preparedBeforeCodeEdits": true,
+  "newSourceBranch": "codex/ysmir-uniform-visuals",
+  "mainChanged": false
+}

@@ -1,29 +1,23 @@
 {
-  "version": "0.9.0",
+  "version": "0.9.1",
   "status": "In-game comparison build; not gameplay validated",
   "date": "2026-10-21",
   "rollback": {
     "repository": "https://github.com/dickmna/Ysmir",
-    "tag": "v0.8.0",
-    "branch": "backup/ysmir-0.8.0",
-    "commit": "5c53dafc93fccd355d0fa892d9e16cb458cdd1d4",
+    "tag": "v0.9.0",
+    "branch": "backup/ysmir-0.9.0",
+    "commit": "733c0c82c51834f1e6aa123b4f0b90417edaf476",
     "remoteVerified": true,
     "preparedBeforeCodeEdits": true,
-    "unshippedDraftBackup": {
-      "branch": "backup/ysmir-before-native-vfx-20261021",
-      "commit": "9397ff2b9b59054066b72cb73300c9aa9e4708fd",
-      "remoteVerified": true,
-      "installRecommendation": false
-    },
-    "newSourceBranch": "codex/ysmir-distance-visuals",
+    "newSourceBranch": "codex/ysmir-uniform-visuals",
     "mainChanged": false
   },
-  "scope": "Native cone radius, smooth distance-driven VFX, nine native wave models; other gameplay retained",
+  "scope": "One anchored uniform root transform for every cone; layered and UV systems removed; other gameplay retained",
   "build": {
     "native": "MSVC 19.44 Release x64 / C++23 / CommonLibSSE-NG 7.2.0 / MinHook; success",
     "data": ".NET 9 / Mutagen 0.54.4; two deterministic ESP/header/FormIDs builds",
     "papyrus": {
-      "reusedUnmodifiedFrom": "0.8.0",
+      "reusedUnmodifiedFrom": "0.9.0",
       "count": 6,
       "sha256Compared": true,
       "stormPexControlFlowRetested": true
@@ -291,7 +285,7 @@
     "gameplayTestsRun": false,
     "deployedToGame": false,
     "addressLibraryFileRechecked": false,
-    "verificationScope": "Production modules with engine/scene stubs; actual PEX with fake native/time; record payloads; PE/RTTI and native function inspection"
+    "verificationScope": "Production modules with engine/scene stubs including hierarchical transforms; actual PEX with fake native/time; record payloads; final PE/RTTI checks"
   },
   "featureCoverage050": [
     {
@@ -301,8 +295,8 @@
     },
     {
       "feature": "龙魂成长",
-      "implementation": "幅度、距离、范围、时长、非锥形碰撞/视觉默认 1+0.05S；冷却 0.95^S；锥形起始半径不成长，VFX 按距离半径比平滑接入；无龙魂上限。",
-      "offlineEvidence": "真实成长/发射函数 11 组，17 项桥接/开关结果，36 组视觉场景；非视觉 INI 值与 0.8.0 相同。"
+      "implementation": "幅度、距离、范围、时长、非锥形碰撞/视觉默认 1+0.05S；冷却 0.95^S；锥形半径不额外成长，VFX 按距离半径比平滑整体放大；无龙魂上限。",
+      "offlineEvidence": "距离与成长源码不变，11 组成长/发射、17 项桥接/开关、31 组视觉检查；除删除 NativeWaveGrowth 外 INI 数值相同。"
     },
     {
       "feature": "实例倍率与桥接",
@@ -381,18 +375,18 @@
     },
     {
       "feature": "碰撞与视觉",
-      "implementation": "不加宽角度、不改初始锥形半径；原版物理扩张和龙魂距离成长保留。出生大小原始；九个原版波模型分层增长与平铺 UV 补偿，其他模型保留通用锚点/浓度路径。无额外高度或投射 NIF。",
-      "offlineEvidence": "九份 NIF 只读结构核验、36 组真实视觉模块回归、原生 3D 更新及材质生命周期静态检查；真实画面待实测。"
+      "implementation": "原始角度和初始半径不变；原生碰撞扩张和龙魂距离成长保留。所有模型从原版出生大小起围绕原锚点整体放大，保留浓度补偿；分层、专用 UV 和模型特例已删除。无额外高度或投射 NIF。",
+      "offlineEvidence": "31 组真实视觉模块回归，含组合内几何点/间距、嵌套节点、旋转父节点及移动锚点；距离公式与浓度函数不变，真实渲染待测。"
     },
     {
       "feature": "雷击外观修复",
       "implementation": "保留高度/散布、声音、屏幕反馈、显示边界和 AlwaysDraw 配置",
-      "offlineEvidence": "风暴配置与发射逻辑未改；视觉模块中的风暴缩放/边界/AlwaysDraw 路径通过回归，实际画面待测试。"
+      "offlineEvidence": "风暴配置和发射源码未变；缩放、显示边界与 AlwaysDraw 回归通过，实际画面待测。"
     },
     {
       "feature": "True Cone 控制与 API",
-      "implementation": "保留 Enabled、PatchVisuals、bScaleVFX、GetDragonSoulCount；新增 NativeWaveGrowth 同物理对照开关及 fVisualTransitionDistance；按用户要求移除起始半径成长和旧角度键。",
-      "offlineEvidence": "开关、旧键忽略、出生连续和只读半径/角度回归；其余 INI 数值和 Papyrus API 不变。"
+      "implementation": "保留 Enabled、PatchVisuals、bScaleVFX、DensityCompensation、fVisualTransitionDistance 和 GetDragonSoulCount；删除 NativeWaveGrowth，旧键忽略；初始半径和角度改写继续移除。",
+      "offlineEvidence": "开关、旧键忽略、出生连续及半径/角度只读回归；其余 INI 值和 Papyrus API 不变。"
     },
     {
       "feature": "库存模型与纹理",
@@ -405,7 +399,7 @@
       "offlineEvidence": "记录类型/范围检查"
     }
   ],
-  "unchangedSourceComparedTo080": [
+  "unchangedSourceComparedTo090": [
     "src/shout_dispatch.cpp",
     "src/storm_call.cpp",
     "src/elemental_fury.cpp",
@@ -413,6 +407,10 @@
     "src/RuntimeForms.h",
     "src/RuntimeCompatibility.h",
     "data-builder/FormIds.json",
+    "src/true_cone.cpp",
+    "src/progression.cpp",
+    "src/progression.h",
+    "src/modules.h",
     "package/Source/Scripts/Ysmir.psc",
     "package/Source/Scripts/YsmirDragonAspectSummonScript.psc",
     "package/Source/Scripts/YsmirSlowTimeScript.psc",
@@ -420,20 +418,38 @@
     "package/Source/Scripts/YsmirVoicePushEffectScript.psc",
     "package/Source/Scripts/YsmirWhirlwindDamageScript.psc"
   ],
-  "iniChangesFrom080": {
+  "iniChangesFrom090": {
     "removed": [
-      "TrueCone.PatchRuntimeCollision"
+      "TrueCone.NativeWaveGrowth"
     ],
-    "added": {
-      "TrueCone.NativeWaveGrowth": 1,
-      "TrueCone.fVisualTransitionDistance": 256.0
-    },
     "otherValuesAndSectionsIdentical": true
+  },
+  "simplification": {
+    "removedComponents": [
+      "WaveLayer",
+      "TileSlot",
+      "KnownWave",
+      "WaveNode",
+      "InWave(",
+      "NativeWaveGrowth",
+      "nativeWave",
+      "texCoordScale",
+      "SetMaterial(",
+      "VaporTile",
+      "CloudTile"
+    ],
+    "visualSourceLinesBefore": 390,
+    "visualSourceLinesAfter": 257,
+    "distanceFormulaByteIdenticalTo090": true,
+    "legacyDensityBodiesIdenticalTo090": true,
+    "newRuntimeDependency": false,
+    "newPapyrusScript": false,
+    "serializationChanged": false
   },
   "records": {
     "passed": true,
-    "version": "0.9.0",
-    "comparisonBaseline": "0.8.0 local full package and deterministic build",
+    "version": "0.9.1",
+    "comparisonBaseline": "0.9.0 local full package and deterministic build",
     "recordCount": 360,
     "all360RecordPayloadsAndFlagsIdentical": true,
     "addedRecords": 0,
@@ -444,7 +460,7 @@
     "runtimeHeaderAndFormIdsUnchanged": true,
     "deterministicEspHeaderAndFormIds": true,
     "unresolvedLinks": [],
-    "espSha256": "52fe81011d6a62b766ba96c63e1335e3c2cbc38f234ebc4eea212d515e6519bf",
+    "espSha256": "201679057aa5af285dd2c94eca57ed920503043e4ba97b254c4fd7d12884bcdb",
     "runtimeHeaderSha256": "0f16fb71f878a5f5a67152123755d040c7099820a6e46044b9b365454961efbf",
     "formIdsSha256": "d538a870a198964394085b14e2031bd078b6186f4a2b47dcf9bae169d22b7d83",
     "papyrusReusedUnmodified": [
@@ -452,37 +468,37 @@
         "script": "Ysmir",
         "pexSha256": "c9e43bed4184587e626cc60002141ec245c7432d9cfff3bcf8eee88b0c80b4ce",
         "sourceSha256": "07119d936f811e355a75bc76ec8b3c0c0f7b09cd603cfd930ac5b6d1225aa11c",
-        "matches080": true
+        "matches090": true
       },
       {
         "script": "YsmirDragonAspectSummonScript",
         "pexSha256": "4878fa0b0630caba995504aaa69c4c01dce8fdbbf34ea342bf8cee57676e0e27",
         "sourceSha256": "478b2abffb4b4d292747bacf2edfe421df8522d67e005e46daed91725f2bd53d",
-        "matches080": true
+        "matches090": true
       },
       {
         "script": "YsmirSlowTimeScript",
         "pexSha256": "4854faa04c04e93b45060df1cc92485ee385fe6a85a72bf896ebbde5add89371",
         "sourceSha256": "f55cf05672357d11bd354e2333a3de6c1edfc03c458f31cd2886a69c442e94eb",
-        "matches080": true
+        "matches090": true
       },
       {
         "script": "YsmirStormScript",
         "pexSha256": "ea4b4a1a06df58baab72c02460661f506fbc95ddaeb5ce4ebc14bb5faa6c1bf1",
         "sourceSha256": "e6e62f7f48be583ba2cc285075817986e0155799730f71242715c94d2b7d39a7",
-        "matches080": true
+        "matches090": true
       },
       {
         "script": "YsmirVoicePushEffectScript",
         "pexSha256": "07b231818a60ce2cba9ab149323bd4253d5e395ae93e1f64a8e4ddd4bed4b631",
         "sourceSha256": "9c636390ed6d54e995f6e790b60af11cba3038231de9b4841e7dc2fc44508ca8",
-        "matches080": true
+        "matches090": true
       },
       {
         "script": "YsmirWhirlwindDamageScript",
         "pexSha256": "19a2889c3c6c26fed170fe704fc253252e5e625b317d2625eb7ed889b809d385",
         "sourceSha256": "f6473a26bcc47fad27be94a7b8df3fe7eacc878e847e96cf0df5e57d277611ba",
-        "matches080": true
+        "matches090": true
       }
     ],
     "inherited050Coverage": "0.8.0 verified 350 original IDs and 78 word lists; all 360 gameplay payloads retained byte-for-byte here",
@@ -493,10 +509,10 @@
     "runtime": "1.7.104.0",
     "minimumSKSE": "2.3.1",
     "addressLibraryEncoding": 5,
-    "pluginVersion": "0.9.0",
+    "pluginVersion": "0.9.1",
     "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-    "dllSha256": "cb9fb67bd8db397d814cadd98eec868d609d969abbc3c65eef12b23fdc6911ce",
-    "dllSize": 768000,
+    "dllSha256": "efe9c23be8e9a04b381a3770b51ed625411495625406e292890025fb29df21ad",
+    "dllSize": 757760,
     "exports": [
       "SKSEPlugin_Load",
       "SKSEPlugin_Version"
@@ -705,353 +721,24 @@
     "gameplayTested": false
   },
   "nativeVisualAPI": {
+    "version": "0.9.1",
     "runtime": "1.7.104.0",
     "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-    "method": "Read-only disassembly and RTTI inspection; no engine execution",
+    "method": "Retained 0.9.0 read-only update-order evidence plus final DLL PE/RTTI verification",
     "coneUpdateImplRva": "0x7e18f0",
     "coneUpdate3DRva": "0x7faf50",
     "niAVObjectUpdateRva": "0xee0930",
-    "shaderSetMaterialRva": "0x14e8000",
-    "materialAcquireRva": "0x1563d10",
-    "materialReleaseRva": "0x1563fc0",
     "observed": [
-      "Cone physics UpdateImpl and controller Update3D are separate",
-      "Update3D invokes NiAVObject::Update; adapter restores before and applies after it",
-      "SetMaterial unique=true acquires a mutable copied material before releasing its old resource-cache reference",
-      "Native release removes the cache entry when the managed count reaches zero"
+      "Physics UpdateImpl and controller Update3D are separate",
+      "Adapter restores root scale before native Update3D and applies uniform scale after it"
     ],
+    "nativeMaterialCopyRemoved": true,
     "addressLibraryFileChecked": false,
-    "boundary": "Static native semantics; dynamic material ownership, rendering and performance require in-game testing"
-  },
-  "nativeModels": {
-    "version": "0.9.0",
-    "passed": true,
-    "modelCount": 9,
-    "models": [
-      {
-        "model": "meshes\\magic\\voiceflamewaveproject01.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "1aba00f7a5fd2b6ca2052912b54e8614de7749d384d227fab3fd6f4c97e2248b",
-        "selectedOuterLayers": [
-          "Wisps02",
-          "Trail05",
-          "Trail06",
-          "Trail07",
-          "Trail08",
-          "RefractMesh02"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      },
-      {
-        "model": "meshes\\magic\\voiceflamewaveproject02.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "1f42ae747ae8720ca9ae7bee3f84fd6a9d6bf0c271e8c28acf78483ad9ac66e5",
-        "selectedOuterLayers": [
-          "Wisps02",
-          "Trail05",
-          "Trail06",
-          "Trail07",
-          "Trail08",
-          "RefractMesh02"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      },
-      {
-        "model": "meshes\\magic\\voiceflamewaveproject03.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "25c671a705f73ec939dfcf03ff0899358456386891a939906ff68968251f910b",
-        "selectedOuterLayers": [
-          "Trail12",
-          "RefractMesh03",
-          "Wisps03"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      },
-      {
-        "model": "meshes\\magic\\voicefrostwaveproject01.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "17174f199c597edd72f3200e6206c31c9b1da756b6d661af0fa8598a74f2c05f",
-        "selectedOuterLayers": [
-          "Wisps02",
-          "Trail05",
-          "Trail06",
-          "Trail07",
-          "Trail08",
-          "RefractMesh02"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      },
-      {
-        "model": "meshes\\magic\\voicefrostwaveproject02.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "32dfc60bd6caf08447cac674ca6e856b527ff05d12f7b66f68289bdbfb6b9bce",
-        "selectedOuterLayers": [
-          "Wisps02",
-          "Trail05",
-          "Trail06",
-          "Trail07",
-          "Trail08",
-          "RefractMesh02"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      },
-      {
-        "model": "meshes\\magic\\voicefrostwaveproject03.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "5351c312cd924670609909f89ae9ef4db5a82f89cdbc592b5e12901871649e36",
-        "selectedOuterLayers": [
-          "Trail12",
-          "RefractMesh03",
-          "Wisps03"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\CloudTile.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      },
-      {
-        "model": "meshes\\magic\\voicepushprojectile01.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "cd33c1c45902863b60c38bcbd0a1348853849baa2caed7074aceff0e8edcdcd4",
-        "selectedOuterLayers": [
-          "RefractMesh01",
-          "Wisps01",
-          "Trail02",
-          "Trail03",
-          "Trail04",
-          "Trail01"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      },
-      {
-        "model": "meshes\\magic\\voicepushprojectile02.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "966de69a075e341ac550e85d69eec090075ecc663bb17e887a642805567e06b5",
-        "selectedOuterLayers": [
-          "Wisps02",
-          "Trail05",
-          "Trail06",
-          "Trail07",
-          "Trail08",
-          "RefractMesh02"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      },
-      {
-        "model": "meshes\\magic\\voicepushprojectile03.nif",
-        "archive": "Skyrim - Meshes1.bsa",
-        "sha256": "0cf19f2bde0f2f4eed0119b63b47f0bcdcfdb9070a6fe053bf08ed875dea3725",
-        "selectedOuterLayers": [
-          "Trail09",
-          "Trail10",
-          "Trail11",
-          "Trail12",
-          "RefractMesh03",
-          "Wisps03"
-        ],
-        "materials": [
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          },
-          {
-            "texture": "textures\\effects\\VaporTile01.dds",
-            "clamp": 3
-          }
-        ],
-        "particleSystemBlocks": []
-      }
-    ],
-    "scope": "Original game BSA block types, hierarchy, scale animation and effect-material fields; no original asset bytes included and no renderer validation."
+    "boundary": "No game execution, renderer or Address Library binary validation"
   },
   "regression": {
     "passed": true,
-    "totalCases": 101,
+    "totalCases": 96,
     "integration": {
       "passed": true,
       "scope": "Exact source bodies with engine-service stubs; no gameplay",
@@ -1113,40 +800,35 @@
     },
     "visuals": {
       "passed": true,
-      "cases": 36,
+      "cases": 31,
       "scenarios": [
-        "nativeBirthKeepsAllScalesOffsetsAndMaterials",
-        "outerBranchesGrowOnceWithoutRootOrDecorationGrowth",
-        "tileableSmokeGetsPrivateUVScaleWithoutAlphaOrBrightnessChanges",
-        "repeatedUpdatesDoNotAccumulateScaleUVOrAllocations",
+        "birthPreservesNativeRootChildrenOffsetsAndMaterials",
+        "allLayerSizesGapsNestedNodesAndDecorationsShareOneTransform",
+        "legacyOpacityCompensationWithoutUVEditsOrMaterialReplacement",
+        "repeatedUpdatesDoNotAccumulateScaleOffsetsOrDensity",
         "castSnapshotSurvivesSubsequentSoulChanges",
-        "clearRestoresOnlyOwnedScaleAndUVChanges",
-        "nativeControllersSeeRestoredValuesAndKeepTheirOwnTimingAndAlpha",
-        "stalledNativeAnimationDoesNotCompoundGrowth",
-        "disablingVisualsRestoresPriorFrameBeforeNativeUpdate",
-        "differentCastsCannotOverwriteSharedMaterialUVs",
-        "sharedPropertiesMasksClampModesCopyFailuresAndLightingAreNotRetiled",
-        "materialReplacementIsRecheckedAndIsolated",
+        "clearRestoresOwnedRootTransformAndDensity",
+        "nativeAnimationRunsOnceBeforeUniformGrowthAndDensity",
+        "stalledNativeAnimationDoesNotCompoundRootScaleOrDensity",
+        "disabledVisualHookRestoresRootBeforeNativeUpdate",
         "cleanupDoesNotOverwriteLaterExternalEdits",
-        "nineAuditedModelPathsUseNativeWaveGrowth",
-        "renderUpdateAppliesGrowthAfterNativeAnimationWithoutAdvancingItTwice",
-        "unknownReplacementAndABModeUseGenericVisualFallback",
-        "rootReplacementRestoresOldLayersAndBindsNewScene",
-        "genericFallbackPreservesAnchorAndLegacyDensity",
+        "allModelNamesAndReplacementHierarchiesUseTheSameRootPath",
+        "rootReplacementRestoresOldSceneAndBindsNewAnchor",
+        "movingAnchorSurvivesRotatedScaledParentWithoutExtraHeight",
         "distanceGrowthIsSmoothMonotoneAndIndependentOfCollisionAndVFXFactors",
         "highSoulGrowthHasNoArtificialFourTimesCap",
         "nativeCollisionShapeRadiusAndAngleAreReadOnly",
         "zeroSoulsLeavesNativeAppearanceUnchangedAtEveryDistance",
         "zeroRadiusAndAngleRemainFiniteAndContinuousAtBirth",
         "invalidRuntimeGeometryCannotWriteNaNToScene",
-        "legacyFixedScaleAndCollisionKeysCannotRestoreRemovedBehavior",
+        "legacyLayerFixedScaleAndCollisionKeysCannotRestoreRemovedBehavior",
         "transitionDistanceControlsOnlySmoothEntrance",
         "coneAndGlobalVisualSwitchesSkipAllVisualChanges",
         "disabledForeignUnapprovedAndUnassignedProjectilesAreUntouched",
-        "densitySwitchDisablesTilingWithoutDisablingGeometryGrowth",
+        "densitySwitchDisablesOnlyOpacityIntensityCompensation",
         "existingCycloneAndBendWillDensityExclusionsRemain",
-        "genericAdditiveShaderSwapAndCleanupRemainSupported",
-        "genericSharedMaterialIsNotCompensatedTwice",
+        "additiveShaderSwapAndCleanupRemainSupported",
+        "sharedMaterialIsNotCompensatedTwice",
         "nonConeVisualGrowthRemainsImmediateAndIndependent",
         "stormScaleBoundsAndVisibilityRemainUnchanged",
         "loadAndRenderHooksRunOriginalOnceWithoutWritingPhysics",
@@ -1154,7 +836,7 @@
       ],
       "sourceSha256": {
         "true_cone.cpp": "0daca698c6e1665528212b0cac84df48e4f4fc6d4d540a005a2dae4844cba007",
-        "projectile_visuals.cpp": "8f4977cf9ca976fef26861c5370dd094112f6f5992552a3c5d0a2d11c6a90fef"
+        "projectile_visuals.cpp": "4f9b08f73aed80f93c1ab44d63ec840f9d70f333a9c3f2752d6204d6c412ecb1"
       },
       "visualDensityBodySha256": "8fb99ade806fd97fd525e6567d92ac3db95f5eb534642a9312a3905f0b22e32d",
       "boundary": "Complete production cone/visual modules with scene, material and engine-service stubs; no renderer, particles or Havok simulation"
@@ -1308,13 +990,13 @@
     },
     {
       "path": "SKSE/Plugins/Ysmir.dll",
-      "bytes": 768000,
-      "sha256": "cb9fb67bd8db397d814cadd98eec868d609d969abbc3c65eef12b23fdc6911ce"
+      "bytes": 757760,
+      "sha256": "efe9c23be8e9a04b381a3770b51ed625411495625406e292890025fb29df21ad"
     },
     {
       "path": "SKSE/Plugins/Ysmir.ini",
-      "bytes": 3522,
-      "sha256": "bf822a208bebf997038855821b2839ff6755e2233344fc5014198930c204fc3a"
+      "bytes": 3435,
+      "sha256": "4624134a2674211312f59f5a632a8cd26da310db4f96b2052fd95df77cb46282"
     },
     {
       "path": "textures/forceful tongue/gradsummoncallofvalorbright.dds",
@@ -1338,8 +1020,8 @@
     },
     {
       "path": "Ysmir.esp",
-      "bytes": 110157,
-      "sha256": "52fe81011d6a62b766ba96c63e1335e3c2cbc38f234ebc4eea212d515e6519bf"
+      "bytes": 110158,
+      "sha256": "201679057aa5af285dd2c94eca57ed920503043e4ba97b254c4fd7d12884bcdb"
     }
   ],
   "assets": [
@@ -1455,21 +1137,20 @@
     }
   ],
   "communityShadersRequired": false,
-  "old080OutputsUnmodified": {
-    "Ysmir-0.8.0-Full.zip": "037ff3b698ad2bdb1dd53cce59b1cd940a9c385b0d7c984b05aebf5de5f37332",
-    "Ysmir-0.8.0-Source.zip": "0d13b1eae6fdbe457edfc7a0fdd387165f215cf1a3939520404e9c4ba4dca347",
-    "Ysmir-0.8.0-功能与重构说明.md": "0dbdaa1be44c010f69a7933975b81d014a148987cf4d5a784d2e0a3322b9472e",
-    "Ysmir-0.8.0-验证结果.json": "0de4872fd6f8c1621911ee4ddda5eafd9d73b0f6ab7cac9ad15f44485ca93133"
+  "old090OutputsUnmodified": {
+    "Ysmir-0.9.0-Full.zip": "3c90c57694f6179ac111ccfc99436129e9fc5ecab60ebb69a01be5913c61a1af",
+    "Ysmir-0.9.0-Source.zip": "39f6ec28f2a61d5969831188cb0c64726a514d5070bf2b3727d702c02f394793",
+    "Ysmir-0.9.0-功能与重构说明.md": "25c7ec0ba6b416f5f68bccdf05729bcc5efd3fcdc57fe1cbf59f4f0f7667ec8b",
+    "Ysmir-0.9.0-安装与游戏测试.txt": "095f3dffc179292d5dcf569f72058a71dd14cc9cea9c05759c9f8429bbdb0d34",
+    "Ysmir-0.9.0-验证结果.json": "861640a958f0186dbddecf115911c0b32082d0c35d6e62fd0c78d2fc0c98786e",
+    "Ysmir-0.9.0-SHA256.json": "8cbcb07723ac954717ea8131c1e04502fdfd706fc35fac5ff6c6901cce5dd397"
   },
   "limitations": [
-    "No game rendering, collision-edge comparison, VM, save/load or performance test; TCSF remains the empirical reference",
-    "Wave layers still use mesh scaling; no new vertices, particles, wave emission or exact visible-boundary reconstruction",
-    "UV tiling maintains detail scale for two known wrap textures only; it cannot guarantee ripple thickness, refraction or seam quality",
-    "Only nine original Push/Fire/Frost model names with matching node structure use the native-layer path; other models retain generic root scaling",
-    "Shared shader properties or unsupported materials skip UV correction; actual runtime property ownership must be observed in game",
-    "Birth transition can underrepresent the collision radius; native VFX is not assumed to match native collision perfectly",
-    "Generic density compensation retains its prior shared-material and animation limitations",
-    "Storm gameplay, timing, emitted projectiles and save restoration retain 0.8.0 limitations; no claim of perfect behavior",
+    "No in-game rendering, collision-edge comparison, VM, save/load or performance test; TCSF remains the empirical reference",
+    "Uniform mesh scaling preserves the model composition but still scales ripple thickness and texture detail; no new geometry or particles",
+    "Original VFX/collision mismatch and smooth birth underrepresentation are not automatically calibrated",
+    "Legacy shared-material density can display only one density value at a time; model replacements and other visual plugins require in-game checks",
+    "Storm gameplay, scheduling and save restoration retain 0.9.0 behavior and its validation limits",
     "Only Steam 1.7.104.0 / SKSE64 2.3.1 checked; Address Library binary was not rechecked"
   ]
 }

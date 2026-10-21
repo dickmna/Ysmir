@@ -1,19 +1,16 @@
 {
+  "version": "0.9.1",
   "runtime": "1.7.104.0",
   "exeSha256": "846efccf0c1374d71f892907f46549560f2fcb0a75cb87a3eed438baa0f1402f",
-  "method": "Read-only disassembly and RTTI inspection; no engine execution",
+  "method": "Retained 0.9.0 read-only update-order evidence plus final DLL PE/RTTI verification",
   "coneUpdateImplRva": "0x7e18f0",
   "coneUpdate3DRva": "0x7faf50",
   "niAVObjectUpdateRva": "0xee0930",
-  "shaderSetMaterialRva": "0x14e8000",
-  "materialAcquireRva": "0x1563d10",
-  "materialReleaseRva": "0x1563fc0",
   "observed": [
-    "Cone physics UpdateImpl and controller Update3D are separate",
-    "Update3D invokes NiAVObject::Update; adapter restores before and applies after it",
-    "SetMaterial unique=true acquires a mutable copied material before releasing its old resource-cache reference",
-    "Native release removes the cache entry when the managed count reaches zero"
+    "Physics UpdateImpl and controller Update3D are separate",
+    "Adapter restores root scale before native Update3D and applies uniform scale after it"
   ],
+  "nativeMaterialCopyRemoved": true,
   "addressLibraryFileChecked": false,
-  "boundary": "Static native semantics; dynamic material ownership, rendering and performance require in-game testing"
+  "boundary": "No game execution, renderer or Address Library binary validation"
 }

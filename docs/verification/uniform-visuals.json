@@ -1,0 +1,22 @@
+{
+  "removedComponents": [
+    "WaveLayer",
+    "TileSlot",
+    "KnownWave",
+    "WaveNode",
+    "InWave(",
+    "NativeWaveGrowth",
+    "nativeWave",
+    "texCoordScale",
+    "SetMaterial(",
+    "VaporTile",
+    "CloudTile"
+  ],
+  "visualSourceLinesBefore": 390,
+  "visualSourceLinesAfter": 257,
+  "distanceFormulaByteIdenticalTo090": true,
+  "legacyDensityBodiesIdenticalTo090": true,
+  "newRuntimeDependency": false,
+  "newPapyrusScript": false,
+  "serializationChanged": false
+}

@@ -107,7 +107,7 @@ namespace
 
 SKSE_PLUGIN_VERSION = [] {
 	SKSE::PluginVersionData version;
-	version.PluginVersion({ 0, 9, 0, 0 });
+	version.PluginVersion({ 0, 9, 1, 0 });
 	version.PluginName(PLUGIN_NAME);
 	version.AuthorName("dickmna and Codex");
 	version.UsesAddressLibrary();
@@ -125,7 +125,7 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 	}
 	SKSE::Init(a_skse);
 	SetupLog();
-	SKSE::log::info("{} v0.9.0 loading", PLUGIN_NAME);
+	SKSE::log::info("{} v0.9.1 loading", PLUGIN_NAME);
 	if (!ValidateRuntimeHooks()) {
 		return false;
 	}
@@ -148,6 +148,6 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 		return false;
 	}
 
-	SKSE::log::info("{} v0.9.0 initialized", PLUGIN_NAME);
+	SKSE::log::info("{} v0.9.1 initialized", PLUGIN_NAME);
 	return true;
 }
