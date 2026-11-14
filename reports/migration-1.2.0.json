@@ -1,0 +1,1518 @@
+{
+  "status": "PASS",
+  "verification": "Offline data comparison only; Skyrim not executed",
+  "baselineArchiveSHA256": "91f9b197239f43fd6ccc3b5890e3f38c764ca52b511aa34a914beb7af4b9d451",
+  "existingRecordsPreserved": 351,
+  "addedRecords": 1,
+  "renamedEditorIDs": 276,
+  "existingFormIDsUnchanged": true,
+  "unexpectedRecordChanges": 0,
+  "changedRecords": [
+    {
+      "id": "04000800",
+      "type": "KYWD",
+      "editorID": "YSMR_ShoutDragonAspect"
+    },
+    {
+      "id": "0301F98F",
+      "type": "RACE",
+      "editorID": "YSMR_DLC2WyrmRace"
+    },
+    {
+      "id": "00013E08",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceUnrelentingForceEffect01"
+    },
+    {
+      "id": "00020E16",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceFireBreathEffect01"
+    },
+    {
+      "id": "00023959",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDismayEffect01"
+    },
+    {
+      "id": "0002395C",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDismayEffect02"
+    },
+    {
+      "id": "0002395D",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDismayEffect03"
+    },
+    {
+      "id": "0003EA30",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDragonrendEffect"
+    },
+    {
+      "id": "0003F508",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceClearSkiesEffect01"
+    },
+    {
+      "id": "0003F509",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceClearSkiesEffect02"
+    },
+    {
+      "id": "0003F50A",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceClearSkiesEffect03"
+    },
+    {
+      "id": "00044255",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDragonrendStaggerEffect"
+    },
+    {
+      "id": "00048ACD",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceSlowTimeEffect"
+    },
+    {
+      "id": "00049454",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceCallOdahviingEffect"
+    },
+    {
+      "id": "00051963",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceCallOfValorEffect01"
+    },
+    {
+      "id": "00051965",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceCallOfValorEffect02"
+    },
+    {
+      "id": "00051966",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceCallOfValorEffect03"
+    },
+    {
+      "id": "000562EA",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceFireBreathEffect02"
+    },
+    {
+      "id": "000562EB",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceFireBreathEffect03"
+    },
+    {
+      "id": "0005D16F",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceFrostBreathEffect1"
+    },
+    {
+      "id": "0005D170",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceFrostBreathEffect2"
+    },
+    {
+      "id": "0005D171",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceFrostBreathEffect3"
+    },
+    {
+      "id": "00064D68",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceBecomeEtherealEffect"
+    },
+    {
+      "id": "0007430D",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceThrowVoiceEffect"
+    },
+    {
+      "id": "00078B9D",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceClearSkies01Self"
+    },
+    {
+      "id": "00078B9F",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceClearSkies02Self"
+    },
+    {
+      "id": "00078BA1",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceClearSkies03Self"
+    },
+    {
+      "id": "0007F82E",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceUnrelentingForceEffect02"
+    },
+    {
+      "id": "0007F82F",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceUnrelentingForceEffect03"
+    },
+    {
+      "id": "00082A36",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceKynesPeaceEffect02"
+    },
+    {
+      "id": "00082A37",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceKynesPeaceEffect01"
+    },
+    {
+      "id": "00082A38",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceKynesPeaceEffect03"
+    },
+    {
+      "id": "0008AFCB",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceAuraWhisperDetectEnemyEffect"
+    },
+    {
+      "id": "0008BB26",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDisarmEffect01"
+    },
+    {
+      "id": "0009E0C8",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceAnimalAllegianceEffect01"
+    },
+    {
+      "id": "0009E0CA",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceAnimalAllegianceEffect02"
+    },
+    {
+      "id": "0009E0CB",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceAnimalAllegianceEffect03"
+    },
+    {
+      "id": "000A0366",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceIceFormEffect"
+    },
+    {
+      "id": "000A1A58",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceStormCallStaggerEffect01"
+    },
+    {
+      "id": "000A1A5B",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceStormCallStaggerEffect03"
+    },
+    {
+      "id": "000A1A5C",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceStormCallStaggerEffect02"
+    },
+    {
+      "id": "000CD088",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDisarmEffect02"
+    },
+    {
+      "id": "000CD089",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDisarmEffect03"
+    },
+    {
+      "id": "000D5E81",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceStormCallEffect03"
+    },
+    {
+      "id": "000E3F09",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceStormCallEffect02"
+    },
+    {
+      "id": "000E3F0A",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceStormCallEffect01"
+    },
+    {
+      "id": "000E827E",
+      "type": "MGEF",
+      "editorID": "YSMR_GreybeardsAbFeim"
+    },
+    {
+      "id": "000E827F",
+      "type": "MGEF",
+      "editorID": "YSMR_GreybeardsAbFus"
+    },
+    {
+      "id": "000E8280",
+      "type": "MGEF",
+      "editorID": "YSMR_GreybeardsAbYol"
+    },
+    {
+      "id": "000FEAD1",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceCallDragonBlankEffect"
+    },
+    {
+      "id": "0010319C",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceMarkedForDeathDamageHealthEffect"
+    },
+    {
+      "id": "0010319D",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceMarkedForDeathDamageArmorEffect"
+    },
+    {
+      "id": "0010319E",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceAuraWhisperDetectFriendEffect"
+    },
+    {
+      "id": "0010E4FD",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceAuraWhisperDummyEffect"
+    },
+    {
+      "id": "020030D3",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1SummonDurnehviirEffect"
+    },
+    {
+      "id": "02007CB3",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceSoulTearTrapFFActor"
+    },
+    {
+      "id": "02007CB4",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceSoulTearReanimateFFAimed"
+    },
+    {
+      "id": "02007CB5",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceSoulTearDamage01FFAimed"
+    },
+    {
+      "id": "02008448",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceDrainVitalityMagickaEffect"
+    },
+    {
+      "id": "02008449",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceDrainVitalityHealthEffect"
+    },
+    {
+      "id": "0200844A",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceDrainVitalityStaminaEffect"
+    },
+    {
+      "id": "02010EC0",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1SummonDurnehviirDescription"
+    },
+    {
+      "id": "02015714",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceSoulTearDamage02FFAimed"
+    },
+    {
+      "id": "02016874",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceSoulTearWaitForDeathFX"
+    },
+    {
+      "id": "0201AA33",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceSoulTearDamage03FFAimed"
+    },
+    {
+      "id": "030179E0",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceBendWillTameDragonEffect"
+    },
+    {
+      "id": "0301DF90",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonAspectArmsEffect01"
+    },
+    {
+      "id": "0301DF97",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonAspectBodyEffect01"
+    },
+    {
+      "id": "0301DF98",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonAspectBodyEffect02"
+    },
+    {
+      "id": "0301DF9A",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonAspectHeadEffect"
+    },
+    {
+      "id": "0301F138",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceBendWillStaggerEffect"
+    },
+    {
+      "id": "0301FF1F",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceBendWillEffect"
+    },
+    {
+      "id": "0301FF2B",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonbornForceFFAimed"
+    },
+    {
+      "id": "030200BD",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceCyclone01FFAimedArea"
+    },
+    {
+      "id": "030200BF",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceCyclone03FFAimedArea"
+    },
+    {
+      "id": "030200C8",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceEnchBattleFuryEffect"
+    },
+    {
+      "id": "03021730",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonAspectArmsEffect02"
+    },
+    {
+      "id": "03021731",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonAspectArmsEffect03"
+    },
+    {
+      "id": "0302647C",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2BlackBookDragonbornForceEffect"
+    },
+    {
+      "id": "0302647F",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2BlackBookDragonbornFlameEffect"
+    },
+    {
+      "id": "03026480",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2BlackBookDragonbornFrostEffect"
+    },
+    {
+      "id": "03028EBB",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceCyclone02FFAimedArea"
+    },
+    {
+      "id": "03031854",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonAspectCombatEffect"
+    },
+    {
+      "id": "03031856",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceDragonAspectSummonEffect"
+    },
+    {
+      "id": "0303CECD",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceBattleFuryFFSelfArea03"
+    },
+    {
+      "id": "0303CECE",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceBattleFuryFFSelf"
+    },
+    {
+      "id": "0303CF2E",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceBattleFuryFFSelfArea02"
+    },
+    {
+      "id": "0303CF2F",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC2VoiceBattleFuryFFSelfArea01"
+    },
+    {
+      "id": "0400080D",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceDrainVitalityDummyEffect03"
+    },
+    {
+      "id": "0400080C",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceDrainVitalityDummyEffect02"
+    },
+    {
+      "id": "0400080B",
+      "type": "MGEF",
+      "editorID": "YSMR_DLC1VoiceDrainVitalityDummyEffect01"
+    },
+    {
+      "id": "0400080A",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceAnimalAllegianceFortifyStaminaEffect"
+    },
+    {
+      "id": "04000809",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceAnimalAllegianceFortifyHealthEffect"
+    },
+    {
+      "id": "04000808",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceMarkedForDeathDummyEffect"
+    },
+    {
+      "id": "04000806",
+      "type": "MGEF",
+      "editorID": "YSMR_GeneralControllerEffect"
+    },
+    {
+      "id": "04000805",
+      "type": "MGEF",
+      "editorID": "YSMR_AbFortifyStaminaRate"
+    },
+    {
+      "id": "04000804",
+      "type": "MGEF",
+      "editorID": "YSMR_AbFortifyMagickaRate"
+    },
+    {
+      "id": "04000803",
+      "type": "MGEF",
+      "editorID": "YSMR_AbFortifyHealRate"
+    },
+    {
+      "id": "04000802",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceDragonAspectDummyEffect"
+    },
+    {
+      "id": "04000801",
+      "type": "MGEF",
+      "editorID": "YSMR_VoiceMarkedForDeathWeaknessMagicEffect"
+    },
+    {
+      "id": "030200C7",
+      "type": "ENCH",
+      "editorID": "YSMR_DLC2VoiceEnchBattleFury"
+    },
+    {
+      "id": "00013E09",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceUnrelentingForce01"
+    },
+    {
+      "id": "00013F39",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceUnrelentingForce02"
+    },
+    {
+      "id": "00013F3A",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceUnrelentingForce03"
+    },
+    {
+      "id": "00018609",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceStormCall01"
+    },
+    {
+      "id": "0001860A",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceStormCall02"
+    },
+    {
+      "id": "0001860D",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceStormCall03"
+    },
+    {
+      "id": "0001861F",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceMarkedForDeath1"
+    },
+    {
+      "id": "00018627",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceMarkedForDeath2"
+    },
+    {
+      "id": "0001862B",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceMarkedForDeath3"
+    },
+    {
+      "id": "0002395B",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDismay01"
+    },
+    {
+      "id": "0002395E",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDismay02"
+    },
+    {
+      "id": "00023967",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDismay03"
+    },
+    {
+      "id": "00028315",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDragonrend02"
+    },
+    {
+      "id": "00028345",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDragonrend03"
+    },
+    {
+      "id": "0002F7BE",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceWhirlwindSprint1"
+    },
+    {
+      "id": "0002F7BF",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceWhirlwindSprint2"
+    },
+    {
+      "id": "0002F7C0",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceWhirlwindSprint3"
+    },
+    {
+      "id": "0003F50B",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceClearSkies01"
+    },
+    {
+      "id": "0003F50C",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceClearSkies02"
+    },
+    {
+      "id": "0003F50D",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceClearSkies03"
+    },
+    {
+      "id": "0003F9EB",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceFireBreath01"
+    },
+    {
+      "id": "0003F9EC",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceFireBreath02"
+    },
+    {
+      "id": "0003F9ED",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceFireBreath03"
+    },
+    {
+      "id": "00044254",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDragonrend01"
+    },
+    {
+      "id": "00046B85",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceCallOdahviing"
+    },
+    {
+      "id": "00048AD0",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceSlowTime1"
+    },
+    {
+      "id": "00048AD1",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceSlowTime2"
+    },
+    {
+      "id": "00048AD2",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceSlowTime3"
+    },
+    {
+      "id": "00051964",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceCallOfValor02"
+    },
+    {
+      "id": "00051967",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceCallOfValor01"
+    },
+    {
+      "id": "00051969",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceCallOfValor03"
+    },
+    {
+      "id": "0005D172",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceFrostBreath1"
+    },
+    {
+      "id": "0005D173",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceFrostBreath2"
+    },
+    {
+      "id": "0005D174",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceFrostBreath3"
+    },
+    {
+      "id": "0005F6EB",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceBecomeEthereal1"
+    },
+    {
+      "id": "0005F6EC",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceBecomeEthereal2"
+    },
+    {
+      "id": "0005F6ED",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceBecomeEthereal3"
+    },
+    {
+      "id": "0007430F",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceThrowVoice"
+    },
+    {
+      "id": "00078BA2",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceClearSkiesSelf01"
+    },
+    {
+      "id": "00078BA3",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceClearSkiesSelf02"
+    },
+    {
+      "id": "00078BA4",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceClearSkiesSelf03"
+    },
+    {
+      "id": "00082A34",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceKynesPeace01"
+    },
+    {
+      "id": "00082A39",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceKynesPeace02"
+    },
+    {
+      "id": "00082A3A",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceKynesPeace03"
+    },
+    {
+      "id": "0008AFCC",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceAuraWhisper1"
+    },
+    {
+      "id": "0008AFCD",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceAuraWhisper2"
+    },
+    {
+      "id": "0008AFCE",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceAuraWhisper3"
+    },
+    {
+      "id": "0008BB27",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDisarm01"
+    },
+    {
+      "id": "0008BB28",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDisarm02"
+    },
+    {
+      "id": "0008BB29",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceDisarm03"
+    },
+    {
+      "id": "0009CAF0",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceIceForm01"
+    },
+    {
+      "id": "0009CAF1",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceIceForm02"
+    },
+    {
+      "id": "0009CAF2",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceIceForm03"
+    },
+    {
+      "id": "0009E0CC",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceAnimalAllegiance01"
+    },
+    {
+      "id": "0009E0CD",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceAnimalAllegiance02"
+    },
+    {
+      "id": "0009E0CE",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceAnimalAllegiance03"
+    },
+    {
+      "id": "000E827D",
+      "type": "SPEL",
+      "editorID": "YSMR_GreybeardsFeimAbility"
+    },
+    {
+      "id": "000E8281",
+      "type": "SPEL",
+      "editorID": "YSMR_GreybeardsFusAbility"
+    },
+    {
+      "id": "000E8282",
+      "type": "SPEL",
+      "editorID": "YSMR_GreybeardsYolAbility"
+    },
+    {
+      "id": "000FEAD2",
+      "type": "SPEL",
+      "editorID": "YSMR_VoiceCallDragon"
+    },
+    {
+      "id": "020030D5",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC1SummonDurnehviir"
+    },
+    {
+      "id": "020038BD",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC1VoiceSoulTear3"
+    },
+    {
+      "id": "02007CBA",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC1SoulRendReanimateSpell"
+    },
+    {
+      "id": "02008A5E",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC1VoiceDrainVitality03"
+    },
+    {
+      "id": "02008A5F",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC1VoiceDrainVitality02"
+    },
+    {
+      "id": "02008A61",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC1VoiceDrainVitality01"
+    },
+    {
+      "id": "02015715",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC1VoiceSoulTear2"
+    },
+    {
+      "id": "02015716",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC1VoiceSoulTear1"
+    },
+    {
+      "id": "030179DC",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceBendWill01"
+    },
+    {
+      "id": "030179E1",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceBendWill03"
+    },
+    {
+      "id": "0301DF91",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceDragonAspectArmsSpell"
+    },
+    {
+      "id": "0301DF96",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceDragonAspectBodySpell"
+    },
+    {
+      "id": "0301DF99",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceDragonAspectHeadSpell"
+    },
+    {
+      "id": "0301FF1E",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceBendWill02"
+    },
+    {
+      "id": "030200BC",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceCyclone01"
+    },
+    {
+      "id": "030200BE",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceCyclone02"
+    },
+    {
+      "id": "030200C1",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceCyclone03"
+    },
+    {
+      "id": "030200C6",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceBattleFury01"
+    },
+    {
+      "id": "0302647B",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2BlackBookDragonbornForceSpell"
+    },
+    {
+      "id": "0302647D",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2BlackBookDragonbornFlameSpell"
+    },
+    {
+      "id": "0302647E",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2BlackBookDragonbornFrostSpell"
+    },
+    {
+      "id": "0302AD0A",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceBattleFury02"
+    },
+    {
+      "id": "0302AD0B",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceBattleFury03"
+    },
+    {
+      "id": "03031853",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceDragonAspectCombatSpell"
+    },
+    {
+      "id": "03031855",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceDragonAspectSummon"
+    },
+    {
+      "id": "03031DB9",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2FireWyrmAttack"
+    },
+    {
+      "id": "03039B8D",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2AbFireWyrm"
+    },
+    {
+      "id": "0303CECF",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceElementalFury3"
+    },
+    {
+      "id": "0303CF30",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceElementalFury2"
+    },
+    {
+      "id": "0303CF31",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2VoiceElementalFury1"
+    },
+    {
+      "id": "0303D5B2",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2DragonAspectMiraak"
+    },
+    {
+      "id": "04000810",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2AbFrostWyrm"
+    },
+    {
+      "id": "0400080F",
+      "type": "SPEL",
+      "editorID": "YSMR_DLC2FrostWyrmAttack"
+    },
+    {
+      "id": "0400080E",
+      "type": "SPEL",
+      "editorID": "YSMR_GeneralControllerAbility"
+    },
+    {
+      "id": "0303D58F",
+      "type": "STAT",
+      "editorID": "YSMR_DLC2MAGINVShoutDragonAspect"
+    },
+    {
+      "id": "0303D590",
+      "type": "STAT",
+      "editorID": "YSMR_DLC2MAGINVShoutBendWill"
+    },
+    {
+      "id": "000A59AC",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutUnrelentingForce"
+    },
+    {
+      "id": "0010EA46",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutFire"
+    },
+    {
+      "id": "0010EA47",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutAuraWhisper"
+    },
+    {
+      "id": "0010EA48",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutCallOdahviing"
+    },
+    {
+      "id": "0010EA49",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutBecomeEtherial"
+    },
+    {
+      "id": "0010F0FA",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutMarkedforDeath"
+    },
+    {
+      "id": "0010F0FB",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutDragonrend"
+    },
+    {
+      "id": "0010F0FC",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutFrostBreath"
+    },
+    {
+      "id": "0010F0FD",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutSlowTime"
+    },
+    {
+      "id": "0010F0FE",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutIceForm"
+    },
+    {
+      "id": "0010F0FF",
+      "type": "STAT",
+      "editorID": "YSMR_DLC1MAGINVShoutSoulTear"
+    },
+    {
+      "id": "0400081E",
+      "type": "STAT",
+      "editorID": "YSMR_DLC2MAGINVShoutBattleFury"
+    },
+    {
+      "id": "0400081D",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutClearSkies"
+    },
+    {
+      "id": "0400081C",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutElementalFury"
+    },
+    {
+      "id": "0400081B",
+      "type": "STAT",
+      "editorID": "YSMR_DLC1MAGINVShoutDrainVitality"
+    },
+    {
+      "id": "0400081A",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutDismay"
+    },
+    {
+      "id": "04000819",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutDisarm"
+    },
+    {
+      "id": "04000818",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutKynesPeace"
+    },
+    {
+      "id": "04000817",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutAnimalAllegiance"
+    },
+    {
+      "id": "04000816",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutCallOfValor"
+    },
+    {
+      "id": "04000815",
+      "type": "STAT",
+      "editorID": "YSMR_DLC1MAGINVShoutSummonDurnehviir"
+    },
+    {
+      "id": "04000814",
+      "type": "STAT",
+      "editorID": "YSMR_DLC2MAGINVShoutCyclone"
+    },
+    {
+      "id": "04000813",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutWhirlwindSprint"
+    },
+    {
+      "id": "04000812",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutThrowVoice"
+    },
+    {
+      "id": "04000811",
+      "type": "STAT",
+      "editorID": "YSMR_MAGINVShoutStormCall"
+    },
+    {
+      "id": "00044236",
+      "type": "NPC_",
+      "editorID": "YSMR_GormlaithGoldenHilt"
+    },
+    {
+      "id": "00044237",
+      "type": "NPC_",
+      "editorID": "YSMR_FelldirTheOld"
+    },
+    {
+      "id": "00044238",
+      "type": "NPC_",
+      "editorID": "YSMR_HakonOneEye"
+    },
+    {
+      "id": "000923F9",
+      "type": "NPC_",
+      "editorID": "YSMR_SummonFelldir"
+    },
+    {
+      "id": "000923FA",
+      "type": "NPC_",
+      "editorID": "YSMR_SummonGormlaith"
+    },
+    {
+      "id": "000923FB",
+      "type": "NPC_",
+      "editorID": "YSMR_SummonHakon"
+    },
+    {
+      "id": "000CD9F7",
+      "type": "NPC_",
+      "editorID": "YSMR_MQ206Gormlaith"
+    },
+    {
+      "id": "000CDA00",
+      "type": "NPC_",
+      "editorID": "YSMR_MQ206Felldir"
+    },
+    {
+      "id": "000CDA01",
+      "type": "NPC_",
+      "editorID": "YSMR_MQ206Hakon"
+    },
+    {
+      "id": "0301F990",
+      "type": "NPC_",
+      "editorID": "YSMR_DLC2FireWyrm"
+    },
+    {
+      "id": "030265AA",
+      "type": "NPC_",
+      "editorID": "YSMR_DLC2AncientDragonborn"
+    },
+    {
+      "id": "0400081F",
+      "type": "NPC_",
+      "editorID": "YSMR_DLC2FrostWyrm"
+    },
+    {
+      "id": "04000820",
+      "type": "QUST",
+      "editorID": "YSMR_GeneralControllerQuest"
+    },
+    {
+      "id": "04000822",
+      "type": "FLST",
+      "editorID": "YSMR_ShoutsFormListDuration"
+    },
+    {
+      "id": "04000821",
+      "type": "FLST",
+      "editorID": "YSMR_ShoutsFormListMagnitude"
+    },
+    {
+      "id": "000E8279",
+      "type": "PERK",
+      "editorID": "YSMR_MQGreybeardsFus"
+    },
+    {
+      "id": "000E827A",
+      "type": "PERK",
+      "editorID": "YSMR_MQGreybeardsFeim"
+    },
+    {
+      "id": "000E827B",
+      "type": "PERK",
+      "editorID": "YSMR_MQGreybeardsYol"
+    },
+    {
+      "id": "0301DF8F",
+      "type": "PERK",
+      "editorID": "YSMR_DLC2DragonAspectArmsPerk"
+    },
+    {
+      "id": "0301DF9B",
+      "type": "PERK",
+      "editorID": "YSMR_DLC2DragonAspectHeadPerk"
+    },
+    {
+      "id": "04000825",
+      "type": "PERK",
+      "editorID": "YSMR_MQpathtoHHShrinePerk"
+    },
+    {
+      "id": "04000824",
+      "type": "PERK",
+      "editorID": "YSMR_DragonSoulPower"
+    },
+    {
+      "id": "04000823",
+      "type": "PERK",
+      "editorID": "YSMR_DLC2BlackBookDragonbornFrostPerk"
+    },
+    {
+      "id": "03026477",
+      "type": "MESG",
+      "editorID": "YSMR_DLC2ApocryphaBookReward_C2_Prompt"
+    },
+    {
+      "id": "03026475",
+      "type": "MESG",
+      "editorID": "YSMR_DLC2ApocryphaBookReward_C1_Prompt"
+    },
+    {
+      "id": "03026479",
+      "type": "MESG",
+      "editorID": "YSMR_DLC2ApocryphaBookReward_C3_Prompt"
+    },
+    {
+      "id": "00013E07",
+      "type": "SHOU",
+      "editorID": "YSMR_UnrelentingForceShout"
+    },
+    {
+      "id": "0002395A",
+      "type": "SHOU",
+      "editorID": "YSMR_DismayShout"
+    },
+    {
+      "id": "0002F7BA",
+      "type": "SHOU",
+      "editorID": "YSMR_WhirlwindSprintShout"
+    },
+    {
+      "id": "00032920",
+      "type": "SHOU",
+      "editorID": "YSMR_BecomeEtherealShout"
+    },
+    {
+      "id": "00032921",
+      "type": "SHOU",
+      "editorID": "YSMR_ElementalFuryShout"
+    },
+    {
+      "id": "0003CD34",
+      "type": "SHOU",
+      "editorID": "YSMR_ClearSkiesShout"
+    },
+    {
+      "id": "0003F9EA",
+      "type": "SHOU",
+      "editorID": "YSMR_FireBreathShout"
+    },
+    {
+      "id": "00044250",
+      "type": "SHOU",
+      "editorID": "YSMR_DragonrendShout"
+    },
+    {
+      "id": "00046B8C",
+      "type": "SHOU",
+      "editorID": "YSMR_CallOdahviingShout"
+    },
+    {
+      "id": "00048AC9",
+      "type": "SHOU",
+      "editorID": "YSMR_SlowTimeShout"
+    },
+    {
+      "id": "0005196A",
+      "type": "SHOU",
+      "editorID": "YSMR_CallOfValorShout"
+    },
+    {
+      "id": "0005D16B",
+      "type": "SHOU",
+      "editorID": "YSMR_FrostBreathShout"
+    },
+    {
+      "id": "0005FC77",
+      "type": "SHOU",
+      "editorID": "YSMR_AnimalAllegianceShout"
+    },
+    {
+      "id": "0007097B",
+      "type": "SHOU",
+      "editorID": "YSMR_AuraWhisperShout"
+    },
+    {
+      "id": "0007097C",
+      "type": "SHOU",
+      "editorID": "YSMR_MarkedForDeathShout"
+    },
+    {
+      "id": "0007097D",
+      "type": "SHOU",
+      "editorID": "YSMR_StormCallShout"
+    },
+    {
+      "id": "0007097E",
+      "type": "SHOU",
+      "editorID": "YSMR_KynesPeaceShout"
+    },
+    {
+      "id": "0007097F",
+      "type": "SHOU",
+      "editorID": "YSMR_ThrowVoiceShout"
+    },
+    {
+      "id": "00070980",
+      "type": "SHOU",
+      "editorID": "YSMR_IceFormShout"
+    },
+    {
+      "id": "00070981",
+      "type": "SHOU",
+      "editorID": "YSMR_DisarmShout"
+    },
+    {
+      "id": "020030D2",
+      "type": "SHOU",
+      "editorID": "YSMR_DLC1SummonDurnehviirShout"
+    },
+    {
+      "id": "02007CB6",
+      "type": "SHOU",
+      "editorID": "YSMR_DLC1SoulTearShout"
+    },
+    {
+      "id": "02008A62",
+      "type": "SHOU",
+      "editorID": "YSMR_DLC1DrainVitalityShout"
+    },
+    {
+      "id": "030179D8",
+      "type": "SHOU",
+      "editorID": "YSMR_DLC2BendWillShout"
+    },
+    {
+      "id": "0301DF92",
+      "type": "SHOU",
+      "editorID": "YSMR_DLC2DragonAspectShout"
+    },
+    {
+      "id": "030200C0",
+      "type": "SHOU",
+      "editorID": "YSMR_DLC2CycloneShout"
+    },
+    {
+      "id": "0302AD09",
+      "type": "SHOU",
+      "editorID": "YSMR_DLC2BattleFuryShout"
+    },
+    {
+      "id": "04000826",
+      "type": "ARTO",
+      "editorID": "YSMR_SummonCallOfValorTargetFX"
+    },
+    {
+      "id": "0005A6F6",
+      "type": "SNDR",
+      "editorID": "YSMR_VOCShoutFXElementalFuryEnchantmentLPSD"
+    }
+  ],
+  "assets": [
+    {
+      "path": "textures/ysmir/resources/gradsummoncallofvalorburst.dds",
+      "bytes": 22052,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "textures/ysmir/resources/gradsummoncallofvalordepth.dds",
+      "bytes": 22052,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "textures/ysmir/resources/gradsummoncallofvalorbright.dds",
+      "bytes": 22052,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "textures/ysmir/resources/gradsummoncallofvaloredge.dds",
+      "bytes": 22052,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/dlc2maginvshoutcyclone.nif",
+      "bytes": 33111,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutkynespeace.nif",
+      "bytes": 33483,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutclearskies.nif",
+      "bytes": 33266,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutwhirlwindsprint.nif",
+      "bytes": 33486,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutcallofvalor.nif",
+      "bytes": 33267,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/dlc1maginvshoutsummondurnehviir.nif",
+      "bytes": 33395,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutthrowvoice.nif",
+      "bytes": 33108,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutelementalfury.nif",
+      "bytes": 33102,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/dlc1maginvshoutdrainvitality.nif",
+      "bytes": 33367,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/dlc2maginvshoutbattlefury.nif",
+      "bytes": 33111,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutstormcall.nif",
+      "bytes": 33488,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutdisarm.nif",
+      "bytes": 34231,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutdismay.nif",
+      "bytes": 33367,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/resources/callofvalortargetfx.nif",
+      "bytes": 71390,
+      "changedTextureNamespace": true
+    },
+    {
+      "path": "meshes/ysmir/resources/maginvshoutanimalallegiance.nif",
+      "bytes": 33370,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/inventory/fire.nif",
+      "bytes": 33382,
+      "changedTextureNamespace": false
+    },
+    {
+      "path": "meshes/ysmir/inventory/bendwill.nif",
+      "bytes": 33266,
+      "changedTextureNamespace": false
+    }
+  ],
+  "scriptsBefore": 11,
+  "scriptsAfter": 11,
+  "newRuntimeScripts": 0,
+  "projectileChanges": [
+    "EditorID",
+    "Type: Missile -> Cone"
+  ],
+  "commandedActorLimit": {
+    "entryPoint": 68,
+    "function": "Add",
+    "value": 100,
+    "spell": "Dawnguard.esm:007CBA"
+  },
+  "pluginSHA256": "91ae623bbe9fffd9eba3624cb50cdb37cc0e79c23c7f746004c46c16f294c44d"
+}

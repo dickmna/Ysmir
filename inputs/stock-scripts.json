@@ -1,0 +1,106 @@
+{
+  "calldragoneffectscript": {
+    "file": "calldragoneffectscript.pex",
+    "sha256": "cb5667c6ea610b3f891da5624682a2456a6c55e2728ad5e2915f136077063c10"
+  },
+  "clearskieseffectscript": {
+    "file": "clearskieseffectscript.pex",
+    "sha256": "b3371f62d4808d7bd6caf107a6511d42307b9a43abc0af675e3b33e04b2f350a"
+  },
+  "defaultblockactivation": {
+    "file": "defaultblockactivation.pex",
+    "sha256": "265cd1b627b450841662c7510791381ea3d4fb71c93434c24e24bb89bbe8e9e8"
+  },
+  "dlc1magicsoulrendscript": {
+    "file": "dlc1magicsoulrendscript.pex",
+    "sha256": "013729afaa437b9cefd0773b0f054f8d56c1a9172d2063177e8726684700f33f"
+  },
+  "dlc2cycloneeffectscript": {
+    "file": "dlc2cycloneeffectscript.pex",
+    "sha256": "bcac7a18289a5603abda3543fe0eab3d8bfa8b301e50df66dee7a3a5de4383fe"
+  },
+  "dlc2dbancientdragonbornscript": {
+    "file": "dlc2dbancientdragonbornscript.pex",
+    "sha256": "45c797735961e2a657fc34c2c69c3b7fb9d751457e817d9ab3d4d8bb885975ce"
+  },
+  "dlc2dragonbornaspectartscript": {
+    "file": "dlc2dragonbornaspectartscript.pex",
+    "sha256": "9bb756ec4cafe3717705149844f834a4853d7bf60fd5ca0fac2ef04c62b184fe"
+  },
+  "dlc2spectraldragondeathscript": {
+    "file": "dlc2spectraldragondeathscript.pex",
+    "sha256": "3aef187e2372cc0c5515082fa8e4e889a598958533808cfa46c4b1385014c421"
+  },
+  "dlc2tamedragoneffectscript": {
+    "file": "dlc2tamedragoneffectscript.pex",
+    "sha256": "fe10dccd1c32cde33f70df243cc56e6f63760058dbda9755f7e146df96b78c00"
+  },
+  "dlc2voicebendwilleffectscript": {
+    "file": "dlc2voicebendwilleffectscript.pex",
+    "sha256": "8c837a4e2368f0994713f032fdb2821dd49981feb13d10f97085c876f0cb65e6"
+  },
+  "dlc2voicefirebreathscript": {
+    "file": "dlc2voicefirebreathscript.pex",
+    "sha256": "bd95ed93414bbfbb2aabcefdac28d81f3cd34a7891b9448be8edca90d27a7848"
+  },
+  "magiccastanotherspellscript": {
+    "file": "magiccastanotherspellscript.pex",
+    "sha256": "bc16151c1b42b3df7e10ebfb767a1542229415b08b240b699ced8a40569e918a"
+  },
+  "magicdispelspellonhitscript": {
+    "file": "magicdispelspellonhitscript.pex",
+    "sha256": "a78df7331ad5d86b3f492393a8061f18e4603e858409c9a7f4cfa2b586ed82db"
+  },
+  "magiceffectshadersonendscript": {
+    "file": "magiceffectshadersonendscript.pex",
+    "sha256": "d8adf71420f9e66242dafd3973c01ccd6e2b830070b02693df06ecaaaae0d3db"
+  },
+  "magicimodscript": {
+    "file": "magicimodscript.pex",
+    "sha256": "a898bdf810cf256de0a0990be1f441228c2525e574b36f50bb5602c70bf75df2"
+  },
+  "magicplaceexplosionscript": {
+    "file": "magicplaceexplosionscript.pex",
+    "sha256": "388d9b1e3281e9f2cfabe05a3443e89c54c02ffc6f01f860220e440cd8cdf844"
+  },
+  "magicprojectilestormscript": {
+    "file": "magicprojectilestormscript.pex",
+    "sha256": "d4e3c1a01a05fad30985878ae4ef5eae2dca971363ab2447448e1acab0ec4052"
+  },
+  "magicsetactoralphascript": {
+    "file": "magicsetactoralphascript.pex",
+    "sha256": "9cc699abd455a8a2c55998470bd437812cffaa59c60a562f84eed05d59900781"
+  },
+  "magicsetweatherscript": {
+    "file": "magicsetweatherscript.pex",
+    "sha256": "f0827de05580f048552abebb3f17a2a3e8da903ed5168825887a9bc095851ebb"
+  },
+  "magicsoultrapfxscript": {
+    "file": "magicsoultrapfxscript.pex",
+    "sha256": "87420dca8c67306beac7c982a5a9a3c8b724dfa8d32710cc167a0fd7b27b6832"
+  },
+  "magicsoundplayintrooutro": {
+    "file": "magicsoundplayintrooutro.pex",
+    "sha256": "ffd3ea59b2b64e1d9996026944e84d4a553fb025e98a7d4e9c7f82644155b6be"
+  },
+  "reanimateashpile": {
+    "file": "reanimateashpile.pex",
+    "sha256": "cf9d14c6ed4e7abbe32e5ec7e72bd0459abbe5316cac4223fda9676de9c49aa4"
+  },
+  "shaderparticlegeometryscript": {
+    "file": "shaderparticlegeometryscript.pex",
+    "sha256": "6a73f4d7a7ac86176f306b777ce71aa51db3d82e24b9c35437359eb934c913fc"
+  },
+  "voicecharmfactionscript": {
+    "file": "voicecharmfactionscript.pex",
+    "sha256": "f9fdb1d4673eb32a412791631505d9d369757f0877928e4e7f4934f2e4c12a99"
+  },
+  "voiceiceformscript": {
+    "file": "voiceiceformscript.pex",
+    "sha256": "859b3b4929b352d7fa13f9442e646e6d0c1a5d247a1e420a933ce7412646d959"
+  },
+  "voicepusheffectscript": {
+    "file": "voicepusheffectscript.pex",
+    "sha256": "b6e89d011d84fb994c8337fa2590090a80a897ddbf0fb565b0b2fd2363b3a807"
+  }
+}

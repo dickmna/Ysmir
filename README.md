@@ -1,25 +1,45 @@
-# Ysmir
+# Ysmir — Shout System Overhaul
 
-Open-source Skyrim shout progression and integration framework. **0.5.0**, targeting **Steam Skyrim 1.7.104.0 / SKSE64 2.3.1 / Address Library v13**.
+**1.2.0 · Native Skyrim Special Edition shout overhaul.**
 
-以施放事件和龙魂倍率快照为公共核心，接入 True Cone、动态冷酷之力、SCSO 和选定龙吼机制。运行时为一个 DLL、一个生成的 ESP、一个 INI 和五个 Papyrus 桥接脚本。
+独立的龙吼大修：27 个原版及官方 DLC 龙吼统一 5 秒基础冷却；当前持有的每个龙魂增加 2.5% 龙吼强度与持续时间；阅读词墙直接解锁。运行时仅使用 ESP-FE、原生 Papyrus、模型与纹理，无 SKSE、DLL、MCM 或其他模组前置。
 
-0.5.0 统一投射物几何与缓存，补齐惊惧范围，改用原始上游模组生成数据，移除了旧版 Ysmir ESP 构建依赖。源码、数据构建器与脚本已编译并核对文件/记录；游戏内效果由用户验证。
+本仓库的主分支现为纯原生实现。以前的 SKSE 版本保留在 Git 历史及 `v0.4.0`、`v0.5.0` 标签，不再代表当前版本。
 
-## 行为
+## 1.2.0
 
-普通龙吼使用选定模组机制及官方已有参数的基础值；新增机制没有官方对应参数时沿用来源参数。Dragon Aspect 和远古龙裔完整采用 FT 3.0.9.1；Storm Call 采用 SCSO v3；Call of Valor 英灵采用 FT 属性与行为并固定 150 级。Battle Fury 完全保持原版。
+- 灵魂剥离使用私有原生 Cone 投射物，穿过角色继续前进。保留原版速度 1066、射程 4000、半径 24、零扩散及模型、光源等视觉配置。沿途目标接受当前词级的完整效果，捕魂和复活仍遵守各自的原生条件。
+- 采用仪式之石的原生天赋入口，仅为灵魂剥离的实际复活法术增加 **100 个**控制名额。普通召唤和复活法术不会因此获得加成。这是原生名额修正，不是独立随从池，也不改变复活时长。
+- 276 个原有 EditorID 迁入 `YSMR_`；脚本属性和资源目录同步使用专属命名。所有已发布 FormID 保留，仅追加一条投射物记录。
+- 没有新增运行脚本：仍为 11 个。
 
-默认 `S` 为未消费龙魂，幅度、距离、范围、持续时间、碰撞与视觉基础倍率均为 `1 + 0.05S`，冷却为 `0.95^S`。Slow Time 持续时间固定。视觉围绕原始模型中心缩放，补偿会随旋转与父节点变换计算。26 条玩家龙吼、78 个词位使用私有映射和 MagicShout 分类。
+## 主要行为
 
-## 构建与公开范围
+| 功能 | 当前实现 |
+| --- | --- |
+| 基础冷却 | 全部 27 个龙吼的 81 个词位均为 5 秒，原生冷却修正仍生效 |
+| 龙魂成长 | `G = 1 + 0.025 × 当前持有龙魂数`；不消耗龙魂，无人物等级或任务门槛 |
+| 通用判定 | 原生 perk 根据 `MagicShout` 增强强度与时长；可作用于正确标记的外部龙吼 |
+| 阅读词墙 | 原生 `TeachWord` 后调用 `UnlockWord`；仅处理新读到的词 |
+| 冷酷之力 | 保留词级踉跄/推飞，玩家三词推力为 `15 × G` |
+| 延缓时间 | 世界速度固定 `0.3 / 0.2 / 0.1`，玩家速度为 `1`；仅 `8 / 12 / 16` 秒持续时间成长 |
+| 死亡印记 | 秒伤、临时护甲/魔抗削弱及持续时间成长 |
+| 寒冰形态、汲取活力 | 每秒伤害/吸取量和持续时间成长 |
+| 灵魂剥离 | 原生贯穿；保留各词级的伤害、捕魂、三词死亡监测与复活链；复活基础 60 秒、等级参数 99 |
+| 元素狂暴 | 直接角色攻速，支持附魔武器；HitFrame 触发三系独立 50% 判定，各系 2 秒间隔；Reduced Shaders |
+| 旋风冲刺 | 原冲刺、敌方碰撞踉跄；范围 9、持续 1 秒、无额外伤害；后续移速 +25% |
+| 龙魂觉醒、三英雄 | 无每日限制；三英雄及其相关变体固定 150 级 |
+| 风暴召唤 | 三级施放获取范围 600；原生天气、落雷脚本和室外规则；允许叠加 |
+| 同伴洞察力 | 闪电伤害带 `MagicShout`，直接遵守原生洞察力条件；不取消雷光，也不扩大为所有友方免伤 |
 
-仓库提供原生代码、Papyrus 源码、配置、.NET 9 数据构建器、匹配的 CommonLibSSE-NG/MinHook 源码及许可。**源码包不能直接作为完整模组安装。** 第三方 ESP、模型、纹理与游戏文件需自行取得，运行包未上传。
+详细数值、兼容性与升级方式见 [使用说明](package/Ysmir%20-%20说明.txt)。
 
-构建器直接读取官方 masters、Forceful Tongue、Elemental Fury Dynamic Shaders 及其 FT 补丁、Slow Time Edit、Whirlwind Sprint Redone。版本与哈希见 [数据构建器](data-builder/README.md)。`FormIds.json` 仅保存稳定的记录标识，不包含旧版 ESP 的记录内容。Shout Progression 提供公共成长的设计参考，不依赖它的 DLL。
+## 使用与构建
 
-[完整行为](docs/CURRENT_BEHAVIOR.md) · [0.5.0 改动](docs/CHANGELOG.md) · [几何与快照](docs/ARCHITECTURE.md) · [兼容补丁依据](docs/COMPATIBILITY.md) · [验证范围](docs/KNOWN_ISSUES.md) · [构建](docs/BUILD.md)
+运行仅依赖 `Skyrim.esm`、`Update.esm`、`Dawnguard.esm`、`Dragonborn.esm`。完整安装包中包含运行所需的自定义资源。不要与旧版 Ysmir DLL 或重复的龙吼整合同时安装。
 
-## 许可
+**GitHub 发布源码与重建工具，不发布第三方 ESP、模型、纹理、游戏主文件或完整安装包。** 构建时需要自行取得所列参考输入；这是构建要求，成品运行时不以这些模组为前置。见 [构建说明](BUILD.md) 和 [来源与许可](THIRD_PARTY.md)。
 
-Ysmir 原创代码采用 [MIT](LICENSE)；链接 CommonLibSSE-NG 的组合 DLL 按 [GPL-3.0-or-later](COPYING) 提供。数据构建器采用 [GPL-3.0-only](data-builder/LICENSE-GPL-3.0.txt)。第三方代码、游戏/模组记录和资产保留各自权利。详见 [来源与许可](docs/THIRD_PARTY_NOTICES.md)。
+已完成原始二进制验证、官方 Papyrus 编译、反编译核对、1.1.4 差异审计和独立源码重建。**没有运行游戏实测**；沿途多人命中、连续复活和场景中的视觉表现仍须在游戏中验证。详见 [验证范围](VALIDATION.md)。
+
+Ysmir 原创脚本和工具按 [MIT](LICENSE) 提供；使用 Mutagen 的数据构建器按 [GPL-3.0-only](builder/LICENSE) 提供。第三方与 Bethesda 内容保留原作者权利，命名变更不改变来源署名。

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "version": "1.2.0",
+  "independentSourceBuild": true,
+  "identicalPluginSHA256": "91ae623bbe9fffd9eba3624cb50cdb37cc0e79c23c7f746004c46c16f294c44d",
+  "matchingAssets": 21,
+  "scriptsCompiled": 11,
+  "compilationErrors": 0,
+  "compilationWarnings": 0,
+  "matchingDecompiledScripts": 11,
+  "offlineAssertions": 568,
+  "gameExecuted": false
+}
