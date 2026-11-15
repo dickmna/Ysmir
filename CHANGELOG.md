@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.3 — 2026-11-16
+
+- Keeps all nine Nord hero variants at fixed level 150 and removes their extra Health, Magicka and Stamina offsets. Their native race/class auto-calculation, gear, perks and spell lists remain intact; player souls affect summon duration, not hero level.
+- Keeps every hero shout at 5/5/5 seconds and adds only five necessary Miraak shout overrides. Preserves official spell/word links and quest behavior; other Miraak/Greybeard variants already have five-second cooldowns.
+- Removes Animal Allegiance's Health/Stamina buffs and their two unused private effects. Released FormIDs stay reserved and are never reassigned.
+- Built directly from 1.2.0; 2.5% soul progression, 11 runtime scripts and four official masters remain unchanged. No new runtime scripts or FormIDs.
+
 ## 1.2.0 — 2026-11-15
 
 - Soul Tear uses a private native Cone projectile, preserving the original range, speed, zero spread, collision radius and visual fields.

@@ -1,0 +1,170 @@
+[
+  {
+    "source": "Skyrim.esm",
+    "id": "0010F734",
+    "editorID": "GreybeardElementalFuryShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Skyrim.esm",
+    "id": "0010F732",
+    "editorID": "GreybeardUnrelentingForceShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Skyrim.esm",
+    "id": "0010F72F",
+    "editorID": "GreybeardFrostBreathShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Skyrim.esm",
+    "id": "0010F72E",
+    "editorID": "GreybeardFireBreathShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "03039D28",
+    "editorID": "dlc2MKMiraakMaskShoutShout",
+    "flags": 0,
+    "cooldowns": [
+      1.0,
+      20.0,
+      45.0
+    ],
+    "overrideNeeded": true
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "03038B0F",
+    "editorID": "DLC2MiraakDragonAspectShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "03038B0E",
+    "editorID": "DLC2MiraakUnrelentingForceShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "03038B0D",
+    "editorID": "DLC2MiraakFrostBreathShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "03038B0C",
+    "editorID": "DLC2MiraakFireBreathShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "03038B0B",
+    "editorID": "DLC2MiraakElementalFuryShout",
+    "flags": 0,
+    "cooldowns": [
+      5.0,
+      5.0,
+      5.0
+    ],
+    "overrideNeeded": false
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "030382F9",
+    "editorID": "DLC2MiraakFakeKillShout",
+    "flags": 0,
+    "cooldowns": [
+      2.0,
+      2.0,
+      2.0
+    ],
+    "overrideNeeded": true
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "0303547B",
+    "editorID": "DLC2MiraakWhirlwindSprintShout",
+    "flags": 0,
+    "cooldowns": [
+      0.10000000149011612,
+      0.10000000149011612,
+      0.10000000149011612
+    ],
+    "overrideNeeded": true
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "03023F7A",
+    "editorID": "DLC2MiraakBecomeEtherealShout",
+    "flags": 0,
+    "cooldowns": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "overrideNeeded": true
+  },
+  {
+    "source": "Dragonborn.esm",
+    "id": "03023F79",
+    "editorID": "DLC2MiraakCycloneShout",
+    "flags": 0,
+    "cooldowns": [
+      10.0,
+      10.0,
+      10.0
+    ],
+    "overrideNeeded": true
+  }
+]

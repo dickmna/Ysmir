@@ -14,16 +14,16 @@
       "sha256": "66FD54CB9A923C6D122756320A57B5984AF58949F47EB811A9ECD7F791B4C837"
     }
   ],
-  "sha256": "91AE623BBE9FFFD9EBA3624CB50CDB37CC0E79C23C7F746004C46C16F294C44D",
-  "bytes": 116015,
+  "sha256": "7829B04BF7AB47E03BD56FE33DB51F67378DFFF3473E96E7600BAD84D51F7445",
+  "bytes": 115880,
   "masters": [
     "Skyrim.esm",
     "Update.esm",
     "Dawnguard.esm",
     "Dragonborn.esm"
   ],
-  "records": 352,
-  "newRecords": 97,
+  "records": 355,
+  "newRecords": 95,
   "shouts": [
     {
       "id": "013E07:Skyrim.esm",
@@ -534,6 +534,101 @@
         },
         {
           "spell": "02AD0B:Dragonborn.esm",
+          "RecoveryTime": 5
+        }
+      ]
+    },
+    {
+      "id": "039D28:Dragonborn.esm",
+      "EditorID": "dlc2MKMiraakMaskShoutShout",
+      "flags": "0",
+      "words": [
+        {
+          "spell": "039D27:Dragonborn.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "Null",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "Null",
+          "RecoveryTime": 5
+        }
+      ]
+    },
+    {
+      "id": "0382F9:Dragonborn.esm",
+      "EditorID": "DLC2MiraakFakeKillShout",
+      "flags": "0",
+      "words": [
+        {
+          "spell": "034813:Dragonborn.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "034813:Dragonborn.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "034813:Dragonborn.esm",
+          "RecoveryTime": 5
+        }
+      ]
+    },
+    {
+      "id": "03547B:Dragonborn.esm",
+      "EditorID": "DLC2MiraakWhirlwindSprintShout",
+      "flags": "0",
+      "words": [
+        {
+          "spell": "02F7BE:Skyrim.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "02F7BF:Skyrim.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "02F7C0:Skyrim.esm",
+          "RecoveryTime": 5
+        }
+      ]
+    },
+    {
+      "id": "023F7A:Dragonborn.esm",
+      "EditorID": "DLC2MiraakBecomeEtherealShout",
+      "flags": "0",
+      "words": [
+        {
+          "spell": "05F6EB:Skyrim.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "05F6EC:Skyrim.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "05F6ED:Skyrim.esm",
+          "RecoveryTime": 5
+        }
+      ]
+    },
+    {
+      "id": "023F79:Dragonborn.esm",
+      "EditorID": "DLC2MiraakCycloneShout",
+      "flags": "0",
+      "words": [
+        {
+          "spell": "0200BC:Dragonborn.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "0200BE:Dragonborn.esm",
+          "RecoveryTime": 5
+        },
+        {
+          "spell": "03D2AD:Dragonborn.esm",
           "RecoveryTime": 5
         }
       ]
@@ -1593,18 +1688,6 @@
           "Magnitude": 20,
           "Area": 75,
           "Duration": 30
-        },
-        {
-          "id": "000809:Ysmir - Shout System Overhaul.esp",
-          "Magnitude": 50,
-          "Area": 100,
-          "Duration": 10
-        },
-        {
-          "id": "00080A:Ysmir - Shout System Overhaul.esp",
-          "Magnitude": 50,
-          "Area": 100,
-          "Duration": 10
         }
       ]
     },
@@ -1617,18 +1700,6 @@
           "Magnitude": 20,
           "Area": 150,
           "Duration": 45
-        },
-        {
-          "id": "000809:Ysmir - Shout System Overhaul.esp",
-          "Magnitude": 100,
-          "Area": 150,
-          "Duration": 20
-        },
-        {
-          "id": "00080A:Ysmir - Shout System Overhaul.esp",
-          "Magnitude": 100,
-          "Area": 150,
-          "Duration": 20
         }
       ]
     },
@@ -1641,18 +1712,6 @@
           "Magnitude": 20,
           "Area": 250,
           "Duration": 60
-        },
-        {
-          "id": "000809:Ysmir - Shout System Overhaul.esp",
-          "Magnitude": 150,
-          "Area": 200,
-          "Duration": 30
-        },
-        {
-          "id": "00080A:Ysmir - Shout System Overhaul.esp",
-          "Magnitude": 150,
-          "Area": 200,
-          "Duration": 30
         }
       ]
     },
@@ -6269,44 +6328,6 @@
         "00081B:Ysmir - Shout System Overhaul.esp",
         "046B99:Skyrim.esm",
         "101BDE:Skyrim.esm"
-      ],
-      "properties": null
-    },
-    {
-      "id": "00080A:Ysmir - Shout System Overhaul.esp",
-      "EditorID": "YSMR_VoiceAnimalAllegianceFortifyStaminaEffect",
-      "type": "PeakValueModifier",
-      "flags": "Recover, PowerAffectsMagnitude, PowerAffectsDuration",
-      "projectile": "Null",
-      "keywords": [
-        "046B99:Skyrim.esm"
-      ],
-      "scripts": null,
-      "links": [
-        "000817:Ysmir - Shout System Overhaul.esp",
-        "046B99:Skyrim.esm",
-        "046B99:Skyrim.esm",
-        "013798:Skyrim.esm",
-        "013796:Skyrim.esm"
-      ],
-      "properties": null
-    },
-    {
-      "id": "000809:Ysmir - Shout System Overhaul.esp",
-      "EditorID": "YSMR_VoiceAnimalAllegianceFortifyHealthEffect",
-      "type": "PeakValueModifier",
-      "flags": "Recover, PowerAffectsMagnitude, PowerAffectsDuration",
-      "projectile": "Null",
-      "keywords": [
-        "046B99:Skyrim.esm"
-      ],
-      "scripts": null,
-      "links": [
-        "000817:Ysmir - Shout System Overhaul.esp",
-        "046B99:Skyrim.esm",
-        "046B99:Skyrim.esm",
-        "013798:Skyrim.esm",
-        "013796:Skyrim.esm"
       ],
       "properties": null
     },

@@ -120,7 +120,16 @@ def main():
     check(all((r['fid']&0xFFFFFF)==stable[r['edid']] for r in rs if r['fid']>>24==own),'Released FormIDs remain stable and are independent of build order')
     check(not any(r['flags']&0x20 for r in rs),'No deleted records')
     check(not any(re.search('phantom|wordwallbroken',r['edid'],re.I) for r in rs),'No Phantom Form records')
-    shouts=[r for r in rs if r['tag']=='SHOU']
+    miraak_baseline=json.loads((ROOT/'inputs'/'miraak-shouts.json').read_text())
+    miraak_ids={int(r['id'],16) for r in miraak_baseline if r['overrideNeeded']}
+    all_shouts=[r for r in rs if r['tag']=='SHOU']
+    npc_shouts=[r for r in all_shouts if r['fid'] in miraak_ids]
+    shouts=[r for r in all_shouts if r['fid'] not in miraak_ids]
+    check({r['fid'] for r in npc_shouts}==miraak_ids and len(npc_shouts)==5,'Only the five Miraak shouts with non-five-second cooldowns need overrides')
+    check(all(len(fields(r,'SNAM'))==3 and all(F32(v,8)==5 for v in fields(r,'SNAM')) for r in npc_shouts),'All 15 Miraak override word slots use five-second recovery, including unused slots')
+    for original in miraak_baseline:
+        fid=int(original['id'],16)
+        check(fid in byid if original['overrideNeeded'] else fid not in byid and original['cooldowns']==[5,5,5],'Miraak coverage without redundant overrides: '+original['editorID'])
     check(len(shouts)==27,'27 vanilla/DLC player shouts')
     check(all(len(fields(r,'SNAM'))==3 and all(F32(v,8)==5 for v in fields(r,'SNAM')) for r in shouts),'All 81 shout slots use 5-second recovery')
     check(all(r['flags']==0 for r in shouts),'No shout treated as a daily power')
@@ -238,6 +247,20 @@ def main():
     heroes=[byid[x] for x in (0x44236,0x44237,0x44238,0x923F9,0x923FA,0x923FB,0xCD9F7,0xCDA00,0xCDA01)]
     check(all(U16(field(r,'ACBS'),8)==150 and not U32(field(r,'ACBS'))&0x80 for r in heroes),'All nine hero variants fixed at level 150')
     check(all(not U16(field(r,'ACBS'),18)&2 or U16(field(byid[U32(field(r,'TPLT'))],'ACBS'),8)==150 for r in heroes),'Hero stat templates also have level 150')
+    for hero in heroes:
+        acbs=field(hero,'ACBS')
+        check(U32(acbs)&0x10 and all(U16(acbs,p)==0 for p in (4,6,20)),'Hero uses native auto-calculated stats with zero Health/Magicka/Stamina offsets: '+hero['edid'])
+        check(all(U16(acbs,p)==150 for p in (8,10,12)),'Hero level and both bounds stay 150 independently of souls: '+hero['edid'])
+        check(not any(U32(v)==perk['fid'] for v in fields(hero,'PRKR')) and not any(U32(v)==named['YSMR_GeneralControllerAbility']['fid'] for v in fields(hero,'SPLO')),'Hero does not inherit the player soul-growth perk or ability: '+hero['edid'])
+        for v in fields(hero,'SPLO'):
+            learned=byid.get(U32(v))
+            if learned and learned['tag']=='SHOU':check(all(F32(w,8)==5 for w in fields(learned,'SNAM')),'Hero learned shout has five-second cooldowns: '+hero['edid']+' / '+learned['edid'])
+    for fid,eid,area,duration in ((0x9E0CC,0x9E0C8,75,30),(0x9E0CD,0x9E0CA,150,45),(0x9E0CE,0x9E0CB,250,60)):
+        es=effects(byid[fid])
+        check(len(es)==1 and es[0]['id']==eid and es[0]['mag']==20 and es[0]['area']==area and es[0]['duration']==duration,'Animal Allegiance retains only its native allegiance payload: '+byid[fid]['edid'])
+        check(U32(field(byid[eid],'DATA'),64)==38 and any(n=='VoiceCharmFactionScript' for n,_ in vmad(byid[eid])),'Animal Allegiance retains native rally archetype and faction script: '+byid[eid]['edid'])
+        check(b'extra Health' not in field(byid[eid],'DNAM'),'Animal Allegiance description no longer advertises attribute buffs')
+    check(not any('AnimalAllegianceFortify' in r['edid'] for r in rs) and 0x04000809 not in byid and 0x0400080A not in byid,'Unused animal Health/Stamina effects are omitted, and their released IDs stay reserved')
     storm=next(r for r in shouts if 'StormCall' in r['edid'])
     check(all(effects(byid[U32(v,4)])[0]['area']==600 for v in fields(storm,'SNAM')),'Storm Call all ranks use area 600')
     for fid,bolt in ((0xA1A58,0xE4CB7),(0xE3F0A,0xE4CB7),(0xA1A5C,0xE98A2),(0xE3F09,0xE98A2),(0xA1A5B,0xE98A3),(0xD5E81,0xE98A3)):
@@ -299,7 +322,7 @@ def main():
     check(not any('phantom' in a['path'].lower() or 'powerwordsah' in a['path'].lower() for a in assets),'Removed Phantom Form models and word-wall mesh stay excluded')
     build=json.loads((REPORT/'build.json').read_text())
     check(not build['unresolved'] and build['sha256'].lower()==hashlib.sha256(path.read_bytes()).hexdigest(),'Builder link validation and checksum match this binary')
-    result=dict(status='PASS',verification='Offline only; no in-game execution',records=len(rs),newRecords=sum(r['fid']>>24==own for r in rs),shouts=27,shoutSlots=81,scripts=11,assets=len(assets),checkedActionEffects=len(tagged),housekeepingSelectors=len(helpers),checks=checks,slowTimeSamples=simulation,pluginSHA256=hashlib.sha256((PKG/'Ysmir - Shout System Overhaul.esp').read_bytes()).hexdigest())
+    result=dict(status='PASS',verification='Offline only; no in-game execution',records=len(rs),newRecords=sum(r['fid']>>24==own for r in rs),shouts=len(all_shouts),shoutSlots=sum(len(fields(r,'SNAM')) for r in all_shouts),playerShouts=len(shouts),miraakOverrides=len(npc_shouts),scripts=11,assets=len(assets),checkedActionEffects=len(tagged),housekeepingSelectors=len(helpers),checks=checks,slowTimeSamples=simulation,pluginSHA256=hashlib.sha256((PKG/'Ysmir - Shout System Overhaul.esp').read_bytes()).hexdigest())
     (REPORT/'verification.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k not in ('checks','slowTimeSamples')},indent=2))
     print('Passed',len(checks),'offline assertions')

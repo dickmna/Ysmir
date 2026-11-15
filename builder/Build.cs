@@ -117,6 +117,16 @@ sealed partial class YsmirBuild : IDisposable
         }
         foreach(var n in mod.Npcs.Where(n=>new uint[]{0x44236,0x44237,0x44238,0x923F9,0x923FA,0x923FB,0xCD9F7,0xCDA00,0xCDA01}.Contains(n.FormKey.ID)&&n.FormKey.ModKey==K("Skyrim",0).ModKey)) {
             n.Configuration.Level=new NpcLevel{Level=150}; n.Configuration.CalcMinLevel=150; n.Configuration.CalcMaxLevel=150;
+            // Retain native class/race auto-calculation at level 150; remove
+            // FT's extra attribute offsets from every base/template variant.
+            n.Configuration.HealthOffset=0; n.Configuration.MagickaOffset=0; n.Configuration.StaminaOffset=0;
+        }
+        // Animal Allegiance keeps its original allegiance/rally effect only.
+        // The unreachable FT attribute effects are pruned by KeywordsAndCleanup.
+        foreach(var (spell,effect) in new[]{(0x9E0CCu,0x9E0C8u),(0x9E0CDu,0x9E0CAu),(0x9E0CEu,0x9E0CBu)}) {
+            var voice=mod.Spells[K("Skyrim",spell)];
+            foreach(var extra in voice.Effects.Where(e=>e.BaseEffect.FormKey!=K("Skyrim",effect)).ToArray())voice.Effects.Remove(extra);
+            mod.MagicEffects[K("Skyrim",effect)].Description=Txt("Nearby animals up to level <mag> become your allies and won't flee for <dur> seconds.");
         }
         // FT's extra post-dash movement benefit has no vanilla analogue.
         // Isolate it from the original instantaneous dash and its numbers.
