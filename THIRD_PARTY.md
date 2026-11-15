@@ -16,7 +16,7 @@
 ## 许可证范围
 
 - `builder/*.cs` 与项目文件：GPL-3.0-only，见 `builder/LICENSE`。
-- 原创 Python/PowerShell 工具、文档、`YSMR_ElementalFury.psc` 和 `YSMR_VoicePush.psc` 的原创部分：MIT，见根目录 `LICENSE`。
+- 原创 Python/PowerShell 工具、文档、`YSMR_ShoutCooldown.psc`、`YSMR_ElementalFury.psc` 和 `YSMR_VoicePush.psc` 的原创部分：MIT，见根目录 `LICENSE`。
 - 其余 Papyrus 源码包含 Delta 或 Bethesda 的既有逻辑及 Ysmir 修改，保留上述来源权利；根目录 MIT 不覆盖原作者部分。
 - 稳定 FormID、输入哈希和验证数据用于可复现构建，不授予参考输入的再分发许可。
 

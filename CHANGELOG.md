@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.4 — 2026-11-16
+
+- Adds one short native OnSpellCast listener to the existing player alias. Normal player shouts, including third-party Shout forms, set the current recovery timer to five seconds times the current ShoutRecoveryMult, preserving native cooldown reductions.
+- No polling, waits, new quests, alias IDs, FormIDs, SKSE or additional mod masters. Twelve runtime scripts; all previous scripts and gameplay records remain unchanged except the controller quest's new VMAD binding.
+- Cooldown compatibility does not depend on MagicShout. Soul growth remains the same native keyword-based magnitude/duration perk at 2.5% per held soul; script constants, area and NPC levels do not automatically scale.
+- External shout menu records and NPC cooldowns are not rewritten. Script-managed cooldowns and old-save event attachment require in-game testing; published validation is offline only.
+
 ## 1.2.3 — 2026-11-16
 
 - Keeps all nine Nord hero variants at fixed level 150 and removes their extra Health, Magicka and Stamina offsets. Their native race/class auto-calculation, gear, perks and spell lists remain intact; player souls affect summon duration, not hero level.

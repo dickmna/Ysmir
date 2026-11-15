@@ -64,7 +64,7 @@ def effects(r):
         elif k == 'CTDA' and result: result[-1]['conditions'].append(v)
     return result
 
-def vmad(r):
+def vmad(r, alias_info=None):
     if not fields(r,'VMAD'): return []
     b = field(r,'VMAD'); p = 0
     version, fmt, count = struct.unpack_from('<HHH',b); p=6
@@ -83,12 +83,31 @@ def vmad(r):
         if 11<=t<=15:
             n=U32(b,p);p+=4;return [value(t-10) for _ in range(n)]
         raise AssertionError(('Unknown VMAD property',t))
-    result=[]
-    for _ in range(count):
-        name=string();status=b[p];p+=1;n=U16(b,p);p+=2;props=[]
+    def scripts(n):
+        nonlocal p
+        result=[]
         for _ in range(n):
-            key=string();t,status=b[p:p+2];p+=2;props.append((key,t,value(t)))
-        result.append((name,props))
+            name=string();status=b[p];p+=1;size=U16(b,p);p+=2;props=[]
+            for _ in range(size):
+                key=string();t,status=b[p:p+2];p+=2;props.append((key,t,value(t)))
+            result.append((name,props))
+        return result
+    result=scripts(count)
+    if r['tag']=='QUST' and p<len(b):
+        assert b[p]==2; p+=1
+        fragments=U16(b,p);p+=2;string()
+        for _ in range(fragments):p+=9;string();string()
+        aliases=U16(b,p);p+=2
+        for _ in range(aliases):
+            # Alias object is serialized before its own version/format header.
+            alias_format=U16(b,p+10)
+            assert alias_format==fmt==2
+            unused,alias,fid=struct.unpack_from('<HhI',b,p);p+=8
+            version,fmt,n=struct.unpack_from('<HHH',b,p);p+=6
+            assert unused==0 and version==5
+            bound=scripts(n);result.extend(bound)
+            if alias_info is not None:alias_info.append(dict(quest=fid,alias=alias,scripts=bound))
+        assert p==len(b)
     assert p<=len(b)
     return result
 
@@ -279,11 +298,14 @@ def main():
         check(len(es)==1 and es[0]['id']==storm_damage['fid'] and not es[0]['conditions'],'Lightning uses only the MagicShout-tagged private damage effect: '+byid[fid]['edid'])
     quest=named['YSMR_GeneralControllerQuest']
     check(U16(field(quest,'DNAM'))&1 and U32(field(quest,'ALFR'))==0x14,'Native start-enabled player alias installs progression')
+    alias_bindings=[];vmad(quest,alias_bindings)
+    check(alias_bindings==[dict(quest=quest['fid'],alias=0,scripts=[('YSMR_ShoutCooldown',[])])],'Cooldown script binds only to the existing player alias, with no properties or new quest')
+    check(len(fields(quest,'ALST'))==1 and U32(field(quest,'ALST'))==0,'Player alias ID and count stay unchanged')
     seq=next((PKG/'SEQ').glob('*.seq')).read_bytes()
     check(seq==struct.pack('<I',quest['fid']),'SEQ contains the correct raw quest FormID and no count header')
     script_sources={p.stem.lower():p.read_text(encoding='utf-8-sig') for p in (PKG/'Source'/'Scripts').glob('*.psc')}
     scripts=list((PKG/'Scripts').glob('*.pex'))
-    check(len(scripts)==len(script_sources)==11,'Eleven source scripts and eleven compiled PEX files')
+    check(len(scripts)==len(script_sources)==12,'Twelve source scripts and twelve compiled PEX files')
     check(not any(r['edid'].startswith('FT_') for r in rs),'All former FT EditorIDs use the YSMR namespace')
     check(not any('FT_' in k for r in rs for n,props in vmad(r) for k,t,v in props),'No FT script property remains in plugin bindings')
     check(not any('FT_' in s for s in script_sources.values()),'No FT identifier remains in shipped script sources')
@@ -298,6 +320,13 @@ def main():
     for p in scripts:
         check(p.read_bytes()[:4]==bytes.fromhex('fa57c0de'),'Valid Skyrim PEX header: '+p.name)
     decompiled=ROOT/'verify-decompiled'
+    cooldown=next(p for p in decompiled.glob('*.psc') if p.stem.lower()=='ysmr_shoutcooldown').read_text().lower()
+    check('extends referencealias' in cooldown and re.findall(r'\bevent\s+(\w+)\(',cooldown)==['onspellcast'],'Compiled cooldown listener has exactly one native cast event on a reference alias')
+    check('akspell as shout' in cooldown and 'getactorreference()' in cooldown,'Compiled cooldown listener filters Shout forms and obtains its alias actor')
+    check('setvoicerecoverytime(' in cooldown and 'getactorvalue("shoutrecoverymult")' in cooldown and re.search(r'5\.0+\s*\*',cooldown),'Compiled cooldown uses five seconds times the current native recovery multiplier')
+    check(not re.search(r'\b(while|register\w*|onupdate\w*|wait\w*|skse|game|getform\w*|setactorvalue|forceactorvalue|modactorvalue)\b',cooldown),'Cooldown contains no polling, waits, SKSE, form lookup or actor-value mutation')
+    check('magicshout' not in cooldown and 'getnth' not in cooldown,'Cooldown accepts unknown Shout forms without a keyword, rank filter or SKSE shout API')
+    cooldown_samples=[dict(multiplier=m,seconds=5*m) for m in (1,.8,.6,0)]
     for name in ('wordwalltriggerscript','dlc1wordwalltriggerscript','dlc2wordwalltriggerscript','dbsanctuarywordwalltriggerscript'):
         p=next(p for p in decompiled.glob('*.psc') if p.stem.lower()==name);s=p.read_text().lower()
         check(s.count('game.unlockword(')==1 and s.index('game.unlockword(')>s.index('game.teachword('),'Compiled free word unlock: '+name)
@@ -322,7 +351,7 @@ def main():
     check(not any('phantom' in a['path'].lower() or 'powerwordsah' in a['path'].lower() for a in assets),'Removed Phantom Form models and word-wall mesh stay excluded')
     build=json.loads((REPORT/'build.json').read_text())
     check(not build['unresolved'] and build['sha256'].lower()==hashlib.sha256(path.read_bytes()).hexdigest(),'Builder link validation and checksum match this binary')
-    result=dict(status='PASS',verification='Offline only; no in-game execution',records=len(rs),newRecords=sum(r['fid']>>24==own for r in rs),shouts=len(all_shouts),shoutSlots=sum(len(fields(r,'SNAM')) for r in all_shouts),playerShouts=len(shouts),miraakOverrides=len(npc_shouts),scripts=11,assets=len(assets),checkedActionEffects=len(tagged),housekeepingSelectors=len(helpers),checks=checks,slowTimeSamples=simulation,pluginSHA256=hashlib.sha256((PKG/'Ysmir - Shout System Overhaul.esp').read_bytes()).hexdigest())
+    result=dict(status='PASS',verification='Offline only; no in-game execution',records=len(rs),newRecords=sum(r['fid']>>24==own for r in rs),shouts=len(all_shouts),shoutSlots=sum(len(fields(r,'SNAM')) for r in all_shouts),playerShouts=len(shouts),miraakOverrides=len(npc_shouts),scripts=len(scripts),assets=len(assets),checkedActionEffects=len(tagged),housekeepingSelectors=len(helpers),checks=checks,slowTimeSamples=simulation,playerCooldownSamples=cooldown_samples,pluginSHA256=hashlib.sha256((PKG/'Ysmir - Shout System Overhaul.esp').read_bytes()).hexdigest())
     (REPORT/'verification.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k not in ('checks','slowTimeSamples')},indent=2))
     print('Passed',len(checks),'offline assertions')

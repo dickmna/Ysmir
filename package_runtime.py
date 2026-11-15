@@ -11,11 +11,11 @@ assert hashlib.sha256(plugin.read_bytes()).hexdigest()==report['pluginSHA256']
 assets=json.loads((root/'reports/assets.json').read_text(encoding='utf-8'))
 files=[plugin,*sorted((pkg/'Scripts').glob('*.pex')),*sorted((pkg/'SEQ').glob('*.seq')),pkg/'Ysmir - 说明.txt']
 files.extend(pkg/a['path'] for a in assets)
-assert len(files)==35 and sum(p.suffix=='.pex' for p in files)==11
+assert len(files)==36 and sum(p.suffix=='.pex' for p in files)==12
 for a in assets:
     assert hashlib.sha256((pkg/a['path']).read_bytes()).hexdigest()==a['sha256']
 out=root/'dist';out.mkdir(exist_ok=True)
-archive=out/'Ysmir - Shout System Overhaul v1.2.3.zip'
+archive=out/'Ysmir - Shout System Overhaul v1.2.4.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
     for p in files:z.write(p,p.relative_to(pkg).as_posix())
 with zipfile.ZipFile(archive) as z:

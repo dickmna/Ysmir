@@ -5,6 +5,17 @@ using Mutagen.Bethesda.Plugins.Records;
 
 sealed partial class YsmirBuild
 {
+    void PlayerCooldown() {
+        // Reuse the released player alias; native cast events need no polling
+        // or registration, and no third-party shout records are referenced.
+        var quest=(Quest)Named("YSMR_GeneralControllerQuest");
+        var player=quest.Aliases.Single(a=>a.ForcedReference.FormKey==K("Skyrim",0x14));
+        var alias=new QuestFragmentAlias{Property=new ScriptObjectProperty{Alias=checked((short)player.ID)}};
+        alias.Property.Object.SetTo(quest.FormKey);
+        alias.Scripts.Add(new ScriptEntry{Name="YSMR_ShoutCooldown"});
+        quest.VirtualMachineAdapter??=new QuestAdapter{FileName=string.Empty};
+        quest.VirtualMachineAdapter.Aliases.Add(alias);
+    }
     void MiraakCooldowns() {
         // Add only the official Miraak records that need a cooldown change.
         // His other named shouts and Greybeard variants already use 5/5/5.

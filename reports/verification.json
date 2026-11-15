@@ -7,7 +7,7 @@
   "shoutSlots": 96,
   "playerShouts": 27,
   "miraakOverrides": 5,
-  "scripts": 11,
+  "scripts": 12,
   "assets": 21,
   "checkedActionEffects": 116,
   "housekeepingSelectors": 6,
@@ -550,8 +550,10 @@
     "Lightning uses only the MagicShout-tagged private damage effect: StormCallLightningBolt02",
     "Lightning uses only the MagicShout-tagged private damage effect: StormCallLightningBolt03",
     "Native start-enabled player alias installs progression",
+    "Cooldown script binds only to the existing player alias, with no properties or new quest",
+    "Player alias ID and count stay unchanged",
     "SEQ contains the correct raw quest FormID and no count header",
-    "Eleven source scripts and eleven compiled PEX files",
+    "Twelve source scripts and twelve compiled PEX files",
     "All former FT EditorIDs use the YSMR namespace",
     "No FT script property remains in plugin bindings",
     "No FT identifier remains in shipped script sources",
@@ -567,9 +569,15 @@
     "Valid Skyrim PEX header: YSMR_BattleFury.pex",
     "Valid Skyrim PEX header: YSMR_ElementalFury.pex",
     "Valid Skyrim PEX header: YSMR_FrostBreath.pex",
+    "Valid Skyrim PEX header: YSMR_ShoutCooldown.pex",
     "Valid Skyrim PEX header: YSMR_Shrine.pex",
     "Valid Skyrim PEX header: YSMR_SpeedRefresh.pex",
     "Valid Skyrim PEX header: YSMR_VoicePush.pex",
+    "Compiled cooldown listener has exactly one native cast event on a reference alias",
+    "Compiled cooldown listener filters Shout forms and obtains its alias actor",
+    "Compiled cooldown uses five seconds times the current native recovery multiplier",
+    "Cooldown contains no polling, waits, SKSE, form lookup or actor-value mutation",
+    "Cooldown accepts unknown Shout forms without a keyword, rank filter or SKSE shout API",
     "Compiled free word unlock: wordwalltriggerscript",
     "Word unlock never debits/refunds souls: wordwalltriggerscript",
     "Compiled free word unlock: dlc1wordwalltriggerscript",
@@ -752,5 +760,23 @@
       "duration": 56.0
     }
   ],
-  "pluginSHA256": "7829b04bf7ab47e03bd56fe33db51f67378dfff3473e96e7600bad84d51f7445"
+  "playerCooldownSamples": [
+    {
+      "multiplier": 1,
+      "seconds": 5
+    },
+    {
+      "multiplier": 0.8,
+      "seconds": 4.0
+    },
+    {
+      "multiplier": 0.6,
+      "seconds": 3.0
+    },
+    {
+      "multiplier": 0,
+      "seconds": 0
+    }
+  ],
+  "pluginSHA256": "90dfbfc0326ea399ba0760540e771a9f471ad8263c84280cf1e119254d31cfef"
 }

@@ -164,13 +164,13 @@ sealed partial class YsmirBuild
         File.WriteAllText(Path.Combine(root,"reports","stable-formids.json"),JsonSerializer.Serialize(manifest,new JsonSerializerOptions{WriteIndented=true}));
     }
     public void Run() {
-        Inputs();Foundation();Console.WriteLine("Foundation ready");Elemental();Sprint();SoulTear();Storm();Progression();AssetsAndModels();Console.WriteLine("Features ready");KeywordsAndCleanup();MiraakCooldowns();OwnNamespace();PreserveFormIDs();Console.WriteLine("Keyword graph ready");
+        Inputs();Foundation();Console.WriteLine("Foundation ready");Elemental();Sprint();SoulTear();Storm();Progression();AssetsAndModels();Console.WriteLine("Features ready");KeywordsAndCleanup();MiraakCooldowns();OwnNamespace();PreserveFormIDs();PlayerCooldown();Console.WriteLine("Keyword graph ready");
         var all=mod.EnumerateMajorRecords().ToDictionary(r=>r.FormKey);
         var errors=all.Values.SelectMany(r=>r.EnumerateFormLinks().Where(l=>!l.FormKey.IsNull&&l.FormKey!=K("Skyrim",0x14)&&!all.ContainsKey(l.FormKey)&&!official.ContainsKey(l.FormKey)).Select(l=>$"{r.EditorID} {r.FormKey} -> {l.FormKey}")).Distinct().ToArray();
         File.WriteAllLines(Path.Combine(root,"reports","unresolved.txt"),errors);
         if(errors.Length>0)throw new InvalidDataException("Unresolved links: "+string.Join("; ",errors.Take(15)));
         mod.ModHeader.Author="dickmna";
-        mod.ModHeader.Description="Ysmir - Shout System Overhaul 1.2.3. Native 2.5% soul growth; 5-second player, hero and Miraak shout cooldowns. Heroes level 150 with no bonus attributes; Animal Allegiance without stat buffs. No SKSE or other mod masters.";
+        mod.ModHeader.Description="Ysmir - Shout System Overhaul 1.2.4. Native 2.5% soul growth; player shout events apply 5-second base recovery with native modifiers, including added shouts. Heroes level 150; hero and Miraak shouts 5/5/5. No polling, SKSE or other mod masters.";
         mod.ModHeader.Flags|=SkyrimModHeader.HeaderFlag.Small;
         var path=Path.Combine(root,"package",output.FileName.String);
         var masters=new[]{"Skyrim","Update","Dawnguard","Dragonborn"}.Select(n=>K(n,0).ModKey).ToArray();
