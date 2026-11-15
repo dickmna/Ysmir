@@ -27,3 +27,7 @@
 本次介绍修正直接使用 `PATCH /v3/mods/7318624471607`，仅传 `description`，返回 204。回读核对完整 BBCode、27 条龙吼、公开状态、版本号和主文件；版本仍为 1.2.5，安装包未变。
 
 正文源文件是 [NEXUS_DESCRIPTION.bbcode](NEXUS_DESCRIPTION.bbcode)。以用户中文原文为准；本次仅获准修正冰霜吐息的伤害时间、旋风冲刺的踉跄表述、风暴召唤的同伴伤害保护表述。不要自行加入版权说明、测试免责声明或原文未提到的米拉克改动说明。
+
+文件简介源文件是 [NEXUS_FILE_DESCRIPTION.txt](NEXUS_FILE_DESCRIPTION.txt)，内容为 `Full standalone install.`。当前 1.2.5 及归档 1.2.0、1.2.1、1.2.2 的公开文件简介均已核对为此句。发布时从该文件读取简介，不复用历史上传日志中的旧文案。
+
+模组正文与文件简介必须分别检查。当前官方 API 尚未提供修改现有文件版本简介的接口；此次通过文件管理页 More actions → Edit → File options 修改文字，未上传新文件。主文件 ID、版本和归档状态保持原值。
