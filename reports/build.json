@@ -14,15 +14,15 @@
       "sha256": "66FD54CB9A923C6D122756320A57B5984AF58949F47EB811A9ECD7F791B4C837"
     }
   ],
-  "sha256": "90DFBFC0326EA399BA0760540E771A9F471AD8263C84280CF1E119254D31CFEF",
-  "bytes": 115958,
+  "sha256": "A197AE7AF5F2CB04557BE6114D987096C9B345909F9D598D6B283AA5F293C140",
+  "bytes": 114910,
   "masters": [
     "Skyrim.esm",
     "Update.esm",
     "Dawnguard.esm",
     "Dragonborn.esm"
   ],
-  "records": 355,
+  "records": 350,
   "newRecords": 95,
   "shouts": [
     {
@@ -534,101 +534,6 @@
         },
         {
           "spell": "02AD0B:Dragonborn.esm",
-          "RecoveryTime": 5
-        }
-      ]
-    },
-    {
-      "id": "039D28:Dragonborn.esm",
-      "EditorID": "dlc2MKMiraakMaskShoutShout",
-      "flags": "0",
-      "words": [
-        {
-          "spell": "039D27:Dragonborn.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "Null",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "Null",
-          "RecoveryTime": 5
-        }
-      ]
-    },
-    {
-      "id": "0382F9:Dragonborn.esm",
-      "EditorID": "DLC2MiraakFakeKillShout",
-      "flags": "0",
-      "words": [
-        {
-          "spell": "034813:Dragonborn.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "034813:Dragonborn.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "034813:Dragonborn.esm",
-          "RecoveryTime": 5
-        }
-      ]
-    },
-    {
-      "id": "03547B:Dragonborn.esm",
-      "EditorID": "DLC2MiraakWhirlwindSprintShout",
-      "flags": "0",
-      "words": [
-        {
-          "spell": "02F7BE:Skyrim.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "02F7BF:Skyrim.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "02F7C0:Skyrim.esm",
-          "RecoveryTime": 5
-        }
-      ]
-    },
-    {
-      "id": "023F7A:Dragonborn.esm",
-      "EditorID": "DLC2MiraakBecomeEtherealShout",
-      "flags": "0",
-      "words": [
-        {
-          "spell": "05F6EB:Skyrim.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "05F6EC:Skyrim.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "05F6ED:Skyrim.esm",
-          "RecoveryTime": 5
-        }
-      ]
-    },
-    {
-      "id": "023F79:Dragonborn.esm",
-      "EditorID": "DLC2MiraakCycloneShout",
-      "flags": "0",
-      "words": [
-        {
-          "spell": "0200BC:Dragonborn.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "0200BE:Dragonborn.esm",
-          "RecoveryTime": 5
-        },
-        {
-          "spell": "03D2AD:Dragonborn.esm",
           "RecoveryTime": 5
         }
       ]

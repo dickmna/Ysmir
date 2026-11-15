@@ -1,0 +1,84 @@
+[size=6][b]Ysmir — A Lore-Friendly Shout Overhaul[/b][/size]
+[i]The Voice should feel like a Dragonborn's power.[/i]
+
+Ysmir reworks all 27 player shouts from Skyrim, Dawnguard and Dragonborn. Shout more often, let the dragon souls you carry strengthen your Voice, and use newly read Words of Power immediately.
+
+An ESL-flagged ESP with 12 native Papyrus scripts and included visual assets. No SKSE, DLL, MCM or additional mod masters.
+
+[size=5][b]The Dragonborn's Voice[/b][/size]
+
+[b]Five-second base recovery at every word level.[/b] Ever wondered why the Greybeards and Miraak can shout so often? The Greybeards' shout records and several of Miraak's combat shouts use five-second recovery. Ysmir takes that as its baseline for a master of the Voice: all 27 player shouts use 5 / 5 / 5 seconds, and a short native event script applies the same base recovery when the player uses shouts added by other mods. Talos and other native cooldown modifiers still apply. Miraak keeps his original cooldowns.
+
+[b]Dragon souls strengthen your shouts.[/b] The Dragonborn absorbs a dragon's soul and understanding. Miraak steals your hard-earned souls, and Kaalgrontiid sought to rise as a new moon through stolen draconic power and challenge Akatosh himself. That power should matter. Every dragon soul you currently hold adds [b]2.5% to eligible shout magnitude and duration[/b]: 20 souls gives 1.5×, 40 gives 2×, and 100 gives 3.5×. Shouting does not spend them.
+
+[b]Read a Word Wall and use its word.[/b] If absorbing a dragon's soul already gives you its knowledge, why spend the soul again to understand a new word? It is almost as strange as a spell tome disappearing when you read it. Ysmir lets the Dragonborn's innate affinity for the dragon language become immediate understanding: newly read words unlock without spending a soul. Previously learned but locked words retain their normal unlock route, and quest-taught words follow their quests.
+
+[b]A common language for shout effects.[/b] Nearly all actual shout effects carry the game's [b]MagicShout[/b] keyword. The soul bonus uses that native keyword, so correctly tagged effects from other mods can grow too. Fixed areas, NPC levels and independent script timers do not automatically scale; Slow Time's slowdown and certain movement and trigger effects retain their intended values.
+
+[size=5][b]The shouts[/b][/size]
+
+Values below are base values before soul bonuses. Every player shout also receives the five-second base cooldown.
+
+[size=4][b]Skyrim[/b][/size]
+
+[list]
+[*][b]Animal Allegiance:[/b] The loyalty of recruited animals lasts longer as your collection of dragon souls grows. Keeps allegiance and courage without adding extra Health, Stamina or other attribute buffs.
+[*][b]Aura Whisper:[/b] Detects living creatures, undead, Daedra and Dwarven constructs. Non-hostile auras use a range of 500 and hostile auras use 300 at all three word levels. Souls extend the 10 / 20 / 30-second duration; detection range stays fixed.
+[*][b]Become Ethereal:[/b] Preserves ethereal protection and its 8 / 13 / 18-second baseline. Souls extend this window for movement and survival, while meditation improves recovery.
+[*][b]Call Dragon:[/b] Keeps the full three-word call to Odahviing, with five-second recovery. Calling an ally should not lock out the rest of the Voice for five minutes.
+[*][b]Call of Valor:[/b] The three heroes and their related variants are level 150, with a 60-second base summon duration. Heroes who fought Alduin should remain useful beside a powerful Dragonborn. Their attributes use native level calculation without extra Health, Magicka or Stamina offsets; souls extend their stay, not their level. Their existing shouts use 5 / 5 / 5 recovery.
+[*][b]Clear Skies:[/b] Retains its weather-clearing behavior and 25 / 40 / 60-second baseline. Faster recovery makes repeated environmental use less cumbersome.
+[*][b]Disarm:[/b] Retains disarming and the 12 / 20 / 30 base level caps. Eligible strength grows with souls, keeping the shout useful as enemies become stronger.
+[*][b]Dismay:[/b] Keeps fear, removes the separate push and broadens the third word's eligible targets. Gives fear a clear role alongside Unrelenting Force.
+[*][b]Dragonrend:[/b] Keeps grounding, dragon restrictions and quest behavior, with 15 / 18 / 22-second base duration. Improves repeat use while preserving its story purpose.
+[*][b]Elemental Fury:[/b] Why should Elemental Fury have no elements? Direct 1.3× / 1.5× / 1.7× attack speed now works with enchanted weapons. Attacks can independently trigger fire, frost and shock bursts at 50% each, with a two-second interval per element. Uses Reduced Shaders and native effects, with no animation framework required.
+[*][b]Fire Breath:[/b] Retains 50 / 70 / 90 base damage over one second, burning and stagger. Souls increase both damage rate and duration: for the damage-over-time component, a 2× bonus to each can mean 4× total damage over its full duration, before resistances and other modifiers.
+[*][b]Frost Breath:[/b] Retains 10 / 14 / 18 damage per second for five seconds, slow and stagger: 50 / 70 / 90 total base damage. Both damage rate and duration grow with souls, giving the same multiplicative increase in full-duration damage. The Black Book upgrade adds damage and frost wyrms from eligible kills.
+[*][b]Ice Form:[/b] Retains encasement, break-on-hit behavior and a 15 / 30 / 60-second baseline. Both its damage per second and duration grow with souls.
+[*][b]Kyne's Peace:[/b] Why should the voice of Kynareth soothe only animals? Calming now reaches beyond wildlife, with the third word affecting more target types. A peaceful use of the Voice deserves a broader role.
+[*][b]Marked for Death:[/b] Deals damage over time, temporarily reduces armor and adds 25% magic weakness for 10 / 20 / 30 seconds. Damage per second, weakening strength and duration grow with souls, opening a stronger window for physical and magical attacks.
+[*][b]Slow Time:[/b] If you can command time to slow, why must your own time slow with it? The world moves at 30% / 20% / 10% speed while you move normally. Souls extend the 8 / 12 / 16-second duration; the slowdown itself stays fixed.
+[*][b]Storm Call:[/b] Alduin's combat meteor storm has an area of 600, while the original Storm Call starts at just 150. All three ranks now acquire targets within 600. Keeps outdoor weather and random native lightning, dealing 40 / 60 / 80 base Health damage and half as much Magicka damage. Lightning carries MagicShout, so Companion's Insight now applies its native companion-protection conditions. It prevents qualifying damage; lightning can still target a protected companion. Targets are acquired when you shout, and storms can overlap.
+[*][b]Throw Voice:[/b] All word levels recover in five seconds, matching the original third word. Makes the distraction tool convenient while keeping its purpose.
+[*][b]Unrelenting Force:[/b] A stronger Voice should throw enemies harder. The first two words stagger; the third launches targets with push strength [b]15 × (1 + 0.025 × held dragon souls)[/b]. More souls mean more force, with actual travel governed by the game's physics. The Black Book reward adds damage instead of disintegration.
+[*][b]Whirlwind Sprint:[/b] You can turn yourself into a missile with a word, yet an enemy standing in your path can feel like a wall. The dash now knocks nearby enemies off balance with a brief hostile-only collision stagger. Afterwards, gain 25% movement speed for 10 / 20 / 30 seconds, with souls extending that bonus's duration.
+[/list]
+
+[size=4][b]Dawnguard[/b][/size]
+
+[list]
+[*][b]Drain Vitality:[/b] Why call it a drain if nothing returns to you? The shout now absorbs attributes and replenishes your own pools. The words add Stamina, then Magicka, then Health, at five per second for 30 seconds. Both the amount absorbed per second and duration grow with souls.
+[*][b]Soul Tear:[/b] Dragons in ESO can tear the souls of multiple victims; the Dragonborn should reach more than the first enemy in line. Its native projectile now pierces actors along its path, retaining the original range, speed and visuals. Every target receives the full effect of the chosen rank: 30 / 60 damage and 10 / 20 seconds of soul trapping for the first two words, or 300 base damage with the third word's death-and-reanimation chain. Eligible victims killed under the third-word effect can rise together. Following the Ritual Stone's native approach, only Soul Tear's actual reanimation spell receives 100 extra control slots. Soul gems, target eligibility and the finite reanimation duration still apply.
+[*][b]Summon Durnehviir:[/b] Preserves the full shout and 180-second native summon baseline, with shorter recovery and eligible duration growth. Calling your ally leaves the rest of your Voice available.
+[/list]
+
+[size=4][b]Dragonborn[/b][/size]
+
+[list]
+[*][b]Battle Fury:[/b] Extends the ally buff to eligible commanded actors while retaining 1.3× / 1.5× / 1.7× speed and 60 / 120 / 180-second base duration. Lets the Voice support the allies you actually fight beside.
+[*][b]Bend Will:[/b] The first word can command eligible targets up to base level 30 for ten seconds. Later words retain broader control and the third word's dragon-taming role, including its quest restrictions.
+[*][b]Cyclone:[/b] Retains the damaging whirlwind and 50 / 75 / 100 base damage, with eligible soul growth. Makes this crowd-control shout part of regular combat.
+[*][b]Dragon Aspect:[/b] Removes the daily limit, adds Destruction and Restoration strength, replaces elemental resistance with general Magic Resistance, and retains the third word's cooldown benefit and Ancient Dragonborn support. Your dragon nature becomes a power you can call upon throughout the day.
+[/list]
+
+[size=5][b]Meditation and rewards[/b][/size]
+
+Fus meditation retains stagger benefits and adds protection from being thrown. Feim improves Health, Magicka and Stamina regeneration while ethereal. Yol retains its Fire Breath bonus. The High Hrothgar pilgrimage blessing adds 25% to eligible shout effects. Black Book rewards remain meaningful upgrades to Force, Flame and Frost.
+
+[size=5][b]Installation and compatibility[/b][/size]
+
+Install with Vortex or MO2 and enable [b]Ysmir - Shout System Overhaul.esp[/b]. The runtime masters are Skyrim, Update, Dawnguard and Dragonborn. All required custom resources are included.
+
+Other shout overhauls can edit the same records. Load order determines the winning behavior, so combine them with a deliberate patch. Ysmir's four Word Wall scripts must win file conflicts for immediate unlocking. Replace the previous package when updating, and remove any old Ysmir DLL.
+
+Added shouts use the player's five-second base recovery when cast normally; their menu values and NPC cooldown records are not rewritten. Abilities that manage their own cooldown through scripts may need their own compatibility work.
+
+Version 1.2.5 restores Miraak's original shout cooldowns. The plugin, scripts and release differences have passed offline validation; gameplay and save-upgrade behavior have not yet been tested in game.
+
+[size=5][b]Credits and source[/b][/size]
+
+Built from and inspired by Delta's [url=https://www.nexusmods.com/skyrimspecialedition/mods/36276]Forceful Tongue[/url], Unstable's [url=https://www.nexusmods.com/skyrimspecialedition/mods/93681]Elemental Fury and Battle Fury overhaul[/url], Aleksi134's [url=https://www.nexusmods.com/skyrimspecialedition/mods/49359]Whirlwind Sprint Redone[/url], and Bethesda's game systems. [url=https://www.nexusmods.com/skyrimspecialedition/mods/46794]Immediate Word Wall unlocking[/url] also inspired the word-learning behavior.
+
+Ysmir rebuilds these ideas around the simplest native implementation: 12 Papyrus scripts using the game's existing APIs and effect systems, with no external runtime framework. Original records, scripts and visual assets retain their respective authors' rights. [url=https://github.com/dickmna/Ysmir/blob/main/THIRD_PARTY.md]Source and asset notices.[/url]
+
+[url=https://github.com/dickmna/Ysmir][b]GitHub — source code, build instructions and validation reports[/b][/url]

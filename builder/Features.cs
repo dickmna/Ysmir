@@ -16,17 +16,6 @@ sealed partial class YsmirBuild
         quest.VirtualMachineAdapter??=new QuestAdapter{FileName=string.Empty};
         quest.VirtualMachineAdapter.Aliases.Add(alias);
     }
-    void MiraakCooldowns() {
-        // Add only the official Miraak records that need a cooldown change.
-        // His other named shouts and Greybeard variants already use 5/5/5.
-        // Run after the player spell graph is built: no copied spells, keyword
-        // edits, quest scripts or new FormIDs are needed for NPC cooldowns.
-        foreach(var original in official.Values.OfType<IShoutGetter>().Where(s=>s.FormKey.ModKey==K("Dragonborn",0).ModKey && s.EditorID?.Contains("Miraak",StringComparison.OrdinalIgnoreCase)==true)) {
-            if(original.WordsOfPower.All(w=>w.RecoveryTime==5))continue;
-            var shout=(Shout)Copy(original,original.FormKey);
-            foreach(var word in shout.WordsOfPower)word.RecoveryTime=5;
-        }
-    }
     readonly List<FormKey> magnitudeExtras=new();
     readonly List<FormKey> fixedMagnitude=new(), fixedDuration=new();
     void Elemental() {

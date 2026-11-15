@@ -1,4 +1,4 @@
-# 构建 Ysmir 1.2.4
+# 构建 Ysmir 1.2.5
 
 运行成品不需要 SKSE 或其他模组。下面是源码重建所需工具和本地输入。
 
@@ -34,9 +34,9 @@
 
 发布记录的 ID 来自 `inputs/stable-formids.json`。新记录只能追加，不能重新压缩编号或重用已保留编号。输入中的原版投射物字段是独立验证基线，用于发现射程、速度和视觉参数的意外变化。
 
-`inputs/miraak-shouts.json` 记录已审计的米拉克专用与灰胡子版本的原生冷却，验证器检查五条必要覆盖和其余原生继承。三英雄的共享玩家龙吼也会逐条检查。
+`inputs/miraak-shouts.json` 记录已审计的米拉克专用与灰胡子版本的原生冷却；其中 `overrideNeeded` 是此前统一五秒方案的历史标记。当前验证器要求这些记录全部不被覆盖，直接继承官方冷却。三英雄的共享玩家龙吼也会逐条检查。
 
-保留本地 1.2.3 ESP 与安装包时，可运行 `python audit_1_2_4.py --baseline 'D:\Baselines\Ysmir-1.2.3.esp' --baseline-zip 'D:\Baselines\Ysmir - Shout System Overhaul v1.2.3.zip'`，独立确认本次只增加既有玩家别名的 VMAD 脚本绑定，并保留其他全部记录、资源与 SEQ。`audit_1_2_3.py` 留作 1.2.3 对 1.2.0 的历史审计工具。
+保留本地 1.2.4 ESP 与安装包时，可运行 `python audit_1_2_5.py --baseline 'D:\Baselines\Ysmir-1.2.4.esp' --baseline-zip 'D:\Baselines\Ysmir - Shout System Overhaul v1.2.4.zip' --game-data 'D:\Games\Skyrim Special Edition\Data'`，独立确认只撤回五条米拉克覆盖，其余 350 条记录及资源、SEQ 不变，并核对官方冷却基线。旧版本审计工具保留用于对应版本。
 
 ## 生成本地安装包
 

@@ -140,15 +140,15 @@ def main():
     check(not any(r['flags']&0x20 for r in rs),'No deleted records')
     check(not any(re.search('phantom|wordwallbroken',r['edid'],re.I) for r in rs),'No Phantom Form records')
     miraak_baseline=json.loads((ROOT/'inputs'/'miraak-shouts.json').read_text())
-    miraak_ids={int(r['id'],16) for r in miraak_baseline if r['overrideNeeded']}
+    miraak_ids={int(r['id'],16) for r in miraak_baseline}
     all_shouts=[r for r in rs if r['tag']=='SHOU']
     npc_shouts=[r for r in all_shouts if r['fid'] in miraak_ids]
     shouts=[r for r in all_shouts if r['fid'] not in miraak_ids]
-    check({r['fid'] for r in npc_shouts}==miraak_ids and len(npc_shouts)==5,'Only the five Miraak shouts with non-five-second cooldowns need overrides')
-    check(all(len(fields(r,'SNAM'))==3 and all(F32(v,8)==5 for v in fields(r,'SNAM')) for r in npc_shouts),'All 15 Miraak override word slots use five-second recovery, including unused slots')
+    check(not npc_shouts and len(all_shouts)==27,'Only player shout records are overridden; no Miraak cooldown overrides')
+    check(not any('miraak' in r['edid'].lower() for r in all_shouts),'No Miraak-specific shout records are included')
     for original in miraak_baseline:
         fid=int(original['id'],16)
-        check(fid in byid if original['overrideNeeded'] else fid not in byid and original['cooldowns']==[5,5,5],'Miraak coverage without redundant overrides: '+original['editorID'])
+        check(fid not in byid,'Miraak/Greybeard shout inherits the original record: '+original['editorID'])
     check(len(shouts)==27,'27 vanilla/DLC player shouts')
     check(all(len(fields(r,'SNAM'))==3 and all(F32(v,8)==5 for v in fields(r,'SNAM')) for r in shouts),'All 81 shout slots use 5-second recovery')
     check(all(r['flags']==0 for r in shouts),'No shout treated as a daily power')

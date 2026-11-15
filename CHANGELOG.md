@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.5 — 2026-11-16
+
+- Removes all five Miraak-specific shout cooldown overrides, restoring inheritance from the official game records. Player and Nord hero five-second recovery remains intact.
+- Keeps the existing native player cast listener, including third-party Shout support and native recovery modifiers. No scripts, FormIDs or dependencies added.
+- Rewrites the English Nexus description from the user's Chinese revision and reconciles the wording with the current runtime behavior.
+
 ## 1.2.4 — 2026-11-16
 
 - Adds one short native OnSpellCast listener to the existing player alias. Normal player shouts, including third-party Shout forms, set the current recovery timer to five seconds times the current ShoutRecoveryMult, preserving native cooldown reductions.
