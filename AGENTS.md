@@ -4,3 +4,5 @@
 - Preserve released FormIDs in `inputs/stable-formids.json`; only append new IDs. Runtime identifiers use `YSMR_` and assets use `ysmir/`.
 - Build with `rebuild.ps1` and the documented local inputs. Run `verify.py` after data changes; report game testing separately from offline verification.
 - Do not commit game files, reference plugins, generated runtime assets or installation ZIPs. Publish source and reports; see `THIRD_PARTY.md`.
+- Use the official Nexus API for uploads and description edits; see `NEXUS_UPLOAD.md`. Do not use Computer Use for uploads.
+- Translate the user's Chinese description faithfully, preserving its tone and examples. Ask about factual conflicts separately; do not add unrequested notices or change summaries.
